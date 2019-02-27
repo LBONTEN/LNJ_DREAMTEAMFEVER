@@ -1,5 +1,5 @@
 # LNJ_DREAMTEAMFEVER
-~ Lenny and Joren's Software Engineering Project ~
+Lenny and Joren's Software Engineering Project. 
 
                                          `-----`                                                
                                       `:+/-----/++++++/``                                       
@@ -11,7 +11,7 @@
                                   .`d         /Nm/::+oyd  :s                                    
                                    ++       .sNMMm+s/yho `h`                                    
                                   -s.     .sNMmdMMNm:yy .s-                                     
-                                 -s`  ..:/hMNNddNdNN:o- ++                                      
+                                 -s`  ..:/hMNNddNdNN:o- ++                         README.md             
                                  /o+++:o-`sMhossosNm-: -`s/                                     
                                   ```` .y-:omNhyNNy-`.:o/+y                                     
                   `//+sss+++++ssssss+//-://:.oyyy-.::+::/+oosssso++++osso//:                    
