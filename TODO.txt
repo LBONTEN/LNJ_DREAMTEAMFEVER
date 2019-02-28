@@ -3,6 +3,10 @@
 	- xml-parsing initialiseren
 	- general design ontwerpen
 	
+	- buy pizza oven
+	- do the pizza dance 
+	- eat pizzaz
+	
 ░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░ 
 ░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░ 
 ░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░ 
