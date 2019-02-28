@@ -1,0 +1,19 @@
+/* created by Van Borm Joren & Bontenakel Lenny
+ */
+
+#include "Vehicle.h"
+#include <vector>
+
+#ifndef LNJ_PIZZA_PROJECT_ROAD_H
+#define LNJ_PIZZA_PROJECT_ROAD_H
+
+class Road
+{
+    string name;
+    double length;
+    vector<string*> connections;
+    vector<Vehicle*> occupying_vehicles;
+    bool is_free();
+};
+
+#endif //LNJ_PIZZA_PROJECT_ROAD_H
