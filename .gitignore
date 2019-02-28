@@ -34,6 +34,10 @@
 # Bs mac metadata
 *.DS_Store
 
-# Idea file
+# Ide_args file
 src/.idea/*
+
+# Compiled binary file
+bin
+!bin/README.*
 
