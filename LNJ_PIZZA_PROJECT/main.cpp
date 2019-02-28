@@ -2,5 +2,5 @@
 
 int main() {
     std::cout << "It's pizza time!" << std::endl;
-    return -999;
+    return 69;
 }
