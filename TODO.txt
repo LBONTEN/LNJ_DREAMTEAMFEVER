@@ -25,11 +25,7 @@
 		- advance acceleration
 		- advance speed
 		- advance position
-	
-	- buy pizza oven
-	- do the pizza dance 
-	- eat pizzaz
-	
+
 ░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░ 
 ░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░ 
 ░░░░░░░░░░█░░▀░░▀░░░░░▀▄▄░░█░█░░░░░░░░░ 
