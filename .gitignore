@@ -33,3 +33,7 @@
 
 # Bs mac metadata
 *.DS_Store
+
+# Idea file
+src/.idea/*
+
