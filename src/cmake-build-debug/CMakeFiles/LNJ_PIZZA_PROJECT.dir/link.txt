@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/LNJ_PIZZA_PROJECT.dir/main.cpp.o  -o LNJ_PIZZA_PROJECT 

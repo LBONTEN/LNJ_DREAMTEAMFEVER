@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jorenvanborm/Documents/!UAntwerpen/project softare engineering/project/LNJ_DREAMTEAMFEVER/src/main.cpp
+iostream
+-
+

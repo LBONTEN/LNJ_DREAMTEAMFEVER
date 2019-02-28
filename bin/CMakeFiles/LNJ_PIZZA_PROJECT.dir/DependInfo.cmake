@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/teryjacky/LNJ_DREAMTEAMFEVER/LNJ_PIZZA_PROJECT/main.cpp" "/home/teryjacky/LNJ_DREAMTEAMFEVER/LNJ_PIZZA_PROJECT/cmake-build-debug/CMakeFiles/LNJ_PIZZA_PROJECT.dir/main.cpp.o"
+  "/Users/jorenvanborm/Documents/!UAntwerpen/project softare engineering/project/LNJ_DREAMTEAMFEVER/src/main.cpp" "/Users/jorenvanborm/Documents/!UAntwerpen/project softare engineering/project/LNJ_DREAMTEAMFEVER/bin/CMakeFiles/LNJ_PIZZA_PROJECT.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
