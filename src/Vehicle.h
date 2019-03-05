@@ -54,8 +54,6 @@ private:
 
     Vehicle* selfPtr; // used to check proper initialisation
     RoadSystem* environment; // needed to look up info about e.g. current road
-
-    string generateLicensePlate(); // TODO do we really need this one?
 };
 
 #endif //LNJ_PIZZA_PROJECT_VEHICLE_H
