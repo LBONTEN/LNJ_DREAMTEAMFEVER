@@ -1,6 +1,7 @@
 # TODO lists
 
 ## General remarks
+- see also `//TODO`- comments in the c++ code (can be checked in CLion)
 - Try to find a way to lock in setters to prevent editing of e.g. licence plates during the simulation
 - Include tests for all items
 - set up test & release targets
