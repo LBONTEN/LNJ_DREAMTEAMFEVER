@@ -1,28 +1,61 @@
-/* created by Van Borm Joren & Bontenakel Lenny
+/* created by Joren Van Borm & Lenny Bontenakel
  */
-
-#include <string>
-using namespace std;
 
 #ifndef LNJ_PIZZA_PROJECT_VEHICLE_H
 #define LNJ_PIZZA_PROJECT_VEHICLE_H
 
+#include <string>
+using namespace std;
+
+class RoadSystem; // must forward declare to prevent circular dependency
+
 class Vehicle
 {
-    string license_plate = generate_license_plate();
-    string current_road;
+public:
+    /**
+     * Setter functions
+     * REQUIRE simulation not started
+     * ENSURE get<attr> = <arg>
+     */
+    void setLicensePlate(const string &license_plate) {Vehicle::licencePlate = license_plate;}
+    void setCurrentRoad(const string &current_road) {Vehicle::currentRoad = current_road;}
+    void setAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
+    void setSpeed(double speed) {Vehicle::speed = speed;}
+    void setPosition(double position) {Vehicle::position = position;}
+
+    /**
+     * Getter functions
+     * REQUIRE properly initialised
+     */
+    string getLicensePlate() { return licencePlate; }
+    string getCurrentRoad() { return currentRoad; }
+    double getAcceleration() { return acceleration; }
+    double getSpeed() { return speed; }
+    double getPosition() { return position; }
+
+    /**
+     * Advance acceleration, speed and position
+     * REQUIRE properly initialised
+     * ENSURE get<attr> respects simulation rules
+     */
+    void stepAttributes();
+
+protected:
+    virtual void stepAcceleration();
+    virtual void stepSpeed();
+    virtual void stepPosition();
+
+private:
+    string licencePlate = generateLicensePlate();
+    string currentRoad;
     double acceleration;
-    double speediness;
+    double speed;
     double position;
 
-    string generate_license_plate();
+    Vehicle* selfPtr; // used to check proper initialisation
+    RoadSystem* environment; // needed to look up info about e.g. current road
 
-public:
-    string get_license_plate() { return license_plate; }
-    string get_current_road() { return current_road; }
-    double get_acceleration() { return acceleration; }
-    double get_speediness() { return speediness; }
-    double get_position() { return position; }
+    string generateLicensePlate(); // TODO do we really need this one?
 };
 
 #endif //LNJ_PIZZA_PROJECT_VEHICLE_H
