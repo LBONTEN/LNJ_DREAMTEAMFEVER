@@ -1,30 +1,31 @@
+# header
+	–[ ] class: RoadSystem
+		-[ ] load simulation
+		*maybe move this to a seperate parser class?*
+		-[ ] dump simulation
+		-[ ] advance simulation
+		-[ ] add, get/traverse car(s)
+		-[ ] add, get/traverse road(s)
+		-[ ] simulation empty?
+		-[ ] i dunno, more querries
 
-	– class: RoadSystem
-		- load simulation
-		- dump simulation
-		- advance simulation
-		- add, get/traverse car(s)
-		- add, get/traverse road(s)
-		- simulation empty?
-		- i dunno, more querries
+	-[ ] class: Road
+		-[ ] get & set name
+		-[ ] get & set length
+		-[ ] get & set connection
+		-[ ] add, has?, get/traverse car(s)
 
-	- class: Road
-		- get & set name
-		- get & set length
-		- get & set connection
-		- add, has?, get/traverse car(s)
+	–[ ] class: Vehicle
+		-[ ] get & set licence plate
+		-[ ] get & set road
+		-[ ] get, set & advance acceleration
+		-[ ] get, set & advance speed 
+		-[ ] get, set & advance position
 
-	– class: Vehicle
-		- get & set licence plate
-		- get & set road
-		- get, set & advance acceleration
-		- get, set & advance speed 
-		- get, set & advance position
-
-	– class: Vehicle::Car
-		- advance acceleration
-		- advance speed
-		- advance position
+	–[ ] class: Vehicle::Car
+		-[ ] advance acceleration
+		-[ ] advance speed
+		-[ ] advance position
 
 ░░░░░░░░░░░▄▀▄▀▀▀▀▄▀▄░░░░░░░░░░░░░░░░░░ 
 ░░░░░░░░░░░█░░░░░░░░▀▄░░░░░░▄░░░░░░░░░░ 
