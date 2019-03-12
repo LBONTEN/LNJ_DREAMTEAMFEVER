@@ -7,18 +7,43 @@
 #include <string>
 using namespace std;
 
-class RoadSystem; // must forward declare to prevent circular dependency
+class RoadSystem;
 
-class Vehicle
-{
+class Road; // must forward declare to prevent circular dependency
+
+class Vehicle {
 public:
+    /**
+     * Default constructor
+     * ENSURE NOT properly initialised
+     */
+    Vehicle();
+    
+    /**
+     * Minimal constructor
+     * Acceleration, speed and position are assumed to be 0
+     * ENSURE properly initialised
+     */
+    Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
+    
+    /**
+     * Maximal constructor
+     * ENSURE properly initialised
+     */
+    Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, double acceleration, double speed, double position);
+    
+    /**
+     * As advertised on the box
+     */
+    bool properlyInitialised();
+    
     /**
      * Setter functions
      * REQUIRE simulation not started
      * ENSURE get<attr> = <arg>
      */
-    void setLicensePlate(const string &license_plate) {Vehicle::licensePlate = license_plate;}
-    void setCurrentRoad(const string &current_road) {Vehicle::currentRoad = current_road;}
+    void setLicensePlate(const string& licensePlate) {Vehicle::licensePlate = licensePlate;}
+    void setCurrentRoad(Road* currentRoad) {Vehicle::currentRoad = currentRoad;}
     void setAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
     void setSpeed(double speed) {Vehicle::speed = speed;}
     void setPosition(double position) {Vehicle::position = position;}
@@ -28,7 +53,7 @@ public:
      * REQUIRE properly initialised
      */
     string getLicensePlate() { return licensePlate; }
-    string getCurrentRoad() { return currentRoad; }
+    Road* getCurrentRoad() { return currentRoad; }
     double getAcceleration() { return acceleration; }
     double getSpeed() { return speed; }
     double getPosition() { return position; }
@@ -38,22 +63,27 @@ public:
      * REQUIRE properly initialised
      * ENSURE get<attr> respects simulation rules
      */
-    void stepAttributes();
+    void update();
 
 protected:
     virtual void stepAcceleration();
     virtual void stepSpeed();
     virtual void stepPosition();
+    
+    void hardSetCurrentRoad(Road* currentRoad) {Vehicle::currentRoad = currentRoad;}
+    void hardSetAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
+    void hardSetSpeed(double speed) {Vehicle::speed = speed;}
+    void hardSetPosition(double position) {Vehicle::position = position;}
 
 private:
     string licensePlate;
-    string currentRoad;
+    Road* currentRoad;
     double acceleration;
     double speed;
     double position;
 
-    Vehicle* selfPtr; // used to check proper initialisation
-    RoadSystem* environment; // needed to look up info about e.g. current road
+    RoadSystem* environment;
+    Vehicle* selfPtr;
 };
 
 #endif //LNJ_PIZZA_PROJECT_VEHICLE_H
