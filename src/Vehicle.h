@@ -17,7 +17,7 @@ public:
      * REQUIRE simulation not started
      * ENSURE get<attr> = <arg>
      */
-    void setLicensePlate(const string &license_plate) {Vehicle::licencePlate = license_plate;}
+    void setLicensePlate(const string &license_plate) {Vehicle::licensePlate = license_plate;}
     void setCurrentRoad(const string &current_road) {Vehicle::currentRoad = current_road;}
     void setAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
     void setSpeed(double speed) {Vehicle::speed = speed;}
@@ -27,7 +27,7 @@ public:
      * Getter functions
      * REQUIRE properly initialised
      */
-    string getLicensePlate() { return licencePlate; }
+    string getLicensePlate() { return licensePlate; }
     string getCurrentRoad() { return currentRoad; }
     double getAcceleration() { return acceleration; }
     double getSpeed() { return speed; }
@@ -46,7 +46,7 @@ protected:
     virtual void stepPosition();
 
 private:
-    string licencePlate = generateLicensePlate();
+    string licensePlate;
     string currentRoad;
     double acceleration;
     double speed;

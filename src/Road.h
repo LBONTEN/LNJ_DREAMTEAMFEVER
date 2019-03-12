@@ -11,6 +11,7 @@ class Road
 {
     string name;
     double length;
+    double maximumSpeed;
     vector<string*> connections;
     vector<Vehicle*> occupying_vehicles;
     bool is_free();
