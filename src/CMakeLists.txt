@@ -14,7 +14,7 @@ include_directories(./gtest/include ../IO)
 link_directories(./gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp Vehicle.cpp)
+set(RELEASE_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp Vehicle.cpp RoadSystem.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp)

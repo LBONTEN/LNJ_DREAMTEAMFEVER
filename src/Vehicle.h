@@ -5,6 +5,8 @@
 #define LNJ_PIZZA_PROJECT_VEHICLE_H
 
 #include <string>
+#include <map>
+#include <vector>
 using namespace std;
 
 class RoadSystem; // must forward declare to prevent circular dependency
@@ -12,10 +14,10 @@ class RoadSystem; // must forward declare to prevent circular dependency
 class Vehicle
 {
 public:
-    /**
-     * Constructor
-     */
+    // Constructor
     Vehicle();
+
+    // Destructor
     ~Vehicle();
 
     /**
@@ -52,6 +54,9 @@ protected:
     virtual void stepPosition();
 
 private:
+    map<string, Vehicle*> VehicleLookUp;
+    vector<Vehicle*> VehicleIt;
+
     string licensePlate;
     string currentRoad;
     double acceleration;
