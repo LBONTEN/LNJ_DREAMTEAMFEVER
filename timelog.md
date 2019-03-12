@@ -11,7 +11,7 @@ Joren Van Borm
 |---|---|---|
 | general (GIT) maintenance | 05/03 | 30' |
 | vehicle header (by contract) | 05/03 | 30' — 1h |
-| vehicle & design discussion | 12/03 | <14:19 - ?> |
+| vehicle & design discussion | 12/03 | 2h 30' |
 
 
 Lenny Bontenakel
