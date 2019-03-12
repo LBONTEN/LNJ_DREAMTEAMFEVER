@@ -5,6 +5,8 @@
 #define LNJ_PIZZA_PROJECT_VEHICLE_H
 
 #include <string>
+#include <map>
+#include <vector>
 using namespace std;
 
 class RoadSystem;
@@ -13,6 +15,12 @@ class Road; // must forward declare to prevent circular dependency
 
 class Vehicle {
 public:
+    // Constructor
+    Vehicle();
+
+    // Destructor
+    ~Vehicle();
+
     /**
      * Default constructor
      * ENSURE NOT properly initialised
@@ -76,6 +84,9 @@ protected:
     void hardSetPosition(double position) {Vehicle::position = position;}
 
 private:
+    map<string, Vehicle*> VehicleLookUp;
+    vector<Vehicle*> VehicleIt;
+
     string licensePlate;
     Road* currentRoad;
     double acceleration;

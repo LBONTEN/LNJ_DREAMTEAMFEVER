@@ -8,13 +8,13 @@ set(CMAKE_CXX_FLAGS "-Wall -Werror -O2")
 set(CMAKE_EXE_LINKER_FLAGS -pthread)
 
 # Set include dir
-include_directories(./gtest/include)
+include_directories(./gtest/include ../IO)
 
 # Set Library dir
 link_directories(./gtest/lib)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp Vehicle.cpp)
+set(RELEASE_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp Vehicle.cpp RoadSystem.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp)

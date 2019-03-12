@@ -18,3 +18,4 @@ Lenny Bontenakel
 ---
 | task | date | length |
 |---|---|---|
+| XML input reading | 12/03 | ~2h |
