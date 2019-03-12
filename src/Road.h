@@ -15,6 +15,10 @@ class Road
     vector<string*> connections;
     vector<Vehicle*> occupying_vehicles;
     bool is_free();
+
+public:
+     Road(const TiXmlElement& input);
+     ~Road();
 };
 
 #endif //LNJ_PIZZA_PROJECT_ROAD_H

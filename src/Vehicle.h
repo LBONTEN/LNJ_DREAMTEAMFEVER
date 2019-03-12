@@ -13,6 +13,12 @@ class Vehicle
 {
 public:
     /**
+     * Constructor
+     */
+    Vehicle();
+    ~Vehicle();
+
+    /**
      * Setter functions
      * REQUIRE simulation not started
      * ENSURE get<attr> = <arg>

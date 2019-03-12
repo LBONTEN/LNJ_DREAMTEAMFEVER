@@ -15,25 +15,34 @@
 bool ReadXML(std::string inputFileName)
 {
     TiXmlDocument inputfile;
+    inputFileName = "../IO/" + inputFileName;
 
     if(!inputfile.LoadFile(inputFileName.c_str()))
     {
-        std::cerr << "InputFile not found" << endl;
         return false;
     }
     TiXmlElement* root = inputfile.FirstChildElement();
     if(root == NULL)
     {
-        std::cerr << "Input invalid" << endl;
         inputfile.Clear();
         return false;
     }
-    std::cout << root->Value() << endl;
 
-    TiXmlElement* element = root->NextSiblingElement();
-    for(TiXmlElement* elem = element; elem != NULL; elem = elem->NextSiblingElement())
+    for(TiXmlElement* elem = root; elem != NULL; elem = elem->NextSiblingElement())
     {
-        std::cout << elem->Value() << endl;
+        if(elem->ValueTStr() == "BAAN")
+        {
+            elem.
+        }
+        if(elem->ValueTStr() == "VOERTUIG")
+        {
+
+        }
+
+        for(TiXmlNode* child = elem->FirstChildElement(); child != NULL; child = elem->IterateChildren(child))
+        {
+            std::cout << child->Value() << endl;
+        }
     }
     return true;
 }
