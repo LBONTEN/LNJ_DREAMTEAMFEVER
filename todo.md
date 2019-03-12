@@ -28,8 +28,12 @@
 	- [ ] get & set connection
 	- [ ] add, has?, get/traverse car(s)
 
+<<<<<<< HEAD
 - [ ] class: Vehicle
 	- [x] constructor using XML-file
+=======
+- [ ] class: Vehicle – J. is on it :)
+>>>>>>> ce12e15b307cfd12f064c1c4c663042544d92c87
 	- [ ] get & set licence plate
 	- [ ] get & set road
 	- [ ] get, set & advance acceleration
@@ -40,5 +44,3 @@
 	- [ ] advance acceleration
 	- [ ] advance speed
 	- [ ] advance position
-
-https://cdn.fbsbx.com/v/t59.2708-21/50189806_417819825625524_2384854451656589312_n.gif?_nc_cat=111&_nc_ht=cdn.fbsbx.com&oh=32e5dd4d102a3033becfe9d3b6d3f222&oe=5C8078E2
