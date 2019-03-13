@@ -2,6 +2,7 @@
  */
 
 #include "./tinystuff/tinyxml.h"
+#include "RoadSystem.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -16,15 +17,8 @@ public:
 
     ~XmlParser();
 
-    const TiXmlElement &operator[](int index)
-    {
-        return *tags[index];
-    }
-    
-    const TiXmlNode&operator[](int index, string key)
-    {
+    RoadSystem* parseRoadSystem(const string& filename);
 
-    }
 
 private:
     vector<TiXmlElement*> tags;
