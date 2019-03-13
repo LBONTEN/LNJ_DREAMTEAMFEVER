@@ -18,7 +18,8 @@
 
 
 int main() {
-    ReadXML("single_connection_n_cars.xml");
+    RoadSystem rs;
+    ("single_connection_n_cars.xml");
 
     return 0;
 }

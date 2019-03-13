@@ -2,26 +2,35 @@
  */
 
 #include "./tinystuff/tinyxml.h"
-#include "RoadSystem.h"
 #include <string>
-#include <vector>
+#include <map>
 using namespace std;
+
+class RoadSystem;
 
 #ifndef DAPIZZAPROJECT_XMLPARSER_H
 #define DAPIZZAPROJECT_XMLPARSER_H
 
-class XmlParser
+class Parser
 {
 public:
-    XmlParser(const string &);
+    Parser();
+    ~Parser();
 
+    virtual RoadSystem* parseRoadSystem(const string& filename);
+
+};
+
+class XmlParser: public Parser
+{
+public:
+
+    XmlParser();
     ~XmlParser();
-
-    RoadSystem* parseRoadSystem(const string& filename);
-
+    virtual RoadSystem* parseRoadSystem(const string& filename);
 
 private:
-    vector<TiXmlElement*> tags;
+
 };
 
 #endif //DAPIZZAPROJECT_XMLPARSER_H

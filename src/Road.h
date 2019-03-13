@@ -11,15 +11,16 @@ class Road
 {
 
 public:
-    Road(TiXmlNode input);
+    Road(string name, int length, int maxSpeed): name(name), length(length), maximumSpeed(maxSpeed) {}
     ~Road();
+
+    void setConnections(Road* newConnection) { connections.push_back(newConnection); }
 
 private:
     string name;
-    double length;
+    int length;
     int maximumSpeed;
     vector<Road*> connections;
-    vector<Vehicle*> occupying_vehicles;
     bool is_free();
 
 };

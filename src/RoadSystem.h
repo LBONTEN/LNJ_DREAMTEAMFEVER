@@ -13,19 +13,18 @@ class RoadSystem
 {
 public:
 
-    bool readXML(string fileName);
+    RoadSystem(vector<Road*> roads, vector<Vehicle*> vehicles): roadIt(roads), vehicleIt(vehicles) {}
+    ~RoadSystem();
 
 private:
     vector<Road*> roadIt;
+    vector<Vehicle*> vehicleIt;
     bool simulationActive;
+    bool is_empty();
 
     void load_simulation();
     void dump_simulation();
     void advance_simulation();
-    bool is_empty();
-
-
 };
 
 #endif //LNJ_PIZZA_PROJECT_ROADSYSTEM_H
-q
