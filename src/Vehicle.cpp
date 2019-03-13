@@ -4,7 +4,7 @@
 
 #include "Vehicle.h"
 
-Vehicle::Vehicle() : selfPtr(nullptr) {}
+Vehicle::Vehicle() : selfPtr(NULL) {}
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
                  licensePlate(licensePlate),
@@ -13,7 +13,7 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, Road* curr
                  speed(0),
                  position(0),
                  environment(environment),
-                 selfPtr(this) {}
+                selfPtr(this) {}
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, double acceleration, double speed,
                  double position) :

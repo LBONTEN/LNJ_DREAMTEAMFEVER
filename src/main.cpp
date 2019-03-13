@@ -10,16 +10,13 @@
 #include "./tinystuff/tinyxml.h"
 #include "RoadSystem.h"
 #include "Vehicle.h"
-
-
-
-
-
-
+#include "XMLParser.h"
 
 int main() {
-    RoadSystem rs;
-    ("single_connection_n_cars.xml");
+    XmlParser xmlp;
+    RoadSystem rs = *xmlp.parseRoadSystem("single_connection_n_cars.xml");
+
+    cout << "heyya" << endl;
 
     return 0;
 }

@@ -21,7 +21,8 @@ private:
     int length;
     int maximumSpeed;
     vector<Road*> connections;
-    bool is_free();
+
+//    bool is_free();
 
 };
 

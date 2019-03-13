@@ -2,55 +2,64 @@
  */
 
 #include <stdexcept>
+#include <iostream>
 #include "./tinystuff/tinyxml.h"
 #include "XMLParser.h"
 #include "RoadSystem.h"
 
+XmlParser::XmlParser() {}
+
 RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
 {
-    TiXmlDocument inputfile;
+    TiXmlDocument doc;
     string path = "../IO/" + fileName;
 
     // Load content from given input
-    if (!inputfile.LoadFile(path.c_str())) {
+    if (!doc.LoadFile(path.c_str())) {
         return NULL;
     }
 
     // set a pointer to first tag of input xml
-    TiXmlNode*firstRoad = inputfile.FirstChild("BAAN");
+    TiXmlElement*firstRoad = doc.FirstChildElement("BAAN");
     // If input xml contains nothing, return nothing
     if (firstRoad == NULL)
     {
         return NULL;
     }
 
+    map<string, string> data;
     map<string, Road *> roads;
-    for (TiXmlNode *elem = firstRoad; elem != NULL; elem = elem->NextSibling("BAAN"))
+    for (TiXmlElement *elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
     {
-        map<string, string> childContent;
-        for (TiXmlNode *child = elem->FirstChild(); child != NULL; child = elem->IterateChildren(child))
+        for (TiXmlElement *child = elem->FirstChildElement(); child != NULL; child = elem->NextSiblingElement())
         {
+            data = map<string, string>();
             if(child->ValueTStr() != "verbinding")
             {
-                childContent.insert(pair<string, string>(child->Value(), child->ToText()->Value()));
+                string xmlTag = child->Value();
+                string xmlTagData = child->GetText();
 
+                cout << xmlTag << " " << xmlTagData << endl;
+
+                data[xmlTag]= xmlTagData;
             }
         }
-        string name = childContent.at("naam");
-        int length = atoi(childContent.at("lengte").c_str());
-        int maxSpeed = atoi(childContent.at("maximumsnelheid").c_str());
 
-        roads.insert(pair<string, Road*>(name, new Road(name, length, maxSpeed)));
+        string name = data.at("naam");
+        int length = atoi(data.at("lengte").c_str());
+        int maxSpeed = atoi(data.at("maximumsnelheid").c_str());
+
+        roads[name]= new Road(name, length, maxSpeed);
     }
 
     vector<Road*> newRoads;
-    for(TiXmlNode* elem = firstRoad; elem != NULL; elem = elem->NextSibling("BAAN"))
+    for(TiXmlElement* elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
     {
         Road* connection = NULL;
-        Road* road = roads.at(elem->FirstChild("naam")->ToText()->Value());
+        Road* road = roads.at(elem->FirstChildElement("naam")->GetText());
         try
         {
-            connection = roads.at(elem->FirstChild("verbinding")->ToText()->Value());
+            connection = roads.at(elem->FirstChildElement("verbinding")->GetText());
         }
         catch(const std::out_of_range& oops) {}
 

@@ -10,26 +10,13 @@ class RoadSystem;
 
 #ifndef DAPIZZAPROJECT_XMLPARSER_H
 #define DAPIZZAPROJECT_XMLPARSER_H
-
-class Parser
-{
-public:
-    Parser();
-    ~Parser();
-
-    virtual RoadSystem* parseRoadSystem(const string& filename);
-
-};
-
-class XmlParser: public Parser
+class XmlParser
 {
 public:
 
     XmlParser();
-    ~XmlParser();
-    virtual RoadSystem* parseRoadSystem(const string& filename);
 
-private:
+    RoadSystem* parseRoadSystem(const string& filename);
 
 };
 
