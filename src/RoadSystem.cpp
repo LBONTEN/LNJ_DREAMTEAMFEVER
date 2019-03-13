@@ -2,7 +2,7 @@
  */
 
 #include "RoadSystem.h"
-#include "./tinystuff/tinyxml.h"
+#include "Road.h"
 #include <string>
 
 bool RoadSystem::readXML(string fileName)
@@ -21,20 +21,16 @@ bool RoadSystem::readXML(string fileName)
         return false;
     }
 
-    for(TiXmlElement* elem = root; elem != NULL; elem = elem->NextSiblingElement())
+    map<string, Road*> roads;
+    for( TiXmlElement* elem = root; elem != NULL; elem = elem->NextSiblingElement())
     {
         if(elem->ValueTStr() == "BAAN")
         {
-            roadLookUp.insert(pair<string, Road*>()  );
-        }
-        if(elem->ValueTStr() == "VOERTUIG")
-        {
-
-        }
-
-        for(TiXmlNode* child = elem->FirstChildElement(); child != NULL; child = elem->IterateChildren(child))
-        {
-            
+            for(TiXmlNode* child = elem->FirstChildElement(); child != NULL; child = elem->IterateChildren(child))
+            {
+                Road nRoad;
+                nRoad = Road(*child);
+            }
         }
     }
     return true;

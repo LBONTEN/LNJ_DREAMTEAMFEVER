@@ -11,14 +11,14 @@ class Road
 {
 
 public:
-    Road(const TiXmlElement& input);
+    Road(TiXmlNode input);
     ~Road();
 
 private:
     string name;
     double length;
-    double maximumSpeed;
-    vector<string*> connections;
+    int maximumSpeed;
+    vector<Road*> connections;
     vector<Vehicle*> occupying_vehicles;
     bool is_free();
 

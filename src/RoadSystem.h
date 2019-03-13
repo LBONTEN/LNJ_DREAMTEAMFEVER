@@ -12,11 +12,12 @@ using namespace std;
 class RoadSystem
 {
 public:
+
     bool readXML(string fileName);
 
 private:
-    map<string, Road*> roadLookUp;
     vector<Road*> roadIt;
+    bool simulationActive;
 
     void load_simulation();
     void dump_simulation();
@@ -27,3 +28,4 @@ private:
 };
 
 #endif //LNJ_PIZZA_PROJECT_ROADSYSTEM_H
+q
