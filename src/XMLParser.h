@@ -20,8 +20,8 @@ public:
     XmlParser();
 
     RoadSystem* parseRoadSystem(const string& filename);
-    Road* parseRoad(const TiXmlElement&);
-    Vehicle* parseVehicle(const TiXmlElement&);
+    Road* parseRoad(TiXmlElement&);
+    Vehicle* parseVehicle(TiXmlElement&);
 
 };
 
