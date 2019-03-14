@@ -3,6 +3,7 @@ Team
 | task | date | length |
 |---|---|---|
 | setting up GIT & CLion | 28/02 |???|
+| design discussion | 12/03 | ??? |
 
 
 Joren Van Borm
@@ -12,7 +13,7 @@ Joren Van Borm
 | general (GIT) maintenance | 05/03 | 30' |
 | vehicle header (by contract) | 05/03 | 30' — 1h |
 | vehicle work & design discussion | 12/03 | 2h 30' |
-| hopefully finally finishing vehicle | 14/03 | <11:40 - ???> |
+| finally finished vehicle, reworked update system | 14/03 | 3h 20' |
 
 
 Lenny Bontenakel

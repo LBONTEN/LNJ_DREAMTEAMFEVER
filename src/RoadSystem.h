@@ -27,6 +27,8 @@ public:
     void pushVehicle( Vehicle& newVehicle) { vectorOfVehicles.push_back(&newVehicle); }
     void pushRoad(Road& newRoad) { vectorOfRoads.push_back(&newRoad); }
 
+    bool simulationActive() {return false;} //TODO: actually implement this function
+
 private:
     vector<Road*> vectorOfRoads;
     vector<Vehicle*> vectorOfVehicles;

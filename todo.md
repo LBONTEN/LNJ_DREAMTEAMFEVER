@@ -11,15 +11,14 @@
  
 ## Implementation
 - [ ] class: RoadSystem
-	- [ ] load simulation
-	*maybe move this to a seperate parser class?*
-	- [ ] dump simulation
-	*should this be a part of the parser class as well?*
+	- [ ] load simulation – *maybe move this to a seperate parser class?*
+	- [ ] dump simulation – *should this be a part of the parser class as well?*
+	- [ ] start & stop simulation
 	- [ ] advance simulation
 	- [ ] add, get/traverse car(s)
 	- [ ] add, get/traverse road(s)
 	- [ ] simulation empty?
-	- [ ] i dunno, more querries
+	- [ ] simulation active?
 
 - [ ] class: Road
 	- [x] constructor using XML-file
@@ -27,13 +26,16 @@
 	- [ ] get & set length
 	- [ ] get & set connection
 	- [ ] add, has?, get/traverse car(s)
+	- [ ] provide location-based iterator for vehicles
 
 - [ ] class: Vehicle – J. is on it :)
 	- [ ] get & set licence plate
 	- [ ] get & set road
-	- [ ] get, set & advance acceleration
-	- [ ] get, set & advance speed
-	- [ ] get, set & advance position
+	- [ ] get & set speed
+	- [ ] get & set position
+	- [ ] prepare update (gathers info)
+	- [ ] execute update (updates info)
+	- [ ] get& set acceleration
 
 - [ ] class: Vehicle::Car – J.'ll do this as well
 	- [ ] advance acceleration
