@@ -32,21 +32,23 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
 
     map<string, Road *> roads;
 
-    for (TiXmlElement *elem = root; elem != NULL; elem = elem->NextSiblingElement())
+    for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement())
     {
         if(elem->ValueTStr() == "BAAN")
         {
-            roads[elem->FirstChildElement("naam")->GetText()] = parseRoad(*elem);
+                string a = elem->FirstChildElement("naam")->GetText();
+                Road* b = parseRoad(elem);
+                roads[a] = b;
         }
         if(elem->ValueTStr() == "VOERTUIG")
         {
-            newSystem->pushVehicle(*parseVehicle(*elem));
+            newSystem->pushVehicle(*parseVehicle(elem));
         }
     }
 
     Road* road;
     Road* connection;
-    for(TiXmlElement* elem = root; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
+    for(TiXmlElement* elem = root->FirstChildElement("BAAN"); elem != NULL; elem = elem->NextSiblingElement("BAAN"))
     {
         connection = roads[elem->FirstChildElement("verbinding")->Value()];
         road = roads[elem->FirstChildElement("naam")->Value()];
@@ -56,14 +58,16 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
     return newSystem;
 }
 
-Road* XmlParser::parseRoad(TiXmlElement & baan)
+Road* XmlParser::parseRoad(TiXmlElement* baan)
 {
     map<string, string> roadData;
-    for (TiXmlElement *child = baan.FirstChildElement(); child != NULL; child = baan.NextSiblingElement())
+    for (TiXmlElement *child = baan->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
     {
         if (child->ValueTStr() != "verbinding")
         {
-            roadData[child->Value()] = child->GetText();
+            string b = child->GetText();
+            string a = child->FirstChild()->Value();
+            roadData[a] = b;
         }
     }
 
@@ -74,7 +78,7 @@ Road* XmlParser::parseRoad(TiXmlElement & baan)
     return new Road(name, length, maxSpeed);
 }
 
-Vehicle* XmlParser::parseVehicle(TiXmlElement&)
+Vehicle* XmlParser::parseVehicle(TiXmlElement*)
 {
     return new Vehicle;
 }

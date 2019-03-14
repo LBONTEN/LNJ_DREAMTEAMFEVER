@@ -11,7 +11,8 @@ class Road
 {
 
 public:
-    Road(string name, int length, int maxSpeed): name(name), length(length), maximumSpeed(maxSpeed) {}
+    Road(string name, int length, int maxSpeed): name(name), length(length), maximumSpeed(maxSpeed) {
+    }
     ~Road();
 
     void pushConnections(Road* newConnection) { connections.push_back(newConnection); }

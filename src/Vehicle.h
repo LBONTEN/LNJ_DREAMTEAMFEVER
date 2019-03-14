@@ -68,9 +68,9 @@ public:
     void update();
 
 protected:
-    virtual void stepAcceleration();
-    virtual void stepSpeed();
-    virtual void stepPosition();
+//    virtual void stepAcceleration();
+//    virtual void stepSpeed();
+//    virtual void stepPosition();
     
     void hardSetCurrentRoad(Road* currentRoad) {Vehicle::currentRoad = currentRoad;}
     void hardSetAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
