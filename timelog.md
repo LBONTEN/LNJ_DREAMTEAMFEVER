@@ -18,4 +18,7 @@ Lenny Bontenakel
 ---
 | task | date | length |
 |---|---|---|
-| XML input reading | 12/03 | ~2h |
+| XML parsing | 12/03 | 6h |
+| Writing Contract for Parser class   | 13/03 | 30' |
+| Wrorking on Xml parser class | 13/03 | 4h |
+| Continue work on Xml parser class | 14/03 | 8:20 - ... |

@@ -27,10 +27,28 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
         return NULL;
     }
 
-    map<string, string> data;
     map<string, Road *> roads;
-    for (TiXmlElement *elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
+    for (TiXmlElement *elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement())
     {
+        if(elem->ValueTStr() == "BAAN")
+        {
+            parseRoad(elem);
+        }
+        if(elem->ValueTStr() == "VOERTUIG")
+        {
+            parseVehicle(elem);
+        }
+    }
+
+    vector<Road*> newRoads;
+    for(TiXmlElement* elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
+    {
+        Road* connection = NULL;
+        Road* road = roads.at(elem->FirstChildElement("naam")->GetText());
+        try
+        {
+            connection = roads.at(elem->FirstChildElement("verbinding")->GetText());
+        }
         for (TiXmlElement *child = elem->FirstChildElement(); child != NULL; child = elem->NextSiblingElement())
         {
             data = map<string, string>();
@@ -50,17 +68,6 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
         int maxSpeed = atoi(data.at("maximumsnelheid").c_str());
 
         roads[name]= new Road(name, length, maxSpeed);
-    }
-
-    vector<Road*> newRoads;
-    for(TiXmlElement* elem = firstRoad; elem != NULL; elem = elem->NextSiblingElement("BAAN"))
-    {
-        Road* connection = NULL;
-        Road* road = roads.at(elem->FirstChildElement("naam")->GetText());
-        try
-        {
-            connection = roads.at(elem->FirstChildElement("verbinding")->GetText());
-        }
         catch(const std::out_of_range& oops) {}
 
         road->setConnections(connection);
@@ -70,3 +77,26 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
 
     return new RoadSystem(newRoads, newVehicles);
 }
+
+Road* parseRoad(const TiXmlElement & baan)
+{
+    for (TiXmlElement *child = baan.FirstChildElement(); child != NULL; child = baan.NextSiblingElement())
+    {
+        map<string, string> roadData;
+        if (child->ValueTStr() != "verbinding")
+        {
+            string xmlTag = child->Value();
+            string xmlTagData = child->GetText();
+
+            cout << xmlTag << " " << xmlTagData << endl;
+
+            roadData[xmlTag] = xmlTagData;
+        }
+        string name = roadData.at("naam");
+        int length = atoi(roadData.at("lengte").c_str());
+        int maxSpeed = atoi(roadData.at("maximumsnelheid").c_str());
+    }
+    return new Road(name, length, maxSpeed);
+}
+
+Vehicle* parseVehicle(){}
