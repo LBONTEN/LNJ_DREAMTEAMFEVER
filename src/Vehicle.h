@@ -79,9 +79,6 @@ protected:
     void hardSetPosition(double position) {Vehicle::position = position;}
 
 private:
-    map<string, Vehicle*> VehicleLookUp;
-    vector<Vehicle*> VehicleIt;
-
     string licensePlate;
     Road* currentRoad;
     double acceleration;
