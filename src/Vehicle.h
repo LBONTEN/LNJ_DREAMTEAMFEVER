@@ -15,7 +15,6 @@ class Road; // must forward declare to prevent circular dependency
 
 class Vehicle {
 public:
-
     /**
      * Default constructor
      * ENSURE NOT properly initialised
@@ -38,7 +37,7 @@ public:
     /**
      * As advertised on the box
      */
-//    bool properlyInitialised();
+    bool properlyInitialised();
     
     /**
      * Setter functions
@@ -66,12 +65,12 @@ public:
      * REQUIRE properly initialised
      * ENSURE get<attr> respects simulation rules
      */
-//    void update();
+    void update();
 
 protected:
-//    virtual void stepAcceleration();
-//    virtual void stepSpeed();
-//    virtual void stepPosition();
+    virtual void stepAcceleration();
+    virtual void stepSpeed();
+    virtual void stepPosition();
     
     void hardSetCurrentRoad(Road* currentRoad) {Vehicle::currentRoad = currentRoad;}
     void hardSetAcceleration(double acceleration) {Vehicle::acceleration = acceleration;}
