@@ -12,8 +12,10 @@ using namespace std;
 class RoadSystem
 {
 public:
-
+    
     RoadSystem(vector<Road*> roads, vector<Vehicle*> vehicles): roadIt(roads), vehicleIt(vehicles) {}
+
+    bool simulationActive() {return false;} //TODO: actually implement this function
 
 private:
     vector<Road*> roadIt;
