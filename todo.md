@@ -28,19 +28,14 @@
 	- [ ] get & set connection
 	- [ ] add, has?, get/traverse car(s)
 
-<<<<<<< HEAD
-- [ ] class: Vehicle
-	- [x] constructor using XML-file
-=======
 - [ ] class: Vehicle – J. is on it :)
->>>>>>> ce12e15b307cfd12f064c1c4c663042544d92c87
 	- [ ] get & set licence plate
 	- [ ] get & set road
 	- [ ] get, set & advance acceleration
 	- [ ] get, set & advance speed
 	- [ ] get, set & advance position
 
-- [ ] class: Vehicle::Car
+- [ ] class: Vehicle::Car – J.'ll do this as well
 	- [ ] advance acceleration
 	- [ ] advance speed
 	- [ ] advance position
