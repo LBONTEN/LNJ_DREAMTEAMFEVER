@@ -3,6 +3,7 @@ Team
 | task | date | length |
 |---|---|---|
 | setting up GIT & CLion | 28/02 |???|
+| design discussion | 12/03 | ??? |
 
 
 Joren Van Borm
