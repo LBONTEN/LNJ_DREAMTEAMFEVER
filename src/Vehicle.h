@@ -24,14 +24,30 @@ class Vehicle;
 
 /// Actual definitions of classes ///
 
+struct VehicleLimits {
+    VehicleLimits(int minAcc, int maxAcc, int minSpd, int maxSpd) :
+        minAcc(minAcc),
+        maxAcc(maxAcc),
+        minSpd(minSpd),
+        maxSpd(maxSpd) {}
+    
+    int minAcc;
+    int maxAcc;
+    
+    int minSpd;
+    int maxSpd;
+};
+
 struct VehicleSnap {
     VehicleSnap();
     VehicleSnap(Vehicle* source);
+    VehicleSnap(const string& licensePlate, int acceleration, int speed, int position, int length);
     
     string licensePlate;
     int acceleration;
     int speed;
     int position;
+    int length;
 };
 
 
@@ -57,13 +73,13 @@ public:
      * Acceleration, speed and position are assumed to be 0
      * ENSURE properly initialised
      */
-    Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
+    Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits,  Road* currentRoad);
     
     /**
      * Maximal constructor
      * ENSURE properly initialised
      */
-    Vehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position);
+    Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed, int position);
     
     /**
      * Funtion purely to check pre- and postconditions
@@ -88,20 +104,21 @@ public:
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
      * REQUIRE properly initialised, update prepared, simulation active
-     * ENSURE TODO: find a good postcondition here
+     * ENSURE get<acc/spd/pos> is within limits
      */
     void execUpdate();
     
     /**
      * Setter functions
      * REQUIRE simulation not started, properly initialised
-     * ENSURE get<attr> = <arg>
+     * ENSURE get<attr> = <arg>, (where applicable) <attr> is within the defined limits
      */
     void setLicensePlate(const string& licensePlate);
     void setRoad(Road* newRoad);
     void setAcceleration(int acceleration);
     void setSpeed(int speed);
     void setPosition(int position);
+    void setLen(int cm);
 
     /**
      * Getter functions
@@ -113,6 +130,7 @@ public:
     int getAcceleration();
     int getSpeed();
     int getPosition();
+    int getLen();
 
 protected:
     virtual void stepAcceleration();
@@ -126,8 +144,11 @@ protected:
     void hardSetAcceleration(int acceleration) {Vehicle::acceleration = acceleration;}
     void hardSetSpeed(int speed) {Vehicle::speed = speed;}
     void hardSetPosition(int position) {Vehicle::position = position;}
+    void hardSetLen(int cm) {Vehicle::len = cm;}
     
     SimulationInfo snapShot;
+    
+    const VehicleLimits* limits;
     
 private:
     string licensePlate;
@@ -135,6 +156,7 @@ private:
     int acceleration;
     int speed;
     int position;
+    int len;
 
     RoadSystem* environment;
     Vehicle* selfPtr;
