@@ -13,20 +13,24 @@ include_directories(./pugiXml)
 # Set Library dir
 link_directories(pugiXml)
 
-# Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES
-        main.cpp
+# Source files shared between all build targets
+set(SHARED_SOURCE_FILES
         Vehicle.cpp
         RoadSystem.cpp
         Road.cpp
-        XMLParser.cpp)
+        XMLParser.cpp
+        Car.cpp)
+
+# Set source files for RELEASE target
+set(RELEASE_SOURCE_FILES
+        main.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
-        main.cpp)
+        tests.cpp)
 
 # Create RELEASE target
-add_executable(PIZZA_EXE ${RELEASE_SOURCE_FILES})
+add_executable(PIZZA_EXE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
 
 # Create DEBUG target
-add_executable(PIZZA_DEBUG ${DEBUG_SOURCE_FILES})
+add_executable(PIZZA_DEBUG ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})
