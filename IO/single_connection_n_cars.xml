@@ -1,4 +1,4 @@
-<root>
+<ROOT>
   <BAAN>
       <naam>E19</naam>
       <snelheidslimiet>100</snelheidslimiet>
@@ -11,4 +11,4 @@
       <lengte>5000</lengte>
       <verbinding>E19</verbinding>
   </BAAN>
-</root>
+</ROOT>

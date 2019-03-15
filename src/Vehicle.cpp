@@ -5,6 +5,7 @@
 #include "Vehicle.h"
 #include "RoadSystem.h"
 #include "design_by_contract.h"
+#include <iostream>
 
 
 ///--- Vehicle --- ///
@@ -114,7 +115,7 @@ void Vehicle::cancelPrep() {
     snapShot.prepared = false;
 }
 
-void Vehicle::execUpadte() {
+void Vehicle::execUpdate() {
     stepAcceleration();
     stepSpeed();
     stepPosition();
@@ -122,12 +123,15 @@ void Vehicle::execUpadte() {
 }
 
 void Vehicle::stepAcceleration() {
+    cout << "heyy \n";
 }
 
 void Vehicle::stepSpeed() {
+    cout << "heyyy \n";
 }
 
 void Vehicle::stepPosition() {
+    cout << "heyyyy \n";
 }
 
 Vehicle* Vehicle::nextCar() {

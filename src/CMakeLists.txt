@@ -8,16 +8,22 @@ set(CMAKE_CXX_FLAGS "-Wall -Werror -O2")
 set(CMAKE_EXE_LINKER_FLAGS -pthread)
 
 # Set include dir
-include_directories(./gtest/include ../IO)
+include_directories(./pugiXml)
 
 # Set Library dir
-link_directories(./gtest/lib)
+link_directories(pugiXml)
 
 # Set source files for RELEASE target
-set(RELEASE_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp Vehicle.cpp RoadSystem.cpp Road.cpp XMLParser.cpp XMLParser.h)
+set(RELEASE_SOURCE_FILES
+        main.cpp
+        Vehicle.cpp
+        RoadSystem.cpp
+        Road.cpp
+        XMLParser.cpp)
 
 # Set source files for DEBUG target
-set(DEBUG_SOURCE_FILES ./tinystuff/tinystr.cpp ./tinystuff/tinyxml.cpp ./tinystuff/tinyxmlerror.cpp ./tinystuff/tinyxmlparser.cpp main.cpp)
+set(DEBUG_SOURCE_FILES
+        main.cpp)
 
 # Create RELEASE target
 add_executable(PIZZA_EXE ${RELEASE_SOURCE_FILES})

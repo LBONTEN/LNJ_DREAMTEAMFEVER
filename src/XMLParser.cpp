@@ -3,7 +3,7 @@
 
 #include <stdexcept>
 #include <iostream>
-#include "./tinystuff/tinyxml.h"
+#include <cstdlib>
 #include "XMLParser.h"
 #include "RoadSystem.h"
 
@@ -11,74 +11,59 @@ XmlParser::XmlParser() {}
 
 RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
 {
-    TiXmlDocument doc;
+    pugi::xml_document doc;
     RoadSystem* newSystem = new RoadSystem();
 
     string path = "../IO/" + fileName;
+    pugi::xml_parse_result fileContent = doc.load_file(path.c_str());
 
-    // Load content from given input
-    if (!doc.LoadFile(path.c_str()))
+    if(!fileContent)
     {
         return NULL;
     }
 
-    // set a pointer to first tag of input xml
-    TiXmlElement* root = doc.FirstChildElement();
-    // If input xml contains nothing, return nothing
-    if (root == NULL)
+    pugi::xml_node root = doc.root();
+
+    map<string, Road*> roads;
+    for(pugi::xml_node child = root.child("BAAN"); child; child = child.next_sibling("BAAN"))
     {
-        return NULL;
+        roads[child.name()] = parseRoad(child);
     }
 
-    map<string, Road *> roads;
-
-    for (TiXmlElement *elem = root->FirstChildElement(); elem != NULL; elem = elem->NextSiblingElement())
+    for(pugi::xml_node child = root.first_child(); child; child.next_sibling())
     {
-        if(elem->ValueTStr() == "BAAN")
-        {
-                string a = elem->FirstChildElement("naam")->GetText();
-                Road* b = parseRoad(elem);
-                roads[a] = b;
+        if(child.name() == string("BAAN").c_str()) {
+            Road *connection = roads[child.child_value("verbinding")];
+            Road *current_baan = roads[child.child_value("naam")];
+
+            current_baan->pushConnections(connection);
+            newSystem->pushRoad(*current_baan);
         }
-        if(elem->ValueTStr() == "VOERTUIG")
+        if(child.name() == string("VOERTUIG").c_str())
         {
-            newSystem->pushVehicle(*parseVehicle(elem));
+            Road* current_baan = roads[child.child_value("baan")];
+            newSystem->pushVehicle(*parseVehicle(child, newSystem, current_baan));
         }
     }
 
-    Road* road;
-    Road* connection;
-    for(TiXmlElement* elem = root->FirstChildElement("BAAN"); elem != NULL; elem = elem->NextSiblingElement("BAAN"))
-    {
-        connection = roads[elem->FirstChildElement("verbinding")->Value()];
-        road = roads[elem->FirstChildElement("naam")->Value()];
-        road->pushConnections(connection);
-        newSystem->pushRoad(*road);
-    }
     return newSystem;
 }
 
-Road* XmlParser::parseRoad(TiXmlElement* baan)
+Road* XmlParser::parseRoad(const pugi::xml_node& baan)
 {
-    map<string, string> roadData;
-    for (TiXmlElement *child = baan->FirstChildElement(); child != NULL; child = child->NextSiblingElement())
-    {
-        if (child->ValueTStr() != "verbinding")
-        {
-            string b = child->GetText();
-            string a = child->FirstChild()->Value();
-            roadData[a] = b;
-        }
-    }
-
-    string name = roadData["naam"];
-    int maxSpeed = atoi(roadData["snelheidslimiet"].c_str());
-    int length = atoi(roadData["lengte"].c_str());
+    string name = baan.child_value("naam");
+    int maxSpeed = atoi(baan.child_value("snelheidslimiet"));
+    int length = atoi(baan.child_value("lengte"));
 
     return new Road(name, length, maxSpeed);
 }
 
-Vehicle* XmlParser::parseVehicle(TiXmlElement*)
+Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* current_baan)
 {
-    return new Vehicle;
+    string licensePlate = voertuig.child_value("nummerplaat");
+    int acceleration = 0;
+    int speed = atoi(voertuig.child_value("snelheid"));
+    int position = atoi(voertuig.child_value("positie"));
+
+    return new Vehicle(environment, licensePlate, current_baan, acceleration, speed, position);
 }

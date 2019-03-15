@@ -7,7 +7,6 @@
 #include <iostream>
 #include <fstream>
 
-#include "./tinystuff/tinyxml.h"
 #include "RoadSystem.h"
 #include "Vehicle.h"
 #include "XMLParser.h"

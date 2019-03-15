@@ -1,7 +1,7 @@
 /* created by Van Borm Joren & Bontenakel Lenny
  */
 
-#include "./tinystuff/tinyxml.h"
+#include "pugixml.hpp"
 #include <string>
 #include <map>
 using namespace std;
@@ -20,8 +20,8 @@ public:
     XmlParser();
 
     RoadSystem* parseRoadSystem(const string& filename);
-    Road* parseRoad(TiXmlElement*);
-    Vehicle* parseVehicle(TiXmlElement*);
+    Road* parseRoad(const pugi::xml_node& baan);
+    Vehicle* parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* current_baan);
 
 };
 

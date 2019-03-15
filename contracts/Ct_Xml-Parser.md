@@ -1,6 +1,7 @@
 By Van Borm Joren & Bontenakel Lenny
 
-### ~~ CONTRACT: Parser ~~
+ CONTRACT: Parser
+===================
 
 ---
 
@@ -18,8 +19,9 @@ By Van Borm Joren & Bontenakel Lenny
       in which case every item within the tag will be returned in a vector.
 
   ##### out:
-
+    ```c++
     vector<const string&>
+    ```
 
   ##### Précondition:
 
@@ -50,5 +52,3 @@ By Van Borm Joren & Bontenakel Lenny
   ##### Postcondition:    
 
     None
-
----

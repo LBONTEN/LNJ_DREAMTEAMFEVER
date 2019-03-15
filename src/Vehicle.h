@@ -90,7 +90,7 @@ public:
      * REQUIRE properly initialised, update prepared, simulation active
      * ENSURE TODO: find a good postcondition here
      */
-    void execUpadte();
+    void execUpdate();
     
     /**
      * Setter functions
@@ -115,9 +115,9 @@ public:
     int getPosition();
 
 protected:
-//    virtual void stepAcceleration();
-//    virtual void stepSpeed();
-//    virtual void stepPosition();
+    virtual void stepAcceleration();
+    virtual void stepSpeed();
+    virtual void stepPosition();
     
     Vehicle* nextCar();
     
