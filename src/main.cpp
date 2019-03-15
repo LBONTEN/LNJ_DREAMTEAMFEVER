@@ -8,7 +8,6 @@
 #include <fstream>
 
 #include "RoadSystem.h"
-#include "Vehicle.h"
 #include "XMLParser.h"
 
 int main() {
