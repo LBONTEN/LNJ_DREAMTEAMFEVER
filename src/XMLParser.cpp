@@ -22,12 +22,25 @@ RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
         return NULL;
     }
 
-    pugi::xml_node root = doc.root();
+    pugi::xml_node root = doc.first_child();
+
+    cout << root.name() << "\n";
+    cout << root.value() << "\n";
+    cout << root.child_value() << "\n";
+    cout << root.first_child().name() << "\n";
+    cout << root.first_child().value() << "\n";
+    cout << root.first_child().child_value() << "\n";
+    cout << root.first_child().first_child().name();
+    cout << root.first_child().first_child().value();
+    cout << root.first_child().first_child().child_value();
+    cout << root.first_child().first_child().text();
+
+
 
     map<string, Road*> roads;
     for(pugi::xml_node child = root.child("BAAN"); child; child = child.next_sibling("BAAN"))
     {
-        roads[child.name()] = parseRoad(child);
+        roads[child.child("naam").value()] = parseRoad(child);
     }
 
     for(pugi::xml_node child = root.first_child(); child; child.next_sibling())

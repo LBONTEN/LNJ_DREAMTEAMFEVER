@@ -10,11 +10,9 @@ set(CMAKE_EXE_LINKER_FLAGS -pthread)
 # Set include dir
 include_directories(./pugiXml)
 
-# Set Library dir
-link_directories(pugiXml)
-
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
+        ./pugiXml/pugixml.cpp
         main.cpp
         Vehicle.cpp
         RoadSystem.cpp
@@ -23,6 +21,7 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
+        ./pugiXml/pugixml.cpp
         main.cpp)
 
 # Create RELEASE target
