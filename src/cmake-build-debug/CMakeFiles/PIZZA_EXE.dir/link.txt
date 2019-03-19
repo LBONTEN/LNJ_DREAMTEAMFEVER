@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Werror -O2 -g  -pthread CMakeFiles/PIZZA_EXE.dir/tinystuff/tinystr.cpp.o CMakeFiles/PIZZA_EXE.dir/tinystuff/tinyxml.cpp.o CMakeFiles/PIZZA_EXE.dir/tinystuff/tinyxmlerror.cpp.o CMakeFiles/PIZZA_EXE.dir/tinystuff/tinyxmlparser.cpp.o CMakeFiles/PIZZA_EXE.dir/main.cpp.o  -o PIZZA_EXE  -L/home/teryjacky/LNJ_DREAMTEAMFEVER/src/./gtest/lib 
