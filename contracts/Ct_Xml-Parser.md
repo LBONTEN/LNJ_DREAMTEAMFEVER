@@ -5,6 +5,17 @@ By Van Borm Joren & Bontenakel Lenny
 
 ---
 
+ 1. get ROOT
+ 2. create container
+ 3. iterate over children of ROOT  
+  2.1. iterate over children of children  
+    2.1.1. retrieve content
+
+
+
+
+
+
   #### elemContent:
 
   ##### in:
@@ -15,7 +26,7 @@ By Van Borm Joren & Bontenakel Lenny
 
     std::string key:
 
-      searchkey for specific item to return. By default it is a nullstring,    
+      searchkey for specific item to return. By default it is a nullstring,
       in which case every item within the tag will be returned in a vector.
 
   ##### out:

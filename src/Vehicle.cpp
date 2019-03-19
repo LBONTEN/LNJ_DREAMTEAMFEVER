@@ -166,7 +166,7 @@ VehicleSnap::VehicleSnap(Vehicle* source) : licensePlate(source->getLicensePlate
                                             position(source->getPosition()),
                                             length(source->getLen()) {}
 
-VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, int speed, int position, int length)
+VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, int position, int length)
         : licensePlate(licensePlate), acceleration(acceleration), speed(speed), position(position), length(length) {}
 
 

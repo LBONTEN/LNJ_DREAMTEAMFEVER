@@ -5,7 +5,6 @@
 #ifndef DAPIZZAPROJECT_CAR_H
 #define DAPIZZAPROJECT_CAR_H
 
-
 #include "Vehicle.h"
 
 
@@ -19,6 +18,8 @@ extern const VehicleLimits stdCarLimits;
 ///--- Classes ---///
 
 class Car: public Vehicle {
+public:
+
     /**
      * Default constructor
      * ENSURE NOT properly initialised
@@ -36,7 +37,7 @@ class Car: public Vehicle {
      * Maximal constructor
      * ENSURE properly initialised
      */
-    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position);
+    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, unsigned int speed, int position);
 };
 
 

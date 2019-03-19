@@ -19,6 +19,10 @@ public:
     void pushConnections(Road* newConnection) { connections.push_back(newConnection); }
     void pushVehicle(Vehicle* newVehicle) { vehicles.push_back(newVehicle); }
 
+    const string& getName() { return name; }
+
+
+
 private:
     string name;
     int length;

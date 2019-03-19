@@ -15,6 +15,7 @@ link_directories(pugiXml)
 
 # Source files shared between all build targets
 set(SHARED_SOURCE_FILES
+        ./pugiXml/pugixml.cpp
         Vehicle.cpp
         RoadSystem.cpp
         Road.cpp

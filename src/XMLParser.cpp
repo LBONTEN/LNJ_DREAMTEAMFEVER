@@ -6,77 +6,79 @@
 #include <cstdlib>
 #include "XMLParser.h"
 #include "RoadSystem.h"
+#include "Car.h"
+
 
 XmlParser::XmlParser() {}
 
-RoadSystem* XmlParser::parseRoadSystem(const string& fileName)
+RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
 {
     pugi::xml_document doc;
     RoadSystem* newSystem = new RoadSystem();
+    map<string, Road*> roads;
 
-    string path = "../IO/" + fileName;
-    pugi::xml_parse_result fileContent = doc.load_file(path.c_str());
-
-    if(!fileContent)
+    // Load File
+    if(!doc.load_file(fileName.c_str()))
     {
         return NULL;
     }
 
+    // Get root
     pugi::xml_node root = doc.first_child();
 
-    cout << root.name() << "\n";
-    cout << root.value() << "\n";
-    cout << root.child_value() << "\n";
-    cout << root.first_child().name() << "\n";
-    cout << root.first_child().value() << "\n";
-    cout << root.first_child().child_value() << "\n";
-    cout << root.first_child().first_child().name();
-    cout << root.first_child().first_child().value();
-    cout << root.first_child().first_child().child_value();
-    cout << root.first_child().first_child().text();
-
-
-
-    map<string, Road*> roads;
-    for(pugi::xml_node child = root.child("BAAN"); child; child = child.next_sibling("BAAN"))
+    for(pugi::xml_node it = root.child("BAAN"); it; it = it.next_sibling("BAAN"))
     {
-        roads[child.child("naam").value()] = parseRoad(child);
+        string a = it.child("naam").text().as_string();
+        roads[a.c_str()] = parseRoad(it);
     }
 
-    for(pugi::xml_node child = root.first_child(); child; child.next_sibling())
+    for(pugi::xml_node it = root.first_child(); it; it = it.next_sibling())
     {
-        if(child.name() == string("BAAN").c_str()) {
-            Road *connection = roads[child.child_value("verbinding")];
-            Road *current_baan = roads[child.child_value("naam")];
+        string name = it.name();
 
-            current_baan->pushConnections(connection);
-            newSystem->pushRoad(*current_baan);
+        cout << name << endl;
+
+        if(name == "BAAN") {
+            string connectionName = it.child("verbinding").text().as_string();
+            string currRoadName = it.child("naam").text().as_string();
+
+            Road *connection = roads[connectionName.c_str()];
+            Road *currentRoad = roads[currRoadName.c_str()];
+
+            currentRoad->pushConnections(connection);
+            newSystem->pushRoad(*currentRoad);
         }
-        if(child.name() == string("VOERTUIG").c_str())
+        if(name == "VOERTUIG")
         {
-            Road* current_baan = roads[child.child_value("baan")];
-            newSystem->pushVehicle(*parseVehicle(child, newSystem, current_baan));
+            string currRoadName = it.child("baan").text().as_string();
+
+            Road* currentRoad = roads[currRoadName.c_str()];
+            newSystem->pushVehicle(*parseVehicle(it, newSystem, currentRoad));
         }
     }
-
     return newSystem;
 }
 
 Road* XmlParser::parseRoad(const pugi::xml_node& baan)
 {
-    string name = baan.child_value("naam");
-    int maxSpeed = atoi(baan.child_value("snelheidslimiet"));
-    int length = atoi(baan.child_value("lengte"));
+    string name = baan.child("naam").text().as_string();
+    int maxSpeed = baan.child("snelheidslimiet").text().as_int();
+    int length = baan.child("lengte").text().as_int();
 
     return new Road(name, length, maxSpeed);
 }
 
-Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* current_baan)
+Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* currentRoad)
 {
-    string licensePlate = voertuig.child_value("nummerplaat");
-    int acceleration = 0;
-    int speed = atoi(voertuig.child_value("snelheid"));
-    int position = atoi(voertuig.child_value("positie"));
+    string type = voertuig.child("TYPE").text().as_string();
+    if(type == "AUTO")
+    {
+        string licensePlate = voertuig.child("nummerplaat").text().as_string();
+        int acceleration = 0;
+        unsigned int speed = voertuig.child("snelheid").text().as_uint();
+        int position = voertuig.child("positie").text().as_int();
 
-    return new Vehicle(environment, licensePlate, current_baan, acceleration, speed, position);
+        return new Car(environment, licensePlate, currentRoad, acceleration, speed, position);
+    }
+    return NULL;
 }

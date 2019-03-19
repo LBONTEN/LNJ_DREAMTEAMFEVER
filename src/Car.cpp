@@ -16,5 +16,5 @@ Car::Car() : Vehicle::Vehicle() {}
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad) {}
 
-Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position) :
+Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, unsigned int speed, int position) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position) {}

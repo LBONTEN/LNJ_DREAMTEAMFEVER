@@ -6,15 +6,19 @@
 
 #include <iostream>
 #include <fstream>
-
 #include "RoadSystem.h"
 #include "XMLParser.h"
 
-int main() {
+int main()
+{
     XmlParser xmlp;
-    RoadSystem rs = *xmlp.parseRoadSystem("single_connection_n_cars.xml");
+    RoadSystem* rs = xmlp.parseRoadSystem("../IO/single_connection_n_cars.xml");
 
-    cout << "heyya" << endl;
+    cout << "kakapoopoo" << endl;
+
+    Road* veh = rs->getVectorOfRoads()[1];
+
+    cout << veh->getName() << endl;
 
     return 0;
 }

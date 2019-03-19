@@ -41,11 +41,11 @@ struct VehicleLimits {
 struct VehicleSnap {
     VehicleSnap();
     VehicleSnap(Vehicle* source);
-    VehicleSnap(const string& licensePlate, int acceleration, int speed, int position, int length);
+    VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, int position, int length);
     
     string licensePlate;
     int acceleration;
-    int speed;
+    unsigned int speed;
     int position;
     int length;
 };

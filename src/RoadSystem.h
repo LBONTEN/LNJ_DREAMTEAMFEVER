@@ -13,7 +13,7 @@ class RoadSystem
 public:
 
     RoadSystem() {}
-    RoadSystem(vector<Road*> roads, vector<Vehicle*> vehicles): vectorOfRoads(roads), vectorOfVehicles(vehicles) {}
+    RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles): vectorOfRoads(roads), vectorOfVehicles(vehicles) {}
 
     /*
      * setRoadIt / setVehicleIt:
@@ -22,6 +22,9 @@ public:
      * pushVehicle / pushRoad:
      *      push a single Vehicle / Road in the back of vectorOfVehicles / vectorOfRoads
      */
+
+    const vector<Road*>& getVectorOfRoads () { return vectorOfRoads; }
+
     void setRoadIt(vector<Road*> newVector) { vectorOfRoads = newVector; }
     void setVehicleIt(vector<Vehicle*> newVector) { vectorOfVehicles = newVector; }
     void pushVehicle( Vehicle& newVehicle) { vectorOfVehicles.push_back(&newVehicle); }
