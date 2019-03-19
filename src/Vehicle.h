@@ -53,10 +53,13 @@ struct VehicleSnap {
 
 struct SimulationInfo {
 public:
-    SimulationInfo() : prepared(false), nextCarCopy() {}
+    SimulationInfo() : prepared(false), nextCarCopy(NULL) {}
+    virtual ~SimulationInfo() {delete nextCarCopy;}
+    
+    void setNextCar(Vehicle* vehicle);
     
     bool prepared;
-    VehicleSnap nextCarCopy;
+    VehicleSnap* nextCarCopy;
 };
 
 
@@ -85,28 +88,28 @@ public:
      * Funtion purely to check pre- and postconditions
      */
     bool properlyInitialised();
-    bool updateReady();
+    virtual bool updateReady()=0;
     
     /**
      * In case changes need to happen between preparing and updating, use this for safety
      * REQUIRE properly initialised
      * ENSURE update not prepared
      */
-     void cancelPrep();
+    virtual void cancelPrep()=0;
     
     /**
      * Gather the required information for updating
      * REQUIRE properly initialised
      * ENSURE update prepared
      */
-    void prepUpdate();
+    virtual void prepUpdate()=0;
     
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
      * REQUIRE properly initialised, update prepared, simulation active
      * ENSURE get<acc/spd/pos> is within limits
      */
-    void execUpdate();
+    virtual void execUpdate()=0;
     
     /**
      * Setter functions
@@ -133,10 +136,6 @@ public:
     int getLen();
 
 protected:
-    virtual void stepAcceleration();
-    virtual void stepSpeed();
-    virtual void stepPosition();
-    
     Vehicle* nextCar();
     
     void hardSetLicencePlate(const string& licencePlate) {Vehicle::licensePlate = licencePlate;}
@@ -145,8 +144,6 @@ protected:
     void hardSetSpeed(int speed) {Vehicle::speed = speed;}
     void hardSetPosition(int position) {Vehicle::position = position;}
     void hardSetLen(int cm) {Vehicle::len = cm;}
-    
-    SimulationInfo snapShot;
     
     const VehicleLimits* limits;
     
