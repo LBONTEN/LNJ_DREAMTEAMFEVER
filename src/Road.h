@@ -18,6 +18,16 @@ public:
 
     void pushConnections(Road* newConnection) { connections.push_back(newConnection); }
     void pushVehicle(Vehicle* newVehicle) { vehicles.push_back(newVehicle); }
+    
+    int getLength() const { return length; }
+    
+    Road* getConnection() {
+        if (connections.empty()) {
+            return NULL;
+        }
+        
+        return connections[0];
+    }
 
 private:
     string name;

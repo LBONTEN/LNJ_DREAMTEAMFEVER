@@ -3,6 +3,7 @@
 //
 
 #include "Car.h"
+#include "Road.h"
 
 ///--- global variables (definitions) ---///
 extern const int stdCarLength = 300;
@@ -50,21 +51,38 @@ void Car::stepAcceleration() {
     int targetDistance = 0.75 * getSpeed() + snapShot.nextCarCopy->length + 2; //TODO: clean up this line to be less hard-coded
     int actualDistance = snapShot.nextCarCopy->position - getPosition() - snapShot.nextCarCopy->length;
     
-    int acceleration = 0.5 * (actualDistance - targetDistance);
+    int newAcceleration = 0.5 * (actualDistance - targetDistance);
     
-    if (acceleration < stdCarLimits.minAcc) {
-        hardSetAcceleration(stdCarLimits.minAcc);
+    if (newAcceleration < stdCarLimits.minAcc) {
+        newAcceleration = stdCarLimits.minAcc;
     }
     
-    if (acceleration > stdCarLimits.maxAcc) {
-        hardSetAcceleration(stdCarLimits.maxAcc);
+    if (newAcceleration > stdCarLimits.maxAcc) {
+        newAcceleration = stdCarLimits.maxAcc;
     }
+    
+    hardSetAcceleration(newAcceleration);
 }
 
 void Car::stepSpeed() {
-
+    int newSpeed = getSpeed() + getAcceleration();
+    
+    if (newSpeed < stdCarLimits.minSpd) {
+        newSpeed = stdCarLimits.minSpd;
+    }
+    
+    if (newSpeed > stdCarLimits.maxSpd) {
+        newSpeed = stdCarLimits.maxSpd;
+    }
+    
+    hardSetSpeed(newSpeed);
 }
 
 void Car::stepPosition() {
-
+    int newPos = getPosition() + getSpeed();
+    
+    while (newPos > getCurrentRoad()->getLength()) {
+        newPos -= getCurrentRoad()->getLength();
+        hardSetRoad(getCurrentRoad()->getConnection());
+    }
 }
