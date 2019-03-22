@@ -13,7 +13,6 @@
 Vehicle::Vehicle() : selfPtr(NULL) {}
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad) :
-                 snapShot(),
                  limits(limits),
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
@@ -26,7 +25,6 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
                  int position) :
-                 snapShot(),
                  limits(limits),
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
@@ -120,37 +118,7 @@ int Vehicle::getLen() {
 bool Vehicle::properlyInitialised() {
     return this == selfPtr;
 }
-bool Vehicle::updateReady() {
-    return snapShot.prepared;
-}
 
-void Vehicle::prepUpdate() {
-    snapShot.nextCarCopy = VehicleSnap(nextCar());
-    snapShot.prepared = true;
-}
-
-void Vehicle::cancelPrep() {
-    snapShot.prepared = false;
-}
-
-void Vehicle::execUpdate() {
-    stepAcceleration();
-    stepSpeed();
-    stepPosition();
-    snapShot.prepared = false;
-}
-
-void Vehicle::stepAcceleration() {
-    cout << "heyy \n";
-}
-
-void Vehicle::stepSpeed() {
-    cout << "heyyy \n";
-}
-
-void Vehicle::stepPosition() {
-    cout << "heyyyy \n";
-}
 
 Vehicle* Vehicle::nextCar() {
     // TODO: make this return the next car on the same road
@@ -158,6 +126,7 @@ Vehicle* Vehicle::nextCar() {
 }
 
 ///--- VehicleSnap ---///
+
 VehicleSnap::VehicleSnap() : licensePlate(), acceleration(), speed(), position(), length() {}
 
 VehicleSnap::VehicleSnap(Vehicle* source) : licensePlate(source->getLicensePlate()),
@@ -171,3 +140,13 @@ VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, unsigned 
 
 
 ///--- SimulationInfo ---///
+
+void SimulationInfo::setNextCar(Vehicle* vehicle) {
+    delete nextCarCopy;
+    if (vehicle) {
+        nextCarCopy = new VehicleSnap(vehicle);
+    }
+    else {
+        nextCarCopy = NULL;
+    }
+}

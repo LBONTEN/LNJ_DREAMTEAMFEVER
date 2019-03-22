@@ -20,7 +20,7 @@ set(SHARED_SOURCE_FILES
         RoadSystem.cpp
         Road.cpp
         XMLParser.cpp
-        Car.cpp)
+        Car.cpp Exceptions.cpp Exceptions.h)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
