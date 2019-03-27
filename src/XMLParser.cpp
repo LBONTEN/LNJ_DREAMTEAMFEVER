@@ -50,14 +50,14 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
             Road *currentRoad = roads[currRoadName.c_str()];
 
             currentRoad->setConnection(connection);
-            newSystem->pushRoad(currentRoad);
+            newSystem->addRoad(currentRoad);
         }
         if(type == "VOERTUIG")
         {
             string currRoadName = xmlNode.child("baan").text().as_string();
 
             Road* currentRoad = roads[currRoadName.c_str()];
-            newSystem->pushVehicle(parseVehicle(xmlNode, newSystem, currentRoad));
+            newSystem->addVehicle(parseVehicle(xmlNode, newSystem, currentRoad));
         }
     }
     return newSystem;
