@@ -134,6 +134,7 @@ public:
     int getSpeed();
     int getPosition();
     int getLen();
+    const VehicleLimits* getLimits();
 
 protected:
     Vehicle* nextCar();

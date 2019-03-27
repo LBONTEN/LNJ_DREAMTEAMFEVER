@@ -10,7 +10,10 @@
 
 ///--- Vehicle --- ///
 
-Vehicle::Vehicle() : selfPtr(NULL) {}
+Vehicle::Vehicle() : selfPtr(NULL)
+{
+    ENSURE(!properlyInitialised(), "Car constructor failed");
+}
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad) :
                  limits(limits),
@@ -21,7 +24,10 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  position(0),
                  len(length),
                  environment(environment),
-                 selfPtr(this) {}
+                 selfPtr(this)
+{
+    ENSURE(properlyInitialised(), "Car constructor failed");
+}
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
                  int position) :
@@ -33,7 +39,10 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  position(position),
                  len(length),
                  environment(environment),
-                 selfPtr(this) {}
+                 selfPtr(this)
+{
+    ENSURE(properlyInitialised(), "Car constructor failed");
+}
 
 void Vehicle::setLicensePlate(const string& licensePlate) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
@@ -113,6 +122,10 @@ int Vehicle::getLen() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return len;
 }
+const VehicleLimits* Vehicle::getLimits() {
+    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    return limits;
+}
 
 
 bool Vehicle::properlyInitialised() {
@@ -124,6 +137,7 @@ Vehicle* Vehicle::nextCar() {
     // TODO: make this return the next car on the same road
     return NULL;
 }
+
 
 ///--- VehicleSnap ---///
 
