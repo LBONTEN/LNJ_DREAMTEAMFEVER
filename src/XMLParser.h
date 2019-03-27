@@ -1,5 +1,5 @@
 /* created by Van Borm Joren & Bontenakel Lenny
- */
+*/
 
 #include "pugixml.hpp"
 #include <string>
