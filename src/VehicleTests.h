@@ -58,5 +58,8 @@ TEST_F(VehicleTest, INIT_Default) {
     EXPECT_FALSE(testVeh.properlyInitialised());
 }
 
+TEST_F(VehicleTest, INIT_Base) {
+    EXPECT_TRUE(testVeh.properlyInitialised());
+}
 
 #endif //LNJPSE_VEHICLETESTS_H
