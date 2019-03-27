@@ -25,13 +25,13 @@ public:
 
     const vector<Road*>& getVectorOfRoads () { return vectorOfRoads; }
 
-    void setRoadIt(vector<Road*> newVector) { vectorOfRoads = newVector; }
-    void setVehicleIt(vector<Vehicle*> newVector) { vectorOfVehicles = newVector; }
+    void setRoadIt( vector<Road*> newVector ) { vectorOfRoads = newVector; }
+    void setVehicleIt( vector<Vehicle*> newVector ) { vectorOfVehicles = newVector; }
     void pushVehicle( Vehicle* newVehicle) { vectorOfVehicles.push_back(newVehicle); }
     void pushRoad(Road* newRoad) { vectorOfRoads.push_back(newRoad); }
     
-    void removeRoad(Road* oldRoad);
-    void removeVehicle(Vehicle* oldVeh);
+    void removeRoad(Road* oldRoad) {}
+    void removeVehicle(Vehicle* oldVeh) {}
 
     bool simulationActive() {return false;} //TODO: actually implement this function
 

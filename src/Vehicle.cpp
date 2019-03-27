@@ -23,10 +23,14 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  speed(0),
                  position(0),
                  len(length),
-                 environment(environment),
-                 selfPtr(this)
+                 environment(environment)
 {
+    selfPtr = this;
+    
     ENSURE(properlyInitialised(), "Car constructor failed");
+    ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
+            "Car constructor failed to assign variable(s)");
+    ENSURE(getAcceleration()==0 && getSpeed()==0 && getPosition()==0, "Car constructor failed to assign kinetic information");
 }
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
@@ -42,6 +46,16 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  selfPtr(this)
 {
     ENSURE(properlyInitialised(), "Car constructor failed");
+    ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
+           "Car constructor failed to assign variable(s)");
+    ENSURE(getAcceleration()==acceleration && getSpeed()==speed && getPosition()==position, "Car constructor failed to assign kinetic information");
+}
+
+Vehicle::~Vehicle()
+{
+    // can't use getters here in case vehicle isn't initialised
+    currentRoad->removeVehicle(this);
+    environment->removeVehicle(this);
 }
 
 void Vehicle::setLicensePlate(const string& licensePlate) {
@@ -125,6 +139,12 @@ int Vehicle::getLen() const {
 const VehicleLimits* Vehicle::getLimits() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return limits;
+}
+
+bool Vehicle::operator < (const Vehicle& vehic) const
+{
+    REQUIRE(properlyInitialised(), "Vehicle was not properly initialised.");
+    return position < vehic.position;
 }
 
 

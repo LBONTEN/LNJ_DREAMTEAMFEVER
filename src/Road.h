@@ -2,6 +2,7 @@
  */
 
 #include "Vehicle.h"
+#include "Car.h"
 #include "design_by_contract.h"
 #include <vector>
 #include <list>
@@ -41,23 +42,27 @@ public:
     const vector<Road*>& getConnections() const;
     const list<Vehicle*>& getVehicles() const;
     Road* getConnection() const;
+    Vehicle* getVehicle(string licensePlate) const;
 
     /*************************
     *    ~Public members~    *
     **************************/
 
-
+    void removeVehicle(const Vehicle* vehicToRemove);
     bool properlyInitialised() const;
     int remainingSpace() const;
     bool isFree() const;
-    const Vehicle& getCarOnPosition(unsigned int position) const;
+    const Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
 
 private:
+    void sortVehicles() const;
+    bool checkIfSorted() const;
+
     string name;
     int length;
     int maximumSpeed;
     vector<Road*> connections;
-    list<Vehicle*> vehicles;
+    list<const Vehicle&> vehicles;
 
 };
 
