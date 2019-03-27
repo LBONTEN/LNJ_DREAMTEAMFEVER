@@ -74,15 +74,17 @@ public:
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * ENSURE properly initialised
+     * ENSURE properly initialised, get <param> = param, get <acc/spd/pos> = 0
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits,  Road* currentRoad);
     
     /**
      * Maximal constructor
-     * ENSURE properly initialised
+     * ENSURE properly initialised, get <param> = param
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed, int position);
+    
+    virtual ~Vehicle();
     
     /**
      * Funtion purely to check pre- and postconditions

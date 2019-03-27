@@ -1,4 +1,4 @@
-# LNJ_DREAMTEAMFEVER
+# LNJ_PSE_2018-2019
 Lenny and Joren's Software Engineering Project. 
 
 ## Design

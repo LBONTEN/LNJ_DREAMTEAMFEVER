@@ -382,3 +382,7 @@ bool Road::properlyInitialised() const
 
     return true;
 }
+
+/// placeholder:
+void Road::removeVehicle(Vehicle* veh)
+{}
