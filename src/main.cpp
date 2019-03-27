@@ -17,7 +17,7 @@ int main()
 
     Serialiser print (rs);
     
-    print >> cout;
+    cout << print;
 
     return 0;
 }

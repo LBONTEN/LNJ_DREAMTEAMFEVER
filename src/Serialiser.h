@@ -13,7 +13,7 @@ enum printStyle {classic};
 struct Serialiser {
     Serialiser(RoadSystem* simulation);
     
-    friend ostream& operator>>(const Serialiser& print, ostream& target);
+    friend ostream& operator<<(ostream& target, const Serialiser& print);
     
     RoadSystem* simulation;
     printStyle style;

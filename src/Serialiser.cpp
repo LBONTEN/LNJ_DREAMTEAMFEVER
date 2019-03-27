@@ -55,7 +55,7 @@ Serialiser::Serialiser(RoadSystem* simulation) : simulation(simulation), style(c
 
 
 ///--- overloaded stream operator ---///
-ostream& operator>>(const Serialiser& print, ostream& target)
+ostream& operator<<(ostream& target, const Serialiser& print)
 {
     switch (print.style)
     {
