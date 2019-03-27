@@ -4,8 +4,8 @@
 #include <map>
 #include "Road.h"
 
-#ifndef LNJ_PIZZA_PROJECT_ROADSYSTEM_H
-#define LNJ_PIZZA_PROJECT_ROADSYSTEM_H
+#ifndef LNJPSE_ROADSYSTEM_H
+#define LNJPSE_ROADSYSTEM_H
 using namespace std;
 
 class RoadSystem
@@ -43,4 +43,4 @@ private:
 //    void advance_simulation();
 };
 
-#endif //LNJ_PIZZA_PROJECT_ROADSYSTEM_H
+#endif //LNJPSE_ROADSYSTEM_H

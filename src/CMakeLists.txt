@@ -13,6 +13,12 @@ include_directories(./pugiXml)
 # Set Library dir
 link_directories(pugiXml)
 
+# Set include dir
+include_directories(gtest/include)
+
+# Set Library dir
+link_directories(gtest/lib)
+
 # Source files shared between all build targets
 set(SHARED_SOURCE_FILES
         ./pugiXml/pugixml.cpp
@@ -28,10 +34,10 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
-        tests.cpp)
+        tests.cpp VehicleTests.cpp VehicleTests.h)
 
 # Create RELEASE target
-add_executable(PSE_Release ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
 
 # Create DEBUG target
-add_executable(PSE_Debug ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(LNJPSE_DEBUG ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})

@@ -40,7 +40,7 @@ public:
     const string& getName() const;
     const vector<Road*>& getConnections() const;
     const list<Vehicle*>& getVehicles() const;
-
+    Road* getConnection() const;
 
     /*************************
     *    ~Public members~    *

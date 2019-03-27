@@ -1,8 +1,8 @@
 /* created by Joren Van Borm & Lenny Bontenakel
  */
 
-#ifndef LNJ_PIZZA_PROJECT_VEHICLE_H
-#define LNJ_PIZZA_PROJECT_VEHICLE_H
+#ifndef LNJPSE_VEHICLE_H
+#define LNJPSE_VEHICLE_H
 
 #include <string>
 #include <map>
@@ -134,6 +134,7 @@ public:
     int getSpeed() const ;
     int getPosition() const ;
     int getLen() const ;
+    const VehicleLimits* getLimits();
 
 protected:
     Vehicle* nextCar();
@@ -159,4 +160,4 @@ private:
     Vehicle* selfPtr;
 };
 
-#endif //LNJ_PIZZA_PROJECT_VEHICLE_H
+#endif //LNJPSE_VEHICLE_H

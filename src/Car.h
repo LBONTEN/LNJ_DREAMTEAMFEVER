@@ -2,8 +2,8 @@
 // Created by Joren Van Borm & Lenny Bontenakel
 //
 
-#ifndef DAPIZZAPROJECT_CAR_H
-#define DAPIZZAPROJECT_CAR_H
+#ifndef LNJPSE_CAR_H
+#define LNJPSE_CAR_H
 
 
 #include "Vehicle.h"
@@ -41,29 +41,30 @@ public:
     
     /**
      * Funtion purely to check pre- and postconditions
+     * REQUIRE properly initialised
      */
     bool updateReady();
     
     /**
      * In case changes need to happen between preparing and updating, use this for safety
      * REQUIRE properly initialised
-     * ENSURE update not prepared
+     * ENSURE update not ready
      */
     void cancelPrep();
     
     /**
      * Gather the required information for updating
      * REQUIRE properly initialised
-     * ENSURE update prepared
+     * ENSURE update ready
      */
-    virtual void prepUpdate()=0;
+    virtual void prepUpdate();
     
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
      * REQUIRE properly initialised, update prepared, simulation active
-     * ENSURE get<acc/spd/pos> is within limits
+     * ENSURE get<acc/spd/pos> is within limits, minimum distance is respected
      */
-    virtual void execUpdate()=0;
+    virtual void execUpdate();
 
 private:
     void stepAcceleration();
@@ -74,4 +75,4 @@ private:
 };
 
 
-#endif //DAPIZZAPROJECT_CAR_H
+#endif //LNJPSE_CAR_H

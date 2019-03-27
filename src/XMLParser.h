@@ -11,8 +11,8 @@ class Road;
 class Vehicle;
 class Car;
 
-#ifndef DAPIZZAPROJECT_XMLPARSER_H
-#define DAPIZZAPROJECT_XMLPARSER_H
+#ifndef LNJPSE_XMLPARSER_H
+#define LNJPSE_XMLPARSER_H
 
 class XmlParser
 {
@@ -27,4 +27,4 @@ private:
     Vehicle* parseVehicle(const pugi::xml_node& vehicle, RoadSystem* environment, Road* currentRoad);
 };
 
-#endif //DAPIZZAPROJECT_XMLPARSER_H
+#endif //LNJPSE_XMLPARSER_H

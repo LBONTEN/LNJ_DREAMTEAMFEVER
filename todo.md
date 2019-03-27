@@ -28,7 +28,7 @@
 	- [ ] add, has?, get/traverse car(s)
 	- [ ] provide location-based iterator for vehicles
 
-- [ ] class: Vehicle – *Adapt for inheritance*
+- [ ] class: Vehicle
 	- [x] get & set licence plate
 	- [x] get & set road
 	- [x] get& set acceleration
@@ -37,7 +37,7 @@
 	- [x] prepare update (gathers info)
 	- [x] execute update (updates info)
 
-- [ ] class: Vehicle::Car – J.'s working on it right now!
-	- [ ] advance acceleration
-	- [ ] advance speed
-	- [ ] advance position
+- [x] class: Vehicle::Car
+	- [x] advance acceleration
+	- [x] advance speed
+	- [x] advance position

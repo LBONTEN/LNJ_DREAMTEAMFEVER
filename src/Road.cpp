@@ -142,6 +142,24 @@ const list<Vehicle*>& Road::getVehicles() const
     return vehicles;
 }
 
+/* getConnection
+ *
+ *  OUT:
+ *      returns the first road connection on index.
+ *
+ *  Précondition:
+ *      Must be properly initialised
+ *
+ *  Poscondition:
+ *      Road may not be altered
+ */
+Road* Road::getConnection() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised.");
+
+    return connections[0];
+}
+
 
     /*************************
     *    ~Public members~    *
