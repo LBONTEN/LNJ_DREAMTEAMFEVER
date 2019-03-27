@@ -67,20 +67,20 @@ class Vehicle {
 public:
     /**
      * Default constructor
-     * ENSURE NOT properly initialised
+     * @ENSURE NOT properly initialised
      */
     Vehicle();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * ENSURE properly initialised, get <param> = param, get <acc/spd/pos> = 0
+     * @ENSURE properly initialised, get <param> = param, get <acc/spd/pos> = 0
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits,  Road* currentRoad);
     
     /**
      * Maximal constructor
-     * ENSURE properly initialised, get <param> = param
+     * @ENSURE properly initialised, get <param> = param
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed, int position);
     
@@ -94,29 +94,29 @@ public:
     
     /**
      * In case changes need to happen between preparing and updating, use this for safety
-     * REQUIRE properly initialised
-     * ENSURE update not prepared
+     * @REQUIRE properly initialised
+     * @ENSURE update not prepared
      */
     virtual void cancelPrep()=0;
     
     /**
-     * Gather the required information for updating
-     * REQUIRE properly initialised
-     * ENSURE update prepared
+     * Gather the @REQUIREd information for updating
+     * @REQUIRE properly initialised
+     * @ENSURE update prepared
      */
     virtual void prepUpdate()=0;
     
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
-     * REQUIRE properly initialised, update prepared, simulation active
-     * ENSURE get<acc/spd/pos> is within limits
+     * @REQUIRE properly initialised, update prepared, simulation active
+     * @ENSURE get<acc/spd/pos> is within limits
      */
     virtual void execUpdate()=0;
     
     /**
      * Setter functions
-     * REQUIRE simulation not started, properly initialised
-     * ENSURE get<attr> = <arg>, (where applicable) <attr> is within the defined limits
+     * @REQUIRE simulation not started, properly initialised
+     * @ENSURE get<attr> = <arg>, (where applicable) <attr> is within the defined limits
      */
     void setLicensePlate(const string& licensePlate);
     void setRoad(Road* newRoad);
@@ -127,7 +127,7 @@ public:
 
     /**
      * Getter functions
-     * REQUIRE properly initialised
+     * @REQUIRE properly initialised
      */
     RoadSystem* getEnv() const ;
     string getLicensePlate() const ;
@@ -137,19 +137,11 @@ public:
     int getPosition() const ;
     int getLen() const ;
     const VehicleLimits* getLimits();
+    const string& getTypeName() const;
 
-    /** operator <
-     *
-     *  OUT:
-     *      True when left hand side is smaller than right hand side
-     *
-     *  Précondition:
-     *      Must be properly initialised
-     */
-    bool operator < (const Vehicle& vehic) const;
 
 protected:
-    Vehicle* nextCar();
+    Vehicle* nextVeh();
     
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
     void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
@@ -159,6 +151,8 @@ protected:
     void hardSetLen(int cm) { Vehicle::len = cm; }
     
     const VehicleLimits* limits;
+    
+    string typeName;
 
 private:
     string licensePlate;

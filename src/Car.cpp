@@ -15,17 +15,23 @@ extern const VehicleLimits stdCarLimits(-8, 2, 0, 150);
 
 ///--- Car ---///
 Car::Car() : Vehicle::Vehicle()
-{}
+{
+    typeName = "Car";
+}
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad),
         snapShot()
-{}
+{
+    typeName = "Car";
+}
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position),
         snapShot()
-{}
+{
+    typeName = "Car";
+}
         
 bool Car::updateReady()
 {
@@ -37,7 +43,7 @@ void Car::prepUpdate()
 {
     REQUIRE(properlyInitialised(), "car wasn't properly initialised");
     
-    snapShot.setNextCar(nextCar());
+    snapShot.setNextCar(nextVeh());
     snapShot.prepared = true;
     
     ENSURE(updateReady(), "car failed to prepare update");

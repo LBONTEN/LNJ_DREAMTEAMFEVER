@@ -7,18 +7,18 @@
 - set up test & release targets
 
 - [ ] main
-	- [ ] reading xml-file
+	- [x] reading xml-file
  
 ## Implementation
-- [ ] class: RoadSystem
-	- [ ] load simulation – *maybe move this to a seperate parser class?*
-	- [ ] dump simulation – *should this be a part of the parser class as well?*
-	- [ ] start & stop simulation
-	- [ ] advance simulation
-	- [ ] add, get/traverse car(s)
-	- [ ] add, get/traverse road(s)
-	- [ ] simulation empty?
-	- [ ] simulation active?
+- [x] class: RoadSystem
+	- [x] load simulation
+	- [x] dump simulation
+	- [x] start simulation
+	- [x] advance simulation
+	- [x] add, get/traverse car(s)
+	- [x] add, get/traverse road(s)
+	- [x] simulation empty?
+	- [x] simulation active?
 
 - [ ] class: Road
 	- [x] constructor using XML-file

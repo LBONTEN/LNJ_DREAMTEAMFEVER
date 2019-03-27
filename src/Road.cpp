@@ -15,11 +15,12 @@ extern const unsigned int minimumSpace= 200;
  *  Postcondition:
  *      Road object is properly initialised.
  --------------------------------------------------------------------- */
-Road::Road(string name, int length, int maxSpeed) :
+Road::Road(string name, int length, int maxSpeed, RoadSystem* environment) :
 
     name(name),
     length(length),
-    maximumSpeed(maxSpeed)
+    maximumSpeed(maxSpeed),
+    environment(environment)
 {
     ENSURE(properlyInitialised(), "Constructor failed");
 }
@@ -83,7 +84,7 @@ void Road::setConnection(Road* newConnection)
  *  IN:
  *      newVehicle: Road to add as a connection to subjected road
  *
- *  Précondition:
+ *  Precondition:
  *      The Road and vehicle involved in the function must be properly initialised for proper execution.
  *      Also, there must be sufficient remaining space on the Road to add a new vehicle.
  *
@@ -223,9 +224,9 @@ Vehicle* Road::getVehicle(string licensePlate) const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
 
-    for (list<const Vehicle&>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        if( (*i).getLicensePlate() == licensePlate)
+        if((*i)->getLicensePlate() == licensePlate)
         {
             return (*i);
         }
@@ -409,6 +410,7 @@ bool Road::properlyInitialised() const
     return true;
 }
 
-/// placeholder:
-void Road::removeVehicle(Vehicle* veh)
-{}
+int Road::getMaximumSpeed() const
+{
+    return maximumSpeed;
+}
