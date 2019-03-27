@@ -1,12 +1,15 @@
 /* created by Van Borm Joren & Bontenakel Lenny
  */
 
+
 #include "Vehicle.h"
 #include "Car.h"
 #include "design_by_contract.h"
+
 #include <vector>
 #include <list>
 
+class RoadSystem;
 
 #ifndef LNJ_PIZZA_PROJECT_ROAD_H
 #define LNJ_PIZZA_PROJECT_ROAD_H
@@ -22,6 +25,12 @@ public:
 
     Road(string name, int length, int maxSpeed);
 
+
+    /***********************
+     *    ~Constructor~    *
+     ***********************/
+
+    ~Road();
 
     /*******************
      *    ~Setters~    *
@@ -55,14 +64,12 @@ public:
     const Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
 
 private:
-    void sortVehicles() const;
-    bool checkIfSorted() const;
-
+    RoadSystem* environment;
     string name;
     int length;
     int maximumSpeed;
     vector<Road*> connections;
-    list<const Vehicle&> vehicles;
+    list<Vehicle*> vehicles;
 
 };
 

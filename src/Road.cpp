@@ -1,6 +1,7 @@
 /*      created by Van Borm Joren & Bontenakel Lenny         */
 
 #include "Road.h"
+#include "RoadSystem.h"
 
 extern const unsigned int minimumSpace= 200;
 
@@ -23,6 +24,27 @@ Road::Road(string name, int length, int maxSpeed) :
     ENSURE(properlyInitialised(), "Constructor failed");
 }
 
+    /***********************
+     *    ~Destructor~    *
+     ***********************/
+
+/** ---------------------------------------------------------------------
+ *  ~Road
+ *
+ *  Postcondition:
+ *      All references of this Road are deleted.
+ *
+ --------------------------------------------------------------------- */
+Road::~Road()
+{
+    for (vector<Road*>::const_iterator i = environment->getVectorOfRoads().begin(); i != environment->getVectorOfRoads().end(); i++)
+    {
+        if ((*i) == this)
+        {
+
+        }
+    }
+}
 
     /*******************
      *    ~Setters~    *
@@ -232,9 +254,9 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
 {
     REQUIRE(properlyInitialised(), "Road object must be properly initialised to execute function.");
 
-    for(list<const Vehicle&>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    for(list<Vehicle *>::iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        if(&(*i) == vehicToRemove)
+        if((*i) == vehicToRemove)
         {
             vehicles.erase(i);
         }
@@ -262,9 +284,9 @@ int Road::remainingSpace() const
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
 
     int remainingSpace = length;
-    for (list<const Vehicle&> :: const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    for (list<Vehicle*> :: const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        remainingSpace = remainingSpace - ((*i).getLen() + minimumSpace);
+        remainingSpace = remainingSpace - ((*i)->getLen() + minimumSpace);
 
         if (remainingSpace <= 0)
         {
@@ -312,73 +334,23 @@ bool Road::isFree() const
 const Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
-    REQUIRE(checkIfSorted(), "Vehicles must be sorted.");
 
-    for(list<const Vehicle&>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    for(list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        if( (*i).getPosition() > position && !inclusive)
+        if( (*i)->getPosition() > position && !inclusive)
         {
-            return &(*i);
+            return (*i);
         }
 
-        if( (*i).getPosition() >= position && inclusive )
+        if( (*i)->getPosition() >= position && inclusive )
         {
-            return &(*i);
+            return (*i);
         }
     }
 
     return new Car();
 }
 
-
-/* ---------------------------------------------------------------------
- * sortVehicle
- *
- *  Précondition:
- *      Must be properly initialised
- *
- *  Postcondition:
- *      Items will be sorted on position
- *
- --------------------------------------------------------------------- */
-void Road::sortVehicles() const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
-
-    vehicles.sort();
-
-    ENSURE(checkIfSorted(), "List did not get sorted during function");
-}
-
-
-/* ---------------------------------------------------------------------
- * checkIfSorted
- *
- *  OUT:
- *      true if the list of vehicles is sorted
- *
- *  Précondition:
- *      Must be properlyInitialised
- *
- *  Postcondition:
- *      Object remains unchanged
- *
- --------------------------------------------------------------------- */
-bool Road::checkIfSorted() const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
-
-    list<const Vehicle&>::const_iterator smallestPosition = vehicles.begin();
-    for ( list<const Vehicle&> :: const_iterator i = vehicles.begin(); i != vehicles.end(); i++ )
-    {
-        if( (*i) < (*smallestPosition) )
-        {
-            return false;
-        }
-        smallestPosition = i;
-    }
-    return true;
-}
 
 
 /* ---------------------------------------------------------------------
