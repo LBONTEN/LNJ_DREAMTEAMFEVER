@@ -23,7 +23,7 @@ public:
      *    ~Constructor~    *
      ***********************/
 
-    Road(string name, int length, int maxSpeed);
+    Road(string name, int length, int maxSpeed, RoadSystem* environment);
 
 
     /***********************

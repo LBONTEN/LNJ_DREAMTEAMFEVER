@@ -15,11 +15,12 @@ extern const unsigned int minimumSpace= 200;
  *  Postcondition:
  *      Road object is properly initialised.
  --------------------------------------------------------------------- */
-Road::Road(string name, int length, int maxSpeed) :
+Road::Road(string name, int length, int maxSpeed, RoadSystem* environment) :
 
     name(name),
     length(length),
-    maximumSpeed(maxSpeed)
+    maximumSpeed(maxSpeed),
+    environment(environment)
 {
     ENSURE(properlyInitialised(), "Constructor failed");
 }
