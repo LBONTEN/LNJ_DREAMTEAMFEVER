@@ -58,6 +58,7 @@ public:
     **************************/
 
     void removeVehicle(const Vehicle* vehicToRemove);
+    void removeConnection(const Road* connectionToRemove);
     bool properlyInitialised() const;
     int remainingSpace() const;
     bool isFree() const;

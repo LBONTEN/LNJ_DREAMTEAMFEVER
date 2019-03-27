@@ -37,12 +37,12 @@ Road::Road(string name, int length, int maxSpeed) :
  --------------------------------------------------------------------- */
 Road::~Road()
 {
-    for (vector<Road*>::const_iterator i = environment->getVectorOfRoads().begin(); i != environment->getVectorOfRoads().end(); i++)
-    {
-        if ((*i) == this)
-        {
+    environment->removeRoad(this);
 
-        }
+    vector<Road*> allReferendes = environment->getVectorOfRoads();
+    for (int i = 0; i < allReferendes.size(); i++)
+    {
+        allReferendes[i]->removeConnection(this);
     }
 }
 
@@ -182,7 +182,7 @@ const list<Vehicle*>& Road::getVehicles() const
 }
 
 
-/* ---------------------------------------------------------------------
+/** ---------------------------------------------------------------------
  * getConnection
  *
  *  OUT:
@@ -263,6 +263,32 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
     }
 
     ENSURE(getVehicle(vehicToRemove->getLicensePlate()), "Removal unsuccessful");
+}
+
+
+/** ---------------------------------------------------------------------
+ *  removeConnection:
+ *
+ *  IN:
+ *      pointer to road to remove
+ *
+ *  Precondition:
+ *      Road must be properly initialised
+ *
+ *  Postcondition:
+ *      Input road will no longer be a connection.
+ --------------------------------------------------------------------- */
+void Road::removeConnection(const Road *connectionToRemove)
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    for(int i = 0; i < connections.size(); i++)
+    {
+        if(connections[i] == connectionToRemove)
+        {
+            connections.erase(connections.begin() + i -1);
+        }
+    }
 }
 
 
