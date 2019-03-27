@@ -15,7 +15,7 @@ Joren Van Borm
 | vehicle & design discussion | 12/03 | 2h 30' |
 | car (& reworking vehicle) | 15/03 | 1h 30' |
 | car & some vehicle (again) | 19/03 | ??? |
-| tests & contracts for car & vehicle | 27/03 | <11:00-?> |
+| tests & contracts for car & vehicle | 27/03 | 7:15 |
 
 
 Lenny Bontenakel
