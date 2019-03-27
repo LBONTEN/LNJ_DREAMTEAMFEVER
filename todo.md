@@ -7,12 +7,12 @@
 - set up test & release targets
 
 - [ ] main
-	- [ ] reading xml-file
+	- [x] reading xml-file
  
 ## Implementation
-- [ ] class: RoadSystem
+- [x] class: RoadSystem
 	- [x] load simulation
-	- [ ] dump simulation
+	- [x] dump simulation
 	- [x] start simulation
 	- [x] advance simulation
 	- [x] add, get/traverse car(s)

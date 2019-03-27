@@ -16,7 +16,7 @@ Joren Van Borm
 | car (& reworking vehicle) | 15/03 | 1h 30' |
 | car & some vehicle (again) | 19/03 | ??? |
 | tests & contracts for car & vehicle | 27/03 | +/-3h |
-| roadsystem | 27/03 | <7:30 - ?> |
+| roadsystem | 27/03 | 4h 20' |
 
 
 Lenny Bontenakel
