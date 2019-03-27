@@ -43,14 +43,14 @@ public:
      * Funtion purely to check pre- and postconditions
      * REQUIRE properly initialised
      */
-    bool updateReady();
+    virtual bool updateReady();
     
     /**
      * In case changes need to happen between preparing and updating, use this for safety
      * REQUIRE properly initialised
      * ENSURE update not ready
      */
-    void cancelPrep();
+    virtual void cancelPrep();
     
     /**
      * Gather the required information for updating
