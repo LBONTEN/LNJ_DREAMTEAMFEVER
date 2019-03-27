@@ -87,7 +87,7 @@ public:
     /**
      * Funtion purely to check pre- and postconditions
      */
-    bool properlyInitialised();
+    bool properlyInitialised() const;
     virtual bool updateReady()=0;
     
     /**
@@ -127,26 +127,26 @@ public:
      * Getter functions
      * REQUIRE properly initialised
      */
-    RoadSystem* getEnv();
-    string getLicensePlate();
-    Road* getCurrentRoad();
-    int getAcceleration();
-    int getSpeed();
-    int getPosition();
-    int getLen();
+    RoadSystem* getEnv() const ;
+    string getLicensePlate() const ;
+    Road* getCurrentRoad() const ;
+    int getAcceleration() const ;
+    int getSpeed() const ;
+    int getPosition() const ;
+    int getLen() const ;
 
 protected:
     Vehicle* nextCar();
     
-    void hardSetLicencePlate(const string& licencePlate) {Vehicle::licensePlate = licencePlate;}
-    void hardSetRoad(Road* newRoad) {Vehicle::currentRoad = newRoad;}
-    void hardSetAcceleration(int acceleration) {Vehicle::acceleration = acceleration;}
-    void hardSetSpeed(int speed) {Vehicle::speed = speed;}
-    void hardSetPosition(int position) {Vehicle::position = position;}
-    void hardSetLen(int cm) {Vehicle::len = cm;}
+    void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
+    void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
+    void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
+    void hardSetSpeed(int speed) { Vehicle::speed = speed; }
+    void hardSetPosition(int position) { Vehicle::position = position; }
+    void hardSetLen(int cm) { Vehicle::len = cm; }
     
     const VehicleLimits* limits;
-    
+
 private:
     string licensePlate;
     Road* currentRoad;

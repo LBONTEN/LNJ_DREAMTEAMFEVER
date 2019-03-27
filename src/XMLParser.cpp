@@ -26,34 +26,33 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
     // Get root
     pugi::xml_node root = doc.first_child();
 
-    for(pugi::xml_node it = root.child("BAAN"); it; it = it.next_sibling("BAAN"))
+    for(pugi::xml_node xmlNode = root.child("BAAN"); xmlNode; xmlNode = xmlNode.next_sibling("BAAN"))
     {
-        string a = it.child("naam").text().as_string();
-        roads[a.c_str()] = parseRoad(it);
+        string name = xmlNode.child("naam").text().as_string();
+        roads[name.c_str()] = parseRoad(xmlNode);
     }
 
-    for(pugi::xml_node it = root.first_child(); it; it = it.next_sibling())
+    for(pugi::xml_node xmlNode = root.first_child(); xmlNode; xmlNode = xmlNode.next_sibling())
     {
-        string name = it.name();
+        string type = xmlNode.name();
 
-        cout << name << endl;
-
-        if(name == "BAAN") {
-            string connectionName = it.child("verbinding").text().as_string();
-            string currRoadName = it.child("naam").text().as_string();
+        if(type == "BAAN")
+        {
+            string connectionName = xmlNode.child("verbinding").text().as_string();
+            string currRoadName = xmlNode.child("naam").text().as_string();
 
             Road *connection = roads[connectionName.c_str()];
             Road *currentRoad = roads[currRoadName.c_str()];
 
-            currentRoad->pushConnections(connection);
+            currentRoad->setConnection(connection);
             newSystem->pushRoad(*currentRoad);
         }
-        if(name == "VOERTUIG")
+        if(type == "VOERTUIG")
         {
-            string currRoadName = it.child("baan").text().as_string();
+            string currRoadName = xmlNode.child("baan").text().as_string();
 
             Road* currentRoad = roads[currRoadName.c_str()];
-            newSystem->pushVehicle(*parseVehicle(it, newSystem, currentRoad));
+            newSystem->pushVehicle(*parseVehicle(xmlNode, newSystem, currentRoad));
         }
     }
     return newSystem;

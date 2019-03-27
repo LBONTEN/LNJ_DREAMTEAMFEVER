@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(DAPIZZAPROJECT)
+project(JVB_LB_PSE_Project)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -31,7 +31,7 @@ set(DEBUG_SOURCE_FILES
         tests.cpp)
 
 # Create RELEASE target
-add_executable(PIZZA_EXE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(PSE_Release ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
 
 # Create DEBUG target
-add_executable(PIZZA_DEBUG ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(PSE_Debug ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})

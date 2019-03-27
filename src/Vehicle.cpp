@@ -85,37 +85,37 @@ void Vehicle::setLen(int cm) {
 }
 
 
-RoadSystem* Vehicle::getEnv() {
+RoadSystem* Vehicle::getEnv() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return environment;
 }
-string Vehicle::getLicensePlate() {
+string Vehicle::getLicensePlate() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return licensePlate;
 }
-Road* Vehicle::getCurrentRoad() {
+Road* Vehicle::getCurrentRoad() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return currentRoad;
 }
-int Vehicle::getAcceleration() {
+int Vehicle::getAcceleration() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return acceleration;
 }
-int Vehicle::getSpeed() {
+int Vehicle::getSpeed() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return speed;
 }
-int Vehicle::getPosition() {
+int Vehicle::getPosition() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return position;
 }
-int Vehicle::getLen() {
+int Vehicle::getLen() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return len;
 }
 
 
-bool Vehicle::properlyInitialised() {
+bool Vehicle::properlyInitialised() const {
     return this == selfPtr;
 }
 

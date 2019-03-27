@@ -19,13 +19,12 @@ class XmlParser
 public:
 
     XmlParser();
-
     RoadSystem* parseRoadSystem(const string& filename);
-    Road* parseRoad(const pugi::xml_node& baan);
-    Vehicle* parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* current_baan);
 
 private:
-    pugi::xml_node root;
+
+    Road* parseRoad(const pugi::xml_node& road);
+    Vehicle* parseVehicle(const pugi::xml_node& vehicle, RoadSystem* environment, Road* currentRoad);
 };
 
 #endif //DAPIZZAPROJECT_XMLPARSER_H
