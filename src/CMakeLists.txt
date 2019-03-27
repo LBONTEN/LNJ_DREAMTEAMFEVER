@@ -13,6 +13,12 @@ include_directories(./pugiXml)
 # Set Library dir
 link_directories(pugiXml)
 
+# Set include dir
+include_directories(gtest/include)
+
+# Set Library dir
+link_directories(gtest/lib)
+
 # Source files shared between all build targets
 set(SHARED_SOURCE_FILES
         Vehicle.cpp
