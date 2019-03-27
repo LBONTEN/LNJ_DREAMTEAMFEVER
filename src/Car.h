@@ -2,8 +2,8 @@
 // Created by Joren Van Borm & Lenny Bontenakel
 //
 
-#ifndef DAPIZZAPROJECT_CAR_H
-#define DAPIZZAPROJECT_CAR_H
+#ifndef LNJPSE_CAR_H
+#define LNJPSE_CAR_H
 
 
 #include "Vehicle.h"
@@ -75,4 +75,4 @@ private:
 };
 
 
-#endif //DAPIZZAPROJECT_CAR_H
+#endif //LNJPSE_CAR_H

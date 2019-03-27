@@ -10,8 +10,8 @@ class RoadSystem;
 class Road;
 class Vehicle;
 
-#ifndef DAPIZZAPROJECT_XMLPARSER_H
-#define DAPIZZAPROJECT_XMLPARSER_H
+#ifndef LNJPSE_XMLPARSER_H
+#define LNJPSE_XMLPARSER_H
 
 class XmlParser
 {
@@ -25,4 +25,4 @@ public:
 
 };
 
-#endif //DAPIZZAPROJECT_XMLPARSER_H
+#endif //LNJPSE_XMLPARSER_H

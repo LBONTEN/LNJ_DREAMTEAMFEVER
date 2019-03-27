@@ -27,10 +27,10 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
-        tests.cpp)
+        tests.cpp VehicleTests.cpp VehicleTests.h)
 
 # Create RELEASE target
-add_executable(PIZZA_EXE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
 
 # Create DEBUG target
-add_executable(PIZZA_DEBUG ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})
+add_executable(LNJPSE_DEBUG ${DEBUG_SOURCE_FILES} ${SHARED_SOURCE_FILES})
