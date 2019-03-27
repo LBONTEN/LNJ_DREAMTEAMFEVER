@@ -8,15 +8,16 @@
 #include <fstream>
 #include "RoadSystem.h"
 #include "XMLParser.h"
+#include "Serialiser.h"
 
 int main()
 {
     XmlParser xmlp;
-    RoadSystem* rs = xmlp.parseRoadSystem("../IO/single_connection_n_cars.xml");
+    RoadSystem* rs = xmlp.parseRoadSystem("../IO/single_road.xml");
 
-    Road* veh = rs->getVectorOfRoads()[1];
-
-    cout << veh->getName() << endl;
+    Serialiser print (rs);
+    
+    print >> cout;
 
     return 0;
 }

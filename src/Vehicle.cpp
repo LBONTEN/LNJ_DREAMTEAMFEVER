@@ -140,11 +140,9 @@ const VehicleLimits* Vehicle::getLimits() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return limits;
 }
-
-bool Vehicle::operator < (const Vehicle& vehic) const
+const string& Vehicle::getTypeName() const
 {
-    REQUIRE(properlyInitialised(), "Vehicle was not properly initialised.");
-    return position < vehic.position;
+    return typeName;
 }
 
 
@@ -153,7 +151,7 @@ bool Vehicle::properlyInitialised() const {
 }
 
 
-Vehicle* Vehicle::nextCar() {
+Vehicle* Vehicle::nextVeh() {
     // TODO: make this return the next car on the same road
     return NULL;
 }

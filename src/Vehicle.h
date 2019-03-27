@@ -137,10 +137,11 @@ public:
     int getPosition() const ;
     int getLen() const ;
     const VehicleLimits* getLimits();
+    const string& getTypeName() const;
 
 
 protected:
-    Vehicle* nextCar();
+    Vehicle* nextVeh();
     
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
     void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
@@ -150,6 +151,8 @@ protected:
     void hardSetLen(int cm) { Vehicle::len = cm; }
     
     const VehicleLimits* limits;
+    
+    string typeName;
 
 private:
     string licensePlate;

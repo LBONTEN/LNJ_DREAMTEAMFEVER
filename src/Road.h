@@ -52,7 +52,9 @@ public:
     const list<Vehicle*>& getVehicles() const;
     Road* getConnection() const;
     Vehicle* getVehicle(string licensePlate) const;
-
+    
+    int getMaximumSpeed() const;
+    
     /*************************
     *    ~Public members~    *
     **************************/

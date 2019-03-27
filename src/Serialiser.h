@@ -8,14 +8,17 @@
 
 #include "RoadSystem.h"
 
-enum mode {manual, file, automatic};
+enum printStyle {classic};
 
-class Serialiser {
-public:
+struct Serialiser {
     Serialiser(RoadSystem* simulation);
-
-private:
+    
+    friend ostream& operator>>(const Serialiser& print, ostream& target);
+    
     RoadSystem* simulation;
+    printStyle style;
+    
+    ostream& classicPrint(ostream& target) const;
 };
 
 
