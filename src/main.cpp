@@ -14,8 +14,6 @@ int main()
     XmlParser xmlp;
     RoadSystem* rs = xmlp.parseRoadSystem("../IO/single_connection_n_cars.xml");
 
-    cout << "kakapoopoo" << endl;
-
     Road* veh = rs->getVectorOfRoads()[1];
 
     cout << veh->getName() << endl;

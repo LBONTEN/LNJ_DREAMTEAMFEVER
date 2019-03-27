@@ -7,7 +7,9 @@
 #include "RoadSystem.h"
 #include "XMLParser.h"
 #include <iostream>
+#include <gtest/gtest.h>
 
-int main() {
-    std::cout << "no tests to run just yet" << endl;
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
