@@ -136,6 +136,16 @@ public:
     int getLen() const ;
     const VehicleLimits* getLimits();
 
+    /** operator <
+     *
+     *  OUT:
+     *      True when left hand side is smaller than right hand side
+     *
+     *  Précondition:
+     *      Must be properly initialised
+     */
+    bool operator < (const Vehicle& vehic) const;
+
 protected:
     Vehicle* nextCar();
     

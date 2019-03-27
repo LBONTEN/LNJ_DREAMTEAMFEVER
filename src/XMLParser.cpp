@@ -11,6 +11,11 @@
 
 XmlParser::XmlParser() {}
 
+
+/** ---------------------------------------------------------------------
+ *
+ *
+ --------------------------------------------------------------------- */
 RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
 {
     pugi::xml_document doc;

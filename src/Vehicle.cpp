@@ -127,6 +127,12 @@ const VehicleLimits* Vehicle::getLimits() {
     return limits;
 }
 
+bool Vehicle::operator < (const Vehicle& vehic) const
+{
+    REQUIRE(properlyInitialised(), "Vehicle was not properly initialised.");
+    return position < vehic.position;
+}
+
 
 bool Vehicle::properlyInitialised() const {
     return this == selfPtr;
