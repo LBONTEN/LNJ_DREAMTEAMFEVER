@@ -203,6 +203,25 @@ Road* Road::getConnection() const
     return connections[0];
 }
 
+/** ---------------------------------------------------------------------
+ * getMaximumSpeed
+ *
+ *  OUT:
+ *      returns maximum speed of current Road.
+ *
+ *  Précondition:
+ *      Must be properly initialised
+ *
+ *  Postcondition:
+ *      Road may not be altered
+ *
+ --------------------------------------------------------------------- */
+int Road::getMaximumSpeed() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised.");
+
+    return maximumSpeed;
+}
 
 /** ---------------------------------------------------------------------
  * getVehicle:
@@ -362,23 +381,52 @@ const Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) con
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
 
+    Vehicle* closestToPos = (*vehicles.begin());
     for(list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        if( (*i)->getPosition() > position && !inclusive)
+        if(inclusive && (*i)->getPosition() == position)
         {
             return (*i);
         }
 
-        if( (*i)->getPosition() >= position && inclusive )
+        if( (position - (*i)->getPosition()) < (position - closestToPos->getPosition()) )
         {
-            return (*i);
+            closestToPos = (*i);
         }
     }
 
-    return new Car();
+    ENSURE(checkIfClosest(*closestToPos, position), "Function 'GetCarOnPosition' failed");
+    return closestToPos;
 }
 
 
+/** ---------------------------------------------------------------------
+ * checkifClosest:
+ *
+ * IN:
+ *      - Vehicle on which the check is performed
+ *      - Position that subjected vehicle should be closest to.
+ *
+ *  OUT:
+ *      true when the car given in input is the closest to the given position on the road.
+ *
+ *  Precondition:
+ *      Road should be properly initialised
+ *
+ *  Postcondition:
+ *      No changes made to Road object.
+ --------------------------------------------------------------------- */
+bool Road::checkIfClosest(const Vehicle &vehicToCheck, int position) const
+{
+    for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    {
+        if ( (position - (*i)->getPosition()) < (position - vehicToCheck.getPosition()) )
+        {
+            return false;
+        }
+    }
+    return true;
+}
 
 /* ---------------------------------------------------------------------
  * properlyInitialised
@@ -410,7 +458,3 @@ bool Road::properlyInitialised() const
     return true;
 }
 
-int Road::getMaximumSpeed() const
-{
-    return maximumSpeed;
-}

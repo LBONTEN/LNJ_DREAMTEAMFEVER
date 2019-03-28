@@ -30,11 +30,12 @@ set(SHARED_SOURCE_FILES
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
-        main.cpp ../RoadTests.h)
+        main.cpp ../RoadTests.h ../RoadTest.cpp)
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
         tests.cpp
+        RoadTest.cpp
         VehicleTests.cpp)
 
 # Create RELEASE target

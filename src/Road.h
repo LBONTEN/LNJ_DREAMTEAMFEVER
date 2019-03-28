@@ -11,8 +11,8 @@
 
 class RoadSystem;
 
-#ifndef LNJ_PIZZA_PROJECT_ROAD_H
-#define LNJ_PIZZA_PROJECT_ROAD_H
+#ifndef LNJPSE_PROJECT_ROAD_H
+#define LNJPSE_PROJECT_ROAD_H
 
 extern const unsigned int minimumSpace;
 
@@ -65,6 +65,7 @@ public:
     int remainingSpace() const;
     bool isFree() const;
     const Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
+    bool checkIfClosest(const Vehicle& vehicToCheck, int position) const;
 
 private:
     RoadSystem* environment;
@@ -76,4 +77,4 @@ private:
 
 };
 
-#endif //LNJ_PIZZA_PROJECT_ROAD_H
+#endif //LNJPSE_PROJECT_ROAD_H
