@@ -15,7 +15,7 @@ extern const unsigned int minimumSpace= 200;
  *  Postcondition:
  *      Road object is properly initialised.
  --------------------------------------------------------------------- */
-Road::Road(string name, int length, int maxSpeed, RoadSystem* environment) :
+Road::Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* environment) :
     environment(environment),
     name(name),
     length(length),
@@ -132,7 +132,7 @@ void Road::addVehicle(Vehicle* newVehicle)
  *      State of Road must remain the same before and after function.
  *
  --------------------------------------------------------------------- */
-int Road::getLength() const
+unsigned int Road::getLength() const
 {
     REQUIRE(properlyInitialised(), "Road is not properly initialised, thus we're unable to retrieve state.");
 
@@ -212,7 +212,7 @@ Road* Road::getConnection() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
 
-    if (connections.size() == 0) return NULL;
+    if (connections.empty()) return NULL;
 
     return connections[0];
 }
@@ -230,7 +230,7 @@ Road* Road::getConnection() const
  *      Road may not be altered
  *
  --------------------------------------------------------------------- */
-int Road::getMaximumSpeed() const
+unsigned int Road::getMaximumSpeed() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
 
@@ -264,7 +264,6 @@ Vehicle* Road::getVehicle(string licensePlate) const
             return (*i);
         }
     }
-    
     return NULL;
 }
 
@@ -295,6 +294,7 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
         if((*i) == vehicToRemove)
         {
             vehicles.erase(i);
+            break;
         }
     }
 
@@ -318,7 +318,7 @@ void Road::removeConnection(const Road *connectionToRemove)
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
 
-    for(int i = 0; i < connections.size(); i++)
+    for(long unsigned int i = 0; i < connections.size(); i++)
     {
         if(connections[i] == connectionToRemove)
         {
@@ -341,11 +341,11 @@ void Road::removeConnection(const Road *connectionToRemove)
  *      No alterations may have occured to the Road object.
  *
  --------------------------------------------------------------------- */
-int Road::remainingSpace() const
+unsigned int Road::remainingSpace() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
 
-    int remainingSpace = length;
+    unsigned int remainingSpace = length;
     for (list<Vehicle*> :: const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
         remainingSpace = remainingSpace - ((*i)->getLen() + minimumSpace);
@@ -432,7 +432,7 @@ Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
  *  Postcondition:
  *      No changes made to Road object.
  --------------------------------------------------------------------- */
-bool Road::checkIfClosest(const Vehicle &vehicToCheck, int position) const
+bool Road::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) const
 {
     for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
@@ -461,7 +461,7 @@ bool Road::properlyInitialised() const
         return false;
     }
 
-    if( name.size() <= 0 )
+    if( name.empty() )
     {
         return false;
     }

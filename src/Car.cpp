@@ -8,7 +8,7 @@
 #include "design_by_contract.h"
 
 ///--- global variables (definitions) ---///
-extern const int stdCarLength = 3;
+extern const unsigned int stdCarLength = 3;
 
 extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 
@@ -17,7 +17,7 @@ extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 Car::Car() : Vehicle::Vehicle()
 {
     typeName = "Car";
-    
+
     ENSURE(typeName == "Car", "Car constructor failed to set typeName");
 }
 
@@ -26,17 +26,17 @@ Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad)
         snapShot()
 {
     typeName = "Car";
-    
+
     ENSURE(typeName == "Car", "Car constructor failed to set typeName");
     ENSURE(!updateReady(), "Just initialised car can't be ready for updating");
 }
 
-Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position) :
+Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, unsigned int speed, unsigned int position) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position),
         snapShot()
 {
     typeName = "Car";
-    
+
     ENSURE(typeName == "Car", "Car constructor failed to set typeName");
     ENSURE(!updateReady(), "Just initialised car can't be ready for updating");
 }
@@ -79,9 +79,9 @@ void Car::execUpdate()
     snapShot.prepared = false;
     
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "Car acceleration out of range");
-    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxSpd, "Car speed out of range");
+    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "Car speed out of range");
+    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "Car position out of range");
     ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "Car speed out of range");
-    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getAcceleration() <= getCurrentRoad()->getLength()), "Car position out of range");
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
@@ -91,8 +91,8 @@ void Car::stepAcceleration() {
         return;
     }
     
-    int targetDistance = 0.75 * getSpeed() + snapShot.nextCarCopy->length + minimumSpace;
-    int actualDistance = snapShot.nextCarCopy->position - getPosition() - snapShot.nextCarCopy->length;
+    unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextCarCopy->length + minimumSpace;
+    unsigned int actualDistance = snapShot.nextCarCopy->position - getPosition() - snapShot.nextCarCopy->length;
     
     int newAcceleration = 0.5 * (actualDistance - targetDistance);
     
@@ -103,12 +103,14 @@ void Car::stepAcceleration() {
     if (newAcceleration > limits->maxAcc) {
         newAcceleration = limits->maxAcc;
     }
+    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "Car speed out of range");
+    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "Car position out of range");
     
     hardSetAcceleration(newAcceleration);
 }
 
 void Car::stepSpeed() {
-    int newSpeed = getSpeed() + getAcceleration();
+    unsigned int newSpeed = getSpeed() + getAcceleration();
     
     if (newSpeed < limits->minSpd) {
         newSpeed = limits->minSpd;
@@ -126,7 +128,7 @@ void Car::stepSpeed() {
 }
 
 void Car::stepPosition() {
-    int newPos = getPosition() + getSpeed();
+    unsigned int newPos = getPosition() + getSpeed();
     
     while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();

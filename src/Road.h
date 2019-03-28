@@ -23,7 +23,7 @@ public:
      *    ~Constructor~    *
      ***********************/
 
-    Road(string name, int length, int maxSpeed, RoadSystem* environment);
+    Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* environment);
 
 
     /***********************
@@ -46,14 +46,14 @@ public:
      *******************/
 
 
-    int getLength() const;
+    unsigned int getLength() const;
     const string& getName() const;
     const vector<Road*>& getConnections() const;
     const list<Vehicle*>& getVehicles() const;
     Road* getConnection() const;
     Vehicle* getVehicle(string licensePlate) const;
     
-    int getMaximumSpeed() const;
+    unsigned int getMaximumSpeed() const;
     
     /*************************
     *    ~Public members~    *
@@ -62,16 +62,16 @@ public:
     void removeVehicle(const Vehicle* vehicToRemove);
     void removeConnection(const Road* connectionToRemove);
     bool properlyInitialised() const;
-    int remainingSpace() const;
+    unsigned int remainingSpace() const;
     bool isFree() const;
     Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
-    bool checkIfClosest(const Vehicle& vehicToCheck, int position) const;
+    bool checkIfClosest(const Vehicle& vehicToCheck, unsigned int position) const;
 
 private:
     RoadSystem* environment;
     string name;
-    int length;
-    int maximumSpeed;
+    unsigned int length;
+    unsigned int maximumSpeed;
     vector<Road*> connections;
     list<Vehicle*> vehicles;
 

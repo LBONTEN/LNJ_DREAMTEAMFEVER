@@ -5,6 +5,7 @@
 /// Tests for debug target go here ///
 
 #include "VehicleTests.h"
+#include "RoadTests.h"
 #include "CarTests.h"
 #include <iostream>
 #include <gtest/gtest.h>

@@ -21,13 +21,13 @@ int main(int argc, char** argv)
     RoadSystem* rs = xmlp.parseRoadSystem(argv[1]);
     Serialiser print (rs);
     
-    cout << "Initial situation:" << std::endl;
-    cout << print << "~====~" << std::endl;
+    std::cout << "Initial situation:" << std::endl;
+    std::cout << print << "~====~" << std::endl;
     
     rs->untilEmpty();
     
-    cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
-    cout << print << "~====~" << std::endl;
+    std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
+    std::cout << print << "~====~" << std::endl;
 
     return 0;
 }

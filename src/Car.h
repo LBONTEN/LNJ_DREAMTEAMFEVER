@@ -11,7 +11,7 @@
 
 ///--- global variables (declarations) ---///
 
-extern const int stdCarLength;
+extern const unsigned int stdCarLength;
 
 extern const VehicleLimits stdCarLimits;
 
@@ -37,7 +37,7 @@ public:
      * Maximal constructor
      * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, NOT update ready
      */
-    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position);
+    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, unsigned int speed, unsigned int position);
     
     
     /**

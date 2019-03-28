@@ -7,6 +7,7 @@
 #include "XMLParser.h"
 #include "RoadSystem.h"
 #include "Car.h"
+#include "cmath"
 
 
 XmlParser::XmlParser() {}
@@ -86,8 +87,8 @@ Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* env
     {
         string licensePlate = voertuig.child("nummerplaat").text().as_string();
         int acceleration = 0;
-        unsigned int speed = voertuig.child("snelheid").text().as_uint();
-        int position = voertuig.child("positie").text().as_int();
+        unsigned int speed = voertuig.child("snelheid").text().as_uint() ;
+        unsigned int position = voertuig.child("positie").text().as_uint();
 
         return new Car(environment, licensePlate, currentRoad, acceleration, int(speed*3.6), position);
     }

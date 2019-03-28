@@ -8,16 +8,11 @@ set(CMAKE_CXX_FLAGS "-Wall -Werror -O2")
 set(CMAKE_EXE_LINKER_FLAGS -pthread)
 
 # Set include dir
-include_directories(pugiXml)
+include_directories(pugiXml gtest/include)
 
 # Set Library dir
-link_directories(pugiXml)
+link_directories(pugiXml gtest/lib)
 
-# Set include dir
-include_directories(gtest/include)
-
-# Set Library dir
-link_directories(gtest/lib)
 
 # Source files shared between all build targets
 set(SHARED_SOURCE_FILES
@@ -35,7 +30,7 @@ set(RELEASE_SOURCE_FILES
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
         tests.cpp
-        RoadTests.cpp)
+        )
 
 # Create RELEASE target
 add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})

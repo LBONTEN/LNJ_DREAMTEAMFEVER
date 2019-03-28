@@ -15,7 +15,7 @@ Vehicle::Vehicle() : selfPtr(NULL)
     ENSURE(!properlyInitialised(), "Car constructor failed");
 }
 
-Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad) :
+Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad) :
                  limits(limits),
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
@@ -35,8 +35,8 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
     ENSURE(getAcceleration()==0 && getSpeed()==0 && getPosition()==0, "Car constructor failed to assign kinetic information");
 }
 
-Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
-                 int position) :
+Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, unsigned int speed,
+                 unsigned int position) :
                  limits(limits),
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
@@ -104,7 +104,7 @@ void Vehicle::setAcceleration(int acceleration) {
     
     ENSURE(getAcceleration() == acceleration, "Failed to set acceleration");
 }
-void Vehicle::setSpeed(int speed) {
+void Vehicle::setSpeed(unsigned int speed) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
@@ -124,7 +124,7 @@ void Vehicle::setSpeed(int speed) {
     
     ENSURE(getSpeed() == speed, "Failed to set speed");
 }
-void Vehicle::setPosition(int position) {
+void Vehicle::setPosition(unsigned int position) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
@@ -140,7 +140,7 @@ void Vehicle::setPosition(int position) {
     
     ENSURE(getPosition() == position, "Failed to set position");
 }
-void Vehicle::setLen(int len) {
+void Vehicle::setLen(unsigned int len) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
@@ -166,15 +166,16 @@ int Vehicle::getAcceleration() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return acceleration;
 }
-int Vehicle::getSpeed() const {
+unsigned int Vehicle::getSpeed() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return speed;
 }
-int Vehicle::getPosition() const {
+unsigned int Vehicle::getPosition() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return position;
 }
-int Vehicle::getLen() const {
+
+unsigned int Vehicle::getLen() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return len;
 }
@@ -195,7 +196,7 @@ bool Vehicle::properlyInitialised() const {
 
 Vehicle* Vehicle::nextVeh() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    
+
     if (currentRoad == NULL) return NULL;
     return currentRoad->getCarOnPosition(getPosition(), false);
 }
@@ -211,7 +212,7 @@ VehicleSnap::VehicleSnap(Vehicle* source) : licensePlate(source->getLicensePlate
                                             position(source->getPosition()),
                                             length(source->getLen()) {}
 
-VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, int position, int length)
+VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, unsigned int position, unsigned int length)
         : licensePlate(licensePlate), acceleration(acceleration), speed(speed), position(position), length(length) {}
 
 
