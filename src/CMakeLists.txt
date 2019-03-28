@@ -35,7 +35,7 @@ set(RELEASE_SOURCE_FILES
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
         tests.cpp
-        VehicleTests.cpp)
+        )
 
 # Create RELEASE target
 add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})

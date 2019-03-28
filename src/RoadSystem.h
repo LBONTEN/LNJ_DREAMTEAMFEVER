@@ -42,6 +42,13 @@ public:
     bool empty();
     
     /**
+     * the amount of simulated time the simulation hes been active.
+     * returns 0 if simulation not active
+     * @REQUIRE properly initialised
+     */
+    unsigned long timeActive();
+    
+    /**
      * start the simulation
      * this prevents direct editing of the elements within, but enables advancing the simulation
      * @REQUIRE properly initialised
@@ -67,7 +74,7 @@ public:
       * automatically run the simulation for a set amount of simulated time
       * (or until it is empty)
       * @REQUIRE properly initialised
-      * @ENSURE simulation active
+      * @ENSURE time active = <seconds> OR empty, simulation active
       */
      void untilTime(unsigned long seconds);
      
@@ -116,6 +123,8 @@ private:
     vector<Vehicle*> vectorOfVehicles;
     
     bool active;
+    
+    unsigned long time;
 };
 
 #endif //LNJPSE_ROADSYSTEM_H

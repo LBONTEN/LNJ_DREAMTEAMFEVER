@@ -10,7 +10,7 @@
 ///--- global variables (definitions) ---///
 extern const int stdCarLength = 300;
 
-extern const VehicleLimits stdCarLimits(-8, 2, 0, 150);
+extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 
 
 ///--- Car ---///
@@ -81,7 +81,7 @@ void Car::stepAcceleration() {
         return;
     }
     
-    int targetDistance = 0.75 * getSpeed() + snapShot.nextCarCopy->length + 2; //TODO: clean up this line to be less hard-coded
+    int targetDistance = 0.75 * getSpeed() + snapShot.nextCarCopy->length + minimumSpace;
     int actualDistance = snapShot.nextCarCopy->position - getPosition() - snapShot.nextCarCopy->length;
     
     int newAcceleration = 0.5 * (actualDistance - targetDistance);
@@ -108,7 +108,7 @@ void Car::stepSpeed() {
         newSpeed = limits->maxSpd;
     }
     
-    if (newSpeed > getCurrentRoad()->getMaximumSpeed()) {
+    if (getCurrentRoad() and newSpeed > getCurrentRoad()->getMaximumSpeed()) {
         newSpeed = getCurrentRoad()->getMaximumSpeed();
     }
     

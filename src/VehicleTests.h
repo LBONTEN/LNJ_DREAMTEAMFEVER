@@ -8,6 +8,8 @@
 #include <gtest/gtest.h>
 #include "Car.h"
 #include "Vehicle.h"
+#include "RoadSystem.h"
+#include "Road.h"
 
 
 /**
@@ -37,7 +39,7 @@ public:
 
 
 /**
- * Test fixture for all base Vehicle tests
+ * Test fixture for base Vehicle tests without any state around it
  */
 class SoloVehicleTest: public testing::Test {
 protected:
@@ -102,9 +104,38 @@ TEST_F(SoloVehicleTest, INIT_Full)
 }
 
 
-///--- setter & getter tests ---/// TODO: move these to be in a roadsystem
+/**
+ * Test fixture for Vehicle tests in an (empty) system
+ */
+class InSystemVehicleTest: public testing::Test {
+protected:
+    InSystemVehicleTest() :
+            limits(-10, 10, 0, 50),
+            system(new RoadSystem()),
+            road(new Road("MT_RD", 20, 60, system)),
+            testVeh(new SubVehicle(system, "BASE_VEH", 3, &limits, road))
+    {
+        system->addRoad(road);
+        system->addVehicle(testVeh);
+        road->addVehicle(testVeh);
+    }
+    
+    ~InSystemVehicleTest() {
+        delete testVeh;
+        delete road;
+        delete system;
+    }
+    
+    VehicleLimits limits;
+    RoadSystem* system;
+    Road* road;
+    SubVehicle* testVeh;
+};
 
-TEST_F(SoloVehicleTest, SETGET_HappyDay)
+
+///--- setter & getter tests ---///
+
+TEST_F(InSystemVehicleTest, SETGET_HappyDay)
 {
     testVeh->setLicensePlate(" HeY4_");
     EXPECT_EQ(testVeh->getLicensePlate(), " HeY4_");
@@ -115,9 +146,40 @@ TEST_F(SoloVehicleTest, SETGET_HappyDay)
     testVeh->setSpeed(50);
     EXPECT_EQ(testVeh->getSpeed(), 50);
     
-    // setPosition & setCurrentRoad require existence of a Road
+    testVeh->setPosition(5);
+    EXPECT_EQ(testVeh->getPosition(), 5);
     
-    // setEnv requires existence of a RoadSystem
+    testVeh->setRoad(NULL);
+    EXPECT_EQ(testVeh->getCurrentRoad(), nullptr);
+    EXPECT_EQ(road->getVehicle(testVeh->getLicensePlate()), nullptr);
 }
+
+TEST_F(InSystemVehicleTest, SETGET_Limits)
+{
+    testVeh->setAcceleration(limits.minAcc-1);
+    EXPECT_EQ(testVeh->getAcceleration(), limits.minAcc);
+    
+    testVeh->setAcceleration(limits.maxAcc+1);
+    EXPECT_EQ(testVeh->getAcceleration(), limits.maxAcc);
+    
+    testVeh->setSpeed(limits.minSpd-1);
+    EXPECT_EQ(testVeh->getSpeed(), limits.minSpd);
+    
+    testVeh->setSpeed(limits.maxSpd+1);
+    EXPECT_EQ(testVeh->getSpeed(), limits.maxSpd);
+    
+    limits.maxSpd = road->getMaximumSpeed() + 5;
+    
+    testVeh->setSpeed(limits.maxSpd-1);
+    EXPECT_EQ(testVeh->getSpeed(), road->getMaximumSpeed());
+    
+    testVeh->setPosition(-1);
+    EXPECT_EQ(testVeh->getPosition(), 0);
+    
+    testVeh->setPosition(road->getLength()+10);
+    EXPECT_EQ(testVeh->getPosition(), road->getLength());
+}
+
+
 
 #endif //LNJPSE_VEHICLETESTS_H
