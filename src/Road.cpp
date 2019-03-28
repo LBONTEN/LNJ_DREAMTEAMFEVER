@@ -38,12 +38,12 @@ Road::Road(string name, int length, int maxSpeed, RoadSystem* environment) :
  --------------------------------------------------------------------- */
 Road::~Road()
 {
-    environment->removeRoad(this);
-
-    vector<Road*> allReferendes = environment->getVectorOfRoads();
-    for (int i = 0; i < allReferendes.size(); i++)
+    for (vector<Road*>::const_iterator i = environment->getVectorOfRoads().begin(); i != environment->getVectorOfRoads().end(); i++)
     {
-        allReferendes[i]->removeConnection(this);
+        if ((*i) == this)
+        {
+
+        }
     }
 }
 
@@ -199,6 +199,8 @@ const list<Vehicle*>& Road::getVehicles() const
 Road* Road::getConnection() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
+
+    if (connections.size() == 0) return NULL;
 
     return connections[0];
 }
@@ -377,7 +379,7 @@ bool Road::isFree() const
  *      Object remains unchanged.
  *
  --------------------------------------------------------------------- */
-const Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
+Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
 

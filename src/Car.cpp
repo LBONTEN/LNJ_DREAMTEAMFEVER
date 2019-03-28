@@ -32,6 +32,7 @@ Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
 {
     typeName = "Car";
 }
+
         
 bool Car::updateReady()
 {
@@ -69,14 +70,14 @@ void Car::execUpdate()
     stepPosition();
     snapShot.prepared = false;
     
-    ENSURE(limits->minAcc < getAcceleration() && getAcceleration() < limits->maxAcc, "Car acceleration out of range");
-    ENSURE(limits->minSpd < getSpeed() && getAcceleration() < limits->maxSpd, "Car speed out of range");
-    ENSURE(0 < getPosition() && getAcceleration() < getCurrentRoad()->getLength(), "Car position out of range");
+    ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "Car acceleration out of range");
+    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxSpd, "Car speed out of range");
+    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getAcceleration() <= getCurrentRoad()->getLength()), "Car position out of range");
 }
 
 void Car::stepAcceleration() {
     if (snapShot.nextCarCopy == NULL) {
-        hardSetAcceleration(stdCarLimits.maxAcc);
+        hardSetAcceleration(limits->maxAcc);
         return;
     }
     
@@ -85,12 +86,12 @@ void Car::stepAcceleration() {
     
     int newAcceleration = 0.5 * (actualDistance - targetDistance);
     
-    if (newAcceleration < stdCarLimits.minAcc) {
-        newAcceleration = stdCarLimits.minAcc;
+    if (newAcceleration < limits->minAcc) {
+        newAcceleration = limits->minAcc;
     }
     
-    if (newAcceleration > stdCarLimits.maxAcc) {
-        newAcceleration = stdCarLimits.maxAcc;
+    if (newAcceleration > limits->maxAcc) {
+        newAcceleration = limits->maxAcc;
     }
     
     hardSetAcceleration(newAcceleration);
@@ -99,12 +100,16 @@ void Car::stepAcceleration() {
 void Car::stepSpeed() {
     int newSpeed = getSpeed() + getAcceleration();
     
-    if (newSpeed < stdCarLimits.minSpd) {
-        newSpeed = stdCarLimits.minSpd;
+    if (newSpeed < limits->minSpd) {
+        newSpeed = limits->minSpd;
     }
     
-    if (newSpeed > stdCarLimits.maxSpd) {
-        newSpeed = stdCarLimits.maxSpd;
+    if (newSpeed > limits->maxSpd) {
+        newSpeed = limits->maxSpd;
+    }
+    
+    if (newSpeed > getCurrentRoad()->getMaximumSpeed()) {
+        newSpeed = getCurrentRoad()->getMaximumSpeed();
     }
     
     hardSetSpeed(newSpeed);
@@ -115,6 +120,11 @@ void Car::stepPosition() {
     
     while (newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
+        getCurrentRoad()->removeVehicle(this);
         hardSetRoad(getCurrentRoad()->getConnection());
+        
+        if (getCurrentRoad() == NULL) return;
     }
+    
+    hardSetPosition(newPos);
 }

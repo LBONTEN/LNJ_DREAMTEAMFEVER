@@ -43,7 +43,7 @@ bool RoadSystem::simulationActive()
 
 bool RoadSystem::empty()
 {
-    return false;
+    return vectorOfVehicles.empty();
 }
 
 
@@ -90,9 +90,14 @@ void RoadSystem::addRoad(Road* newRoad)
 
 void RoadSystem::removeVehicle(Vehicle* oldVeh)
 {
-    for (unsigned long vIndex = 0; vIndex < vectorOfRoads.size(); vIndex++)
+    for (unsigned long vIndex = 0; vIndex < vectorOfVehicles.size(); vIndex++)
     {
-        vectorOfRoads.erase(vectorOfRoads.begin()+vIndex);
+        if (vectorOfVehicles[vIndex] == oldVeh)
+        {
+            vectorOfVehicles.erase(vectorOfVehicles.begin()+vIndex);
+            delete oldVeh;
+            return;
+        }
     }
 }
 
@@ -100,7 +105,12 @@ void RoadSystem::removeRoad(Road* oldRoad)
 {
     for (unsigned long rIndex = 0; rIndex < vectorOfRoads.size(); rIndex++)
     {
-        vectorOfRoads.erase(vectorOfRoads.begin()+rIndex);
+        if (vectorOfRoads[rIndex] == oldRoad)
+        {
+            vectorOfRoads.erase(vectorOfRoads.begin()+rIndex);
+            delete oldRoad;
+            return;
+        }
     }
 }
 
@@ -122,7 +132,10 @@ void RoadSystem::advanceSimulation()
         Vehicle* current = vectorOfVehicles[vIndex];
         
         current->execUpdate();
-        if (current->getCurrentRoad() == NULL) removeVehicle(current);
+        if (current->getCurrentRoad() == NULL)
+        {
+            removeVehicle(current);
+        }
     }
 }
 

@@ -17,7 +17,16 @@ int main()
 
     Serialiser print (rs);
     
-    cout << print;
+    cout << print << "~====~" << std::endl;
+    
+    rs->activate();
+    rs->advanceSimulation();
+    
+    cout << print << "~====~" << std::endl;
+    
+    rs->untilEmpty();
+    
+    cout << print << "~====~" << std::endl;
 
     return 0;
 }

@@ -89,7 +89,7 @@ Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* env
         unsigned int speed = voertuig.child("snelheid").text().as_uint();
         int position = voertuig.child("positie").text().as_int();
 
-        return new Car(environment, licensePlate, currentRoad, acceleration, speed, position);
+        return new Car(environment, licensePlate, currentRoad, acceleration, int(speed*3.6), position);
     }
     return NULL;
 }
