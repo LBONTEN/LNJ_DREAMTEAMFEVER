@@ -9,7 +9,9 @@
 
 ///--- helper functions ---///
 
-void printVehicle(Vehicle* source, ostream& target, char* prefix="")
+const char* emptyStr = "";
+
+void printVehicle(Vehicle* source, ostream& target, const char* prefix=emptyStr)
 {
     target << prefix << "Vehicle: " << source->getTypeName() << " (" << source->getLicensePlate() << ")" << std::endl
            << prefix << "\t-> Road: " << source->getCurrentRoad()->getName() << std::endl
@@ -17,7 +19,7 @@ void printVehicle(Vehicle* source, ostream& target, char* prefix="")
            << prefix << "\t-> Speed: " << source->getSpeed() << std::endl;
 }
 
-void printRoad(Road* source, ostream& target, char* prefix="")
+void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
 {
     target << prefix << "Road: " << source->getName() << std::endl
            << prefix << "\t-> Speed limit: " << source->getMaximumSpeed() << std::endl
