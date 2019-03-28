@@ -20,8 +20,8 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
                  acceleration(0),
-                 position(0),
                  speed(0),
+                 position(0),
                  len(length),
                  environment(environment)
 {
