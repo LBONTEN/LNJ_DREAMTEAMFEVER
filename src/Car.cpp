@@ -8,7 +8,7 @@
 #include "design_by_contract.h"
 
 ///--- global variables (definitions) ---///
-extern const int stdCarLength = 300;
+extern const int stdCarLength = 3;
 
 extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 

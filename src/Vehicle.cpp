@@ -140,13 +140,13 @@ void Vehicle::setPosition(int position) {
     
     ENSURE(getPosition() == position, "Failed to set position");
 }
-void Vehicle::setLen(int cm) {
+void Vehicle::setLen(int len) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
-    hardSetPosition(cm);
+    hardSetPosition(len);
     
-    ENSURE(getLen() == cm, "Failed to set position");
+    ENSURE(getLen() == len, "Failed to set position");
 }
 
 

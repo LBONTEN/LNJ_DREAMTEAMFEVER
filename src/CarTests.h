@@ -15,6 +15,14 @@ protected:
         testCar(new Car(NULL, "I-M_4 C4R", NULL))
     {}
 
+public:
+    virtual ~SoloCar()
+    {
+        delete testCar;
+    }
+
+protected:
+    
     Car* testCar;
 };
 
@@ -75,6 +83,75 @@ TEST_F(SoloCar, UPDATE_Null)
     testCar->prepUpdate();
     testCar->cancelPrep();
     EXPECT_FALSE(testCar->updateReady());
+}
+
+
+class InSystemCar : public testing::Test {
+protected:
+    InSystemCar() :
+            system(new RoadSystem()),
+            road(new Road("4n_I-m Rd", 200, stdCarLimits.maxSpd+50, system)),
+            testCar(new Car(system, "I-M_4 C4R", road))
+    {}
+    
+    virtual ~InSystemCar()
+    {
+        delete(testCar);
+        delete(road);
+        delete(system);
+    }
+
+protected:
+    
+    RoadSystem* system;
+    Road* road;
+    Car* testCar;
+};
+
+TEST_F(InSystemCar, UPDATE_Base)
+{
+    system->activate();
+    
+    testCar->prepUpdate();
+    testCar->execUpdate();
+    
+    EXPECT_EQ(testCar->getAcceleration(), stdCarLimits.maxAcc);
+    EXPECT_EQ(testCar->getSpeed(), stdCarLimits.maxAcc);
+    EXPECT_EQ(testCar->getPosition(), stdCarLimits.maxAcc);
+    
+    testCar->prepUpdate();
+    testCar->execUpdate();
+    
+    EXPECT_EQ(testCar->getAcceleration(), stdCarLimits.maxAcc);
+    EXPECT_EQ(testCar->getSpeed(), 2*stdCarLimits.maxAcc);
+    EXPECT_EQ(testCar->getPosition(), 3*stdCarLimits.maxAcc);
+}
+
+TEST_F(InSystemCar, UPDATE_Complex)
+{
+    Car* otherCar = new Car(system, "0h-lok4 cR", road, 0, 0, 1000);
+    
+    system->addVehicle(otherCar);
+    road->addVehicle(otherCar);
+    
+    system->activate();
+    
+    while(otherCar->getPosition() - otherCar->getLen() - testCar->getPosition() < minimumSpace) {
+        
+        int actualD = otherCar->getPosition() - otherCar->getLen() - testCar->getPosition();
+        int idealD = 0.75 * testCar->getSpeed() + otherCar->getLen() + minimumSpace;
+        
+        int expectedAcc = 0.5 * (actualD - idealD);
+        expectedAcc = min(expectedAcc, stdCarLimits.maxAcc);
+        expectedAcc = max(expectedAcc, stdCarLimits.minAcc);
+        
+        testCar->prepUpdate();
+        testCar->execUpdate();
+    
+        EXPECT_EQ(testCar->getAcceleration(), expectedAcc);
+    }
+    
+    delete otherCar;
 }
 
 #endif //LNJPSE_PROJECT_CARTESTS_H
