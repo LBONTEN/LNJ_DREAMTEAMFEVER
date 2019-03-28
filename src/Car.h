@@ -39,6 +39,7 @@ public:
      */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position);
     
+    
     /**
      * Funtion purely to check pre- and postconditions
      * @REQUIRE properly initialised

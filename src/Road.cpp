@@ -199,7 +199,9 @@ const list<Vehicle*>& Road::getVehicles() const
 Road* Road::getConnection() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
-
+    
+    if (connections.size() == 0) return NULL;
+    
     return connections[0];
 }
 
@@ -332,7 +334,7 @@ bool Road::isFree() const
  *      Object remains unchanged.
  *
  --------------------------------------------------------------------- */
-const Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
+Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
 
@@ -349,7 +351,7 @@ const Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) con
         }
     }
 
-    return new Car();
+    return NULL;
 }
 
 

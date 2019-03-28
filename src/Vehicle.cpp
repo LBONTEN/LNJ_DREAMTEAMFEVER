@@ -54,8 +54,9 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
 Vehicle::~Vehicle()
 {
     // can't use getters here in case vehicle isn't initialised
-    currentRoad->removeVehicle(this);
-    environment->removeVehicle(this);
+    if (currentRoad != NULL) currentRoad->removeVehicle(this);
+    
+    if (environment != NULL) environment->removeVehicle(this);
 }
 
 void Vehicle::setLicensePlate(const string& licensePlate) {
@@ -152,8 +153,7 @@ bool Vehicle::properlyInitialised() const {
 
 
 Vehicle* Vehicle::nextVeh() {
-    // TODO: make this return the next car on the same road
-    return NULL;
+    return currentRoad->getCarOnPosition(getPosition(), false);
 }
 
 
