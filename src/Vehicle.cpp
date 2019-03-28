@@ -20,11 +20,13 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  licensePlate(licensePlate),
                  currentRoad(currentRoad),
                  acceleration(0),
-                 speed(0),
                  position(0),
+                 speed(0),
                  len(length),
                  environment(environment)
 {
+    REQUIRE(limits != NULL, "Vehicle limits must be set");
+    
     selfPtr = this;
     
     ENSURE(properlyInitialised(), "Car constructor failed");
@@ -45,6 +47,8 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
                  environment(environment),
                  selfPtr(this)
 {
+    REQUIRE(limits != NULL, "Vehicle limits must be set");
+    
     ENSURE(properlyInitialised(), "Car constructor failed");
     ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
            "Car constructor failed to assign variable(s)");
@@ -54,14 +58,22 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
 Vehicle::~Vehicle()
 {
     // can't use getters here in case vehicle isn't initialised
-    if (currentRoad != NULL) currentRoad->removeVehicle(this);
+    if (currentRoad != NULL)
+    {
+        currentRoad->removeVehicle(this);
+        ENSURE(!currentRoad->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
+    }
     
-    if (environment != NULL) environment->removeVehicle(this);
+    if (environment != NULL)
+    {
+        environment->removeVehicle(this);
+        ENSURE(!environment->has(this), "Vehicle destructor failed to remove self from road system");
+    }
 }
 
 void Vehicle::setLicensePlate(const string& licensePlate) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     hardSetLicencePlate(licensePlate);
     
@@ -69,15 +81,24 @@ void Vehicle::setLicensePlate(const string& licensePlate) {
 }
 void Vehicle::setRoad(Road* newRoad) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
+    getCurrentRoad()->removeVehicle(this);
     hardSetRoad(newRoad);
     
     ENSURE(getCurrentRoad() == newRoad, "Failed to set road");
 }
 void Vehicle::setAcceleration(int acceleration) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    
+    if (acceleration < limits->minAcc) {
+        acceleration = limits->minAcc;
+    }
+    
+    if (acceleration > limits->maxAcc) {
+        acceleration = limits->maxAcc;
+    }
     
     hardSetAcceleration(acceleration);
     
@@ -85,7 +106,19 @@ void Vehicle::setAcceleration(int acceleration) {
 }
 void Vehicle::setSpeed(int speed) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    
+    if (speed < limits->minSpd) {
+        speed = limits->minSpd;
+    }
+    
+    if (speed > limits->maxSpd) {
+        speed = limits->maxSpd;
+    }
+    
+    if (getCurrentRoad() and speed > getCurrentRoad()->getMaximumSpeed()) {
+        speed = getCurrentRoad()->getMaximumSpeed();
+    }
     
     hardSetSpeed(speed);
     
@@ -93,7 +126,15 @@ void Vehicle::setSpeed(int speed) {
 }
 void Vehicle::setPosition(int position) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    
+    if (position < 0) {
+        position = 0;
+    }
+    
+    if (getCurrentRoad() and position > getCurrentRoad()->getLength()) {
+        position = getCurrentRoad()->getLength();
+    }
     
     hardSetPosition(position);
     
@@ -101,7 +142,7 @@ void Vehicle::setPosition(int position) {
 }
 void Vehicle::setLen(int cm) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     hardSetPosition(cm);
     

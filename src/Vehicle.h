@@ -74,16 +74,22 @@ public:
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
+     * @REQURE <limits> != NULL
      * @ENSURE properly initialised, get <param> = param, get <acc/spd/pos> = 0
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits,  Road* currentRoad);
     
     /**
      * Maximal constructor
+     * @REQURE <limits> != NULL
      * @ENSURE properly initialised, get <param> = param
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed, int position);
     
+    /**
+     * destructor
+     * @ENSURE  currentroad & environment do not contain <this>
+     */
     virtual ~Vehicle();
     
     /**
@@ -116,14 +122,20 @@ public:
     /**
      * Setter functions
      * @REQUIRE simulation not started, properly initialised
-     * @ENSURE get<attr> = <arg>, (where applicable) <attr> is within the defined limits
+     * @ENSURE get<attr> = <arg>, (where applicable) get <attr> is within the defined limits (this has higher priority)
      */
     void setLicensePlate(const string& licensePlate);
-    void setRoad(Road* newRoad);
     void setAcceleration(int acceleration);
     void setSpeed(int speed);
     void setPosition(int position);
     void setLen(int cm);
+    
+    /**
+     * Special case of a setter function
+     * @REQUIRE simulation not started, properly initialised
+     * @ENSURE get<attr> = <arg>, previous road does not contain vehicle
+     */
+    void setRoad(Road* newRoad);
 
     /**
      * Getter functions

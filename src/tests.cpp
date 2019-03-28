@@ -4,8 +4,7 @@
 
 /// Tests for debug target go here ///
 
-#include "RoadSystem.h"
-#include "XMLParser.h"
+#include "VehicleTests.h"
 #include <iostream>
 #include <gtest/gtest.h>
 

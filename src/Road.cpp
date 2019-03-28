@@ -38,12 +38,23 @@ Road::Road(string name, int length, int maxSpeed, RoadSystem* environment) :
  --------------------------------------------------------------------- */
 Road::~Road()
 {
+    if (environment == NULL) return;
+    
+    environment->removeRoad(this);
+    
     for (vector<Road*>::const_iterator i = environment->getVectorOfRoads().begin(); i != environment->getVectorOfRoads().end(); i++)
     {
-        if ((*i) == this)
-        {
-
+        for (vector<Road*>::const_iterator ii = (*i)->getConnections().begin(); ii != environment->getVectorOfRoads().end(); ii++) {
+            if (*ii == this) {
+                (*i)->connections.erase(ii);
+                continue;
+            }
         }
+    }
+    
+    for (list<Vehicle*>::iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    {
+        delete *i;
     }
 }
 
@@ -252,6 +263,8 @@ Vehicle* Road::getVehicle(string licensePlate) const
             return (*i);
         }
     }
+    
+    return NULL;
 }
 
 
@@ -284,7 +297,7 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
         }
     }
 
-    ENSURE(getVehicle(vehicToRemove->getLicensePlate()), "Removal unsuccessful");
+    ENSURE(!getVehicle(vehicToRemove->getLicensePlate()), "Removal unsuccessful");
 }
 
 

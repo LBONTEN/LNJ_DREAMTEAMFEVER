@@ -6,10 +6,20 @@
 #include <string>
 
 
-RoadSystem::RoadSystem() : vectorOfRoads(), vectorOfVehicles(), active(false) {}
+RoadSystem::RoadSystem() : vectorOfRoads(), vectorOfVehicles(), active(false), selfPtr(this)
+{
+    ENSURE(properlyInitialised(), "Roadsystem failed to initialise");
+    ENSURE(getVectorOfVehicles().empty(), "Failed to initialise vector of vehicles");
+    ENSURE(getVectorOfRoads().empty(), "Failed to initialise vector of roads");
+}
 
 RoadSystem::RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles) :
-        vectorOfRoads(roads), vectorOfVehicles(vehicles) {}
+        vectorOfRoads(roads), vectorOfVehicles(vehicles), active(false), selfPtr(this)
+{
+    ENSURE(properlyInitialised(), "Roadsystem failed to initialise");
+    ENSURE(getVectorOfVehicles() == vehicles, "Failed to initialise vector of vehicles");
+    ENSURE(getVectorOfRoads() == roads, "Failed to initialise vector of roads");
+}
 
         
 RoadSystem::~RoadSystem()
@@ -27,39 +37,44 @@ RoadSystem::~RoadSystem()
 
 const vector<Road*>& RoadSystem::getVectorOfRoads() const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     return vectorOfRoads;
 }
 
 const vector<Vehicle*>& RoadSystem::getVectorOfVehicles() const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     return vectorOfVehicles;
 }
 
 
-bool RoadSystem::simulationActive()
+bool RoadSystem::simulationActive() const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     return active;
 }
 
-bool RoadSystem::empty()
+bool RoadSystem::empty() const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     return vectorOfVehicles.empty();
 }
 
-
-void RoadSystem::setVectorOfRoads(const vector<Road*>& vectorOfRoads)
+unsigned long RoadSystem::timeActive() const
 {
-    RoadSystem::vectorOfRoads = vectorOfRoads;
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    return time;
 }
 
-void RoadSystem::setVectorOfVehicles(const vector<Vehicle*>& vectorOfVehicles)
+bool RoadSystem::properlyInitialised() const
 {
-    RoadSystem::vectorOfVehicles = vectorOfVehicles;
+    return this == selfPtr;
 }
 
-
-bool RoadSystem::has(Vehicle* querry)
+bool RoadSystem::has(Vehicle* querry) const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     for (unsigned long vIndex = 0; vIndex < vectorOfVehicles.size(); vIndex++)
     {
         if (vectorOfVehicles[vIndex] == querry) return true;
@@ -67,8 +82,10 @@ bool RoadSystem::has(Vehicle* querry)
     return false;
 }
 
-bool RoadSystem::has(Road* querry)
+bool RoadSystem::has(Road* querry) const
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     for (unsigned long rIndex = 0; rIndex < vectorOfRoads.size(); rIndex++)
     {
         if (vectorOfRoads[rIndex] == querry) return true;
@@ -77,51 +94,91 @@ bool RoadSystem::has(Road* querry)
 }
 
 
+void RoadSystem::setVectorOfRoads(const vector<Road*>& vectorOfRoads)
+{
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
+    RoadSystem::vectorOfRoads = vectorOfRoads;
+    
+    ENSURE(getVectorOfRoads() == vectorOfRoads, "failed to set vector of roads");
+}
+
+void RoadSystem::setVectorOfVehicles(const vector<Vehicle*>& vectorOfVehicles)
+{
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
+    RoadSystem::vectorOfVehicles = vectorOfVehicles;
+    
+    ENSURE(getVectorOfVehicles() == vectorOfVehicles, "failed to set vector of vehicles");
+}
+
+
 void RoadSystem::addVehicle(Vehicle* newVehicle)
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     vectorOfVehicles.push_back(newVehicle);
+    
+    ENSURE(has(newVehicle), "failed to add vehicle to roadsystem");
 }
 
 void RoadSystem::addRoad(Road* newRoad)
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     vectorOfRoads.push_back(newRoad);
+    
+    ENSURE(has(newRoad), "failed to add road to roadsystem");
 }
 
 
 void RoadSystem::removeVehicle(Vehicle* oldVeh)
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     for (unsigned long vIndex = 0; vIndex < vectorOfVehicles.size(); vIndex++)
     {
         if (vectorOfVehicles[vIndex] == oldVeh)
         {
             vectorOfVehicles.erase(vectorOfVehicles.begin()+vIndex);
-            delete oldVeh;
             return;
         }
     }
+    
+    ENSURE(!has(oldVeh), "failed to add vehicle to roadsystem");
 }
 
 void RoadSystem::removeRoad(Road* oldRoad)
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     for (unsigned long rIndex = 0; rIndex < vectorOfRoads.size(); rIndex++)
     {
         if (vectorOfRoads[rIndex] == oldRoad)
         {
             vectorOfRoads.erase(vectorOfRoads.begin()+rIndex);
-            delete oldRoad;
             return;
         }
     }
+    
+    ENSURE(!has(oldRoad), "failed to add road to roadsystem");
 }
 
 
 void RoadSystem::activate()
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     active = true;
+    
+    ENSURE(simulationActive(), "failed to activate simulation");
 }
 
 void RoadSystem::advanceSimulation()
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    REQUIRE(simulationActive(), "Can't advance an inactive simulation");
+    
     for (unsigned long vIndex = 0; vIndex < vectorOfVehicles.size(); vIndex++)
     {
         vectorOfVehicles[vIndex]->prepUpdate();
@@ -135,28 +192,42 @@ void RoadSystem::advanceSimulation()
         if (current->getCurrentRoad() == NULL)
         {
             removeVehicle(current);
+            delete current;
         }
     }
+    
+    time++;
 }
 
 void RoadSystem::untilEmpty()
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     activate();
     
     while (not empty())
     {
         advanceSimulation();
     }
+    
+    ENSURE(empty(), "untilEmpty stopped before simulation empty");
+    ENSURE(simulationActive(), "simulation not activate after simulating");
 }
 
 void RoadSystem::untilTime(unsigned long seconds)
 {
+    REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
+    
     activate();
     
-    for (unsigned long iteration = 0; iteration < seconds; iteration++)
+    unsigned long iteration;
+    for (iteration = 0; iteration < seconds; iteration++)
     {
         advanceSimulation();
         
         if (empty()) break;
     }
+    
+    ENSURE(empty() || iteration >= seconds, "untilEmpty stopped before meeting its goal");
+    ENSURE(simulationActive(), "simulation not activate after simulating");
 }
