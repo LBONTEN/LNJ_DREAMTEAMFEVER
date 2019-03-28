@@ -171,8 +171,7 @@ const string& Road::getName() const
 const vector<Road*>& Road::getConnections() const
 {
     REQUIRE(properlyInitialised(), "Road is not empty, thus we're unable to retrieve current state right now.");
-    REQUIRE(!connections.empty(), "Can't get connections if there aren't any.");
-
+    
     return connections;
 }
 

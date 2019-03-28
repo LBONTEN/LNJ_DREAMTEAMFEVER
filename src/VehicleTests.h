@@ -110,7 +110,7 @@ TEST_F(SoloVehicle, INIT_Full)
 class InSystemVehicle: public testing::Test {
 protected:
     InSystemVehicle() :
-            limits(-10, 10, 0, 50),
+            limits(-10, 10, 1, 50),
             system(new RoadSystem()),
             road(new Road("MT_RD", 20, 60, system)),
             testVeh(new SubVehicle(system, "BASE_VEH", 3, &limits, road))
@@ -172,9 +172,6 @@ TEST_F(InSystemVehicle, SETGET_Limits)
     
     testVeh->setSpeed(limits.maxSpd-1);
     EXPECT_TRUE(testVeh->getSpeed() == road->getMaximumSpeed());
-    
-    testVeh->setPosition(-1);
-    EXPECT_TRUE(testVeh->getPosition() == 0);
     
     testVeh->setPosition(road->getLength()+10);
     EXPECT_TRUE(testVeh->getPosition() == road->getLength());
