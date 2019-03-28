@@ -64,7 +64,7 @@ public:
     bool properlyInitialised() const;
     int remainingSpace() const;
     bool isFree() const;
-    const Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
+    Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
     bool checkIfClosest(const Vehicle& vehicToCheck, int position) const;
 
 private:

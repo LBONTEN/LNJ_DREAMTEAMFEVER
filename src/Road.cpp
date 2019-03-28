@@ -46,7 +46,7 @@ Road::~Road()
     {
         for (vector<Road*>::const_iterator ii = (*i)->getConnections().begin(); ii != environment->getVectorOfRoads().end(); ii++) {
             if (*ii == this) {
-                (*i)->connections.erase(ii);
+                (*i)->removeConnection((*ii));
                 continue;
             }
         }

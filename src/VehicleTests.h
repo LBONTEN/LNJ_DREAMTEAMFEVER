@@ -73,11 +73,11 @@ TEST_F(SoloVehicleTest, INIT_Base)
     
     EXPECT_TRUE(testVeh->properlyInitialised());
     
-    EXPECT_EQ(testVeh->getEnv(), nullptr);
+    EXPECT_TRUE(testVeh->getEnv() == NULL);
     EXPECT_EQ(testVeh->getLicensePlate(), "ALT_VEH");
     EXPECT_EQ(testVeh->getLen(), 4);
     EXPECT_EQ(testVeh->getLimits(), &limits);
-    EXPECT_EQ(testVeh->getCurrentRoad(), nullptr);
+    EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
     
     EXPECT_EQ(testVeh->getAcceleration(), 0);
     EXPECT_EQ(testVeh->getSpeed(), 0);
@@ -92,11 +92,11 @@ TEST_F(SoloVehicleTest, INIT_Full)
     
     EXPECT_TRUE(testVeh->properlyInitialised());
     
-    EXPECT_EQ(testVeh->getEnv(), nullptr);
+    EXPECT_TRUE(testVeh->getEnv() == NULL);
     EXPECT_EQ(testVeh->getLicensePlate(), "ALT_VEH");
     EXPECT_EQ(testVeh->getLen(), 4);
     EXPECT_EQ(testVeh->getLimits(), &limits);
-    EXPECT_EQ(testVeh->getCurrentRoad(), nullptr);
+    EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
     
     EXPECT_EQ(testVeh->getAcceleration(), 1);
     EXPECT_EQ(testVeh->getSpeed(), 2);
@@ -150,8 +150,8 @@ TEST_F(InSystemVehicleTest, SETGET_HappyDay)
     EXPECT_EQ(testVeh->getPosition(), 5);
     
     testVeh->setRoad(NULL);
-    EXPECT_EQ(testVeh->getCurrentRoad(), nullptr);
-    EXPECT_EQ(road->getVehicle(testVeh->getLicensePlate()), nullptr);
+    EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
+    EXPECT_TRUE(road->getVehicle(testVeh->getLicensePlate()) == NULL);
 }
 
 TEST_F(InSystemVehicleTest, SETGET_Limits)
