@@ -194,6 +194,9 @@ bool Vehicle::properlyInitialised() const {
 
 
 Vehicle* Vehicle::nextVeh() {
+    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    
+    if (currentRoad == NULL) return NULL;
     return currentRoad->getCarOnPosition(getPosition(), false);
 }
 

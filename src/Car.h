@@ -29,13 +29,13 @@ public:
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @ENSURE properly initialised, get typename = Car
+     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get <acc/spd/pos> = 0, NOT update ready
      */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @ENSURE properly initialised, get typename = Car
+     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, NOT update ready
      */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position);
     
@@ -63,7 +63,7 @@ public:
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
      * @REQUIRE properly initialised, update prepared, simulation active
-     * @ENSURE get<acc/spd/pos> is within limits, minimum distance is respected
+     * @ENSURE get<acc/spd/pos> is within limits, minimum distance is respected, update NOT ready
      */
     virtual void execUpdate();
 

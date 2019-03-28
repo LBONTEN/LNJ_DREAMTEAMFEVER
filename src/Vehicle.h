@@ -149,6 +149,11 @@ public:
     int getPosition() const ;
     int getLen() const ;
     const VehicleLimits* getLimits();
+    
+    /**
+     * special case of getter function
+     * does not require anything
+     */
     const string& getTypeName() const;
 
 
