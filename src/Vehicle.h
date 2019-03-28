@@ -128,7 +128,7 @@ public:
     void setAcceleration(int acceleration);
     void setSpeed(int speed);
     void setPosition(int position);
-    void setLen(int cm);
+    void setLen(int len);
     
     /**
      * Special case of a setter function
@@ -149,18 +149,26 @@ public:
     int getPosition() const ;
     int getLen() const ;
     const VehicleLimits* getLimits();
+    
+    /**
+     * special case of getter function
+     * does not require anything
+     */
     const string& getTypeName() const;
-
+    
+    /**
+     * get the next vehicle on the current road (NULL if none exist)
+     * @REQUIRE properly initialised
+     */
+    Vehicle* nextVeh();
 
 protected:
-    Vehicle* nextVeh();
-    
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
     void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
     void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
     void hardSetSpeed(int speed) { Vehicle::speed = speed; }
     void hardSetPosition(int position) { Vehicle::position = position; }
-    void hardSetLen(int cm) { Vehicle::len = cm; }
+    void hardSetLen(int len) { Vehicle::len = len; }
     
     const VehicleLimits* limits;
     

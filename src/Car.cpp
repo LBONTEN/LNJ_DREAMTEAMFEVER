@@ -8,7 +8,7 @@
 #include "design_by_contract.h"
 
 ///--- global variables (definitions) ---///
-extern const int stdCarLength = 300;
+extern const int stdCarLength = 3;
 
 extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 
@@ -17,6 +17,8 @@ extern const VehicleLimits stdCarLimits(-8, 2, 0, 42);
 Car::Car() : Vehicle::Vehicle()
 {
     typeName = "Car";
+    
+    ENSURE(typeName == "Car", "Car constructor failed to set typeName");
 }
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
@@ -24,6 +26,9 @@ Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad)
         snapShot()
 {
     typeName = "Car";
+    
+    ENSURE(typeName == "Car", "Car constructor failed to set typeName");
+    ENSURE(!updateReady(), "Just initialised car can't be ready for updating");
 }
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, int position) :
@@ -31,6 +36,9 @@ Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
         snapShot()
 {
     typeName = "Car";
+    
+    ENSURE(typeName == "Car", "Car constructor failed to set typeName");
+    ENSURE(!updateReady(), "Just initialised car can't be ready for updating");
 }
 
         
@@ -63,7 +71,7 @@ void Car::execUpdate()
 {
     REQUIRE(properlyInitialised(), "car wasn't properly initialised");
     REQUIRE(updateReady(), "car wasn't ready to update");
-    REQUIRE(getEnv()->simulationActive(), "car can't update in an inactive simulation");
+    REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "car can't update in an inactive simulation");
     
     stepAcceleration();
     stepSpeed();
@@ -72,7 +80,9 @@ void Car::execUpdate()
     
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "Car acceleration out of range");
     ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxSpd, "Car speed out of range");
+    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "Car speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getAcceleration() <= getCurrentRoad()->getLength()), "Car position out of range");
+    ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
 void Car::stepAcceleration() {
@@ -118,12 +128,10 @@ void Car::stepSpeed() {
 void Car::stepPosition() {
     int newPos = getPosition() + getSpeed();
     
-    while (newPos > getCurrentRoad()->getLength()) {
+    while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
         getCurrentRoad()->removeVehicle(this);
         hardSetRoad(getCurrentRoad()->getConnection());
-        
-        if (getCurrentRoad() == NULL) return;
     }
     
     hardSetPosition(newPos);

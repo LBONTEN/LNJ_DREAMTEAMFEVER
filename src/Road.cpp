@@ -51,9 +51,11 @@ Road::~Road()
         }
     }
     
+    //TODO: fix this part of the destructor
     for (list<Vehicle*>::iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        delete *i;
+        Vehicle* tmp = *i;
+        delete tmp;
     }
 }
 
