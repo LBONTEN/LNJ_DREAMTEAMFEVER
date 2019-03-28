@@ -41,13 +41,13 @@ public:
 /**
  * Test fixture for base Vehicle tests without any state around it
  */
-class SoloVehicleTest: public testing::Test {
+class SoloVehicle: public testing::Test {
 protected:
-    SoloVehicleTest() :
+    SoloVehicle() :
     limits(-10, 10, 0, 50),
     testVeh(new SubVehicle(NULL, "BASE_VEH", 3, &limits, NULL)) {}
     
-    ~SoloVehicleTest() {
+    ~SoloVehicle() {
         delete testVeh;
     }
     
@@ -58,14 +58,14 @@ protected:
 
 ///--- constructor tests ---///
 
-TEST_F(SoloVehicleTest, INIT_Default)
+TEST_F(SoloVehicle, INIT_Default)
 {
     delete testVeh;
     testVeh = new SubVehicle();
     EXPECT_FALSE(testVeh->properlyInitialised());
 }
 
-TEST_F(SoloVehicleTest, INIT_Base)
+TEST_F(SoloVehicle, INIT_Base)
 {
     delete testVeh;
     limits = VehicleLimits( -1, 3, -5, 160);
@@ -84,7 +84,7 @@ TEST_F(SoloVehicleTest, INIT_Base)
     EXPECT_EQ(testVeh->getPosition(), 0);
 }
 
-TEST_F(SoloVehicleTest, INIT_Full)
+TEST_F(SoloVehicle, INIT_Full)
 {
     delete testVeh;
     limits = VehicleLimits( -1, 3, -5, 160);
@@ -107,9 +107,9 @@ TEST_F(SoloVehicleTest, INIT_Full)
 /**
  * Test fixture for Vehicle tests in an (empty) system
  */
-class InSystemVehicleTest: public testing::Test {
+class InSystemVehicle: public testing::Test {
 protected:
-    InSystemVehicleTest() :
+    InSystemVehicle() :
             limits(-10, 10, 0, 50),
             system(new RoadSystem()),
             road(new Road("MT_RD", 20, 60, system)),
@@ -120,7 +120,7 @@ protected:
         road->addVehicle(testVeh);
     }
     
-    ~InSystemVehicleTest() {
+    ~InSystemVehicle() {
         delete testVeh;
         delete road;
         delete system;
@@ -135,7 +135,7 @@ protected:
 
 ///--- setter & getter tests ---///
 
-TEST_F(InSystemVehicleTest, SETGET_HappyDay)
+TEST_F(InSystemVehicle, SETGET_HappyDay)
 {
     testVeh->setLicensePlate(" HeY4_");
     EXPECT_EQ(testVeh->getLicensePlate(), " HeY4_");
@@ -154,7 +154,7 @@ TEST_F(InSystemVehicleTest, SETGET_HappyDay)
     EXPECT_TRUE(road->getVehicle(testVeh->getLicensePlate()) == NULL);
 }
 
-TEST_F(InSystemVehicleTest, SETGET_Limits)
+TEST_F(InSystemVehicle, SETGET_Limits)
 {
     testVeh->setAcceleration(limits.minAcc-1);
     EXPECT_EQ(testVeh->getAcceleration(), limits.minAcc);
