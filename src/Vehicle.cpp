@@ -58,9 +58,17 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, int length
 Vehicle::~Vehicle()
 {
     // can't use getters here in case vehicle isn't initialised
-    if (currentRoad != NULL) currentRoad->removeVehicle(this);
+    if (currentRoad != NULL)
+    {
+        currentRoad->removeVehicle(this);
+        ENSURE(!currentRoad->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
+    }
     
-    if (environment != NULL) environment->removeVehicle(this);
+    if (environment != NULL)
+    {
+        environment->removeVehicle(this);
+        ENSURE(!environment->has(this), "Vehicle destructor failed to remove self from road system");
+    }
 }
 
 void Vehicle::setLicensePlate(const string& licensePlate) {

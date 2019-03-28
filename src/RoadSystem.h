@@ -27,26 +27,36 @@ public:
      */
     RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles);
     
+    /**
+     * destructor
+     * (note: destroys all contained vehicles & roads)
+     */
     virtual ~RoadSystem();
     
     /**
      * updates are supressed when false
      * limits editing of the simulation when true
+     * @REQUIRE properly initialised
      */
-    bool simulationActive();
+    bool simulationActive() const;
     
     /**
      * check whether there are any cars in the simulation
      * @REQUIRE properly initialised
      */
-    bool empty();
+    bool empty() const;
     
     /**
      * the amount of simulated time the simulation hes been active.
      * returns 0 if simulation not active
      * @REQUIRE properly initialised
      */
-    unsigned long timeActive();
+    unsigned long timeActive() const;
+    
+    /**
+     * query function to check pre- (&post-) conditions
+     */
+    bool properlyInitialised() const;
     
     /**
      * start the simulation
@@ -58,6 +68,7 @@ public:
     
     /**
      * automatically execute all actions necessary to advance the simulation by one second
+     * (note: vehicles leaving the simulation will be destroyed)
      * @REQUIRE properly initialised, simulation active
      */
     void advanceSimulation();
@@ -66,7 +77,7 @@ public:
      * automatically run the simulation until it is empty
      * (warning: cannot be interrupted from within the program & may be an infinite loop)
      * @REQUIRE properly initialised
-     * @ENSURE empty, simulation active
+     * @ENSURE simulation empty, simulation active
      */
     void untilEmpty();
      
@@ -74,7 +85,7 @@ public:
       * automatically run the simulation for a set amount of simulated time
       * (or until it is empty)
       * @REQUIRE properly initialised
-      * @ENSURE time active = <seconds> OR empty, simulation active
+      * @ENSURE time active = <seconds> OR simulation empty, simulation active
       */
      void untilTime(unsigned long seconds);
      
@@ -98,8 +109,8 @@ public:
      * (note: quite slow, look into using maps / sets for speed-up)
      * @REQUIRE properly initialised
      */
-    bool has(Vehicle* querry);
-    bool has(Road* querry);
+    bool has(Vehicle* querry) const;
+    bool has(Road* querry) const;
     
     /**
      * add functions
@@ -125,6 +136,8 @@ private:
     bool active;
     
     unsigned long time;
+    
+    RoadSystem* selfPtr;
 };
 
 #endif //LNJPSE_ROADSYSTEM_H
