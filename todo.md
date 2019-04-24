@@ -10,17 +10,18 @@
 	- [x] reading xml-file
 
 ## Opgaves
+- [ ] Finish
 	- [x] Wegen en voertuigen inlezen
 	- [x] Wegennetwerk inlezen
 	- [x] Voertuig met Type inlezen
-	- [] Wegen met verkeertekens inlezen
+	- [ ] Wegen met verkeertekens inlezen
 	- [x] Simpele uitvoer
 	- [x] Rijden van voertuigen
-	- [] Automatische simulatie
+	- [ ] Automatische simulatie
 	- [x] Rijden van voertuig met type
-	- [] Simulatie van baan met zones
-	- [] Simulatie van baan met bushaltes
-	- [] Simulatie van baan met verkeerslichten
+	- [ ] Simulatie van baan met zones
+	- [ ] Simulatie van baan met bushaltes
+	- [ ] Simulatie van baan met verkeerslichten
 
 ## Implementation
 - [x] class: RoadSystem
