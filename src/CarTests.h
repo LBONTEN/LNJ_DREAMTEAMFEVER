@@ -116,15 +116,15 @@ TEST_F(InSystemCar, UPDATE_Base)
     testCar->execUpdate();
     
     EXPECT_TRUE(testCar->getAcceleration() == stdCarLimits.maxAcc);
-    EXPECT_TRUE(testCar->getSpeed() == stdCarLimits.maxSpd);
-//    EXPECT_TRUE(testCar->getPosition() == stdCarLimits.max);
+    EXPECT_TRUE(testCar->getSpeed() == stdCarLimits.maxAcc);
+    EXPECT_TRUE(testCar->getPosition() == stdCarLimits.maxAcc);
     
     testCar->prepUpdate();
     testCar->execUpdate();
     
     EXPECT_TRUE(testCar->getAcceleration() == stdCarLimits.maxAcc);
-    EXPECT_TRUE(testCar->getSpeed() == 2*stdCarLimits.maxSpd);
-//    EXPECT_TRUE(testCar->getPosition() == 3*stdCarLimits.maxAcc);
+    EXPECT_TRUE(testCar->getSpeed() == 2*stdCarLimits.maxAcc);
+    EXPECT_TRUE(testCar->getPosition() == 3*stdCarLimits.maxAcc);
 }
 
 TEST_F(InSystemCar, UPDATE_Complex)
