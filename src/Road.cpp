@@ -82,12 +82,12 @@ Road::~Road()
  --------------------------------------------------------------------- */
 void Road::setConnection(Road* newConnection)
 {
-    REQUIRE(properlyInitialised(), "Road is not properly initialised, thus we're unable to alter state.");
-    REQUIRE(newConnection->properlyInitialised(), "Road is not properly initialised, thus we're unable to alter state.");
+    REQUIRE(properlyInitialised(), "Road is not properly initialised, unable to alter state.");
+    REQUIRE(newConnection->properlyInitialised(), "Road is not properly initialised, unable to alter state.");
 
     connections.push_back(newConnection);
 
-    ENSURE(connections[connections.size() - 1] == newConnection, "Function failed.");
+    ENSURE(connections[connections.size() - 1] == newConnection, "Failed setting connection.");
 }
 
 /** ---------------------------------------------------------------------
@@ -165,13 +165,12 @@ const string& Road::getName() const
  *      All roads connected to subjected road.
  *
  *  Précondition:
- *      subjected  Roads must be properly initialised and collection of roads must not be empty.
+ *      subjected road must be properly initialised.
  *
  --------------------------------------------------------------------- */
 const vector<Road*>& Road::getConnections() const
 {
     REQUIRE(properlyInitialised(), "Road is not empty, thus we're unable to retrieve current state right now.");
-    REQUIRE(!connections.empty(), "Can't get connections if there aren't any.");
 
     return connections;
 }
@@ -298,7 +297,7 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
         }
     }
 
-    ENSURE(!getVehicle(vehicToRemove->getLicensePlate()), "Removal unsuccessful");
+    ENSURE(!getVehicle(vehicToRemove->getLicensePlate()), "Vehicle removal unsuccessful");
 }
 
 

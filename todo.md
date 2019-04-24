@@ -8,7 +8,20 @@
 
 - [ ] main
 	- [x] reading xml-file
- 
+
+## Opgaves
+	- [x] Wegen en voertuigen inlezen
+	- [x] Wegennetwerk inlezen
+	- [x] Voertuig met Type inlezen
+	- [] Wegen met verkeertekens inlezen
+	- [x] Simpele uitvoer
+	- [x] Rijden van voertuigen
+	- [] Automatische simulatie
+	- [x] Rijden van voertuig met type
+	- [] Simulatie van baan met zones
+	- [] Simulatie van baan met bushaltes
+	- [] Simulatie van baan met verkeerslichten
+
 ## Implementation
 - [x] class: RoadSystem
 	- [x] load simulation
@@ -22,9 +35,9 @@
 
 - [ ] class: Road
 	- [x] constructor using XML-file
-	- [ ] get & set name
-	- [ ] get & set length
-	- [ ] get & set connection
+	- [x] get & set name
+	- [x] get & set length
+	- [x] get & set connection
 	- [ ] add, has?, get/traverse car(s)
 	- [ ] provide location-based iterator for vehicles
 

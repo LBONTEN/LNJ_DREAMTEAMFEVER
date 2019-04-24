@@ -34,15 +34,12 @@ TEST_F(RoadTests, CONNECTION_TEST)
 
     testRoad->setConnection(newConnection);
     EXPECT_TRUE(testRoad->getConnections()[0] == newConnection);
+    EXPECT_FALSE(testRoad->getConnections().empty());
 
     testRoad->removeConnection(newConnection);
     EXPECT_FALSE(testRoad->getConnections()[0] == newConnection);
     EXPECT_TRUE(testRoad->getConnections().empty());
 
-    testRoad->setConnection(newConnection);
-    EXPECT_TRUE(testRoad->getConnections()[0] == newConnection);
-
-    delete (newConnection);
     EXPECT_FALSE(testRoad->getConnections()[0] == newConnection);
     EXPECT_TRUE(testRoad->getConnections().empty());
 }

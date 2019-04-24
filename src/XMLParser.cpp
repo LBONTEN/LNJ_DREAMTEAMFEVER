@@ -54,8 +54,7 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
             {
                 currentRoad->setConnection(connection);
             }
-            
-            
+
             newSystem->addRoad(currentRoad);
         }
         if(type == "VOERTUIG")
