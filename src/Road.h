@@ -46,7 +46,7 @@ public:
     Road* getConnection() const;
     Vehicle* getVehicle(string licensePlate) const;
     
-    unsigned int getMaximumSpeed() const;
+    int getMaximumSpeed() const;
     
     /*************************
     *    ~Public members~    *
@@ -64,7 +64,7 @@ private:
     RoadSystem* environment;
     string name;
     unsigned int length;
-    unsigned int maximumSpeed;
+    int maximumSpeed;
     vector<Road*> connections;
     list<Vehicle*> vehicles;
 

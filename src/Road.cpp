@@ -195,7 +195,7 @@ Road* Road::getConnection() const
  *      Road may not be altered
  *
  --------------------------------------------------------------------- */
-unsigned int Road::getMaximumSpeed() const
+int Road::getMaximumSpeed() const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised.");
 
