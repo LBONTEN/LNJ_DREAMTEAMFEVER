@@ -131,7 +131,7 @@ TEST_F(InSystemCar, UPDATE_Base)
     
     EXPECT_TRUE(testCar->getAcceleration() == stdCarLimits.maxAcc);
     EXPECT_TRUE(testCar->getSpeed() == 2 * stdCarLimits.maxAcc);
-    EXPECT_TRUE(testCar->getPosition() == stdCarLimits.maxAcc);
+    EXPECT_TRUE(testCar->getPosition() == (unsigned int) stdCarLimits.maxAcc);
 }
 
 TEST_F(InSystemCar, UPDATE_Complex)
