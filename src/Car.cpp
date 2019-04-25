@@ -31,7 +31,7 @@ Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad)
     ENSURE(!updateReady(), "Just initialised car can't be ready for updating");
 }
 
-Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, unsigned int speed, unsigned int position) :
+Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position),
         snapShot()
 {
@@ -110,7 +110,7 @@ void Car::stepAcceleration() {
 }
 
 void Car::stepSpeed() {
-    unsigned int newSpeed = getSpeed() + getAcceleration();
+    int newSpeed = getSpeed() + getAcceleration();
     
     if (newSpeed < limits->minSpd) {
         newSpeed = limits->minSpd;

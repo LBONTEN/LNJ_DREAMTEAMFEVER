@@ -25,7 +25,7 @@ class Vehicle;
 /// Actual definitions of classes ///
 
 struct VehicleLimits {
-    VehicleLimits(int minAcc, int maxAcc, unsigned int minSpd, unsigned int maxSpd) :
+    VehicleLimits(int minAcc, int maxAcc, int minSpd, int maxSpd) :
         minAcc(minAcc),
         maxAcc(maxAcc),
         minSpd(minSpd),
@@ -34,14 +34,14 @@ struct VehicleLimits {
     int minAcc;
     int maxAcc;
     
-    unsigned int minSpd;
-    unsigned int maxSpd;
+    int minSpd;
+    int maxSpd;
 };
 
 struct VehicleSnap {
     VehicleSnap();
     VehicleSnap(Vehicle* source);
-    VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, unsigned int position, unsigned int length);
+    VehicleSnap(const string& licensePlate, int acceleration, int speed, unsigned int position, unsigned int length);
     
     string licensePlate;
     unsigned int acceleration;
@@ -84,7 +84,7 @@ public:
      * @REQURE <limits> != NULL
      * @ENSURE properly initialised, get <param> = param
      */
-    Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, unsigned int speed, unsigned int position);
+    Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration,  int speed, unsigned int position);
     
     /**
      * destructor
@@ -126,7 +126,7 @@ public:
      */
     void setLicensePlate(const string& licensePlate);
     void setAcceleration(int acceleration);
-    void setSpeed(unsigned int speed);
+    void setSpeed(int speed);
     void setPosition(unsigned int position);
     void setLen(unsigned int len);
     
@@ -145,7 +145,7 @@ public:
     string getLicensePlate() const ;
     Road* getCurrentRoad() const ;
     int getAcceleration() const ;
-    unsigned int getSpeed() const ;
+    int getSpeed() const ;
     unsigned int getPosition() const ;
     unsigned int getLen() const ;
     const VehicleLimits* getLimits();
@@ -166,7 +166,7 @@ protected:
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
     void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
     void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
-    void hardSetSpeed(unsigned int speed) { Vehicle::speed = speed; }
+    void hardSetSpeed(int speed) { Vehicle::speed = speed; }
     void hardSetPosition(unsigned int position) { Vehicle::position = position; }
     void hardSetLen(unsigned int len) { Vehicle::len = len; }
     
@@ -178,7 +178,7 @@ private:
     string licensePlate;
     Road* currentRoad;
     int acceleration;
-    unsigned int speed;
+    int speed;
     unsigned int position;
     unsigned int len;
 

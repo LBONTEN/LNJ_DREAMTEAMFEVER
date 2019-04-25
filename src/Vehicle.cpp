@@ -35,7 +35,7 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
     ENSURE(getAcceleration()==0 && getSpeed()==0 && getPosition()==0, "Car constructor failed to assign kinetic information");
 }
 
-Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, unsigned int speed,
+Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
                  unsigned int position) :
                  limits(limits),
                  licensePlate(licensePlate),
@@ -104,7 +104,7 @@ void Vehicle::setAcceleration(int acceleration) {
     
     ENSURE(getAcceleration() == acceleration, "Failed to set acceleration");
 }
-void Vehicle::setSpeed(unsigned int speed) {
+void Vehicle::setSpeed(int speed) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
@@ -166,7 +166,7 @@ int Vehicle::getAcceleration() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return acceleration;
 }
-unsigned int Vehicle::getSpeed() const {
+int Vehicle::getSpeed() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return speed;
 }
@@ -212,7 +212,7 @@ VehicleSnap::VehicleSnap(Vehicle* source) : licensePlate(source->getLicensePlate
                                             position(source->getPosition()),
                                             length(source->getLen()) {}
 
-VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, unsigned int speed, unsigned int position, unsigned int length)
+VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, int speed, unsigned int position, unsigned int length)
         : licensePlate(licensePlate), acceleration(acceleration), speed(speed), position(position), length(length) {}
 
 

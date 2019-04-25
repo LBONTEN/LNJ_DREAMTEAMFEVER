@@ -25,13 +25,6 @@ public:
 
     Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* environment);
 
-
-    /***********************
-     *    ~Destructor~     *
-     ***********************/
-
-    ~Road();
-
     /*******************
      *    ~Setters~    *
      *******************/

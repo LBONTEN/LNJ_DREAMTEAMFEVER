@@ -24,40 +24,6 @@ Road::Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* 
     ENSURE(properlyInitialised(), "Constructor failed");
 }
 
-    /***********************
-     *    ~Destructor~    *
-     ***********************/
-
-/** ---------------------------------------------------------------------
- *  ~Road
- *
- *  Postcondition:
- *      All references of this Road are deleted.
- *
- --------------------------------------------------------------------- */
-Road::~Road()
-{
-    if (environment == NULL) return;
-    
-    environment->removeRoad(this);
-    
-    for (vector<Road*>::const_iterator i = environment->getVectorOfRoads().begin(); i != environment->getVectorOfRoads().end(); i++)
-    {
-        for (vector<Road*>::const_iterator ii = (*i)->getConnections().begin(); ii != environment->getVectorOfRoads().end(); ii++) {
-            if (*ii == this) {
-                (*i)->removeConnection((*ii));
-                continue;
-            }
-        }
-    }
-    
-    //TODO: fix this part of the destructor
-    for (list<Vehicle*>::iterator i = vehicles.begin(); i != vehicles.end(); i++)
-    {
-        Vehicle* tmp = *i;
-        delete tmp;
-    }
-}
 
     /*******************
      *    ~Setters~    *
