@@ -334,7 +334,7 @@ unsigned int Road::remainingSpace() const
  *      Road must be properly initialised to start function.
  *
  *  Postcondition:
- *      Road object may not have been altered
+ *      Roaad remains unchanged
  *
  --------------------------------------------------------------------- */
 bool Road::isFree() const
@@ -362,7 +362,12 @@ Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
 
-    Vehicle* closestToPos = (*vehicles.begin());
+    if(vehicles.empty())
+    {
+        return NULL;
+    }
+
+    Vehicle* nextVehic = NULL;
     for(list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
         if(inclusive && (*i)->getPosition() == position)
@@ -370,14 +375,19 @@ Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
             return (*i);
         }
 
-        if( (position - (*i)->getPosition()) < (position - closestToPos->getPosition()) )
+        if((*i)->getPosition() > position)
         {
-            closestToPos = (*i);
+            if(nextVehic == NULL)
+            {
+                nextVehic = (*i);
+            }
+            else if (((*i)->getPosition() - position) < (nextVehic->getPosition() - position))
+            {
+                nextVehic = (*i);
+            }
         }
     }
-
-    ENSURE(checkIfClosest(*closestToPos, position), "Function 'GetCarOnPosition' failed");
-    return closestToPos;
+    return nextVehic;
 }
 
 
@@ -395,13 +405,14 @@ Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
  *      Road should be properly initialised
  *
  *  Postcondition:
- *      No changes made to Road object.
+ *      Road remains unchanged.
+ *
  --------------------------------------------------------------------- */
 bool Road::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) const
 {
     for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        if ( (position - (*i)->getPosition()) < (position - vehicToCheck.getPosition()) )
+        if ((position - (*i)->getPosition()) < (position - vehicToCheck.getPosition()) )
         {
             return false;
         }

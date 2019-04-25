@@ -60,12 +60,13 @@ TEST_F(RoadTests, VEHICLE_TEST)
     EXPECT_TRUE(testRoad->getVehicles().size() == 2);
     EXPECT_TRUE(testRoad->getVehicle("abc-123") == vehic2);
 
-    EXPECT_TRUE(testRoad->getCarOnPosition(300, true) == vehic2);
-    EXPECT_TRUE(testRoad->getCarOnPosition(100, true) == vehic1);
-    EXPECT_TRUE(testRoad->getCarOnPosition(0, false) == vehic1);
-    EXPECT_TRUE(testRoad->getCarOnPosition(0, true) == vehic1);
-    EXPECT_TRUE(testRoad->getCarOnPosition(1000, false) == vehic2);
-    EXPECT_TRUE(testRoad->getCarOnPosition(1000, true) == vehic2);
+    EXPECT_EQ(testRoad->getCarOnPosition(300, true), vehic1);
+    EXPECT_EQ(testRoad->getCarOnPosition(100, true), vehic2);
+    EXPECT_EQ(testRoad->getCarOnPosition(0, false), vehic2);
+    EXPECT_EQ(testRoad->getCarOnPosition(0, true), vehic2);
+    EXPECT_TRUE(testRoad->getCarOnPosition(1000, false) == NULL);
+    EXPECT_TRUE(testRoad->getCarOnPosition(1000, true) == NULL);
+    EXPECT_EQ(testRoad->getCarOnPosition(100, false), vehic1);
 
     EXPECT_TRUE(testRoad->remainingSpace() > 0);
     int before = testRoad->remainingSpace();
