@@ -37,11 +37,9 @@ TEST_F(RoadTests, CONNECTION_TEST)
     EXPECT_FALSE(testRoad->getConnections().empty());
 
     testRoad->removeConnection(newConnection);
-    EXPECT_FALSE(testRoad->getConnections()[0] == newConnection);
     EXPECT_TRUE(testRoad->getConnections().empty());
 
-    EXPECT_FALSE(testRoad->getConnections()[0] == newConnection);
-    EXPECT_TRUE(testRoad->getConnections().empty());
+    delete newConnection;
 }
 
 TEST_F(RoadTests, VEHICLE_TEST)
@@ -54,16 +52,20 @@ TEST_F(RoadTests, VEHICLE_TEST)
     testRoad->addVehicle(vehic1);
 
     EXPECT_TRUE(testRoad->getVehicles().size() == 1);
+    EXPECT_TRUE(testRoad->getVehicle("def-456") == vehic1);
     EXPECT_FALSE(testRoad->isFree());
 
     testRoad->addVehicle(vehic2);
 
     EXPECT_TRUE(testRoad->getVehicles().size() == 2);
+    EXPECT_TRUE(testRoad->getVehicle("abc-123") == vehic2);
 
-    EXPECT_TRUE(testRoad->getCarOnPosition(0, true) == vehic2);
-    EXPECT_TRUE(testRoad->getCarOnPosition(0, false) == vehic2);
-    EXPECT_TRUE(testRoad->getCarOnPosition(300, true) == vehic1);
-    EXPECT_TRUE(testRoad->getCarOnPosition(100, false) == vehic1);
+    EXPECT_TRUE(testRoad->getCarOnPosition(300, true) == vehic2);
+    EXPECT_TRUE(testRoad->getCarOnPosition(100, true) == vehic1);
+    EXPECT_TRUE(testRoad->getCarOnPosition(0, false) == vehic1);
+    EXPECT_TRUE(testRoad->getCarOnPosition(0, true) == vehic1);
+    EXPECT_TRUE(testRoad->getCarOnPosition(1000, false) == vehic2);
+    EXPECT_TRUE(testRoad->getCarOnPosition(1000, true) == vehic2);
 
     EXPECT_TRUE(testRoad->remainingSpace() > 0);
     int before = testRoad->remainingSpace();
