@@ -121,6 +121,9 @@ protected:
     }
     
     ~InSystemVehicle() {
+        system->removeVehicle(testVeh);
+        system->removeRoad(road);
+        
         delete testVeh;
         delete road;
         delete system;

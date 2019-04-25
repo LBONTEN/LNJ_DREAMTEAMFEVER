@@ -73,9 +73,9 @@ void Car::execUpdate()
     REQUIRE(updateReady(), "car wasn't ready to update");
     REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "car can't update in an inactive simulation");
     
-    stepAcceleration();
-    stepSpeed();
     stepPosition();
+    stepSpeed();
+    stepAcceleration();
     snapShot.prepared = false;
     
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "Car acceleration out of range");

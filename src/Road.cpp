@@ -16,7 +16,7 @@ extern const unsigned int minimumSpace= 200;
  *      Road object is properly initialised.
  --------------------------------------------------------------------- */
 Road::Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* environment) :
-    environment(environment),
+    // environment(environment),
     name(name),
     length(length),
     maximumSpeed(maxSpeed)
