@@ -2,7 +2,7 @@
 // Created by Joren Van Borm on 2019-03-27.
 //
 
-#include "Serialiser.h"
+#include "Output.h"
 #include "Vehicle.h"
 #include "Road.h"
 
@@ -29,7 +29,7 @@ void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
 
 ///--- functions from Serialiser class ---///
 
-ostream& Serialiser::classicPrint(ostream& target) const
+ostream& Output::classicPrint(ostream& target) const
 {
     
     for (vector<Road*>::const_iterator currentRd = simulation->getVectorOfRoads().begin();
@@ -53,11 +53,11 @@ ostream& Serialiser::classicPrint(ostream& target) const
     return target;
 }
 
-Serialiser::Serialiser(RoadSystem* simulation) : simulation(simulation), style(classic) {}
+Output::Output(RoadSystem* simulation) : simulation(simulation), style(classic) {}
 
 
 ///--- overloaded stream operator ---///
-ostream& operator<<(ostream& target, const Serialiser& print)
+ostream& operator<<(ostream& target, const Output& print)
 {
     switch (print.style)
     {
