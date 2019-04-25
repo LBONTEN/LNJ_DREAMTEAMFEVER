@@ -2,9 +2,7 @@
 
 ## General remarks
 - see also `//TODO`- comments in the c++ code (can be checked in CLion)
-- Try to find a way to lock in setters to prevent editing of e.g. licence plates during the simulation
 - Include tests for all items
-- set up test & release targets
 
 ## Opgaves
 - [ ] Finish
@@ -75,16 +73,12 @@
 	- [ ] add, has?, get/traverse car(s)
 	- [ ] provide location-based iterator for vehicles
 
-- [ ] class: Vehicle
-	- [ ] get & set licence plate
-	- [ ] get & set road
-	- [ ] get& set acceleration
-	- [ ] get & set speed
-	- [ ] get & set position
-	- [ ] prepare update (gathers info)
-	- [ ] execute update (updates info)
+- [x] class: Vehicle
+	- [x] get & set licence plate
+	- [x] get & set road
+	- [x] get& set acceleration
+	- [x] get & set speed
+	- [x] get & set position
 
 - [ ] class: Vehicle::Car
-	- [ ] advance acceleration
-	- [ ] advance speed
-	- [ ] advance position
+	- [ ] update
