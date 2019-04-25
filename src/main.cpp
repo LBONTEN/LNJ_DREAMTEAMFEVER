@@ -8,7 +8,7 @@
 #include <fstream>
 #include "RoadSystem.h"
 #include "XMLParser.h"
-#include "Serialiser.h"
+#include "Output.h"
 
 int main(int argc, char** argv)
 {
@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     
     XmlParser xmlp;
     RoadSystem* rs = xmlp.parseRoadSystem(argv[1]);
-    Serialiser print (rs);
+    Output print (rs);
     
     std::cout << "Initial situation:" << std::endl;
     std::cout << print << "~====~" << std::endl;

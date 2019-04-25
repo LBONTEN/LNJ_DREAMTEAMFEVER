@@ -1,0 +1,12 @@
+<ROOT>
+  <BAAN>
+      <naam>E19</naam>
+      <snelheidslimiet>100</snelheidslimiet>
+      <lengte>2000</lengte>
+  </BAAN>
+  <BAAN>
+      <naam>E42</naam>
+      <snelheidslimiet>300</snelheidslimiet>
+      <lengte>1025</lengte>
+  </BAAN>
+</ROOT>

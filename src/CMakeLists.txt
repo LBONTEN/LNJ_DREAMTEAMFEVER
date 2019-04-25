@@ -21,7 +21,7 @@ set(SHARED_SOURCE_FILES
         RoadSystem.cpp
         Road.cpp
         XMLParser.cpp
-        Car.cpp Serialiser.cpp Serialiser.h)
+        Car.cpp Output.cpp Output.h)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
@@ -30,7 +30,7 @@ set(RELEASE_SOURCE_FILES
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
         tests.cpp
-        )
+        IOTests.h)
 
 # Create RELEASE target
 add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
