@@ -61,7 +61,7 @@ public:
     bool checkIfClosest(const Vehicle& vehicToCheck, unsigned int position) const;
 
 private:
-    RoadSystem* environment;
+    // RoadSystem* environment;
     string name;
     unsigned int length;
     int maximumSpeed;
