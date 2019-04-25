@@ -6,22 +6,22 @@
 - Include tests for all items
 - set up test & release targets
 
-- [ ] main
-	- [x] reading xml-file
-
 ## Opgaves
 - [ ] Finish
 	- [x] Wegen en voertuigen inlezen
 	- [x] Wegennetwerk inlezen
-	- [x] Voertuig met Type inlezen
-	- [ ] Wegen met verkeertekens inlezen
 	- [x] Simpele uitvoer
 	- [x] Rijden van voertuigen
 	- [ ] Automatische simulatie
-	- [x] Rijden van voertuig met type
-	- [ ] Simulatie van baan met zones
-	- [ ] Simulatie van baan met bushaltes
-	- [ ] Simulatie van baan met verkeerslichten
+
+	- [x] 1.3. Voertuig met Type inlezen
+	- [ ] 1.4. Wegen met verkeertekens inlezen
+	- [ ] 1.5. Meerdere rijstroken
+	- [ ] 2.2. Grafische impressie
+	- [x] 3.3. Rijden van voertuig met type
+	- [ ] 3.4. Simulatie van baan met zones
+	- [ ] 3.5. Simulatie van baan met bushaltes
+	- [ ] 3.6. Simulatie van baan met verkeerslichten
 
 ## Implementation
 - [x] class: RoadSystem
@@ -55,3 +55,36 @@
 	- [x] advance acceleration
 	- [x] advance speed
 	- [x] advance position
+
+## tests
+- [ ] class: RoadSystem
+	- [ ] load simulation
+	- [ ] dump simulation
+	- [ ] start simulation
+	- [ ] advance simulation
+	- [ ] add, get/traverse car(s)
+	- [ ] add, get/traverse road(s)
+	- [ ] simulation empty?
+	- [ ] simulation active?
+
+- [ ] class: Road
+	- [ ] constructor using XML-file
+	- [ ] get & set name
+	- [ ] get & set length
+	- [ ] get & set connection
+	- [ ] add, has?, get/traverse car(s)
+	- [ ] provide location-based iterator for vehicles
+
+- [ ] class: Vehicle
+	- [ ] get & set licence plate
+	- [ ] get & set road
+	- [ ] get& set acceleration
+	- [ ] get & set speed
+	- [ ] get & set position
+	- [ ] prepare update (gathers info)
+	- [ ] execute update (updates info)
+
+- [ ] class: Vehicle::Car
+	- [ ] advance acceleration
+	- [ ] advance speed
+	- [ ] advance position
