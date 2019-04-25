@@ -8,6 +8,7 @@ Team
 
 Joren Van Borm
 ---
+##### specificatie 1.0
 | task | date | length |
 |---|---|---|
 | general (GIT) maintenance | 05/03 | 30' |
@@ -19,12 +20,21 @@ Joren Van Borm
 | roadsystem | 27/03 | 4h 20' |
 | Final checks & fixes | 27/03 | 1h 30' |
 
+##### specificatie 2.0
+| task | date | length |
+|---|---|---|
+|  | 25/04 |  |
 
 Lenny Bontenakel
 ---
+##### specificatie 1.0
 | task | date | length |
 |---|---|---|
 | XML parsing | 12/03 | 6h |
 | Writing Contract for Parser class   | 13/03 | 30' |
 | Working on Xml parser class | 13/03 | 4h |
 | Continue work on Xml parser class | 14/03 | 8:20 - ... |
+
+##### specificatie 2.0
+| task | date | length |
+|---|---|---|
