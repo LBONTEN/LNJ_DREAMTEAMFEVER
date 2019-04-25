@@ -2,8 +2,8 @@
 // Created by Joren Van Borm on 2019-04-25.
 //
 
-#ifndef LNJPSE_PROJECT_IOTESTS_H
-#define LNJPSE_PROJECT_IOTESTS_H
+#ifndef LNJPSE_PROJECT_XMLPARSERTESTS_H
+#define LNJPSE_PROJECT_XMLPARSERTESTS_H
 
 
 #include "RoadSystem.h"
@@ -33,9 +33,9 @@ protected:
 };
 
 
-///--- xml input tests ---///
+///--- Basic parsing ---///
 
-TEST_F(ParseTest, BASE_MonoRoad)
+TEST_F(ParseTest, BASE_Road)
 {
     system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads.xml");
     
@@ -71,4 +71,61 @@ TEST_F(ParseTest, BASE_MonoRoad)
     EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
 
-#endif //LNJPSE_PROJECT_IOTESTS_H
+// TODO: Lots of tests here
+
+TEST_F(ParseTest, BASE_Car)
+{
+
+}
+
+
+///--- Road network parsing ---///
+
+TEST_F(ParseTest, NETWORK_Linear)
+{
+
+}
+
+TEST_F(ParseTest, NETWORK_Loop)
+{
+
+}
+
+
+///--- Typed vehicles parsing ---///
+
+TEST_F(ParseTest, TYPES_Bike)
+{
+
+}
+
+TEST_F(ParseTest, TYPES_Bus)
+{
+
+}
+
+TEST_F(ParseTest, TYPES_Truck)
+{
+
+}
+
+
+///--- Traffic signal parsing ---///
+
+TEST_F(ParseTest, SIGNAL_Zone)
+{
+
+}
+
+TEST_F(ParseTest, SIGNAL_Stop)
+{
+
+}
+
+TEST_F(ParseTest, SIGNAL_Light)
+{
+
+}
+
+
+#endif //LNJPSE_PROJECT_XMLPARSERTESTS_H
