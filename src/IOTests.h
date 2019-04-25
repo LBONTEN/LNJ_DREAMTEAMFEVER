@@ -60,7 +60,15 @@ TEST_F(ParseTest, BASE_MonoRoad)
         E42 = parsedRoads[0];
     }
     
+    EXPECT_EQ("E19", E19->getName());
+    EXPECT_EQ(100, E19->getMaximumSpeed());
+    EXPECT_EQ(2000, E19->getLength());
+    EXPECT_EQ((Road*) NULL, E19->getConnection());
     
+    EXPECT_EQ("E42", E42->getName());
+    EXPECT_EQ(300, E42->getMaximumSpeed());
+    EXPECT_EQ(1025, E42->getLength());
+    EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
 
 #endif //LNJPSE_PROJECT_IOTESTS_H
