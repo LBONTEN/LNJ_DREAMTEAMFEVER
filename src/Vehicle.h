@@ -53,13 +53,13 @@ struct VehicleSnap {
 
 struct SimulationInfo {
 public:
-    SimulationInfo() : prepared(false), nextCarCopy(NULL) {}
-    virtual ~SimulationInfo() {delete nextCarCopy;}
+    SimulationInfo() : prepared(false), nextVehCopy(NULL) {}
+    virtual ~SimulationInfo() {delete nextVehCopy;}
     
-    void setNextCar(Vehicle* vehicle);
+    void setNextVeh(Vehicle* vehicle);
     
     bool prepared;
-    VehicleSnap* nextCarCopy;
+    VehicleSnap* nextVehCopy;
 };
 
 

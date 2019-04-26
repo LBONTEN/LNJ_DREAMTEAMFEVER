@@ -73,7 +73,7 @@ Vehicle::~Vehicle()
 
 void Vehicle::setLicensePlate(const string& licensePlate) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     hardSetLicencePlate(licensePlate);
     
@@ -90,7 +90,7 @@ void Vehicle::setRoad(Road* newRoad) {
 }
 void Vehicle::setAcceleration(int acceleration) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     if (acceleration < limits->minAcc) {
         acceleration = limits->minAcc;
@@ -106,7 +106,7 @@ void Vehicle::setAcceleration(int acceleration) {
 }
 void Vehicle::setSpeed(int speed) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     if (speed < limits->minSpd) {
         speed = limits->minSpd;
@@ -126,7 +126,7 @@ void Vehicle::setSpeed(int speed) {
 }
 void Vehicle::setPosition(unsigned int position) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     if (position < 0) {
         position = 0;
@@ -142,7 +142,7 @@ void Vehicle::setPosition(unsigned int position) {
 }
 void Vehicle::setLen(unsigned int len) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
     hardSetPosition(len);
     
@@ -218,12 +218,12 @@ VehicleSnap::VehicleSnap(const string& licensePlate, int acceleration, int speed
 
 ///--- SimulationInfo ---///
 
-void SimulationInfo::setNextCar(Vehicle* vehicle) {
-    delete nextCarCopy;
+void SimulationInfo::setNextVeh(Vehicle* vehicle) {
+    delete nextVehCopy;
     if (vehicle) {
-        nextCarCopy = new VehicleSnap(vehicle);
+        nextVehCopy = new VehicleSnap(vehicle);
     }
     else {
-        nextCarCopy = NULL;
+        nextVehCopy = NULL;
     }
 }
