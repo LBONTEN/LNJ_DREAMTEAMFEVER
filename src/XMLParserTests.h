@@ -37,7 +37,7 @@ protected:
 
 TEST_F(ParseTest, BASE_Road)
 {
-    system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads.xml");
+    system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads_empty.xml");
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
@@ -73,7 +73,7 @@ TEST_F(ParseTest, BASE_Road)
 
 TEST_F(ParseTest, BASE_Car)
 {
-    system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads_n_cars.xml");
+    system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads.xml");
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
@@ -140,15 +140,15 @@ TEST_F(ParseTest, BASE_Car)
 
 TEST_F(ParseTest, NETWORK_Tree)
 {
-    system = parser->parseRoadSystem("../IO/TEST_IO/tree_connection_n_cars.xml");
+    system = parser->parseRoadSystem("../IO/TEST_IO/tree_connection.xml");
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
     ASSERT_EQ(3, parsedRoads.size());
     
-    for (unsigned long vehIndex = 0; vehIndex < parsedRoads.size(); ++vehIndex)
+    for (unsigned long rdIndex = 0; rdIndex < parsedRoads.size(); ++rdIndex)
     {
-        const Road* road = parsedRoads[vehIndex];
+        const Road* road = parsedRoads[rdIndex];
         
         if (road->getName() == "E19")
         {
@@ -177,7 +177,33 @@ TEST_F(ParseTest, NETWORK_Tree)
 
 TEST_F(ParseTest, NETWORK_Loop)
 {
-
+    system = parser->parseRoadSystem("../IO/TEST_IO/loop_connection.xml");
+    
+    vector<Road*> parsedRoads = system->getVectorOfRoads();
+    
+    ASSERT_EQ(2, parsedRoads.size());
+    
+    for (unsigned long rdIndex = 0; rdIndex < parsedRoads.size(); ++rdIndex)
+    {
+        const Road* road = parsedRoads[rdIndex];
+        
+        if (road->getName() == "E19")
+        {
+            EXPECT_NE((Vehicle*) NULL, road->getVehicle("651BUF"));
+            
+            ASSERT_NE((Road*) NULL, road->getConnection());
+            EXPECT_EQ("E313", road->getConnection()->getName());
+        }
+        else if (road->getName() == "E313")
+        {
+            ASSERT_NE((Road*) NULL, road->getConnection());
+            EXPECT_EQ("E19", road->getConnection()->getName());
+        }
+        else
+        {
+            ADD_FAILURE() << "Unexpected road " << road->getName();
+        }
+    }
 }
 
 
