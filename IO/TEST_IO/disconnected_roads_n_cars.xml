@@ -3,12 +3,11 @@
       <naam>E19</naam>
       <snelheidslimiet>100</snelheidslimiet>
       <lengte>2000</lengte>
-      <verbinding>E313</verbinding>
   </BAAN>
   <BAAN>
-      <naam>E313</naam>
-      <snelheidslimiet>120</snelheidslimiet>
-      <lengte>5000</lengte>
+      <naam>E42</naam>
+      <snelheidslimiet>300</snelheidslimiet>
+      <lengte>1025</lengte>
   </BAAN>
   <VOERTUIG>
       <type>AUTO</type>
@@ -19,16 +18,16 @@
   </VOERTUIG>
   <VOERTUIG>
       <type>AUTO</type>
+      <nummerplaat>W0LHH</nummerplaat>
+      <baan>E42</baan>
+      <positie>100</positie>
+      <snelheid>10</snelheid>
+  </VOERTUIG>
+  <VOERTUIG>
+      <type>AUTO</type>
       <nummerplaat>651BUF</nummerplaat>
       <baan>E19</baan>
       <positie>0</positie>
       <snelheid>0</snelheid>
-  </VOERTUIG>
-  <VOERTUIG>
-      <type>AUTO</type>
-      <nummerplaat>1OUT00</nummerplaat>
-      <baan>E313</baan>
-      <positie>0</positie>
-      <snelheid>50</snelheid>
   </VOERTUIG>
 </ROOT>
