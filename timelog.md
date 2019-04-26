@@ -24,6 +24,7 @@ Joren Van Borm
 | task | date | length |
 |---|---|---|
 | parser tests | 25/04 | +/- 3h 30 |
+| parser tests & typed vehicle simulation | 26/04 | 3h |
 
 Lenny Bontenakel
 ---
