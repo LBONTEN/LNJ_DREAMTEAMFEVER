@@ -71,17 +71,70 @@ TEST_F(ParseTest, BASE_Road)
     EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
 
-// TODO: Lots of tests here
-
 TEST_F(ParseTest, BASE_Car)
 {
-
+    system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads_n_cars.xml");
+    
+    vector<Road*> parsedRoads = system->getVectorOfRoads();
+    vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
+    
+    EXPECT_EQ(3, parsedVehs.size());
+    
+    for (unsigned long vehIndex = 0; vehIndex < parsedVehs.size(); ++vehIndex)
+    {
+        const Vehicle* veh = parsedVehs[vehIndex];
+        
+        EXPECT_TRUE(veh->properlyInitialised());
+        
+        if (veh->getLicensePlate() == "1THK180")
+        {
+            EXPECT_EQ("Car", veh->getTypeName());
+            EXPECT_EQ(10, veh->getPosition());
+            EXPECT_EQ(0, veh->getSpeed());
+            
+            const Road* road = veh->getCurrentRoad();
+            EXPECT_NE((Road*) NULL, road);
+            EXPECT_EQ("E19", road->getName());
+            EXPECT_EQ(veh, road->getVehicle("1THK180"));
+            
+            EXPECT_EQ(system, veh->getEnv());
+            EXPECT_TRUE(system->contains(veh));
+        }
+        else if (veh->getLicensePlate() == "W0LHH")
+        {
+            EXPECT_EQ("Car", veh->getTypeName());
+            EXPECT_EQ(100, veh->getPosition());
+            EXPECT_EQ((int) 10*3.6, veh->getSpeed());
+    
+            const Road* road = veh->getCurrentRoad();
+            EXPECT_NE((Road*) NULL, road);
+            EXPECT_EQ("E42", road->getName());
+            EXPECT_EQ(veh, road->getVehicle("W0LHH"));
+    
+            EXPECT_EQ(system, veh->getEnv());
+            EXPECT_TRUE(system->contains(veh));
+        }
+        else if (veh->getLicensePlate() == "651BUF")
+        {
+            EXPECT_EQ("Car", veh->getTypeName());
+            EXPECT_EQ(0, veh->getPosition());
+            EXPECT_EQ(0, veh->getSpeed());
+    
+            const Road* road = veh->getCurrentRoad();
+            EXPECT_NE((Road*) NULL, road);
+            EXPECT_EQ("E19", road->getName());
+            EXPECT_EQ(veh, road->getVehicle("651BUF"));
+    
+            EXPECT_EQ(system, veh->getEnv());
+            EXPECT_TRUE(system->contains(veh));
+        }
+    }
 }
 
 
 ///--- Road network parsing ---///
 
-TEST_F(ParseTest, NETWORK_Linear)
+TEST_F(ParseTest, NETWORK_Tree)
 {
 
 }

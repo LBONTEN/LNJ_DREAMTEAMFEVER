@@ -67,7 +67,7 @@ Vehicle::~Vehicle()
     if (environment != NULL)
     {
         environment->removeVehicle(this);
-        ENSURE(!environment->has(this), "Vehicle destructor failed to remove self from road system");
+        ENSURE(!environment->contains(this), "Vehicle destructor failed to remove self from road system");
     }
 }
 

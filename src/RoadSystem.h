@@ -109,8 +109,8 @@ public:
      * (note: quite slow, look into using maps / sets for speed-up)
      * @REQUIRE properly initialised
      */
-    bool has(Vehicle* querry) const;
-    bool has(Road* querry) const;
+    bool contains(const Vehicle* querry) const;
+    bool contains(const Road* querry) const;
     
     /**
      * add functions
