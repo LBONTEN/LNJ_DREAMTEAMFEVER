@@ -78,13 +78,13 @@ TEST_F(ParseTest, BASE_Car)
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
     
-    EXPECT_EQ(3, parsedVehs.size());
+    ASSERT_EQ(3, parsedVehs.size());
     
     for (unsigned long vehIndex = 0; vehIndex < parsedVehs.size(); ++vehIndex)
     {
         const Vehicle* veh = parsedVehs[vehIndex];
         
-        EXPECT_TRUE(veh->properlyInitialised());
+        ASSERT_TRUE(veh->properlyInitialised());
         
         if (veh->getLicensePlate() == "1THK180")
         {
@@ -93,7 +93,7 @@ TEST_F(ParseTest, BASE_Car)
             EXPECT_EQ(0, veh->getSpeed());
             
             const Road* road = veh->getCurrentRoad();
-            EXPECT_NE((Road*) NULL, road);
+            ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E19", road->getName());
             EXPECT_EQ(veh, road->getVehicle("1THK180"));
             
@@ -107,7 +107,7 @@ TEST_F(ParseTest, BASE_Car)
             EXPECT_EQ((int) 10*3.6, veh->getSpeed());
     
             const Road* road = veh->getCurrentRoad();
-            EXPECT_NE((Road*) NULL, road);
+            ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E42", road->getName());
             EXPECT_EQ(veh, road->getVehicle("W0LHH"));
     
@@ -121,12 +121,16 @@ TEST_F(ParseTest, BASE_Car)
             EXPECT_EQ(0, veh->getSpeed());
     
             const Road* road = veh->getCurrentRoad();
-            EXPECT_NE((Road*) NULL, road);
+            ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E19", road->getName());
             EXPECT_EQ(veh, road->getVehicle("651BUF"));
     
             EXPECT_EQ(system, veh->getEnv());
             EXPECT_TRUE(system->contains(veh));
+        }
+        else
+        {
+            ADD_FAILURE() << "Unexpected licence plate " << veh->getLicensePlate();
         }
     }
 }
@@ -136,7 +140,39 @@ TEST_F(ParseTest, BASE_Car)
 
 TEST_F(ParseTest, NETWORK_Tree)
 {
-
+    system = parser->parseRoadSystem("../IO/TEST_IO/tree_connection_n_cars.xml");
+    
+    vector<Road*> parsedRoads = system->getVectorOfRoads();
+    
+    ASSERT_EQ(3, parsedRoads.size());
+    
+    for (unsigned long vehIndex = 0; vehIndex < parsedRoads.size(); ++vehIndex)
+    {
+        const Road* road = parsedRoads[vehIndex];
+        
+        if (road->getName() == "E19")
+        {
+            EXPECT_NE((Vehicle*) NULL, road->getVehicle("651BUF"));
+            
+            ASSERT_NE((Road*) NULL, road->getConnection());
+            EXPECT_EQ("E313", road->getConnection()->getName());
+        }
+        else if (road->getName() == "E313")
+        {
+            EXPECT_NE((Vehicle*) NULL, road->getVehicle("1OUT00"));
+    
+            EXPECT_EQ((Road*) NULL, road->getConnection());
+        }
+        else if (road->getName() == "E42")
+        {
+            ASSERT_NE((Road*) NULL, road->getConnection());
+            EXPECT_EQ("E313", road->getConnection()->getName());
+        }
+        else
+        {
+            ADD_FAILURE() << "Unexpected road " << road->getName();
+        }
+    }
 }
 
 TEST_F(ParseTest, NETWORK_Loop)
