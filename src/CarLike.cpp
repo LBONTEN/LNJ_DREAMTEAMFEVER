@@ -36,7 +36,6 @@ CarLike::CarLike(RoadSystem* environment, const string& licensePlate, Road* curr
     REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for CarLike");
     
     this->typeName = typeName;
-    setLen(len);
     
     ENSURE(this->typeName == typeName, "CarLike constructor failed to set typeName");
     ENSURE(!updateReady(), "Just initialised CarLike can't be ready for updating");

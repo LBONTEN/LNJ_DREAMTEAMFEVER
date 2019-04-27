@@ -42,16 +42,16 @@ TEST_F(SoloCar, INIT_Base)
     testCar = new Car(NULL, "ALT_L1_PL4T", NULL);
     
     EXPECT_TRUE(testCar->properlyInitialised());
-    EXPECT_TRUE(testCar->getTypeName() == "Car");
+    EXPECT_EQ("Car", testCar->getTypeName());
     
     EXPECT_FALSE(testCar->updateReady());
     
-    EXPECT_TRUE(testCar->getEnv() == NULL);
-    EXPECT_TRUE(testCar->getCurrentRoad() == NULL);
+    EXPECT_EQ((RoadSystem*) NULL, testCar->getEnv());
+    EXPECT_EQ((Road*) NULL, testCar->getCurrentRoad());
     
-    EXPECT_TRUE(testCar->getAcceleration() == 0);
-    EXPECT_TRUE(testCar->getSpeed() == 0);
-    EXPECT_TRUE(testCar->getPosition() == 0);
+    EXPECT_EQ(0, testCar->getAcceleration());
+    EXPECT_EQ(0, testCar->getSpeed());
+    EXPECT_EQ(0, testCar->getPosition());
 }
 
 TEST_F(SoloCar, INIT_Full)

@@ -144,7 +144,7 @@ void Vehicle::setLen(unsigned int len) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
     
-    hardSetPosition(len);
+    hardSetLen(len);
     
     ENSURE(getLen() == len, "Failed to set position");
 }
