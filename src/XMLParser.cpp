@@ -35,7 +35,7 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
     for(pugi::xml_node xmlNode = root.child("BAAN"); xmlNode; xmlNode = xmlNode.next_sibling("BAAN"))
     {
         string name = xmlNode.child("naam").text().as_string();
-        roads[name.c_str()] = parseRoad(xmlNode, newSystem);
+        roads[name.c_str()] = parseRoad(xmlNode);
     }
 
     for(pugi::xml_node xmlNode = root.first_child(); xmlNode; xmlNode = xmlNode.next_sibling())
@@ -61,22 +61,23 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
         {
             string currRoadName = xmlNode.child("baan").text().as_string();
 
-            Road* currentRoad = roads[currRoadName.c_str()];
+            Road* currentRoad = roads[currRoadName];
             Vehicle* newVehicle = parseVehicle(xmlNode, newSystem, currentRoad);
             newSystem->addVehicle(newVehicle);
-            currentRoad->addVehicle(newVehicle);
+            currentRoad->getLanes()[0]->addVehicle(newVehicle);
         }
     }
     return newSystem;
 }
 
-Road* XmlParser::parseRoad(const pugi::xml_node& baan, RoadSystem* environment)
+Road* XmlParser::parseRoad(const pugi::xml_node& baan)
 {
     string name = baan.child("naam").text().as_string();
-    int maxSpeed = baan.child("snelheidslimiet").text().as_int();
+    int speedLimit = baan.child("snelheidslimiet").text().as_int();
     int length = baan.child("lengte").text().as_int();
+    unsigned int laneCount = baan.child("Rijbanen").text().as_uint();
 
-    return new Road(name, length, maxSpeed, environment);
+    return new Road(name, length, speedLimit, laneCount);
 }
 
 Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* currentRoad)

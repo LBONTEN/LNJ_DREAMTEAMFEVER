@@ -14,7 +14,7 @@ class RoadTests : public  testing::Test
 protected:
 
     RoadTests() :
-    testRoad(new Road("D222", 1000, 70, NULL))
+    testRoad(new Road("D222", 1000, 70, 2))
     {}
 
     Road* testRoad;
@@ -24,23 +24,25 @@ TEST_F(RoadTests, CONSTRUCTOR_TEST)
 {
     EXPECT_TRUE(testRoad->getName() == "D222");
     EXPECT_TRUE(testRoad->getLength() == 1000);
-    EXPECT_TRUE(testRoad->getMaximumSpeed() == 70);
+    EXPECT_TRUE(testRoad->getSpeedLimit() == 70);
+    EXPECT_TRUE(testRoad->getLanes().size() == 2);
     EXPECT_TRUE(testRoad->properlyInitialised());
 }
 
+
 TEST_F(RoadTests, CONNECTION_TEST)
 {
-    Road *newConnection = new Road("NewConnection", 10000, 90, NULL);
+    Road *newConnection = new Road("NewConnection", 10000, 90);
 
     testRoad->setConnection(newConnection);
-    EXPECT_TRUE(testRoad->getConnections()[0] == newConnection);
-    EXPECT_FALSE(testRoad->getConnections().empty());
+    EXPECT_TRUE(testRoad->getConnection() == newConnection);
 
-    testRoad->clearConnection(newConnection);
-    EXPECT_TRUE(testRoad->getConnections().empty());
+    testRoad->clearConnection();
+    EXPECT_TRUE(testRoad->getConnection() == NULL);
 
     delete newConnection;
 }
+
 
 TEST_F(RoadTests, VEHICLE_TEST)
 {
@@ -49,34 +51,40 @@ TEST_F(RoadTests, VEHICLE_TEST)
 
     EXPECT_TRUE(testRoad->isFree());
 
-    testRoad->addVehicle(vehic1);
+    testRoad->getLanes()[0]->addVehicle(vehic1);
 
-    EXPECT_TRUE(testRoad->getVehicles().size() == 1);
-    EXPECT_TRUE(testRoad->getVehicle("def-456") == vehic1);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getVehicles().size() == 1);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getVehicle("def-456") == vehic1);
     EXPECT_FALSE(testRoad->isFree());
 
-    testRoad->addVehicle(vehic2);
+    testRoad->getLanes()[0]->addVehicle(vehic2);
 
-    EXPECT_TRUE(testRoad->getVehicles().size() == 2);
-    EXPECT_TRUE(testRoad->getVehicle("abc-123") == vehic2);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getVehicles().size() == 2);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getVehicle("abc-123") == vehic2);
 
-    EXPECT_EQ(testRoad->getCarOnPosition(300, true), vehic1);
-    EXPECT_EQ(testRoad->getCarOnPosition(100, true), vehic2);
-    EXPECT_EQ(testRoad->getCarOnPosition(0, false), vehic2);
-    EXPECT_EQ(testRoad->getCarOnPosition(0, true), vehic2);
-    EXPECT_TRUE(testRoad->getCarOnPosition(1000, false) == NULL);
-    EXPECT_TRUE(testRoad->getCarOnPosition(1000, true) == NULL);
-    EXPECT_EQ(testRoad->getCarOnPosition(100, false), vehic1);
+    EXPECT_EQ(testRoad->getLanes()[0]->getCarOnPosition(300, true), vehic1);
+    EXPECT_EQ(testRoad->getLanes()[0]->getCarOnPosition(100, true), vehic2);
+    EXPECT_EQ(testRoad->getLanes()[0]->getCarOnPosition(0, false), vehic2);
+    EXPECT_EQ(testRoad->getLanes()[0]->getCarOnPosition(0, true), vehic2);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getCarOnPosition(1000, false) == NULL);
+    EXPECT_TRUE(testRoad->getLanes()[0]->getCarOnPosition(1000, true) == NULL);
+    EXPECT_EQ(testRoad->getLanes()[0]->getCarOnPosition(100, false), vehic1);
 
-    EXPECT_TRUE(testRoad->remainingSpace() > 0);
-    int before = testRoad->remainingSpace();
-    testRoad->removeVehicle(vehic2);
-    int after = testRoad->remainingSpace();
+    EXPECT_TRUE(testRoad->getLanes()[0]->calculateRemainingSpace() > 0);
+    int before = testRoad->getLanes()[0]->calculateRemainingSpace();
+    testRoad->getLanes()[0]->removeVehicle(vehic2);
+    int after = testRoad->getLanes()[0]->calculateRemainingSpace();
     EXPECT_TRUE(before < after);
 
     EXPECT_FALSE(testRoad->isFree());
-    testRoad->removeVehicle(vehic1);
+    testRoad->getLanes()[0]->removeVehicle(vehic1);
     EXPECT_TRUE(testRoad->isFree());
+}
+
+
+TEST_F(RoadTests, LANES_TEST)
+{
+
 }
 
 

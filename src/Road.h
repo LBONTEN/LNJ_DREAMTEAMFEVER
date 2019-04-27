@@ -35,7 +35,7 @@ public:
  *  IN:
  *      - name: Name to be given to the road
  *      - length: Length of the road
- *      - maximumSpeed: maximum speed allowed on the road
+ *      - maximumSpeed: Speed limit allowed on the road
  *      - roadStripsCount:  amount of lanes the road has
  *
  *  Postcondition:
@@ -85,7 +85,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    void clearConnection(const Road *connectionToRemove);
+    void clearConnection();
 /** ---------------------------------------------------------------------
  * clearConnection:
  *
@@ -100,6 +100,16 @@ public:
  *
  *  Postcondition:
  *      Road has a an extra connection added to back of vector of connection.
+ *
+ --------------------------------------------------------------------- */
+
+
+    bool isFree() const;
+/** ---------------------------------------------------------------------
+ * isFree
+ *
+ *  OUT:
+ *      True when all lanes are free.
  *
  --------------------------------------------------------------------- */
 
@@ -144,6 +154,16 @@ public:
  --------------------------------------------------------------------- */
 
 
+    const vector<Lane*>& getLanes() const;
+/** ---------------------------------------------------------------------
+ * getMaximumSpeed
+ *
+ *  OUT:
+ *      returns vector of lanes .
+ *
+ --------------------------------------------------------------------- */
+
+
 private:
 
     string name;
@@ -169,7 +189,47 @@ public:
  --------------------------------------------------------------------- */
 
 
-private:
+    Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getCarOnPosition
+ *
+ *  OUT:
+ *      Returns a car on a certain position.
+ *
+ *  Precondition:
+ *      Must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+    Vehicle* getVehicle(string licensePlate) const;
+/** ---------------------------------------------------------------------
+ * getVehicle:
+ *
+ *  IN:
+ *      license plate as key
+ *
+ *  OUT:
+ *      returns vehicle with corresponding license plate.
+ *
+ *  Précondition:
+ *      Must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+    const list<Vehicle*>& getVehicles() const;
+/** ---------------------------------------------------------------------
+ * getVehicles:
+ *
+ *  OUT:
+ *      A reference to the vehicles vector in Road object
+ *
+ *  Précondition:
+ *      Road must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
 
     void addVehicle(Vehicle* newVehicle);
 /** ---------------------------------------------------------------------
@@ -220,20 +280,7 @@ private:
  * isFree
  *
  *  OUT:
- *      Boolean that is true when there are no vehicles on the Road.
- *
- --------------------------------------------------------------------- */
-
-
-    Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
-/** ---------------------------------------------------------------------
- * getCarOnPosition
- *
- *  OUT:
- *      Returns a car on a certain position.
- *
- *  Precondition:
- *      Must be properly initialised
+ *      Boolean that is true when there are no vehicles on the lane.
  *
  --------------------------------------------------------------------- */
 
@@ -254,35 +301,7 @@ private:
  *
  --------------------------------------------------------------------- */
 
-
-    Vehicle* getVehicle(string licensePlate) const;
-/** ---------------------------------------------------------------------
- * getVehicle:
- *
- *  IN:
- *      license plate as key
- *
- *  OUT:
- *      returns vehicle with corresponding license plate.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- --------------------------------------------------------------------- */
-
-
-    const list<Vehicle*>& getVehicles() const;
-/** ---------------------------------------------------------------------
- * getVehicles:
- *
- *  OUT:
- *      A reference to the vehicles vector in Road object
- *
- *  Précondition:
- *      Road must be properly initialised
- *
- --------------------------------------------------------------------- */
-
+private:
 
     const Road* parentRoad;
     list<Vehicle*> vehicles;

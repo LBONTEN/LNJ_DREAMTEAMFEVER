@@ -15,6 +15,7 @@ using namespace std;
 class RoadSystem;
 
 class Road;
+class Lane;
 
 
 /// Forward declarations for this file ///
@@ -144,6 +145,7 @@ public:
     RoadSystem* getEnv() const ;
     string getLicensePlate() const ;
     Road* getCurrentRoad() const ;
+    Lane* getCurrentLane() const ;
     int getAcceleration() const ;
     int getSpeed() const ;
     unsigned int getPosition() const ;
@@ -177,6 +179,7 @@ protected:
 private:
     string licensePlate;
     Road* currentRoad;
+    Lane* currentLane;
     int acceleration;
     int speed;
     unsigned int position;

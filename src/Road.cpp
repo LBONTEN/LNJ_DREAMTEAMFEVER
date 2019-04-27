@@ -67,11 +67,26 @@ void Road::setConnection(Road* newConnection)
 }
 
 
-void Road::clearConnection(const Road *connectionToRemove)
+void Road::clearConnection()
 {
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
 
     connection = NULL;
+}
+
+
+bool Road::isFree() const
+{
+    REQUIRE(properlyInitialised(), "Road: \'isFree\': not properly initialised.");
+
+    for(vector<Lane*>::const_iterator i = lanes.begin(); i != lanes.end(); i++)
+    {
+        if(!(*i)->isFree())
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 
@@ -104,6 +119,13 @@ int Road::getSpeedLimit() const
     REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
 
     return speedLimit;
+}
+
+
+const vector<Lane*>& Road::getLanes() const
+{
+    REQUIRE(properlyInitialised(),"Road must be properly initialised.");
+    return lanes;
 }
 
 

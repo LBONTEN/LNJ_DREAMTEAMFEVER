@@ -132,7 +132,7 @@ void Car::stepPosition() {
     
     while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
-        getCurrentRoad()->removeVehicle(this);
+        getCurrentLane()->removeVehicle(this);
         hardSetRoad(getCurrentRoad()->getConnection());
     }
     

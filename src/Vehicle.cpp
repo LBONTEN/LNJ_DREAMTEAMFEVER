@@ -60,14 +60,14 @@ Vehicle::~Vehicle()
     // can't use getters here in case vehicle isn't initialised
     if (currentRoad != NULL)
     {
-        currentRoad->removeVehicle(this);
-        ENSURE(!currentRoad->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
+        currentLane->removeVehicle(this);
+        ENSURE(!getCurrentLane()->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
     }
     
     if (environment != NULL)
     {
         environment->removeVehicle(this);
-        ENSURE(!environment->contains(this), "Vehicle destructor failed to remove self from road system");
+        ENSURE(!getEnv()->contains(this), "Vehicle destructor failed to remove self from road system");
     }
 }
 
@@ -83,7 +83,7 @@ void Vehicle::setRoad(Road* newRoad) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
     
-    getCurrentRoad()->removeVehicle(this);
+    getCurrentLane()->removeVehicle(this);
     hardSetRoad(newRoad);
     
     ENSURE(getCurrentRoad() == newRoad, "Failed to set road");
@@ -116,8 +116,8 @@ void Vehicle::setSpeed(int speed) {
         speed = limits->maxSpd;
     }
     
-    if (getCurrentRoad() and speed > getCurrentRoad()->getMaximumSpeed()) {
-        speed = getCurrentRoad()->getMaximumSpeed();
+    if (getCurrentRoad() and speed > getCurrentRoad()->getSpeedLimit()) {
+        speed = getCurrentRoad()->getSpeedLimit();
     }
     
     hardSetSpeed(speed);
@@ -162,6 +162,10 @@ Road* Vehicle::getCurrentRoad() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return currentRoad;
 }
+Lane* Vehicle::getCurrentLane() const{
+    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    return currentLane;
+}
 int Vehicle::getAcceleration() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return acceleration;
@@ -198,7 +202,7 @@ Vehicle* Vehicle::nextVeh() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
 
     if (currentRoad == NULL) return NULL;
-    return currentRoad->getCarOnPosition(getPosition(), false);
+    return currentLane->getCarOnPosition(getPosition(), false);
 }
 
 

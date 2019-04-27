@@ -23,7 +23,7 @@ public:
 
 private:
 
-    Road* parseRoad(const pugi::xml_node& road, RoadSystem* environment);
+    Road* parseRoad(const pugi::xml_node& road);
     Vehicle* parseVehicle(const pugi::xml_node& vehicle, RoadSystem* environment, Road* currentRoad);
 };
 
