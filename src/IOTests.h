@@ -41,7 +41,7 @@ TEST_F(ParseTest, BASE_MonoRoad)
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
-    EXPECT_EQ(2, parsedRoads.size());
+    EXPECT_EQ((unsigned int) 2, parsedRoads.size());
     
     EXPECT_TRUE(parsedRoads[0]->properlyInitialised());
     EXPECT_TRUE(parsedRoads[1]->properlyInitialised());
@@ -61,13 +61,13 @@ TEST_F(ParseTest, BASE_MonoRoad)
     }
     
     EXPECT_EQ("E19", E19->getName());
-    EXPECT_EQ(100, E19->getMaximumSpeed());
-    EXPECT_EQ(2000, E19->getLength());
+    EXPECT_EQ(100, E19->getSpeedLimit());
+    EXPECT_EQ((unsigned int) 2000, E19->getLength());
     EXPECT_EQ((Road*) NULL, E19->getConnection());
     
     EXPECT_EQ("E42", E42->getName());
-    EXPECT_EQ(300, E42->getMaximumSpeed());
-    EXPECT_EQ(1025, E42->getLength());
+    EXPECT_EQ(300, E42->getSpeedLimit());
+    EXPECT_EQ((unsigned int) 1025, E42->getLength());
     EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
 
