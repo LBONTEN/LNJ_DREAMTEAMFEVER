@@ -81,7 +81,7 @@ void Car::execUpdate()
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "Car acceleration out of range");
     ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "Car speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "Car position out of range");
-    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "Car speed out of range");
+    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getSpeedLimit(), "Car speed out of range");
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
@@ -120,8 +120,8 @@ void Car::stepSpeed() {
         newSpeed = limits->maxSpd;
     }
     
-    if (getCurrentRoad() and newSpeed > getCurrentRoad()->getMaximumSpeed()) {
-        newSpeed = getCurrentRoad()->getMaximumSpeed();
+    if (getCurrentRoad() and newSpeed > getCurrentRoad()->getSpeedLimit()) {
+        newSpeed = getCurrentRoad()->getSpeedLimit();
     }
     
     hardSetSpeed(newSpeed);

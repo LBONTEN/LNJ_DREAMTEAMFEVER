@@ -5,77 +5,119 @@
 
 extern const unsigned int minimumSpace= 200;
 
-    /***********************
-     *    ~Constructor~    *
-     ***********************/
 
-/** ---------------------------------------------------------------------
- * Road
- *
- *  Postcondition:
- *      Road object is properly initialised.
- --------------------------------------------------------------------- */
-Road::Road(string name, unsigned int length, unsigned int maxSpeed, RoadSystem* environment) :
-    // environment(environment),
-    name(name),
-    length(length),
-    maximumSpeed(maxSpeed)
+/*  Road functions ---------------------------------------------------- */
+
+Road::Road()
 {
-    ENSURE(properlyInitialised(), "Constructor failed");
+    name = "";
+    length = 1;
+    speedLimit = 1;
+    laneCount = 1;
+
+    lanes.push_back(new Lane(this));
+
+    ENSURE(properlyInitialised(), "Road default construction failed");
 }
 
 
-    /*******************
-     *    ~Setters~    *
-     *******************/
+Road::Road(string name, unsigned int length, int maxSpeed, unsigned int laneCount) :
+    name(name),
+    length(length),
+    speedLimit(maxSpeed),
+    connection(),
+    laneCount(laneCount)
+{
+    for(int i = 0; i < laneCount; i++)
+    {
+        lanes.push_back(new Lane(this));
+    }
+
+    ENSURE(properlyInitialised(), "Road construction failed");
+}
+
+Road::~Road()
+{
+    for(vector<Lane*>::iterator i = lanes.begin(); i != lanes.end(); i++)
+    {
+        delete (*i);
+    }
+}
+
+bool Road::properlyInitialised() const
+{
+    if (length <= 0) return false;
+    if(name.empty()) return false;
+    if(speedLimit <= 0) return false;
+    if(laneCount <= 0) return false;
+    if(lanes.size() > laneCount) return false;
+
+    return true;
+}
 
 
-/** ---------------------------------------------------------------------
- * setConnection:
- *
- *  IN:
- *      newConnection: Road to add as a connection to subjected road
- *
- *  OUT:
- *      The subjected road will have a new connection added to its list
- *
- *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
- *
- *  Postcondition:
- *      Road has a an extra connection added to back of vector of connection.
- *
- --------------------------------------------------------------------- */
 void Road::setConnection(Road* newConnection)
 {
     REQUIRE(properlyInitialised(), "Road is not properly initialised, unable to alter state.");
     REQUIRE(newConnection->properlyInitialised(), "Road is not properly initialised, unable to alter state.");
 
-    connections.push_back(newConnection);
+    connection = newConnection;
 
-    ENSURE(connections[connections.size() - 1] == newConnection, "Failed setting connection.");
+    ENSURE(connection == newConnection, "Failed setting connection.");
 }
 
-/** ---------------------------------------------------------------------
- * setVehicle:
- *
- *  IN:
- *      newVehicle: Road to add as a connection to subjected road
- *
- *  Precondition:
- *      The Road and vehicle involved in the function must be properly initialised for proper execution.
- *      Also, there must be sufficient remaining space on the Road to add a new vehicle.
- *
- *  Postcondition:
- *      A new Vehicle will be added to the back of vector containing vehicles.
- *      amount of cars on the Road has increased by one.
- *
- --------------------------------------------------------------------- */
-void Road::addVehicle(Vehicle* newVehicle)
+
+void Road::clearConnection(const Road *connectionToRemove)
 {
-    REQUIRE(properlyInitialised(), "Road is not properly initialised, thus we're unable to alter state.");
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    connection = NULL;
+}
+
+
+unsigned int Road::getLength() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    return  length;
+}
+
+
+const string& Road::getName() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    return name;
+}
+
+
+Road* Road::getConnection() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    return connection;
+}
+
+
+int Road::getSpeedLimit() const
+{
+    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
+
+    return speedLimit;
+}
+
+
+/*  Lane functions ---------------------------------------------- */
+
+Lane::Lane(const Road* parentRoad) :
+    parentRoad(parentRoad)
+    {}
+
+
+void Lane::addVehicle(Vehicle* newVehicle)
+{
     REQUIRE(newVehicle->properlyInitialised(), "Vehicle is not properly initialised, thus we're unable to alter state.");
-    REQUIRE(remainingSpace() > newVehicle->getLen(), "Too many vehicles are already present on the Road for there to be added more.");
+    REQUIRE(calculateRemainingSpace() > newVehicle->getLen(), "Too many vehicles are already present on the Road for there to be added more.");
 
     vehicles.push_front(newVehicle);
 
@@ -83,177 +125,8 @@ void Road::addVehicle(Vehicle* newVehicle)
 }
 
 
-    /*******************
-     *    ~Getters~    *
-     *******************/
-
-
-/** ---------------------------------------------------------------------
- * getLength:
- *
- *  Précondition:
- *      A properly initialised road.
- *
- *  Postcondition:
- *      State of Road must remain the same before and after function.
- *
- --------------------------------------------------------------------- */
-unsigned int Road::getLength() const
+void Lane::removeVehicle(Vehicle* vehicToRemove)
 {
-    REQUIRE(properlyInitialised(), "Road is not properly initialised, thus we're unable to retrieve state.");
-
-    return  length;
-}
-
-
-/* ---------------------------------------------------------------------
- * getName:
- *
- *  Précondition:
- *      A properly initialised road.
- *
- *  Postcondition:
- *      State of Road must remain the same before and after function.
- *
- --------------------------------------------------------------------- */
-const string& Road::getName() const
-{
-    REQUIRE(properlyInitialised(), "Road is not properly initialised, thus we're unable to retrieve state.");
-
-    return name;
-}
-
-
-/** ---------------------------------------------------------------------
- * getConnections:
- *
- *  OUT:
- *      All roads connected to subjected road.
- *
- *  Précondition:
- *      subjected road must be properly initialised.
- *
- --------------------------------------------------------------------- */
-const vector<Road*>& Road::getConnections() const
-{
-    REQUIRE(properlyInitialised(), "Road is not empty, thus we're unable to retrieve current state right now.");
-
-    return connections;
-}
-
-
-/** ---------------------------------------------------------------------
- * getVehicles:
- *
- *  OUT:
- *      A reference to the vehicles vector in Road object
- *
- *  Précondition:
- *      Road must be properly initialised
- *
- --------------------------------------------------------------------- */
-const list<Vehicle*>& Road::getVehicles() const
-{
-    REQUIRE(properlyInitialised(), "Road is not empty, thus we're unable to retrieve current state right now.");
-
-    return vehicles;
-}
-
-
-/** ---------------------------------------------------------------------
- * getConnection
- *
- *  OUT:
- *      returns the first road connection on index.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- *  Postcondition:
- *      Road may not be altered
- *
- --------------------------------------------------------------------- */
-Road* Road::getConnection() const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised.");
-
-    if (connections.empty()) return NULL;
-
-    return connections[0];
-}
-
-/** ---------------------------------------------------------------------
- * getMaximumSpeed
- *
- *  OUT:
- *      returns maximum speed of current Road.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- *  Postcondition:
- *      Road may not be altered
- *
- --------------------------------------------------------------------- */
-int Road::getMaximumSpeed() const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised.");
-
-    return maximumSpeed;
-}
-
-/** ---------------------------------------------------------------------
- * getVehicle:
- *
- *  IN:
- *      license plate as key
- *
- *  OUT:
- *      returns the first road connection on index.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- *  Postcondition:
- *      Road may not be altered
- *
- --------------------------------------------------------------------- */
-Vehicle* Road::getVehicle(string licensePlate) const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised.");
-
-    for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
-    {
-        if((*i)->getLicensePlate() == licensePlate)
-        {
-            return (*i);
-        }
-    }
-    return NULL;
-}
-
-
-    /*************************
-    *    ~Public members~    *
-    **************************/
-
-/** ---------------------------------------------------------------------
- * removeVehicle
- *
- *  IN:
- *      pointer to vehicle to remove from list.
- *
- *  Précondition:
- *      Road object must be properly initialised.
- *
- *  Postcondition:
- *      Vehicle object is removed from the list of vehicles.
- *
- --------------------------------------------------------------------- */
-void Road::removeVehicle(const Vehicle *vehicToRemove)
-{
-    REQUIRE(properlyInitialised(), "Road object must be properly initialised to execute function.");
-
     for(list<Vehicle *>::iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
         if((*i) == vehicToRemove)
@@ -267,51 +140,10 @@ void Road::removeVehicle(const Vehicle *vehicToRemove)
 }
 
 
-/** ---------------------------------------------------------------------
- *  removeConnection:
- *
- *  IN:
- *      pointer to road to remove
- *
- *  Precondition:
- *      Road must be properly initialised
- *
- *  Postcondition:
- *      Input road will no longer be a connection.
- --------------------------------------------------------------------- */
-void Road::removeConnection(const Road *connectionToRemove)
+unsigned int Lane::calculateRemainingSpace() const
 {
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
-
-    for(long unsigned int i = 0; i < connections.size(); i++)
-    {
-        if(connections[i] == connectionToRemove)
-        {
-            connections.erase(connections.begin() + i -1);
-        }
-    }
-}
-
-
-/** ---------------------------------------------------------------------
- * remainingSpace
- *
- *  OUT:
- *      int remainingSpace: an integer that indicates the amount of free space left on the Road, in centimeter.
- *
- *  Précondition:
- *      Road must be properly initialised
- *
- *  Postcondition:
- *      No alterations may have occured to the Road object.
- *
- --------------------------------------------------------------------- */
-unsigned int Road::remainingSpace() const
-{
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function.");
-
-    unsigned int remainingSpace = length;
-    for (list<Vehicle*> :: const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    unsigned int remainingSpace = parentRoad->getLength();
+    for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
         remainingSpace = remainingSpace - ((*i)->getLen() + minimumSpace);
 
@@ -324,43 +156,14 @@ unsigned int Road::remainingSpace() const
 }
 
 
-/** ---------------------------------------------------------------------
- * isFree
- *
- *  OUT:
- *      Boolean that is true when there are no vehicles on the Road.
- *
- *  Précondition:
- *      Road must be properly initialised to start function.
- *
- *  Postcondition:
- *      Roaad remains unchanged
- *
- --------------------------------------------------------------------- */
-bool Road::isFree() const
+bool Lane::isFree() const
 {
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
-
     return vehicles.empty();
 }
 
 
-/** ---------------------------------------------------------------------
- * getCarOnPosition
- *
- *  OUT:
- *      Returns a car on a certain position.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- *  Postcondition:
- *      Object remains unchanged.
- *
- --------------------------------------------------------------------- */
-Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
+Vehicle* Lane::getCarOnPosition(unsigned int position, bool inclusive) const
 {
-    REQUIRE(properlyInitialised(), "Road must be properly initialised to execute function");
 
     if(vehicles.empty())
     {
@@ -391,24 +194,7 @@ Vehicle* Road::getCarOnPosition(unsigned int position, bool inclusive) const
 }
 
 
-/** ---------------------------------------------------------------------
- * checkifClosest:
- *
- * IN:
- *      - Vehicle on which the check is performed
- *      - Position that subjected vehicle should be closest to.
- *
- *  OUT:
- *      true when the car given in input is the closest to the given position on the road.
- *
- *  Precondition:
- *      Road should be properly initialised
- *
- *  Postcondition:
- *      Road remains unchanged.
- *
- --------------------------------------------------------------------- */
-bool Road::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) const
+bool Lane::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) const
 {
     for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
@@ -420,33 +206,21 @@ bool Road::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) co
     return true;
 }
 
-/* ---------------------------------------------------------------------
- * properlyInitialised
- *
- *  OUT:
- *     false when:
- *          - Length of Road may not be 0 or less
- *          - Name may not be an empty string.
- *          - maximumSpeed must be greater than 0
- *
- --------------------------------------------------------------------- */
-bool Road::properlyInitialised() const
+
+Vehicle* Lane::getVehicle(string licensePlate) const
 {
-    if ( length <= 0 )
+    for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
-        return false;
+        if((*i)->getLicensePlate() == licensePlate)
+        {
+            return (*i);
+        }
     }
-
-    if( name.empty() )
-    {
-        return false;
-    }
-
-    if( maximumSpeed <= 0 )
-    {
-        return false;
-    }
-
-    return true;
+    return NULL;
 }
 
+
+const list<Vehicle*>& Lane::getVehicles() const
+{
+    return vehicles;
+}

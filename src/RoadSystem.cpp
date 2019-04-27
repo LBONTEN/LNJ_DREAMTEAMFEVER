@@ -71,7 +71,7 @@ bool RoadSystem::properlyInitialised() const
     return this == selfPtr;
 }
 
-bool RoadSystem::has(Vehicle* querry) const
+bool RoadSystem::contains(const Vehicle* querry) const
 {
     REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     
@@ -82,7 +82,7 @@ bool RoadSystem::has(Vehicle* querry) const
     return false;
 }
 
-bool RoadSystem::has(Road* querry) const
+bool RoadSystem::contains(const Road* querry) const
 {
     REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     
@@ -94,20 +94,20 @@ bool RoadSystem::has(Road* querry) const
 }
 
 
-void RoadSystem::setVectorOfRoads(const vector<Road*>& vectorOfRoads)
+void RoadSystem::setVectorOfRoads(const vector<Road*>& newVectorOfRoads)
 {
     REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     
-    RoadSystem::vectorOfRoads = vectorOfRoads;
+    vectorOfRoads = newVectorOfRoads;
     
     ENSURE(getVectorOfRoads() == vectorOfRoads, "failed to set vector of roads");
 }
 
-void RoadSystem::setVectorOfVehicles(const vector<Vehicle*>& vectorOfVehicles)
+void RoadSystem::setVectorOfVehicles(const vector<Vehicle*>& newVectorOfVehicles)
 {
     REQUIRE(properlyInitialised(), "Roadsystem wasn't initialised");
     
-    RoadSystem::vectorOfVehicles = vectorOfVehicles;
+    vectorOfVehicles = newVectorOfVehicles;
     
     ENSURE(getVectorOfVehicles() == vectorOfVehicles, "failed to set vector of vehicles");
 }
@@ -119,7 +119,7 @@ void RoadSystem::addVehicle(Vehicle* newVehicle)
     
     vectorOfVehicles.push_back(newVehicle);
     
-    ENSURE(has(newVehicle), "failed to add vehicle to roadsystem");
+    ENSURE(contains(newVehicle), "failed to add vehicle to roadsystem");
 }
 
 void RoadSystem::addRoad(Road* newRoad)
@@ -128,7 +128,7 @@ void RoadSystem::addRoad(Road* newRoad)
     
     vectorOfRoads.push_back(newRoad);
     
-    ENSURE(has(newRoad), "failed to add road to roadsystem");
+    ENSURE(contains(newRoad), "failed to add road to roadsystem");
 }
 
 
@@ -145,7 +145,7 @@ void RoadSystem::removeVehicle(Vehicle* oldVeh)
         }
     }
     
-    ENSURE(!has(oldVeh), "failed to add vehicle to roadsystem");
+    ENSURE(!contains(oldVeh), "failed to add vehicle to roadsystem");
 }
 
 void RoadSystem::removeRoad(Road* oldRoad)
@@ -161,7 +161,7 @@ void RoadSystem::removeRoad(Road* oldRoad)
         }
     }
     
-    ENSURE(!has(oldRoad), "failed to add road to roadsystem");
+    ENSURE(!contains(oldRoad), "failed to add road to roadsystem");
 }
 
 

@@ -7,7 +7,7 @@
 #include "VehicleTests.h"
 #include "RoadTests.h"
 #include "CarTests.h"
-#include "IOTests.h"
+#include "XMLParserTests.h"
 #include <iostream>
 #include <gtest/gtest.h>
 

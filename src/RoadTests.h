@@ -14,7 +14,7 @@ class RoadTests : public  testing::Test
 protected:
 
     RoadTests() :
-    testRoad( new Road("D222", 1000, 70, NULL))
+    testRoad(new Road("D222", 1000, 70, NULL))
     {}
 
     Road* testRoad;
@@ -36,7 +36,7 @@ TEST_F(RoadTests, CONNECTION_TEST)
     EXPECT_TRUE(testRoad->getConnections()[0] == newConnection);
     EXPECT_FALSE(testRoad->getConnections().empty());
 
-    testRoad->removeConnection(newConnection);
+    testRoad->clearConnection(newConnection);
     EXPECT_TRUE(testRoad->getConnections().empty());
 
     delete newConnection;
@@ -70,17 +70,13 @@ TEST_F(RoadTests, VEHICLE_TEST)
 
     EXPECT_TRUE(testRoad->remainingSpace() > 0);
     int before = testRoad->remainingSpace();
-
     testRoad->removeVehicle(vehic2);
-
     int after = testRoad->remainingSpace();
-
     EXPECT_TRUE(before < after);
 
     EXPECT_FALSE(testRoad->isFree());
     testRoad->removeVehicle(vehic1);
     EXPECT_TRUE(testRoad->isFree());
-
 }
 
 

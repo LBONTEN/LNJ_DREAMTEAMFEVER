@@ -23,7 +23,7 @@ Joren Van Borm
 ##### specificatie 2.0
 | task | date | length |
 |---|---|---|
-|  | 25/04 |  |
+| parser tests | 25/04 | +/- 3h 30 |
 
 Lenny Bontenakel
 ---
