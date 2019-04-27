@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include "XMLParser.h"
 #include "RoadSystem.h"
-#include "Car.h"
+#include "TypedVehicles.h"
 #include "cmath"
 
 

@@ -6,19 +6,27 @@
 #define LNJPSE_CAR_H
 
 
-#include "CarLike.h"
+#include "DefaultVehicle.h"
 
 
 ///--- global variables (declarations) ---///
 
-extern const unsigned int stdCarLength;
+extern const unsigned int stdMotorCycleLength;
+extern const VehicleLimits stdMotorCycleLimits;
 
+extern const unsigned int stdCarLength;
 extern const VehicleLimits stdCarLimits;
+
+extern const unsigned int stdBusLength;
+extern const VehicleLimits stBusLimits;
+
+extern const unsigned int stdTruckLength;
+extern const VehicleLimits stdTruckLimits;
 
 
 ///--- Classes ---///
 
-class Car: public CarLike {
+class Car: public DefaultVehicle {
 public:
     /**
      * Default constructor
@@ -39,6 +47,8 @@ public:
      */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
 };
+
+
 
 
 #endif //LNJPSE_CAR_H

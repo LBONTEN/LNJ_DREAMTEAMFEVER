@@ -6,7 +6,7 @@
 #define LNJPSE_VEHICLETESTS_H
 
 #include <gtest/gtest.h>
-#include "Car.h"
+#include "TypedVehicles.h"
 #include "Vehicle.h"
 #include "RoadSystem.h"
 #include "Road.h"

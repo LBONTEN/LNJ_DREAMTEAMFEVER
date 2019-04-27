@@ -2,7 +2,7 @@
 // Created by Joren Van Borm on 2019-04-26.
 //
 
-#include "CarLike.h"
+#include "DefaultVehicle.h"
 #include "Road.h"
 #include "RoadSystem.h"
 #include "design_by_contract.h"
@@ -21,87 +21,84 @@ extern const VehicleLimits stdTruckLimits(-6, 1, 0, 25);
 */
 
 ///--- CarLike ---///
-CarLike::CarLike() : Vehicle::Vehicle()
+DefaultVehicle::DefaultVehicle() : Vehicle::Vehicle()
 {
     typeName = "Car";
     
-    ENSURE(typeName == "Car", "CarLike default constructor failed to set typeName");
+    ENSURE(typeName == "Car", "DefaultVehicle default constructor failed to set typeName");
 }
 
-CarLike::CarLike(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
+DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
                  std::string typeName, unsigned int len, const VehicleLimits* limits) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, limits, currentRoad),
         snapShot()
 {
-    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for CarLike");
+    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
     
     this->typeName = typeName;
     
-    ENSURE(this->typeName == typeName, "CarLike constructor failed to set typeName");
-    ENSURE(!updateReady(), "Just initialised CarLike can't be ready for updating");
+    ENSURE(this->typeName == typeName, "DefaultVehicle constructor failed to set typeName");
+    ENSURE(!updateReady(), "Just initialised DefaultVehicle can't be ready for updating");
 }
 
-CarLike::CarLike(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
+DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
                  std::string typeName, unsigned int len, const VehicleLimits* limits) :
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position),
         snapShot()
 {
-    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for CarLike");
+    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
     
     this->typeName = typeName;
     
-    this->typeName = typeName;
-    setLen(len);
-    
-    ENSURE(this->typeName == typeName, "CarLike constructor failed to set typeName");
-    ENSURE(!updateReady(), "Just initialised CarLike can't be ready for updating");
+    ENSURE(this->typeName == typeName, "DefaultVehicle constructor failed to set typeName");
+    ENSURE(!updateReady(), "Just initialised DefaultVehicle can't be ready for updating");
 }
 
 
-bool CarLike::updateReady()
+bool DefaultVehicle::updateReady()
 {
-    REQUIRE(properlyInitialised(), "CarLike wasn't properly initialised");
+    REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
     return snapShot.prepared;
 }
 
-void CarLike::prepUpdate()
+void DefaultVehicle::prepUpdate()
 {
-    REQUIRE(properlyInitialised(), "CarLike wasn't properly initialised");
+    REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
     
     snapShot.setNextVeh(nextVeh());
     snapShot.prepared = true;
     
-    ENSURE(updateReady(), "CarLike failed to prepare update");
+    ENSURE(updateReady(), "DefaultVehicle failed to prepare update");
 }
 
-void CarLike::cancelPrep()
+void DefaultVehicle::cancelPrep()
 {
-    REQUIRE(properlyInitialised(), "CarLike wasn't properly initialised");
+    REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
     
     snapShot.prepared = false;
     
-    ENSURE(!updateReady(), "CarLike failed to prepare update");
+    ENSURE(!updateReady(), "DefaultVehicle failed to prepare update");
 }
 
-void CarLike::execUpdate()
+void DefaultVehicle::execUpdate()
 {
-    REQUIRE(properlyInitialised(), "CarLike wasn't properly initialised");
-    REQUIRE(updateReady(), "CarLike wasn't ready to update");
-    REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "CarLike can't update in an inactive simulation");
+    REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
+    REQUIRE(updateReady(), "DefaultVehicle wasn't ready to update");
+    REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "DefaultVehicle can't update in an inactive simulation");
     
     stepPosition();
     stepSpeed();
     stepAcceleration();
     snapShot.prepared = false;
     
-    ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "CarLike acceleration out of range");
-    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "CarLike speed out of range");
-    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "CarLike position out of range");
-    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "CarLike speed out of range");
+    ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "DefaultVehicle acceleration out of range");
+    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
+    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
+    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "DefaultVehicle speed out of range");
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
-void CarLike::stepAcceleration() {
+void DefaultVehicle::stepAcceleration() {
     if (snapShot.nextVehCopy == NULL) {
         hardSetAcceleration(limits->maxAcc);
         return;
@@ -119,13 +116,13 @@ void CarLike::stepAcceleration() {
     if (newAcceleration > limits->maxAcc) {
         newAcceleration = limits->maxAcc;
     }
-    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "CarLike speed out of range");
-    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "CarLike position out of range");
+    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
+    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
     
     hardSetAcceleration(newAcceleration);
 }
 
-void CarLike::stepSpeed() {
+void DefaultVehicle::stepSpeed() {
     int newSpeed = getSpeed() + getAcceleration();
     
     if (newSpeed < limits->minSpd) {
@@ -143,7 +140,7 @@ void CarLike::stepSpeed() {
     hardSetSpeed(newSpeed);
 }
 
-void CarLike::stepPosition() {
+void DefaultVehicle::stepPosition() {
     unsigned int newPos = getPosition() + getSpeed();
     
     while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {

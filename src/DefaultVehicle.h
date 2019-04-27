@@ -2,20 +2,20 @@
 // Created by Joren Van Borm on 2019-04-26.
 //
 
-#ifndef LNJPSE_PROJECT_CARLIKE_H
-#define LNJPSE_PROJECT_CARLIKE_H
+#ifndef LNJPSE_PROJECT_DEFAULTVEHICLE_H
+#define LNJPSE_PROJECT_DEFAULTVEHICLE_H
 
 
 #include "Vehicle.h"
 
 
-class CarLike : public Vehicle {
+class DefaultVehicle : public Vehicle {
 public:
     /**
      * Default constructor
      * @ENSURE NOT properly initialised, get typename = Car
      */
-    CarLike();
+    DefaultVehicle();
     
     /**
      * Minimal constructor
@@ -23,7 +23,7 @@ public:
      * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
      * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get <acc/spd/pos> = 0, NOT update ready
      */
-    CarLike(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
+    DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
     
     /**
@@ -31,7 +31,7 @@ public:
      * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
      * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, NOT update ready
      */
-    CarLike(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
+    DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
     
     
@@ -71,4 +71,4 @@ private:
 };
 
 
-#endif //LNJPSE_PROJECT_CARLIKE_H
+#endif //LNJPSE_PROJECT_DEFAULTVEHICLE_H

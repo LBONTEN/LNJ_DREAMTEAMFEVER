@@ -6,7 +6,7 @@
 #define LNJPSE_PROJECT_CARTESTS_H
 
 #include "RoadSystem.h"
-#include "Car.h"
+#include "TypedVehicles.h"
 #include "Road.h"
 
 class SoloCar : public testing::Test {
