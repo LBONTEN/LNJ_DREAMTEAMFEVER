@@ -98,6 +98,24 @@ void DefaultVehicle::execUpdate()
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
+void DefaultVehicle::fullStop(unsigned int distance)
+{
+    int newAcceleration = - getSpeed()*getSpeed() / distance;
+    
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getMaximumSpeed())
+    {
+        newAcceleration = getCurrentRoad()->getMaximumSpeed() - getSpeed();
+    }
+    
+    if (newAcceleration < limits->minAcc) {
+        newAcceleration = limits->minAcc;
+    }
+    
+    if (newAcceleration > limits->maxAcc) {
+        newAcceleration = limits->maxAcc;
+    }
+}
+
 void DefaultVehicle::stepAcceleration() {
     if (snapShot.nextVehCopy == NULL) {
         hardSetAcceleration(limits->maxAcc);
@@ -109,13 +127,21 @@ void DefaultVehicle::stepAcceleration() {
     
     int newAcceleration = 0.5 * (actualDistance - targetDistance);
     
-    if (newAcceleration < limits->minAcc) {
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getMaximumSpeed())
+    {
+        newAcceleration = getCurrentRoad()->getMaximumSpeed() - getSpeed();
+    }
+    
+    if (newAcceleration < limits->minAcc)
+    {
         newAcceleration = limits->minAcc;
     }
     
-    if (newAcceleration > limits->maxAcc) {
+    if (newAcceleration > limits->maxAcc)
+    {
         newAcceleration = limits->maxAcc;
     }
+    
     ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
     
@@ -131,10 +157,6 @@ void DefaultVehicle::stepSpeed() {
     
     if (newSpeed > limits->maxSpd) {
         newSpeed = limits->maxSpd;
-    }
-    
-    if (getCurrentRoad() and newSpeed > getCurrentRoad()->getMaximumSpeed()) {
-        newSpeed = getCurrentRoad()->getMaximumSpeed();
     }
     
     hardSetSpeed(newSpeed);

@@ -62,7 +62,9 @@ public:
      */
     virtual void execUpdate();
 
-private:
+protected:
+    void fullStop(unsigned int distance);
+    
     void stepAcceleration();
     void stepSpeed();
     void stepPosition();
