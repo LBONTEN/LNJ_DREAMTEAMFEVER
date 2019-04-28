@@ -26,7 +26,7 @@ protected:
     Car* testCar;
 };
 
-
+//TODO We should test Vehicles on a Road, but with system == NULL, at the time of writing this, this causes SIGSEGV
 TEST_F(SoloCar, INIT_Default)
 {
     delete testCar;
@@ -90,7 +90,7 @@ class InSystemCar : public testing::Test {
 protected:
     InSystemCar() :
             system(new RoadSystem()),
-            road(new Road("4n_I-m Rd", 200, stdCarLimits.maxSpd+50, system)),
+            road(new Road("4n_I-m Rd", 200, stdCarLimits.maxSpd+50)),
             testCar(new Car(system, "I-M_4 C4R", road))
     {}
     
@@ -139,7 +139,7 @@ TEST_F(InSystemCar, UPDATE_Complex)
     Car* otherCar = new Car(system, "0h-lok4 cR", road, 0, 0, 1000);
     
     system->addVehicle(otherCar);
-    road->addVehicle(otherCar);
+    road->getLanes()[0]->addVehicle(otherCar);
     
     system->activate();
     

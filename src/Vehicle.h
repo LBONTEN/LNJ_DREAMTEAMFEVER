@@ -137,6 +137,7 @@ public:
      * @ENSURE get<attr> = <arg>, previous road does not contain vehicle
      */
     void setRoad(Road* newRoad);
+    void setLane (Lane* newLane);
 
     /**
      * Getter functions
@@ -167,6 +168,7 @@ public:
 protected:
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
     void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
+    void hardSetLane(Lane* newLane) { Vehicle::currentLane = newLane; }
     void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
     void hardSetSpeed(int speed) { Vehicle::speed = speed; }
     void hardSetPosition(unsigned int position) { Vehicle::position = position; }

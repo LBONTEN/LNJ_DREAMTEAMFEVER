@@ -22,7 +22,7 @@ void printVehicle(Vehicle* source, ostream& target, const char* prefix=emptyStr)
 void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
 {
     target << prefix << "Road: " << source->getName() << std::endl
-           << prefix << "\t-> Speed limit: " << source->getMaximumSpeed() << std::endl
+           << prefix << "\t-> Speed limit: " << source->getSpeedLimit() << std::endl
            << prefix << "\t-> length: " << source->getLength() << std::endl;
 }
 

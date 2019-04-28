@@ -27,7 +27,7 @@ public:
     SubVehicle(RoadSystem* environment, const string& licensePlate, int length, const VehicleLimits* limits,
                Road* currentRoad, int acceleration, int speed, int position) :
                Vehicle(environment, licensePlate, length, limits, currentRoad, acceleration, speed, position) {}
-    
+
     virtual bool updateReady() {return false;}
     
     virtual void cancelPrep() {}
@@ -112,20 +112,20 @@ protected:
     InSystemVehicle() :
             limits(-10, 10, 1, 50),
             system(new RoadSystem()),
-            road(new Road("MT_RD", 20, 60, system)),
+            road(new Road("MT_RD", 20, 60)),
             testVeh(new SubVehicle(system, "BASE_VEH", 3, &limits, road))
     {
         system->addRoad(road);
         system->addVehicle(testVeh);
-        road->addVehicle(testVeh);
+        road->getLanes()[0]->addVehicle(testVeh);
     }
     
     ~InSystemVehicle() {
-//        system->removeVehicle(testVeh);
-//        system->removeRoad(road);
-//
-//        delete testVeh;
-//        delete road;
+        system->removeVehicle(testVeh);
+        system->removeRoad(road);
+
+        delete testVeh;
+        delete road;
         delete system;
     }
     
@@ -154,7 +154,7 @@ TEST_F(InSystemVehicle, SETGET_HappyDay)
     
     testVeh->setRoad(NULL);
     EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
-    EXPECT_TRUE(road->getVehicle(testVeh->getLicensePlate()) == NULL);
+    EXPECT_TRUE(road->getLanes()[0]->getVehicle(testVeh->getLicensePlate()) == NULL);
 }
 
 TEST_F(InSystemVehicle, SETGET_Limits)
@@ -171,10 +171,10 @@ TEST_F(InSystemVehicle, SETGET_Limits)
     testVeh->setSpeed(limits.maxSpd+1);
     EXPECT_TRUE(testVeh->getSpeed() == limits.maxSpd);
     
-    limits.maxSpd = road->getMaximumSpeed() + 5;
+    limits.maxSpd = road->getSpeedLimit() + 5;
     
     testVeh->setSpeed(limits.maxSpd-1);
-    EXPECT_TRUE(testVeh->getSpeed() == road->getMaximumSpeed());
+    EXPECT_TRUE(testVeh->getSpeed() == road->getSpeedLimit());
     
     testVeh->setPosition(road->getLength()+10);
     EXPECT_TRUE(testVeh->getPosition() == road->getLength());

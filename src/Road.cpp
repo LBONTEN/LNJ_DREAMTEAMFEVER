@@ -2,6 +2,7 @@
 
 #include "Road.h"
 #include "RoadSystem.h"
+#include <iostream>
 
 extern const unsigned int minimumSpace= 200;
 
@@ -28,7 +29,7 @@ Road::Road(string name, unsigned int length, int maxSpeed, unsigned int laneCoun
     connection(),
     laneCount(laneCount)
 {
-    for(int i = 0; i < laneCount; i++)
+    for(unsigned int i = 0; i < laneCount; i++)
     {
         lanes.push_back(new Lane(this));
     }
@@ -38,10 +39,7 @@ Road::Road(string name, unsigned int length, int maxSpeed, unsigned int laneCoun
 
 Road::~Road()
 {
-    for(vector<Lane*>::iterator i = lanes.begin(); i != lanes.end(); i++)
-    {
-        delete (*i);
-    }
+    lanes.clear();
 }
 
 bool Road::properlyInitialised() const
@@ -131,7 +129,7 @@ const vector<Lane*>& Road::getLanes() const
 
 /*  Lane functions ---------------------------------------------- */
 
-Lane::Lane(const Road* parentRoad) :
+Lane::Lane(Road* parentRoad) :
     parentRoad(parentRoad)
     {}
 
@@ -184,7 +182,7 @@ bool Lane::isFree() const
 }
 
 
-Vehicle* Lane::getCarOnPosition(unsigned int position, bool inclusive) const
+Vehicle* const Lane::getCarOnPosition(unsigned int position, bool inclusive) const
 {
 
     if(vehicles.empty())
@@ -229,7 +227,7 @@ bool Lane::checkIfClosest(const Vehicle &vehicToCheck, unsigned int position) co
 }
 
 
-Vehicle* Lane::getVehicle(string licensePlate) const
+Vehicle* const Lane::getVehicle(string licensePlate) const
 {
     for (list<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
@@ -245,4 +243,10 @@ Vehicle* Lane::getVehicle(string licensePlate) const
 const list<Vehicle*>& Lane::getVehicles() const
 {
     return vehicles;
+}
+
+
+Road* const Lane::getParentRoad() const
+{
+    return parentRoad;
 }

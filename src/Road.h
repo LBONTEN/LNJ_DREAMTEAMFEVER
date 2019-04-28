@@ -180,54 +180,12 @@ class Lane
 {
 public:
 
-    Lane(const Road* parentRoad);
+    Lane(Road* parentRoad);
 /** ---------------------------------------------------------------------
  * Lane
  *
  *  Postcondition:
  *      Lane object is properly initialised.
- --------------------------------------------------------------------- */
-
-
-    Vehicle* getCarOnPosition(unsigned int position, bool inclusive) const;
-/** ---------------------------------------------------------------------
- * getCarOnPosition
- *
- *  OUT:
- *      Returns a car on a certain position.
- *
- *  Precondition:
- *      Must be properly initialised
- *
- --------------------------------------------------------------------- */
-
-
-    Vehicle* getVehicle(string licensePlate) const;
-/** ---------------------------------------------------------------------
- * getVehicle:
- *
- *  IN:
- *      license plate as key
- *
- *  OUT:
- *      returns vehicle with corresponding license plate.
- *
- *  Précondition:
- *      Must be properly initialised
- *
- --------------------------------------------------------------------- */
-
-
-    const list<Vehicle*>& getVehicles() const;
-/** ---------------------------------------------------------------------
- * getVehicles:
- *
- *  OUT:
- *      A reference to the vehicles vector in Road object
- *
- *  Précondition:
- *      Road must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -301,9 +259,63 @@ public:
  *
  --------------------------------------------------------------------- */
 
+    Vehicle* const getCarOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getCarOnPosition
+ *
+ *  OUT:
+ *      Returns a car on a certain position.
+ *
+ *  Precondition:
+ *      Must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+    Vehicle* const getVehicle(string licensePlate) const;
+/** ---------------------------------------------------------------------
+ * getVehicle:
+ *
+ *  IN:
+ *      license plate as key
+ *
+ *  OUT:
+ *      returns vehicle with corresponding license plate.
+ *
+ *  Précondition:
+ *      Must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+    const list<Vehicle*>& getVehicles() const;
+/** ---------------------------------------------------------------------
+ * getVehicles:
+ *
+ *  OUT:
+ *      A reference to the vehicles vector in Road object
+ *
+ *  Précondition:
+ *      Road must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+    Road* const getParentRoad() const;
+/** ---------------------------------------------------------------------
+ * getParentRoad:
+ *
+ *  OUT:
+ *      Pointer to parentRoad of Lane
+ *
+ *  Précondition:
+ *      Road must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
 private:
 
-    const Road* parentRoad;
+    Road* parentRoad;
     list<Vehicle*> vehicles;
 };
 

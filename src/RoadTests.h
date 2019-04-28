@@ -17,6 +17,11 @@ protected:
     testRoad(new Road("D222", 1000, 70, 2))
     {}
 
+    ~RoadTests()
+    {
+        delete testRoad;
+    }
+
     Road* testRoad;
 };
 
@@ -80,13 +85,6 @@ TEST_F(RoadTests, VEHICLE_TEST)
     testRoad->getLanes()[0]->removeVehicle(vehic1);
     EXPECT_TRUE(testRoad->isFree());
 }
-
-
-TEST_F(RoadTests, LANES_TEST)
-{
-
-}
-
 
 
 #endif //LNJPSE_PROJECT_ROADTESTS_H

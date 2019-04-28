@@ -76,6 +76,7 @@ Road* XmlParser::parseRoad(const pugi::xml_node& baan)
     int speedLimit = baan.child("snelheidslimiet").text().as_int();
     int length = baan.child("lengte").text().as_int();
     unsigned int laneCount = baan.child("Rijbanen").text().as_uint();
+    if(laneCount == (unsigned int) 0) laneCount = 1;
 
     return new Road(name, length, speedLimit, laneCount);
 }
@@ -90,7 +91,9 @@ Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* env
         unsigned int speed = voertuig.child("snelheid").text().as_uint() ;
         unsigned int position = voertuig.child("positie").text().as_uint();
 
-        return new Car(environment, licensePlate, currentRoad, acceleration, int(speed*3.6), position);
+        Car* newCar = new Car(environment, licensePlate, currentRoad, acceleration, int(speed*3.6), position);
+
+        return newCar;
     }
     return NULL;
 }
