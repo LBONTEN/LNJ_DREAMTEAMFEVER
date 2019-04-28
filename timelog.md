@@ -25,6 +25,8 @@ Joren Van Borm
 |---|---|---|
 | parser tests | 25/04 | +/- 3h 30 |
 | parser tests & typed vehicle simulation | 26/04 | 3h |
+| typed vehicle simulation | 27/04 | +/-1h 30' |
+| bus behavior & ascii representation | 28/04 | 2h 30' |
 
 Lenny Bontenakel
 ---
