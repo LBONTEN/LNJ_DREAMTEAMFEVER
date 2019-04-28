@@ -8,7 +8,9 @@
 
 #include "RoadSystem.h"
 
-enum printStyle {classic};
+enum printStyle
+        {classic,
+         text_graphic};
 
 struct Output {
     Output(RoadSystem* simulation);
@@ -19,6 +21,7 @@ struct Output {
     printStyle style;
     
     ostream& classicPrint(ostream& target) const;
+    ostream& textGraphicPrint(ostream& target, unsigned int maxChar=80) const;
 };
 
 
