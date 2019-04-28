@@ -82,14 +82,28 @@ Road* XmlParser::parseRoad(const pugi::xml_node& baan, RoadSystem* environment)
 Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* environment, Road* currentRoad)
 {
     string type = voertuig.child("type").text().as_string();
-    if(type == "AUTO")
+    
+    string licensePlate = voertuig.child("nummerplaat").text().as_string();
+    int acceleration = 0;
+    int speed = int (voertuig.child("snelheid").text().as_uint() / 3.6) ; // speed converted from km/h to m/s here
+    unsigned int position = voertuig.child("positie").text().as_uint();
+    
+    if (type == "MOTORFIETS")
     {
-        string licensePlate = voertuig.child("nummerplaat").text().as_string();
-        int acceleration = 0;
-        unsigned int speed = voertuig.child("snelheid").text().as_uint() ;
-        unsigned int position = voertuig.child("positie").text().as_uint();
-
-        return new Car(environment, licensePlate, currentRoad, acceleration, int(speed*3.6), position);
+        return new MotorCycle(environment, licensePlate, currentRoad, acceleration, speed, position);
     }
+    else if(type == "AUTO")
+    {
+        return new Car(environment, licensePlate, currentRoad, acceleration, speed, position);
+    }
+    else if (type == "BUS")
+    {
+        return new Bus(environment, licensePlate, currentRoad, acceleration, speed, position);
+    }
+    else if (type == "VRACHTWAGEN")
+    {
+        return new Truck(environment, licensePlate, currentRoad, acceleration, speed, position);
+    }
+    
     return NULL;
 }
