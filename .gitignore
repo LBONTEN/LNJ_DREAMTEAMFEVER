@@ -37,7 +37,5 @@
 # Ide_args file
 *.idea
 
-# Compiled binary file
-bin
-!bin/README.*
-
+# Compiled build folder
+build
