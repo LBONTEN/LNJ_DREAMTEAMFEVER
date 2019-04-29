@@ -61,11 +61,14 @@ bool DefaultVehicle::updateReady()
     return snapShot.prepared;
 }
 
-void DefaultVehicle::prepUpdate()
+void DefaultVehicle::prepUpdate() // TODO: change title to reflect functionality
 {
     REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
     
-    snapShot.setNextVeh(nextVeh());
+    stepPosition();
+    stepSpeed();
+    
+    snapShot.setNextVeh(nextVeh()); // TODO: snapshots have become useless due to update order
     snapShot.prepared = true;
     
     ENSURE(updateReady(), "DefaultVehicle failed to prepare update");
@@ -80,14 +83,12 @@ void DefaultVehicle::cancelPrep()
     ENSURE(!updateReady(), "DefaultVehicle failed to prepare update");
 }
 
-void DefaultVehicle::execUpdate()
+void DefaultVehicle::execUpdate() // TODO: change title to reflect functionality
 {
     REQUIRE(properlyInitialised(), "DefaultVehicle wasn't properly initialised");
     REQUIRE(updateReady(), "DefaultVehicle wasn't ready to update");
     REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "DefaultVehicle can't update in an inactive simulation");
     
-    stepPosition();
-    stepSpeed();
     stepAcceleration();
     snapShot.prepared = false;
     
@@ -126,7 +127,7 @@ void DefaultVehicle::stepAcceleration()
     }
     else
     {
-        unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
+        unsigned int targetDistance = 1 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
         unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
     
         newAcceleration = 0.5 * (actualDistance - targetDistance);
@@ -166,17 +167,7 @@ void DefaultVehicle::stepAcceleration()
 }
 
 void DefaultVehicle::stepSpeed() {
-    int newSpeed = getSpeed() + getAcceleration();
-    
-    if (newSpeed < limits->minSpd) {
-        newSpeed = limits->minSpd;
-    }
-    
-    if (newSpeed > limits->maxSpd) {
-        newSpeed = limits->maxSpd;
-    }
-    
-    hardSetSpeed(newSpeed);
+    hardSetSpeed(getSpeed() + getAcceleration());
 }
 
 void DefaultVehicle::stepPosition() {
