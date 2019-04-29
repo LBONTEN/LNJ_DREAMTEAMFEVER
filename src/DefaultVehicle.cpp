@@ -127,10 +127,10 @@ void DefaultVehicle::stepAcceleration()
     }
     else
     {
-        unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
+        unsigned int targetDistance = 0.75 * 3.6 * getSpeed() + minimumSpace;
         unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
     
-        newAcceleration = 0.5 * (actualDistance - targetDistance);
+        newAcceleration = 0.5 * ((long) actualDistance - (long) targetDistance);
     }
     
     // try to respect speed limits
@@ -176,7 +176,16 @@ void DefaultVehicle::stepPosition() {
     while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
         getCurrentLane()->removeVehicle(this);
-        hardSetLane(getCurrentRoad()->getConnection()->getLanes()[0]);
+        
+        if (getCurrentRoad()->getConnection())
+        {
+            hardSetLane(getCurrentRoad()->getConnection()->getLanes()[0]);
+        }
+        else
+        {
+            hardSetLane(NULL);
+        }
+        
         if (getCurrentLane()) getCurrentLane()->addVehicle(this);
     }
     
