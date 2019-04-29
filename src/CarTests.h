@@ -65,7 +65,7 @@ TEST_F(SoloCar, INIT_Full)
     EXPECT_FALSE(testCar->updateReady());
     
     EXPECT_TRUE(testCar->getEnv() == NULL);
-    EXPECT_TRUE(testCar->getCurrentRoad() == NULL);
+    EXPECT_TRUE(testCar->getCurrentLane() == NULL);
     
     EXPECT_TRUE(testCar->getAcceleration() == 1);
     EXPECT_TRUE(testCar->getSpeed() == 2);

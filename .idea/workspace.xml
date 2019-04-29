@@ -35,24 +35,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DefaultVehicle.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TypedVehicles.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TypedVehicles.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Car.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Car.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/DefaultVehicle.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CarTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Output.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Output.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vehicle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vehicle.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vehicle.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vehicle.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/VehicleTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/VehicleTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XMLParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XMLParserTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParserTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/timelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/timelog.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -71,8 +56,8 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/Vehicle.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="415">
-                    <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
+                  <state relative-caret-position="538">
+                    <caret line="28" selection-start-line="28" selection-end-line="28" />
                   </state>
                 </provider>
               </entry>
@@ -80,8 +65,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/VehicleTests.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="2440">
-                    <caret line="155" column="51" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
+                  <state relative-caret-position="1515">
+                    <caret line="150" column="4" lean-forward="true" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
                     <folding>
                       <element signature="e#112#136#0" expanded="true" />
                     </folding>
@@ -131,8 +116,8 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/CarTests.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="275">
-                    <caret line="55" selection-start-line="55" selection-end-line="55" />
+                  <state relative-caret-position="410">
+                    <caret line="49" column="51" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
                     <folding>
                       <element signature="e#120#143#0" expanded="true" />
                     </folding>
@@ -151,10 +136,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
+            <state relative-caret-position="317">
               <caret line="250" selection-start-line="250" selection-end-line="250" />
               <folding>
                 <element signature="e#65#82#0" expanded="true" />
@@ -164,27 +149,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Vehicle.cpp">
+        <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/internal/gtest-internal.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="117">
-              <caret line="212" selection-start-line="212" selection-end-line="212" />
+            <state relative-caret-position="214">
+              <caret line="453" selection-start-line="453" selection-end-line="453" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.h">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Vehicle.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-              <folding>
-                <element signature="e#111#130#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="169">
+              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
             </state>
           </provider>
         </entry>
@@ -202,37 +179,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Output.cpp">
+        <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/gtest.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="131" column="47" selection-start-line="131" selection-start-column="47" selection-end-line="131" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TypedVehicles.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1188">
-              <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/RoadSystem.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1610">
-              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            <state relative-caret-position="23">
+              <caret line="264" selection-start-line="264" selection-end-line="264" />
             </state>
           </provider>
         </entry>
@@ -271,12 +221,12 @@
         <option value="$PROJECT_DIR$/src/XMLParserTests.h" />
         <option value="$PROJECT_DIR$/src/TypedVehicles.cpp" />
         <option value="$PROJECT_DIR$/src/Vehicle.h" />
-        <option value="$PROJECT_DIR$/src/Vehicle.cpp" />
-        <option value="$PROJECT_DIR$/src/CarTests.h" />
         <option value="$PROJECT_DIR$/src/Output.cpp" />
         <option value="$PROJECT_DIR$/src/DefaultVehicle.cpp" />
-        <option value="$PROJECT_DIR$/src/VehicleTests.h" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/src/CarTests.h" />
+        <option value="$PROJECT_DIR$/src/VehicleTests.h" />
+        <option value="$PROJECT_DIR$/src/Vehicle.cpp" />
       </list>
     </option>
   </component>
@@ -329,32 +279,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.SoloVehicle.INIT_Default">
-    <configuration name="ParseTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_MODE="SUITE_TEST">
+  <component name="RunManager" selected="Application.LNJPSE_DEBUG">
+    <configuration name="InSystemVehicle.SETGET_HappyDay" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="InSystemVehicle" TEST_METHOD="SETGET_HappyDay" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParseTest.BASE_Road" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_METHOD="BASE_Road" TEST_MODE="SUITE_TEST">
+    <configuration name="SoloCar.UPDATE_Null" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloCar" TEST_METHOD="UPDATE_Null" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RoadTests.VEHICLE_TEST" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="RoadTests" TEST_METHOD="VEHICLE_TEST" TEST_MODE="SUITE_TEST">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-        <option name="BeforeTestRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SoloCar.INIT_Full" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloCar" TEST_METHOD="INIT_Full" TEST_MODE="SUITE_TEST">
+    <configuration name="SoloVehicle.INIT_Base" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloVehicle" TEST_METHOD="INIT_Base" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="SoloVehicle.INIT_Default" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloVehicle" TEST_METHOD="INIT_Default" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoloVehicle.INIT_Full" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloVehicle" TEST_METHOD="INIT_Full" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -373,19 +323,19 @@
     <list>
       <item itemvalue="Application.LNJPSE" />
       <item itemvalue="Application.LNJPSE_DEBUG" />
-      <item itemvalue="Google Test.RoadTests.VEHICLE_TEST" />
-      <item itemvalue="Google Test.ParseTest" />
-      <item itemvalue="Google Test.SoloCar.INIT_Full" />
-      <item itemvalue="Google Test.ParseTest.BASE_Road" />
       <item itemvalue="Google Test.SoloVehicle.INIT_Default" />
+      <item itemvalue="Google Test.SoloVehicle.INIT_Base" />
+      <item itemvalue="Google Test.SoloVehicle.INIT_Full" />
+      <item itemvalue="Google Test.SoloCar.UPDATE_Null" />
+      <item itemvalue="Google Test.InSystemVehicle.SETGET_HappyDay" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.InSystemVehicle.SETGET_HappyDay" />
+        <item itemvalue="Google Test.SoloCar.UPDATE_Null" />
+        <item itemvalue="Google Test.SoloVehicle.INIT_Full" />
+        <item itemvalue="Google Test.SoloVehicle.INIT_Base" />
         <item itemvalue="Google Test.SoloVehicle.INIT_Default" />
-        <item itemvalue="Google Test.ParseTest" />
-        <item itemvalue="Google Test.ParseTest.BASE_Road" />
-        <item itemvalue="Google Test.SoloCar.INIT_Full" />
-        <item itemvalue="Google Test.RoadTests.VEHICLE_TEST" />
       </list>
     </recent_temporary>
   </component>
@@ -421,7 +371,7 @@
       <workItem from="1556442953166" duration="3483000" />
       <workItem from="1556479513163" duration="316000" />
       <workItem from="1556479842812" duration="1517000" />
-      <workItem from="1556526828462" duration="3258000" />
+      <workItem from="1556526828462" duration="7911000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -525,50 +475,51 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParseTest - 2019.04.28 at 01h 57m 42s.xml">
-      <configuration name="ParseTest" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RoadTests - 2019.04.28 at 01h 57m 53s.xml">
-      <configuration name="RoadTests" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RoadTests_VEHICLE_TEST - 2019.04.28 at 02h 05m 09s.xml">
-      <configuration name="RoadTests.VEHICLE_TEST" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RoadTests_VEHICLE_TEST - 2019.04.28 at 02h 06m 47s.xml">
-      <configuration name="RoadTests.VEHICLE_TEST" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RoadTests_VEHICLE_TEST - 2019.04.28 at 02h 07m 57s.xml">
-      <configuration name="RoadTests.VEHICLE_TEST" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="SoloCar_INIT_Full - 2019.04.28 at 02h 11m 37s.xml">
-      <configuration name="SoloCar.INIT_Full" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ParseTest - 2019.04.28 at 11h 44m 24s.xml">
-      <configuration name="ParseTest" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="ParseTest_BASE_Road - 2019.04.28 at 11h 44m 48s.xml">
-      <configuration name="ParseTest.BASE_Road" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="ParseTest - 2019.04.28 at 11h 44m 56s.xml">
       <configuration name="ParseTest" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
     <history-entry file="ParseTest - 2019.04.28 at 11h 58m 06s.xml">
       <configuration name="ParseTest" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="SoloVehicle_INIT_Default - 2019.04.29 at 11h 36m 56s.xml">
+      <configuration name="SoloVehicle.INIT_Default" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloVehicle_INIT_Base - 2019.04.29 at 12h 28m 34s.xml">
+      <configuration name="SoloVehicle.INIT_Base" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloVehicle_INIT_Base - 2019.04.29 at 12h 30m 30s.xml">
+      <configuration name="SoloVehicle.INIT_Base" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloVehicle_INIT_Default - 2019.04.29 at 12h 31m 49s.xml">
+      <configuration name="SoloVehicle.INIT_Default" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloVehicle_INIT_Base - 2019.04.29 at 12h 31m 55s.xml">
+      <configuration name="SoloVehicle.INIT_Base" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloVehicle_INIT_Full - 2019.04.29 at 12h 41m 07s.xml">
+      <configuration name="SoloVehicle.INIT_Full" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="SoloCar_UPDATE_Null - 2019.04.29 at 12h 53m 18s.xml">
+      <configuration name="SoloCar.UPDATE_Null" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="InSystemVehicle_SETGET_HappyDay - 2019.04.29 at 13h 00m 24s.xml">
+      <configuration name="InSystemVehicle.SETGET_HappyDay" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123295000" />
+    <option name="totallyTimeSpent" value="127948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="33" width="960" height="1047" extended-state="5" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.25164837" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.25164837" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5922836" />
-      <window_info active="true" anchor="bottom" x="0" y="70" width="960" height="1010" id="Debug" order="3" type="WINDOWED" visible="true" weight="0.42137095" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35557872" />
+      <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.42127216" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -578,7 +529,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50255364" side_tool="true" weight="0.6037539" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.3295099" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" visible="true" weight="0.5901981" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" weight="0.55265903" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -678,6 +629,31 @@
           <line>52</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/VehicleTests.h</url>
+          <line>87</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/VehicleTests.h</url>
+          <line>68</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/VehicleTests.h</url>
+          <line>57</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/CarTests.h</url>
+          <line>75</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/VehicleTests.h</url>
+          <line>141</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -752,59 +728,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/internal/gtest-internal.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10419">
-          <caret line="453" selection-start-line="453" selection-end-line="453" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/gtest.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="264" selection-start-line="264" selection-end-line="264" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/8/bits/stl_vector.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21781">
           <caret line="947" selection-start-line="947" selection-end-line="947" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8/ext/new_allocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1840">
-          <caret line="80" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4715">
-          <caret line="205" selection-start-line="205" selection-end-line="205" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8/bits/basic_string.tcc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5313">
-          <caret line="231" selection-start-line="231" selection-end-line="231" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8/bits/stl_iterator_base_funcs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3151">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8/bits/char_traits.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6532">
-          <caret line="284" selection-start-line="284" selection-end-line="284" />
         </state>
       </provider>
     </entry>
@@ -861,23 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Vehicle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CarTests.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#120#143#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Output.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1056">
@@ -905,6 +815,92 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/internal/gtest-internal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="453" selection-start-line="453" selection-end-line="453" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8/bits/stl_iterator_base_funcs.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="596">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8/bits/basic_string.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="380" selection-start-line="380" selection-end-line="380" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8/bits/char_traits.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="361" column="57" lean-forward="true" selection-start-line="361" selection-start-column="57" selection-end-line="361" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8/bits/basic_string.tcc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="231" selection-start-line="231" selection-end-line="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8/ext/new_allocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gtest/include/gtest/gtest.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="264" selection-start-line="264" selection-end-line="264" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="250" selection-start-line="250" selection-end-line="250" />
+          <folding>
+            <element signature="e#65#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CarTests.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="49" column="51" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
+          <folding>
+            <element signature="e#120#143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Vehicle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/VehicleTests.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="150" column="4" lean-forward="true" selection-start-line="150" selection-start-column="4" selection-end-line="150" selection-end-column="4" />
+          <folding>
+            <element signature="e#112#136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tests.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -915,30 +911,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/VehicleTests.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2440">
-          <caret line="155" column="51" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
-          <folding>
-            <element signature="e#112#136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Vehicle.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="250" selection-start-line="250" selection-end-line="250" />
-          <folding>
-            <element signature="e#65#82#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="169">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
         </state>
       </provider>
     </entry>
