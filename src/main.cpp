@@ -33,7 +33,16 @@ int main(int argc, char** argv)
         if (rs->timeActive() % 10 == 0)
         {
             std::cout << "After " << rs->timeActive() << " iterations" << std::endl;
-            std::cout << print << "~====~" << std::endl;
+            
+            print.textGraphicPrint(std::cout, 100) << endl;
+            
+            const vector<Vehicle*> tmp = rs->getVectorOfVehicles();
+            for (vector<Vehicle*>::const_iterator it = tmp.begin(); it != tmp.end(); it++)
+            {
+                cout << (*it)->getTypeName() << " : " << "a=" << (*it)->getAcceleration() << " v=" << (*it)->getSpeed() << " x=" << (*it)->getPosition() << std::endl;
+            }
+            
+            std::cout << "~====~" << std::endl;
         }
     }
     
