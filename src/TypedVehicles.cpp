@@ -35,13 +35,13 @@ MotorCycle::MotorCycle() :
 }
 
 MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Car", stdCarLength, &stdCarLimits)
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "MotorCycle", stdMotorCycleLength, &stdMotorCycleLimits)
 {
 }
 
 MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
                        int speed, unsigned int position) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Car", stdCarLength, &stdCarLimits)
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "MotorCycle", stdMotorCycleLength, &stdMotorCycleLimits)
 {
 }
 
@@ -77,14 +77,14 @@ Bus::Bus() :
 }
 
 Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Car", stdCarLength, &stdCarLimits),
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Bus", stdBusLength, &stdBusLimits),
         busStopCooldown(30)
 {
 }
 
 Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
              int speed, unsigned int position) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Car", stdCarLength, &stdCarLimits),
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Bus", stdBusLength, &stdBusLimits),
         busStopCooldown(30)
 {
 }
@@ -136,12 +136,12 @@ Truck::Truck() :
 }
 
 Truck::Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Car", stdCarLength, &stdCarLimits)
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Truck", stdTruckLength, &stdTruckLimits)
 {
 }
 
 Truck::Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
                        int speed, unsigned int position) :
-        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Car", stdCarLength, &stdCarLimits)
+        DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Truck", stdTruckLength, &stdTruckLimits)
 {
 }
