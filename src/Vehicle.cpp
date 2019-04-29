@@ -233,7 +233,7 @@ Vehicle* Vehicle::nextVeh() {
     
     Vehicle* next = currentLane->getCarOnPosition(getPosition(), false);
     
-    Lane* ln;
+    Lane* ln = NULL;
     
     if (getCurrentRoad()->getConnection())
     {
