@@ -35,7 +35,7 @@
 *.DS_Store
 
 # Ide_args file
-*/.idea
+*.idea
 
 # Compiled binary file
 bin
