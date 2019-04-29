@@ -4,7 +4,7 @@
 #include "RoadSystem.h"
 #include <iostream>
 
-extern const unsigned int minimumSpace= 200;
+extern const unsigned int minimumSpace= 2;
 
 
 /*  Road functions ---------------------------------------------------- */
@@ -127,7 +127,7 @@ const vector<Lane*>& Road::getLanes() const
 }
 
 
-/*  Lane functions ---------------------------------------------- */
+/**  Lane functions ---------------------------------------------- **/
 
 Lane::Lane(Road* parentRoad) :
     parentRoad(parentRoad)
