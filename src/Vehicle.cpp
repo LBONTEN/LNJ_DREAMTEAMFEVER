@@ -27,12 +27,20 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
 {
     REQUIRE(limits != NULL, "Vehicle limits must be set");
 
-    if(currentRoad != NULL) currentLane = currentRoad->getLanes()[0]   ;
+    if(currentRoad != NULL) currentLane = currentRoad->getLanes()[0];
+    else currentLane = NULL;
 
     ENSURE(properlyInitialised(), "Car constructor failed");
-    ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
-            "Car constructor failed to assign variable(s)");
-    ENSURE(getAcceleration()==0 && getSpeed()==0 && getPosition()==0, "Car constructor failed to assign kinetic information");
+    ENSURE(getEnv()==environment &&
+           getLicensePlate()==licensePlate &&
+           getLen()==length &&
+           getLimits()==limits &&
+           getCurrentRoad() == currentRoad,
+           "Car constructor failed to assign variable(s)");
+    ENSURE(getAcceleration()==0 &&
+           getSpeed()==0 &&
+           getPosition()==0,
+           "Car constructor failed to assign kinetic information");
 }
 
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration, int speed,
@@ -57,7 +65,10 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
            getLimits() == limits &&
            getCurrentRoad() == currentRoad,
            "Car constructor failed to assign variable(s)");
-    ENSURE(getAcceleration()==acceleration && getSpeed()==speed && getPosition()==position, "Car constructor failed to assign kinetic information");
+    ENSURE(getAcceleration()==acceleration &&
+           getSpeed()==speed &&
+           getPosition()==position,
+           "Car constructor failed to assign kinetic information");
 }
 
 Vehicle::~Vehicle()
@@ -177,6 +188,7 @@ string Vehicle::getLicensePlate() const {
 }
 Road* Vehicle::getCurrentRoad() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    if (currentLane == NULL) return NULL;
     return currentLane->getParentRoad();
 }
 Lane* Vehicle::getCurrentLane() const{

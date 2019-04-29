@@ -154,7 +154,6 @@ TEST_F(InSystemVehicle, SETGET_HappyDay)
     
     testVeh->setLane(NULL);
     EXPECT_TRUE(testVeh->getCurrentLane() == NULL);
-    EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
     EXPECT_TRUE(road->getLanes()[0]->getVehicle(testVeh->getLicensePlate()) == NULL);
 }
 
