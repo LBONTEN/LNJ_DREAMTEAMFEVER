@@ -26,7 +26,7 @@ protected:
     Car* testCar;
 };
 
-//TODO We should test Vehicles on a Road, but with system == NULL, at the time of writing this, this causes SIGSEGV
+
 TEST_F(SoloCar, INIT_Default)
 {
     delete testCar;
@@ -136,26 +136,40 @@ TEST_F(InSystemCar, UPDATE_Base)
 
 TEST_F(InSystemCar, UPDATE_Complex)
 {
-    Car* otherCar = new Car(system, "0h-lok4 cR", road, 0, 0, 1000);
+    Car* otherCar = new Car(system, "0h-lok4 cR", road, 0, 0, 200);
     
     system->addVehicle(otherCar);
     road->getLanes()[0]->addVehicle(otherCar);
     
     system->activate();
     
-    while(otherCar->getPosition() - otherCar->getLen() - testCar->getPosition() < minimumSpace) {
+    while(otherCar->getPosition() - otherCar->getLen() - testCar->getPosition() > minimumSpace)
+    {
+        testCar->prepUpdate();
         
         int actualD = otherCar->getPosition() - otherCar->getLen() - testCar->getPosition();
-        int idealD = 0.75 * testCar->getSpeed() + otherCar->getLen() + minimumSpace;
+        int idealD = 0.75 * 3.6 * testCar->getSpeed() + minimumSpace;
         
         int expectedAcc = 0.5 * (actualD - idealD);
+    
+        if (testCar->getCurrentRoad() and testCar->getSpeed()+expectedAcc > road->getSpeedLimit())
+        {
+            expectedAcc = road->getSpeedLimit() - testCar->getSpeed();
+        }
+        if (testCar->getSpeed()+expectedAcc > testCar->getLimits()->maxSpd)
+        {
+            expectedAcc = testCar->getLimits()->maxSpd - testCar->getSpeed();
+        }
+        if (testCar->getSpeed()+expectedAcc < testCar->getLimits()->minSpd)
+        {
+            expectedAcc = testCar->getLimits()->minSpd - testCar->getSpeed();
+        }
         expectedAcc = min(expectedAcc, stdCarLimits.maxAcc);
         expectedAcc = max(expectedAcc, stdCarLimits.minAcc);
         
-        testCar->prepUpdate();
         testCar->execUpdate();
-    
-        EXPECT_TRUE(testCar->getAcceleration() == expectedAcc);
+        
+        EXPECT_EQ(expectedAcc, testCar->getAcceleration());
     }
     
     delete otherCar;
