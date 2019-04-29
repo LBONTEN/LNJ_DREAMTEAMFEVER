@@ -43,7 +43,7 @@ DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePla
 
 DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
                  std::string typeName, unsigned int len, const VehicleLimits* limits) :
-        Vehicle::Vehicle(environment, licensePlate, stdCarLength, &stdCarLimits, currentRoad, acceleration, speed, position),
+        Vehicle::Vehicle(environment, licensePlate, len, limits, currentRoad, acceleration, speed, position),
         snapShot()
 {
     REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
@@ -116,22 +116,39 @@ void DefaultVehicle::fullStop(unsigned int distance)
     }
 }
 
-void DefaultVehicle::stepAcceleration() {
-    if (snapShot.nextVehCopy == NULL) {
-        hardSetAcceleration(limits->maxAcc);
-        return;
+void DefaultVehicle::stepAcceleration()
+{
+    int newAcceleration;
+    
+    if (snapShot.nextVehCopy == NULL)
+    {
+        newAcceleration = limits->maxAcc;
+    }
+    else
+    {
+        unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
+        unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
+    
+        newAcceleration = 0.5 * (actualDistance - targetDistance);
     }
     
-    unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
-    unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
-    
-    int newAcceleration = 0.5 * (actualDistance - targetDistance);
-    
+    // try to respect speed limits
     if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getMaximumSpeed())
     {
         newAcceleration = getCurrentRoad()->getMaximumSpeed() - getSpeed();
     }
     
+    if (getSpeed()+newAcceleration > limits->maxSpd)
+    {
+        newAcceleration = limits->maxSpd - getSpeed();
+    }
+    
+    if (getSpeed()+newAcceleration < limits->minSpd)
+    {
+        newAcceleration = limits->minSpd - getSpeed();
+    }
+    
+    // force to respect acceleration limits
     if (newAcceleration < limits->minAcc)
     {
         newAcceleration = limits->minAcc;
