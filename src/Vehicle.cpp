@@ -221,12 +221,12 @@ Vehicle* Vehicle::nextVeh() {
     
     Vehicle* next = currentLane->getCarOnPosition(getPosition(), false);
     
-    Lane* rd = getCurrentRoad()->getConnection()->getLanes()[0];
+    Lane* ln = getCurrentRoad()->getConnection()->getLanes()[0];
     
-    while (!next and rd)
+    while (!next and ln)
     {
-        next = rd->getCarOnPosition(0, true);
-        rd = rd->getParentRoad()->getConnection()->getLanes()[0];
+        next = ln->getCarOnPosition(0, true);
+        ln = ln->getParentRoad()->getConnection()->getLanes()[0];
     }
     
     return next;
