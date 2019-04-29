@@ -20,6 +20,7 @@ int main(int argc, char** argv)
     XmlParser xmlp;
     RoadSystem* rs = xmlp.parseRoadSystem(argv[1]);
     Output print (rs);
+    print.style = text_graphic;
     
     std::cout << "Initial situation:" << std::endl;
     std::cout << print << "~====~" << std::endl;

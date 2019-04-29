@@ -1,43 +1,38 @@
 //
-// Created by Joren Van Borm & Lenny Bontenakel
+// Created by Joren Van Borm on 2019-04-26.
 //
 
-#ifndef LNJPSE_CAR_H
-#define LNJPSE_CAR_H
+#ifndef LNJPSE_PROJECT_DEFAULTVEHICLE_H
+#define LNJPSE_PROJECT_DEFAULTVEHICLE_H
 
 
 #include "Vehicle.h"
 
 
-///--- global variables (declarations) ---///
-
-extern const unsigned int stdCarLength;
-
-extern const VehicleLimits stdCarLimits;
-
-
-///--- Classes ---///
-
-class Car: public Vehicle {
+class DefaultVehicle : public Vehicle {
 public:
     /**
      * Default constructor
      * @ENSURE NOT properly initialised, get typename = Car
      */
-    Car();
+    DefaultVehicle();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
+     * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
      * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get <acc/spd/pos> = 0, NOT update ready
      */
-    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
+    DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
+            std::string typeName, unsigned int len, const VehicleLimits* limits);
     
     /**
      * Maximal constructor
+     * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
      * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, NOT update ready
      */
-    Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
+    DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
+            std::string typeName, unsigned int len, const VehicleLimits* limits);
     
     
     /**
@@ -67,7 +62,9 @@ public:
      */
     virtual void execUpdate();
 
-private:
+protected:
+    void fullStop(unsigned int distance);
+    
     void stepAcceleration();
     void stepSpeed();
     void stepPosition();
@@ -76,4 +73,4 @@ private:
 };
 
 
-#endif //LNJPSE_CAR_H
+#endif //LNJPSE_PROJECT_DEFAULTVEHICLE_H

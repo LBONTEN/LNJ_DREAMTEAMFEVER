@@ -6,6 +6,8 @@
 #include "Vehicle.h"
 #include "Road.h"
 
+#include <vector>
+
 
 ///--- helper functions ---///
 
@@ -63,6 +65,59 @@ ostream& operator<<(ostream& target, const Output& print)
     {
         case classic:
             return print.classicPrint(target);
+    
+        case text_graphic:
+            return print.textGraphicPrint(target);
     }
+    return target;
+}
+
+ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
+{
+    vector<Road*> rdVec = simulation->getVectorOfRoads();
+    
+    // find the longest road to determine scale
+    unsigned int longestD = 0;
+    unsigned long longestName = 0;
+    for (unsigned long rdNum = 0; rdNum < rdVec.size(); ++rdNum)
+    {
+        longestD =  (rdVec[rdNum]->getLength() > longestD) ? rdVec[rdNum]->getLength() : longestD;
+        longestName = (rdVec[rdNum]->getName().size() > longestName) ? rdVec[rdNum]->getName().size() : longestName;
+    }
+    unsigned int metresPerChar = max((unsigned int) (longestD / maxChar), (unsigned int) 1);
+    
+    // print each road
+    for (unsigned long rdNum = 0; rdNum < rdVec.size(); ++rdNum)
+    {
+        Road* currRd = rdVec[rdNum];
+        
+        target << currRd->getName() << string (longestName - currRd->getName().size() + 1, ' ') << "| ";
+        
+        
+        // print each step of the road
+        unsigned int currPos = 0;
+        do {
+            Vehicle* foundVeh = currRd->getLanes()[0]->getCarOnPosition(currPos, true);
+            
+            if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
+            {
+                if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
+                else if (foundVeh->getTypeName() == "Car") target << 'A';
+                else if (foundVeh->getTypeName() == "Bus") target << 'B';
+                else if (foundVeh->getTypeName() == "Truck") target << 'V';
+                else target << '?';
+            }
+            else
+            {
+                target << '=';
+            }
+            
+            currPos += metresPerChar;
+        }
+        while (currPos <= currRd->getLength());
+        
+        target << endl;
+    }
+    
     return target;
 }

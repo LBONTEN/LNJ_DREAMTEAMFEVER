@@ -6,7 +6,7 @@
 #define LNJPSE_VEHICLETESTS_H
 
 #include <gtest/gtest.h>
-#include "Car.h"
+#include "TypedVehicles.h"
 #include "Vehicle.h"
 #include "RoadSystem.h"
 #include "Road.h"
@@ -152,7 +152,8 @@ TEST_F(InSystemVehicle, SETGET_HappyDay)
     testVeh->setPosition(5);
     EXPECT_TRUE(testVeh->getPosition() == 5);
     
-    testVeh->setRoad(NULL);
+    testVeh->setLane(NULL);
+    EXPECT_TRUE(testVeh->getCurrentLane() == NULL);
     EXPECT_TRUE(testVeh->getCurrentRoad() == NULL);
     EXPECT_TRUE(road->getLanes()[0]->getVehicle(testVeh->getLicensePlate()) == NULL);
 }

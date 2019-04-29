@@ -104,8 +104,8 @@ TEST_F(ParseTest, BASE_Car)
         {
             EXPECT_EQ("Car", veh->getTypeName());
             EXPECT_EQ((unsigned int) 100, veh->getPosition());
-            EXPECT_EQ((int) 10*3.6, veh->getSpeed());
-    
+            EXPECT_EQ(int (10/3.6), veh->getSpeed());
+
             const Road* road = veh->getCurrentRoad();
             ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E42", road->getName());

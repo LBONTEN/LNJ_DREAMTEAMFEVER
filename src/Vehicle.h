@@ -54,13 +54,13 @@ struct VehicleSnap {
 
 struct SimulationInfo {
 public:
-    SimulationInfo() : prepared(false), nextCarCopy(NULL) {}
-    virtual ~SimulationInfo() {delete nextCarCopy;}
+    SimulationInfo() : prepared(false), nextVehCopy(NULL) {}
+    virtual ~SimulationInfo() {delete nextVehCopy;}
     
-    void setNextCar(Vehicle* vehicle);
+    void setNextVeh(Vehicle* vehicle);
     
     bool prepared;
-    VehicleSnap* nextCarCopy;
+    VehicleSnap* nextVehCopy;
 };
 
 
@@ -167,7 +167,6 @@ public:
 
 protected:
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
-    void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
     void hardSetLane(Lane* newLane) { Vehicle::currentLane = newLane; }
     void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
     void hardSetSpeed(int speed) { Vehicle::speed = speed; }
@@ -180,7 +179,6 @@ protected:
 
 private:
     string licensePlate;
-    Road* currentRoad;
     Lane* currentLane;
     int acceleration;
     int speed;

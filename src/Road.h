@@ -2,7 +2,7 @@
  */
 
 #include "Vehicle.h"
-#include "Car.h"
+#include "TypedVehicles.h"
 #include "design_by_contract.h"
 
 #include <vector>
