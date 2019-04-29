@@ -39,6 +39,8 @@ TEST_F(ParseTest, BASE_Road)
 {
     system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads_empty.xml");
     
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
+    
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
     EXPECT_EQ((unsigned long) 2, parsedRoads.size());
@@ -74,6 +76,8 @@ TEST_F(ParseTest, BASE_Road)
 TEST_F(ParseTest, BASE_Car)
 {
     system = parser->parseRoadSystem("../IO/TEST_IO/disconnected_roads.xml");
+    
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
@@ -142,6 +146,8 @@ TEST_F(ParseTest, NETWORK_Tree)
 {
     system = parser->parseRoadSystem("../IO/TEST_IO/tree_connection.xml");
     
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
+    
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
     ASSERT_EQ((unsigned long) 3, parsedRoads.size());
@@ -178,6 +184,8 @@ TEST_F(ParseTest, NETWORK_Tree)
 TEST_F(ParseTest, NETWORK_Loop)
 {
     system = parser->parseRoadSystem("../IO/TEST_IO/loop_connection.xml");
+    
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
