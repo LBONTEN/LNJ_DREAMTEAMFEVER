@@ -38,6 +38,4 @@
 */.idea
 
 # Compiled binary file
-bin
-!bin/README.*
-
+build
