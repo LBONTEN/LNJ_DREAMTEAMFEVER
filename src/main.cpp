@@ -25,7 +25,17 @@ int main(int argc, char** argv)
     std::cout << "Initial situation:" << std::endl;
     std::cout << print << "~====~" << std::endl;
     
-    rs->untilEmpty();
+    rs->activate();
+    
+    while (!rs->empty())
+    {
+        rs->advanceSimulation();
+        if (rs->timeActive() % 10 == 0)
+        {
+            std::cout << "After " << rs->timeActive() << " iterations" << std::endl;
+            std::cout << print << "~====~" << std::endl;
+        }
+    }
     
     std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
     std::cout << print << "~====~" << std::endl;
