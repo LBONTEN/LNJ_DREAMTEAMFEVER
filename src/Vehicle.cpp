@@ -198,7 +198,18 @@ Vehicle* Vehicle::nextVeh() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
 
     if (currentRoad == NULL) return NULL;
-    return currentRoad->getCarOnPosition(getPosition(), false);
+    
+    Vehicle* next = currentRoad->getCarOnPosition(getPosition(), false);
+    
+    Road* rd = currentRoad->getConnection();
+    
+    while (!next and rd)
+    {
+        next = rd->getCarOnPosition(0, true);
+        rd = rd->getConnection();
+    }
+    
+    return next;
 }
 
 
