@@ -18,17 +18,17 @@ Vehicle::Vehicle() : selfPtr(NULL)
 Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad) :
                  limits(limits),
                  licensePlate(licensePlate),
-                 currentRoad(currentRoad),
                  acceleration(0),
                  speed(0),
                  position(0),
                  len(length),
-                 environment(environment)
+                 environment(environment),
+                 selfPtr(this)
 {
     REQUIRE(limits != NULL, "Vehicle limits must be set");
-    
-    selfPtr = this;
-    
+
+    if(currentRoad != NULL) currentLane = currentRoad->getLanes()[0]   ;
+
     ENSURE(properlyInitialised(), "Car constructor failed");
     ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
             "Car constructor failed to assign variable(s)");
@@ -39,7 +39,6 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
                  unsigned int position) :
                  limits(limits),
                  licensePlate(licensePlate),
-                 currentRoad(currentRoad),
                  acceleration(acceleration),
                  speed(speed),
                  position(position),
@@ -48,9 +47,15 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
                  selfPtr(this)
 {
     REQUIRE(limits != NULL, "Vehicle limits must be set");
-    
+
+    if(currentRoad != NULL) currentLane = currentRoad->getLanes()[0];
+
     ENSURE(properlyInitialised(), "Car constructor failed");
-    ENSURE(getEnv()==environment && getLicensePlate()==licensePlate && getLen()==length && getLimits()==limits && getCurrentRoad()==currentRoad,
+    ENSURE(getEnv() == environment &&
+           getLicensePlate() == licensePlate &&
+           getLen() == length &&
+           getLimits() == limits &&
+           getCurrentRoad() == currentRoad,
            "Car constructor failed to assign variable(s)");
     ENSURE(getAcceleration()==acceleration && getSpeed()==speed && getPosition()==position, "Car constructor failed to assign kinetic information");
 }
@@ -58,16 +63,16 @@ Vehicle::Vehicle(RoadSystem* environment, const string& licensePlate, unsigned i
 Vehicle::~Vehicle()
 {
     // can't use getters here in case vehicle isn't initialised
-    if (currentRoad != NULL)
+    if (currentLane != NULL)
     {
-        currentRoad->removeVehicle(this);
-        ENSURE(!currentRoad->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
+        currentLane->removeVehicle(this);
+        ENSURE(!getCurrentLane()->getVehicle(this->getLicensePlate()), "Vehicle destructor failed to remove self from road");
     }
     
     if (environment != NULL)
     {
         environment->removeVehicle(this);
-        ENSURE(!environment->contains(this), "Vehicle destructor failed to remove self from road system");
+        ENSURE(!getEnv()->contains(this), "Vehicle destructor failed to remove self from road system");
     }
 }
 
@@ -79,14 +84,26 @@ void Vehicle::setLicensePlate(const string& licensePlate) {
     
     ENSURE(getLicensePlate() == licensePlate, "Failed to set licenceplate");
 }
-void Vehicle::setRoad(Road* newRoad) {
+void Vehicle::setLane(Lane* newLane)
+{
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
-    
-    getCurrentRoad()->removeVehicle(this);
-    hardSetRoad(newRoad);
-    
-    ENSURE(getCurrentRoad() == newRoad, "Failed to set road");
+    if (getEnv() != NULL) REQUIRE(!getEnv()->simulationActive(), "Can't use setters while simulation active");
+
+    if(newLane == NULL)
+    {
+        currentLane->removeVehicle(this);
+        currentLane = NULL;
+    }
+    else
+    {
+        if (currentLane == NULL) currentLane = newLane;
+        else
+        {
+            currentLane->removeVehicle(this);
+            hardSetLane(newLane);
+        }
+    }
+    ENSURE(getCurrentLane() == newLane, "Failed to set lane");
 }
 void Vehicle::setAcceleration(int acceleration) {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
@@ -116,8 +133,8 @@ void Vehicle::setSpeed(int speed) {
         speed = limits->maxSpd;
     }
     
-    if (getCurrentRoad() and speed > getCurrentRoad()->getMaximumSpeed()) {
-        speed = getCurrentRoad()->getMaximumSpeed();
+    if (getCurrentRoad() and speed > getCurrentRoad()->getSpeedLimit()) {
+        speed = getCurrentRoad()->getSpeedLimit();
     }
     
     hardSetSpeed(speed);
@@ -160,7 +177,11 @@ string Vehicle::getLicensePlate() const {
 }
 Road* Vehicle::getCurrentRoad() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
-    return currentRoad;
+    return currentLane->getParentRoad();
+}
+Lane* Vehicle::getCurrentLane() const{
+    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    return currentLane;
 }
 int Vehicle::getAcceleration() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
@@ -183,8 +204,7 @@ const VehicleLimits* Vehicle::getLimits() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return limits;
 }
-const string& Vehicle::getTypeName() const
-{
+const string& Vehicle::getTypeName() const {
     return typeName;
 }
 
@@ -197,16 +217,16 @@ bool Vehicle::properlyInitialised() const {
 Vehicle* Vehicle::nextVeh() {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
 
-    if (currentRoad == NULL) return NULL;
+    if (currentLane == NULL) return NULL;
     
-    Vehicle* next = currentRoad->getCarOnPosition(getPosition(), false);
+    Vehicle* next = currentLane->getCarOnPosition(getPosition(), false);
     
-    Road* rd = currentRoad->getConnection();
+    Lane* rd = getCurrentRoad()->getConnection()->getLanes()[0];
     
     while (!next and rd)
     {
         next = rd->getCarOnPosition(0, true);
-        rd = rd->getConnection();
+        rd = rd->getParentRoad()->getConnection()->getLanes()[0];
     }
     
     return next;

@@ -95,7 +95,7 @@ void DefaultVehicle::execUpdate() // TODO: change title to reflect functionality
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "DefaultVehicle acceleration out of range");
     ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
-    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getMaximumSpeed(), "DefaultVehicle speed out of range");
+    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getSpeedLimit(), "DefaultVehicle speed out of range");
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
@@ -103,9 +103,9 @@ void DefaultVehicle::fullStop(unsigned int distance)
 {
     int newAcceleration = - getSpeed()*getSpeed() / distance;
     
-    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getMaximumSpeed())
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit())
     {
-        newAcceleration = getCurrentRoad()->getMaximumSpeed() - getSpeed();
+        newAcceleration = getCurrentRoad()->getSpeedLimit() - getSpeed();
     }
     
     if (newAcceleration < limits->minAcc) {
@@ -134,9 +134,9 @@ void DefaultVehicle::stepAcceleration()
     }
     
     // try to respect speed limits
-    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getMaximumSpeed())
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit())
     {
-        newAcceleration = getCurrentRoad()->getMaximumSpeed() - getSpeed();
+        newAcceleration = getCurrentRoad()->getSpeedLimit() - getSpeed();
     }
     
     if (getSpeed()+newAcceleration > limits->maxSpd)
@@ -175,9 +175,9 @@ void DefaultVehicle::stepPosition() {
     
     while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
-        getCurrentRoad()->removeVehicle(this);
-        hardSetRoad(getCurrentRoad()->getConnection());
-        if (getCurrentRoad()) getCurrentRoad()->addVehicle(this);
+        getCurrentLane()->removeVehicle(this);
+        hardSetLane(getCurrentRoad()->getConnection()->getLanes()[0]);
+        if (getCurrentLane()) getCurrentLane()->addVehicle(this);
     }
     
     hardSetPosition(newPos);

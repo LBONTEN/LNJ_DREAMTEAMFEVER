@@ -7,7 +7,7 @@
 #include "Road.h"
 #include "RoadSystem.h"
 #include "design_by_contract.h"
-
+#include <limits>
 
 ///--- global variables (definitions) ---///
 

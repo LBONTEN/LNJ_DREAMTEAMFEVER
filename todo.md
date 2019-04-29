@@ -14,7 +14,7 @@
 
 	- [x] 1.3. Voertuig met Type inlezen
 	- [ ] 1.4. Wegen met verkeertekens inlezen
-	- [ ] 1.5. Meerdere rijstroken
+	- [ ] 1.5. Meerdere rijstroken (on it)
 	- [ ] 2.2. Grafische impressie
 	- [x] 3.3. Rijden van voertuig met type
 	- [ ] 3.4. Simulatie van baan met zones
@@ -36,9 +36,10 @@
 	- [x] constructor using XML-file
 	- [x] get & set name
 	- [x] get & set length
-	- [x] get & set connection
-	- [ ] add, has?, get/traverse car(s)
-	- [ ] provide location-based iterator for vehicles
+	- [x] get, set, remove connection
+	- [x] add, remove, get/traverse car(s)
+	- [x] provide location-based iterator for vehicles
+- [ ]
 
 - [ ] class: Vehicle
 	- [x] get & set licence plate
@@ -54,6 +55,11 @@
 	- [x] advance speed
 	- [x] advance position
 
+- [ ] Serialiser
+ 	- [x] Output to ostream
+ 	- [x] Default mode
+ 	- [ ] ASCII mode
+
 ## tests
 - [ ] class: RoadSystem
 	- [ ] load simulation
@@ -65,13 +71,12 @@
 	- [ ] simulation empty?
 	- [ ] simulation active?
 
-- [ ] class: Road
-	- [ ] constructor using XML-file
-	- [ ] get & set name
-	- [ ] get & set length
-	- [ ] get & set connection
-	- [ ] add, has?, get/traverse car(s)
-	- [ ] provide location-based iterator for vehicles
+- [x] class: Road
+	- [x] get & set name
+	- [x] get & set length
+	- [x] get, set, remove connection
+	- [x] add, has?, get/traverse car(s)
+	- [x] provide location-based iterator for vehicles
 
 - [x] class: Vehicle
 	- [x] get & set licence plate
@@ -82,3 +87,8 @@
 
 - [ ] class: Vehicle::Car
 	- [ ] update
+
+- [ ] Serialiser
+	- [ ] Output to ostream
+	- [ ] Default mode
+	- [ ] ASCII mode

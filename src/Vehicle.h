@@ -15,6 +15,7 @@ using namespace std;
 class RoadSystem;
 
 class Road;
+class Lane;
 
 
 /// Forward declarations for this file ///
@@ -136,6 +137,7 @@ public:
      * @ENSURE get<attr> = <arg>, previous road does not contain vehicle
      */
     void setRoad(Road* newRoad);
+    void setLane (Lane* newLane);
 
     /**
      * Getter functions
@@ -144,6 +146,7 @@ public:
     RoadSystem* getEnv() const ;
     string getLicensePlate() const ;
     Road* getCurrentRoad() const ;
+    Lane* getCurrentLane() const ;
     int getAcceleration() const ;
     int getSpeed() const ;
     unsigned int getPosition() const ;
@@ -164,7 +167,7 @@ public:
 
 protected:
     void hardSetLicencePlate(const string& licencePlate) { Vehicle::licensePlate = licencePlate; }
-    void hardSetRoad(Road* newRoad) { Vehicle::currentRoad = newRoad; }
+    void hardSetLane(Lane* newLane) { Vehicle::currentLane = newLane; }
     void hardSetAcceleration(int acceleration) { Vehicle::acceleration = acceleration; }
     void hardSetSpeed(int speed) { Vehicle::speed = speed; }
     void hardSetPosition(unsigned int position) { Vehicle::position = position; }
@@ -176,7 +179,7 @@ protected:
 
 private:
     string licensePlate;
-    Road* currentRoad;
+    Lane* currentLane;
     int acceleration;
     int speed;
     unsigned int position;

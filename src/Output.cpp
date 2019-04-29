@@ -24,7 +24,7 @@ void printVehicle(Vehicle* source, ostream& target, const char* prefix=emptyStr)
 void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
 {
     target << prefix << "Road: " << source->getName() << std::endl
-           << prefix << "\t-> Speed limit: " << source->getMaximumSpeed() << std::endl
+           << prefix << "\t-> Speed limit: " << source->getSpeedLimit() << std::endl
            << prefix << "\t-> length: " << source->getLength() << std::endl;
 }
 
@@ -97,7 +97,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         // print each step of the road
         unsigned int currPos = 0;
         do {
-            Vehicle* foundVeh = currRd->getCarOnPosition(currPos, true);
+            Vehicle* foundVeh = currRd->getLanes()[0]->getCarOnPosition(currPos, true);
             
             if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
             {

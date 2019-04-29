@@ -41,7 +41,7 @@ TEST_F(ParseTest, BASE_Road)
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
-    EXPECT_EQ(2, parsedRoads.size());
+    EXPECT_EQ((unsigned long) 2, parsedRoads.size());
     
     EXPECT_TRUE(parsedRoads[0]->properlyInitialised());
     EXPECT_TRUE(parsedRoads[1]->properlyInitialised());
@@ -61,13 +61,13 @@ TEST_F(ParseTest, BASE_Road)
     }
     
     EXPECT_EQ("E19", E19->getName());
-    EXPECT_EQ(100, E19->getMaximumSpeed());
-    EXPECT_EQ(2000, E19->getLength());
+    EXPECT_EQ(100, E19->getSpeedLimit());
+    EXPECT_EQ((unsigned int) 2000, E19->getLength());
     EXPECT_EQ((Road*) NULL, E19->getConnection());
     
     EXPECT_EQ("E42", E42->getName());
-    EXPECT_EQ(300, E42->getMaximumSpeed());
-    EXPECT_EQ(1025, E42->getLength());
+    EXPECT_EQ(300, E42->getSpeedLimit());
+    EXPECT_EQ((unsigned int) 1025, E42->getLength());
     EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
 
@@ -78,7 +78,7 @@ TEST_F(ParseTest, BASE_Car)
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
     
-    ASSERT_EQ(3, parsedVehs.size());
+    ASSERT_EQ((unsigned long) 3, parsedVehs.size());
     
     for (unsigned long vehIndex = 0; vehIndex < parsedVehs.size(); ++vehIndex)
     {
@@ -89,13 +89,13 @@ TEST_F(ParseTest, BASE_Car)
         if (veh->getLicensePlate() == "1THK180")
         {
             EXPECT_EQ("Car", veh->getTypeName());
-            EXPECT_EQ(10, veh->getPosition());
+            EXPECT_EQ((unsigned int) 10, veh->getPosition());
             EXPECT_EQ(0, veh->getSpeed());
             
             const Road* road = veh->getCurrentRoad();
             ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E19", road->getName());
-            EXPECT_EQ(veh, road->getVehicle("1THK180"));
+            EXPECT_EQ(veh, road->getLanes()[0]->getVehicle("1THK180"));
             
             EXPECT_EQ(system, veh->getEnv());
             EXPECT_TRUE(system->contains(veh));
@@ -103,13 +103,13 @@ TEST_F(ParseTest, BASE_Car)
         else if (veh->getLicensePlate() == "W0LHH")
         {
             EXPECT_EQ("Car", veh->getTypeName());
-            EXPECT_EQ(100, veh->getPosition());
+            EXPECT_EQ((unsigned int) 100, veh->getPosition());
             EXPECT_EQ(int (10/3.6), veh->getSpeed());
-    
+
             const Road* road = veh->getCurrentRoad();
             ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E42", road->getName());
-            EXPECT_EQ(veh, road->getVehicle("W0LHH"));
+            EXPECT_EQ(veh, road->getLanes()[0]->getVehicle("W0LHH"));
     
             EXPECT_EQ(system, veh->getEnv());
             EXPECT_TRUE(system->contains(veh));
@@ -117,13 +117,13 @@ TEST_F(ParseTest, BASE_Car)
         else if (veh->getLicensePlate() == "651BUF")
         {
             EXPECT_EQ("Car", veh->getTypeName());
-            EXPECT_EQ(0, veh->getPosition());
+            EXPECT_EQ((unsigned int) 0, veh->getPosition());
             EXPECT_EQ(0, veh->getSpeed());
     
             const Road* road = veh->getCurrentRoad();
             ASSERT_NE((Road*) NULL, road);
             EXPECT_EQ("E19", road->getName());
-            EXPECT_EQ(veh, road->getVehicle("651BUF"));
+            EXPECT_EQ(veh, road->getLanes()[0]->getVehicle("651BUF"));
     
             EXPECT_EQ(system, veh->getEnv());
             EXPECT_TRUE(system->contains(veh));
@@ -144,7 +144,7 @@ TEST_F(ParseTest, NETWORK_Tree)
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
-    ASSERT_EQ(3, parsedRoads.size());
+    ASSERT_EQ((unsigned long) 3, parsedRoads.size());
     
     for (unsigned long rdIndex = 0; rdIndex < parsedRoads.size(); ++rdIndex)
     {
@@ -152,14 +152,14 @@ TEST_F(ParseTest, NETWORK_Tree)
         
         if (road->getName() == "E19")
         {
-            EXPECT_NE((Vehicle*) NULL, road->getVehicle("651BUF"));
+            EXPECT_NE((Vehicle*) NULL, road->getLanes()[0]->getVehicle("651BUF"));
             
             ASSERT_NE((Road*) NULL, road->getConnection());
             EXPECT_EQ("E313", road->getConnection()->getName());
         }
         else if (road->getName() == "E313")
         {
-            EXPECT_NE((Vehicle*) NULL, road->getVehicle("1OUT00"));
+            EXPECT_NE((Vehicle*) NULL, road->getLanes()[0]->getVehicle("1OUT00"));
     
             EXPECT_EQ((Road*) NULL, road->getConnection());
         }
@@ -181,7 +181,7 @@ TEST_F(ParseTest, NETWORK_Loop)
     
     vector<Road*> parsedRoads = system->getVectorOfRoads();
     
-    ASSERT_EQ(2, parsedRoads.size());
+    ASSERT_EQ((unsigned long) 2, parsedRoads.size());
     
     for (unsigned long rdIndex = 0; rdIndex < parsedRoads.size(); ++rdIndex)
     {
@@ -189,7 +189,7 @@ TEST_F(ParseTest, NETWORK_Loop)
         
         if (road->getName() == "E19")
         {
-            EXPECT_NE((Vehicle*) NULL, road->getVehicle("651BUF"));
+            EXPECT_NE((Vehicle*) NULL, road->getLanes()[0]->getVehicle("651BUF"));
             
             ASSERT_NE((Road*) NULL, road->getConnection());
             EXPECT_EQ("E313", road->getConnection()->getName());
