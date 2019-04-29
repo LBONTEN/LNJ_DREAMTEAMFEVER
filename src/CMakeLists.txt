@@ -13,15 +13,21 @@ include_directories(pugiXml gtest/include)
 # Set Library dir
 link_directories(pugiXml gtest/lib)
 
+set(PROJECT_BINARY_DIR ../bin)
+
+# Changes directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 # Source files shared between all build targets
 set(SHARED_SOURCE_FILES
-        ./pugiXml/pugixml.cpp
+        pugiXml/pugixml.cpp
         Vehicle.cpp
         RoadSystem.cpp
         Road.cpp
         XMLParser.cpp
-        TypedVehicles.cpp Output.cpp Output.h DefaultVehicle.cpp DefaultVehicle.h)
+        TypedVehicles.cpp
+        Output.cpp
+        DefaultVehicle.cpp)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
@@ -29,8 +35,7 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
-        tests.cpp
-        XMLParserTests.h)
+        Tests/Tests.cpp)
 
 # Create RELEASE target
 add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})
