@@ -127,7 +127,7 @@ void DefaultVehicle::stepAcceleration()
     }
     else
     {
-        unsigned int targetDistance = 1 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
+        unsigned int targetDistance = 0.75 * getSpeed() + snapShot.nextVehCopy->length + minimumSpace;
         unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
     
         newAcceleration = 0.5 * (actualDistance - targetDistance);
