@@ -169,6 +169,7 @@ void DefaultVehicle::stepPosition() {
         newPos -= getCurrentRoad()->getLength();
         getCurrentRoad()->removeVehicle(this);
         hardSetRoad(getCurrentRoad()->getConnection());
+        if (getCurrentRoad()) getCurrentRoad()->addVehicle(this);
     }
     
     hardSetPosition(newPos);
