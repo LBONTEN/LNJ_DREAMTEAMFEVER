@@ -18,7 +18,7 @@ extern const unsigned int stdCarLength;
 extern const VehicleLimits stdCarLimits;
 
 extern const unsigned int stdBusLength;
-extern const VehicleLimits stBusLimits;
+extern const VehicleLimits stdBusLimits;
 
 extern const unsigned int stdTruckLength;
 extern const VehicleLimits stdTruckLimits;
