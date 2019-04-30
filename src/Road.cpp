@@ -286,7 +286,7 @@ const int Road::getSpeedLimit(unsigned int pos) const
     int currentLimit = speedLimit;
     for(vector<Zone*>::const_iterator i = zones.begin(); i != zones.end(); i++)
     {
-        if((*i)->getPosition() <= pos && (*i)->getPosition() > maxPos)
+        if((*i)->getPosition() <= pos && (*i)->getPosition() >= maxPos)
         {
             maxPos = (*i)->getPosition();
             currentLimit = (*i)->getNewSpeedLimit();
