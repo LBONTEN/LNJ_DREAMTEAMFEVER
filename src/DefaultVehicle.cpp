@@ -33,7 +33,7 @@ DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePla
         Vehicle::Vehicle(environment, licensePlate, stdCarLength, limits, currentRoad),
         snapShot()
 {
-    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
+    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Bus" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
     
     this->typeName = typeName;
     
@@ -46,7 +46,7 @@ DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePla
         Vehicle::Vehicle(environment, licensePlate, len, limits, currentRoad, acceleration, speed, position),
         snapShot()
 {
-    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
+    REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Bus" || typeName == "Truck", "Invalid typeName for DefaultVehicle");
     
     this->typeName = typeName;
     
