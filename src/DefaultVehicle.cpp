@@ -103,7 +103,7 @@ void DefaultVehicle::fullStop(unsigned int distance)
 {
     int newAcceleration = - getSpeed()*getSpeed() / distance;
     
-    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit())
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit(getPosition()))
     {
         newAcceleration = getCurrentRoad()->getSpeedLimit() - getSpeed();
     }
@@ -115,26 +115,43 @@ void DefaultVehicle::fullStop(unsigned int distance)
     if (newAcceleration > limits->maxAcc) {
         newAcceleration = limits->maxAcc;
     }
+    
+    hardSetAcceleration(newAcceleration);
 }
 
 void DefaultVehicle::stepAcceleration()
 {
     int newAcceleration;
     
+    unsigned int targetDistance = 0.75 * 3.6 * getSpeed() + minimumSpace;
+    
+    // keep a good following distance
     if (snapShot.nextVehCopy == NULL)
     {
         newAcceleration = limits->maxAcc;
     }
     else
     {
-        unsigned int targetDistance = 0.75 * 3.6 * getSpeed() + minimumSpace;
         unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
     
         newAcceleration = 0.5 * ((long) actualDistance - (long) targetDistance);
     }
     
+    // stop for traffic lights
+    TrafficLight* nextLight = getCurrentRoad() ? getCurrentRoad()->getTrafficLightOnPosition(getPosition(), true) : NULL;
+    unsigned int distanceToLight;
+    
+    if (nextLight
+        and nextLight->getState() != green
+        and (distanceToLight = getPosition() - nextLight->getPosition()) < 2*targetDistance)
+    {
+        fullStop(distanceToLight);
+        
+        newAcceleration = min(getAcceleration(), newAcceleration);
+    }
+    
     // try to respect speed limits
-    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit())
+    if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit(getPosition()))
     {
         newAcceleration = getCurrentRoad()->getSpeedLimit() - getSpeed();
     }
@@ -160,10 +177,11 @@ void DefaultVehicle::stepAcceleration()
         newAcceleration = limits->maxAcc;
     }
     
+    // applly acceleration
+    hardSetAcceleration(newAcceleration);
+    
     ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
-    
-    hardSetAcceleration(newAcceleration);
 }
 
 void DefaultVehicle::stepSpeed() {
