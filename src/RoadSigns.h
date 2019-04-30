@@ -86,7 +86,7 @@ class TrafficLight : public RoadSign
 public:
     TrafficLight(unsigned int position, Road* road, unsigned long offset, unsigned long activeTime = 0);
 
-    Color getState() const{ return green; }
+    Color getState();
 
     void updateState(unsigned long activeTime);
 
