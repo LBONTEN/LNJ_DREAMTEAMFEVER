@@ -181,7 +181,47 @@ public:
  --------------------------------------------------------------------- */
 
 
-    RoadSign* const getSignOnPosition(Type type, unsigned int position, bool inclusive) const;
+    const vector<RoadSign*>& getAllSigns() const;
+/** ---------------------------------------------------------------------
+* isFree
+*
+*  OUT:
+*      True when all lanes are free.
+*
+--------------------------------------------------------------------- */
+
+
+    const vector<Zone*>& getZones() const;
+/** ---------------------------------------------------------------------
+* isFree
+*
+*  OUT:
+*      True when all lanes are free.
+*
+--------------------------------------------------------------------- */
+
+
+    const vector<TrafficLight*>& getTrafficLights() const;
+/** ---------------------------------------------------------------------
+* isFree
+*
+*  OUT:
+*      True when all lanes are free.
+*
+--------------------------------------------------------------------- */
+
+
+    const vector<BusStop*>& getBusStops() const;
+/** ---------------------------------------------------------------------
+* isFree
+*
+*  OUT:
+*      True when all lanes are free.
+*
+--------------------------------------------------------------------- */
+
+
+    RoadSign* const getSignOnPosition(unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------
  * getSignOnPosition:
  *
@@ -197,6 +237,61 @@ public:
  *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
+
+
+    Zone* const getZoneStartOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getSignOnPosition:
+ *
+ *  OUT
+ *      if inclusive is true:
+ *          Returns RoadSign from signs on given position if there is one.
+ *          Else the next one on the Road will be returned.
+ *      if inclusive is false:
+ *          Returns first Sign past given position.
+ *      returns NULL if no signs are encountered past given position on the Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
+ --------------------------------------------------------------------- */
+
+
+    TrafficLight* const getTrafficLightOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getSignOnPosition:
+ *
+ *  OUT
+ *      if inclusive is true:
+ *          Returns RoadSign from signs on given position if there is one.
+ *          Else the next one on the Road will be returned.
+ *      if inclusive is false:
+ *          Returns first Sign past given position.
+ *      returns NULL if no signs are encountered past given position on the Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
+ --------------------------------------------------------------------- */
+
+
+    BusStop* const getBusStopOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getSignOnPosition:
+ *
+ *  OUT
+ *      if inclusive is true:
+ *          Returns RoadSign from signs on given position if there is one.
+ *          Else the next one on the Road will be returned.
+ *      if inclusive is false:
+ *          Returns first Sign past given position.
+ *      returns NULL if no signs are encountered past given position on the Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
+ --------------------------------------------------------------------- */
+
 
 
     unsigned int getLength() const;

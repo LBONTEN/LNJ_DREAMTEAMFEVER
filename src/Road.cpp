@@ -96,35 +96,152 @@ bool Road::isFree() const
 }
 
 
-RoadSign* const Road::getSignOnPosition(Type type, unsigned int position, bool inclusive) const
-{
-    // TODO: fix using templates if possible
 
-//    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
-//
-//    template <class T>
-//    if(signs.empty())
-//    {
-//        return NULL;
-//    }
-//
-//    RoadSign* nextSign = NULL;
-//    for(vector<RoadSign*>::const_iterator i = signs.begin(); i != signs.end(); i++)
-//    {
-//        if(inclusive && (*i)->getPosition() == position)
-//        {
-//            return (*i);
-//        }
-//
-//        if((*i)->getPosition() > position)
-//        {
-//            if (nextSign == NULL || ((*i)->getPosition() - position) < (nextSign->getPosition() - position))
-//            {
-//                nextSign = (*i);
-//            }
-//        }
-//    }
-//    return nextSign;
+const vector<RoadSign*>& Road::getAllSigns() const
+{
+    REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
+    vector<RoadSign*> allSigns;
+
+    allSigns.insert(allSigns.end(), zones.begin(), zones.end());
+    allSigns.insert(allSigns.end(), trafficLights.begin(), trafficLights.end());
+    allSigns.insert(allSigns.end(), busStops.begin(), busStops.end());
+
+    return allSigns;
+}
+
+
+const vector<Zone*>& Road::getZones() const
+{
+    REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
+    return zones;
+}
+
+
+const vector<TrafficLight*>& Road::getTrafficLights() const
+{
+    REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
+    return trafficLights;
+}
+
+
+const vector<BusStop*>& Road::getBusStops() const
+{
+    REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
+    return busStops;
+}
+
+
+RoadSign* const Road::getSignOnPosition(unsigned int position, bool inclusive) const
+{
+    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+
+    if(signs.empty())
+    {
+        return NULL;
+    }
+
+    RoadSign* nextSign = NULL;
+    for(vector<RoadSign*>::const_iterator i = signs.begin(); i != signs.end(); i++)
+    {
+        if(inclusive && (*i)->getPosition() == position)
+        {
+            return (*i);
+        }
+
+        if((*i)->getPosition() > position)
+        {
+            if (nextSign == NULL || ((*i)->getPosition() - position) < (nextSign->getPosition() - position))
+            {
+                nextSign = (*i);
+            }
+        }
+    }
+    return nextSign;
+}
+
+
+Zone* const Road::getZoneStartOnPosition(unsigned int position, bool inclusive) const
+{
+    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+
+    if(zones.empty())
+    {
+        return NULL;
+    }
+
+    Zone* nextZoneStart = NULL;
+    for(vector<Zone*>::const_iterator i = zones.begin(); i != zones.end(); i++)
+    {
+        if(inclusive && (*i)->getPosition() == position)
+        {
+            return (*i);
+        }
+
+        if((*i)->getPosition() > position)
+        {
+            if (nextZoneStart == NULL || ((*i)->getPosition() - position) < (nextZoneStart->getPosition() - position))
+            {
+                nextZoneStart = (*i);
+            }
+        }
+    }
+    return nextZoneStart;
+}
+
+TrafficLight* const Road::getTrafficLightOnPosition(unsigned int position, bool inclusive) const
+{
+    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+
+    if(trafficLights.empty())
+    {
+        return NULL;
+    }
+
+    TrafficLight* nextLight = NULL;
+    for(vector<TrafficLight*>::const_iterator i = trafficLights.begin(); i != trafficLights.end(); i++)
+    {
+        if(inclusive && (*i)->getPosition() == position)
+        {
+            return (*i);
+        }
+
+        if((*i)->getPosition() > position)
+        {
+            if (nextLight == NULL || ((*i)->getPosition() - position) < (nextLight->getPosition() - position))
+            {
+                nextLight = (*i);
+            }
+        }
+    }
+    return nextLight;
+}
+
+BusStop* const Road::getBusStopOnPosition(unsigned int position, bool inclusive) const
+{
+    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+
+    if(busStops.empty())
+    {
+        return NULL;
+    }
+
+    BusStop* nextBusStop = NULL;
+    for(vector<BusStop*>::const_iterator i = busStops.begin(); i != busStops.end(); i++)
+    {
+        if(inclusive && (*i)->getPosition() == position)
+        {
+            return (*i);
+        }
+
+        if((*i)->getPosition() > position)
+        {
+            if (nextBusStop == NULL || ((*i)->getPosition() - position) < (nextBusStop->getPosition() - position))
+            {
+                nextBusStop = (*i);
+            }
+        }
+    }
+    return nextBusStop;
 }
 
 

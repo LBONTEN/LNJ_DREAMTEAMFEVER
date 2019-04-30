@@ -35,11 +35,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Road.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RoadSigns.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoadSigns.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RoadSigns.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoadSigns.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -78,8 +77,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Road.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-73">
-                    <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+                  <state relative-caret-position="1457">
+                    <caret line="222" selection-start-line="222" selection-end-line="222" />
                     <folding>
                       <element signature="e#53#73#0" expanded="true" />
                     </folding>
@@ -137,11 +136,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="661">
+              <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
               <folding>
                 <element signature="e#196#488#0" />
                 <element signature="e#451#812#0" />
@@ -150,12 +149,10 @@
                 <element signature="e#1107#1468#0" />
                 <element signature="e#1471#1621#0" />
                 <element signature="e#1624#1920#0" />
-                <element signature="e#1946#2663#0" />
                 <element signature="e#1923#2078#0" />
                 <element signature="e#2081#2232#0" />
                 <element signature="e#2235#2390#0" />
                 <element signature="e#2393#2546#0" />
-                <element signature="e#3290#3346#0" />
                 <element signature="e#2549#2687#0" />
                 <element signature="e#2858#3273#0" />
                 <element signature="e#3276#3618#0" />
@@ -172,11 +169,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
+            <state relative-caret-position="-1">
+              <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -184,7 +181,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Output.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
+            <state relative-caret-position="779">
               <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
             </state>
           </provider>
@@ -270,7 +267,6 @@
         <option value="$PROJECT_DIR$/RoadTests.h" />
         <option value="$PROJECT_DIR$/src/tests.cpp" />
         <option value="$PROJECT_DIR$/src/Car.h" />
-        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/IOTests.h" />
         <option value="$PROJECT_DIR$/src/Car.cpp" />
         <option value="$PROJECT_DIR$/src/XMLParser.h" />
@@ -287,8 +283,9 @@
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSigns.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSigns.h" />
-        <option value="$PROJECT_DIR$/src/Road.cpp" />
         <option value="$PROJECT_DIR$/src/Road.h" />
+        <option value="$PROJECT_DIR$/src/Road.cpp" />
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -471,7 +468,7 @@
       <workItem from="1556479842812" duration="1517000" />
       <workItem from="1556526828462" duration="11675000" />
       <workItem from="1556545622007" duration="1132000" />
-      <workItem from="1556615314288" duration="21665000" />
+      <workItem from="1556615314288" duration="23694000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -571,7 +568,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556480077364</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="&quot;updated RoadSigns and Zones, etc.&quot;">
+      <created>1556647092139</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556647092140</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -607,7 +611,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154509000" />
+    <option name="totallyTimeSpent" value="156538000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -619,7 +623,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="33" width="960" height="1047" extended-state="4" />
+    <frame x="0" y="33" width="960" height="1047" extended-state="5" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -726,7 +731,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/LBONTEN/LNJ_DREAMTEAMFEVER&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit." />
     <MESSAGE value="&quot;refactoring&quot;" />
     <MESSAGE value="&quot;refactoring complete, lanes fully functional&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;refactoring complete, lanes fully functional&quot;" />
+    <MESSAGE value="&quot;updated RoadSigns and Zones, etc.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;updated RoadSigns and Zones, etc.&quot;" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -760,13 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="151">
           <caret line="906" selection-start-line="906" selection-end-line="906" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -887,7 +886,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Output.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
+        <state relative-caret-position="779">
           <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
         </state>
       </provider>
@@ -899,13 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/XMLParser.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -913,13 +905,6 @@
           <folding>
             <element signature="e#53#73#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RoadSystem.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -949,10 +934,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RoadSystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="1457">
+          <caret line="222" selection-start-line="222" selection-end-line="222" />
           <folding>
             <element signature="e#53#73#0" expanded="true" />
           </folding>
@@ -961,8 +960,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        <state relative-caret-position="661">
+          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
           <folding>
             <element signature="e#196#488#0" />
             <element signature="e#451#812#0" />
@@ -971,12 +970,10 @@
             <element signature="e#1107#1468#0" />
             <element signature="e#1471#1621#0" />
             <element signature="e#1624#1920#0" />
-            <element signature="e#1946#2663#0" />
             <element signature="e#1923#2078#0" />
             <element signature="e#2081#2232#0" />
             <element signature="e#2235#2390#0" />
             <element signature="e#2393#2546#0" />
-            <element signature="e#3290#3346#0" />
             <element signature="e#2549#2687#0" />
             <element signature="e#2858#3273#0" />
             <element signature="e#3276#3618#0" />
@@ -989,6 +986,13 @@
             <element signature="e#5492#5558#0" />
             <element signature="e#5561#5667#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
         </state>
       </provider>
     </entry>

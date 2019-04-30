@@ -13,9 +13,10 @@ include_directories(pugiXml gtest/include)
 # Set Library dir
 link_directories(pugiXml gtest/lib)
 
+# Specify folder where executables are located
 set(PROJECT_BINARY_DIR ../bin)
 
-# Changes directory
+# Changes executable output directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
 
 # Source files shared between all build targets
@@ -27,7 +28,8 @@ set(SHARED_SOURCE_FILES
         XMLParser.cpp
         TypedVehicles.cpp
         Output.cpp
-        DefaultVehicle.cpp RoadSigns.cpp)
+        DefaultVehicle.cpp
+        RoadSigns.cpp)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES
