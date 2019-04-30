@@ -29,14 +29,14 @@
     <positie>2000</positie>
   </VERKEERSTEKEN>
   <VOERTUIG>
-      <type>BUS</type>
+      <type>VRACHTWAGEN</type>
       <nummerplaat>651BUF</nummerplaat>
       <baan>E19</baan>
       <positie>0</positie>
       <snelheid>0</snelheid>
   </VOERTUIG>
   <VOERTUIG>
-      <type>VRACHTWAGEN</type>
+      <type>BUS</type>
       <nummerplaat>1OUT00</nummerplaat>
       <baan>E313</baan>
       <positie>0</positie>
