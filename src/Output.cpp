@@ -6,7 +6,6 @@
 #include "Vehicle.h"
 #include "Road.h"
 #include "RoadSigns.h"
-
 #include <vector>
 
 
@@ -115,8 +114,10 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         }
         target << endl;
         
+        target << (unsigned int) (lanes.size()-1) << endl;
+        
         // print each lane
-        for (unsigned int laneNr = 0; laneNr < lanes.size(); ++laneNr)
+        for (unsigned int laneNr = lanes.size()-1; laneNr < lanes.size(); --laneNr) // slightly weird for-loop on account of signedness
         {
             Lane* currLn = lanes[laneNr];
             
@@ -136,7 +137,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
     
             target << string(longestName+1, ' ') << "| " << rdLane << endl;
             
-            if (laneNr + 1 < lanes.size())
+            if (laneNr - 1 >= 0)
             {
                 target << string(longestName+1, ' ') << "| " << string(currRd->getLength() / metresPerChar, '-') << endl;
             }
