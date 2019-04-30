@@ -100,10 +100,27 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         RoadSign* sign = currRd->getSignOnPosition(0, true);
         while (sign)
         {
-            // TODO: get correct letter to represent type
-            rdEdge.at(sign->getPosition() / metresPerChar) = 'S';
+            switch (sign->getType())
+            {
+                case trafficLight :
+                {
+                    rdEdge.at(sign->getPosition() / metresPerChar) = 'L';
+                    break;
+                }
+                case busStop :
+                {
+                    rdEdge.at(sign->getPosition() / metresPerChar) = 'H';
+                    break;
+                }
+                case zoneStart :
+                {
+                    rdEdge.at(sign->getPosition() / metresPerChar) = 'Z';
+                    break;
+                }
+            }
             
-            sign = currRd->getSignOnPosition(sign->getPosition(), false);
+            // get first sign starting from next char
+            sign = currRd->getSignOnPosition(((sign->getPosition()/metresPerChar)+1)*metresPerChar, false);
         }
         
         // print road "header"
@@ -131,8 +148,9 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
                 else if (veh->getTypeName() == "Bus") rdLane.at(veh->getPosition() / metresPerChar) = 'B';
                 else if (veh->getTypeName() == "Truck") rdLane.at(veh->getPosition() / metresPerChar) = 'V';
                 else rdLane[veh->getPosition()] = '?';
-                
-                veh = currLn->getCarOnPosition(veh->getPosition(), false);
+    
+                // set veh to first veh starting from next char
+                veh = currLn->getCarOnPosition(((veh->getPosition()/metresPerChar)+1)*metresPerChar, false);
             }
     
             target << string(longestName+1, ' ') << "| " << rdLane << endl;
@@ -141,30 +159,6 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
             {
                 target << string(longestName+1, ' ') << "| " << string(currRd->getLength() / metresPerChar, '-') << endl;
             }
-    
-            /*
-            // print each step of the lane
-            unsigned int currPos = 0;
-            do {
-                Vehicle* foundVeh = lanes[laneNr]->getCarOnPosition(currPos, true);
-        
-                if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
-                {
-                    if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
-                    else if (foundVeh->getTypeName() == "Car") target << 'A';
-                    else if (foundVeh->getTypeName() == "Bus") target << 'B';
-                    else if (foundVeh->getTypeName() == "Truck") target << 'V';
-                    else target << '?';
-                }
-                else
-                {
-                    target << ' ';
-                }
-        
-                currPos += metresPerChar;
-            }
-            while (currPos <= currRd->getLength());
-             */
         }
         
         target << string(longestName+1, ' ') << "| " << rdEdge << endl;
