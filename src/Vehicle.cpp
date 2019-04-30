@@ -237,16 +237,13 @@ Vehicle* Vehicle::nextVeh() {
     
     if (getCurrentRoad()->getConnection())
     {
-        ln = getCurrentRoad()->getConnection()->getLanes()[0];
+        ln = getCurrentLane()->getConnectingLane();
     }
     
     while (!next and ln)
     {
         next = ln->getCarOnPosition(0, true);
-        if (ln->getParentRoad()->getConnection())
-        {
-            ln = ln->getParentRoad()->getConnection()->getLanes()[0];
-        }
+        ln = getCurrentLane()->getConnectingLane();
     }
     
     return next;
