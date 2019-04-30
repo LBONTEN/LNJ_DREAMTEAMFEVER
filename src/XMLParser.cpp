@@ -71,7 +71,7 @@ Road* XmlParser::parseRoad(const pugi::xml_node& baan)
     string name = baan.child("naam").text().as_string();
     int speedLimit = baan.child("snelheidslimiet").text().as_int();
     int length = baan.child("lengte").text().as_int();
-    unsigned int laneCount = baan.child("Rijbanen").text().as_uint();
+    unsigned int laneCount = baan.child("rijstroken").text().as_uint();
     if(laneCount == (unsigned int) 0) laneCount = 1;
 
     return new Road(name, length, speedLimit, laneCount);

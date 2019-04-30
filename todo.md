@@ -10,12 +10,12 @@
 	- [x] Wegennetwerk inlezen
 	- [x] Simpele uitvoer
 	- [x] Rijden van voertuigen
-	- [ ] Automatische simulatie
+	- [x] Automatische simulatie
 
 	- [x] 1.3. Voertuig met Type inlezen
 	- [ ] 1.4. Wegen met verkeertekens inlezen
-	- [ ] 1.5. Meerdere rijstroken (on it)
-	- [ ] 2.2. Grafische impressie
+	- [x] 1.5. Meerdere rijstroken
+	- [x] 2.2. Grafische impressie
 	- [x] 3.3. Rijden van voertuig met type
 	- [ ] 3.4. Simulatie van baan met zones
 	- [ ] 3.5. Simulatie van baan met bushaltes

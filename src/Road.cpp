@@ -16,7 +16,7 @@ Road::Road()
     speedLimit = 1;
     laneCount = 1;
 
-    lanes.push_back(new Lane(this));
+    lanes.push_back(new Lane(this, 0));
 
     ENSURE(properlyInitialised(), "Road default construction failed");
 }
@@ -31,7 +31,7 @@ Road::Road(string name, unsigned int length, int maxSpeed, unsigned int laneCoun
 {
     for(unsigned int i = 0; i < laneCount; i++)
     {
-        lanes.push_back(new Lane(this));
+        lanes.push_back(new Lane(this, i));
     }
 
     ENSURE(properlyInitialised(), "Road construction failed");
@@ -129,8 +129,9 @@ const vector<Lane*>& Road::getLanes() const
 
 /**  Lane functions ---------------------------------------------- **/
 
-Lane::Lane(Road* parentRoad) :
-    parentRoad(parentRoad)
+Lane::Lane(Road* parentRoad, int order) :
+    parentRoad(parentRoad),
+    order(order)
     {}
 
 
@@ -249,4 +250,10 @@ const list<Vehicle*>& Lane::getVehicles() const
 Road* const Lane::getParentRoad() const
 {
     return parentRoad;
+}
+
+
+Lane* const Lane::getConnectingLane() const
+{
+    return parentRoad->getConnection()->getLanes()[order];
 }

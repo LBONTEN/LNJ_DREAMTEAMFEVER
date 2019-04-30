@@ -27,7 +27,7 @@ set(SHARED_SOURCE_FILES
         XMLParser.cpp
         TypedVehicles.cpp
         Output.cpp
-        DefaultVehicle.cpp)
+        DefaultVehicle.cpp RoadSigns.cpp)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES

@@ -180,7 +180,7 @@ class Lane
 {
 public:
 
-    Lane(Road* parentRoad);
+    Lane(Road* parentRoad, int order);
 /** ---------------------------------------------------------------------
  * Lane
  *
@@ -313,10 +313,26 @@ public:
  *
  --------------------------------------------------------------------- */
 
+
+Lane* const getConnectingLane() const;
+/** ---------------------------------------------------------------------
+ * getParentRoad:
+ *
+ *  OUT:
+ *      Pointer to connecting Lane of next connecting Road
+ *
+ *  Précondition:
+ *      Road must be properly initialised
+ *
+ --------------------------------------------------------------------- */
+
+
+
 private:
 
     Road* parentRoad;
     list<Vehicle*> vehicles;
+    int order;
 };
 
 #endif //LNJPSE_PROJECT_ROAD_H
