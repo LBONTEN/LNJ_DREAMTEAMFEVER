@@ -84,13 +84,19 @@ enum Color {green, orange, red};
 class TrafficLight : public RoadSign
 {
 public:
-    TrafficLight(unsigned int position, Road* road);
+    TrafficLight(unsigned int position, Road* road, unsigned long offset, unsigned long activeTime = 0);
 
     Color getState() const;
 
-    void changeState();
+    void updateState(unsigned long activeTime);
+
+
 private:
     Color state;
+    unsigned long redTime;
+    unsigned long orangeTime;
+    unsigned long greenTime;
+    unsigned long offset;
 };
 
 // BusStop -------------------------------------------------------------------
@@ -100,6 +106,7 @@ public:
     BusStop(unsigned int position, Road* road, bool rainProtection);
 
     bool doesItProtecc();
+
 
 private:
     bool rainProtection;

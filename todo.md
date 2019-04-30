@@ -39,7 +39,6 @@
 	- [x] get, set, remove connection
 	- [x] add, remove, get/traverse car(s)
 	- [x] provide location-based iterator for vehicles
-- [ ]
 
 - [ ] class: Vehicle
 	- [x] get & set licence plate
