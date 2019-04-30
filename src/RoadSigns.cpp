@@ -5,37 +5,39 @@
 
 /** RoadSign functions ------------------------------------------ */
 
-    RoadSign::RoadSign(const string& type, unsigned int position, Road* road)
-
-    {
-        ENSURE(properlyInitialised(), "RoadSign: RoadSign: Construction failed.");
-    }
-
-
-    bool RoadSign::properlyInitialised() const
-    {
-        if(position > road->getLength()) return false;
-
-        return true;
-    }
+RoadSign::RoadSign(const string& type, unsigned int position, Road* road) :
+    type(type),
+    position(position),
+    road(road)
+{
+    ENSURE(properlyInitialised(), "RoadSign: RoadSign: Construction failed.");
+}
 
 
-    const string& RoadSign::getType() const
-    {
-        REQUIRE(properlyInitialised(), "RoadSign: getType: Not properly Initialised.");
-        return type;
-    }
+bool RoadSign::properlyInitialised() const
+{
+    if(position > road->getLength()) return false;
+
+    return true;
+}
 
 
-     const unsigned int RoadSign::getPosition() const
-     {
-        REQUIRE(properlyInitialised(), "RoadSign: getPosition: Not properly Initialised.");
-        return position;
-     }
+const string& RoadSign::getType() const
+{
+    REQUIRE(properlyInitialised(), "RoadSign: getType: Not properly Initialised.");
+    return type;
+}
 
 
-     Road*const RoadSign::getRoad() const
-     {
-        REQUIRE(properlyInitialised(), "RoadSign: getRoad: Not properly Initialised.");
-        return road;
-     }
+ const unsigned int RoadSign::getPosition() const
+ {
+    REQUIRE(properlyInitialised(), "RoadSign: getPosition: Not properly Initialised.");
+    return position;
+ }
+
+
+ Road*const RoadSign::getRoad() const
+ {
+    REQUIRE(properlyInitialised(), "RoadSign: getRoad: Not properly Initialised.");
+    return road;
+ }
