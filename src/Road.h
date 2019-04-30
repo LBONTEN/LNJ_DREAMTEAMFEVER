@@ -9,6 +9,7 @@
 #include <list>
 
 class RoadSystem;
+class RoadSign;
 class Lane;
 
 #ifndef LNJPSE_PROJECT_ROAD_H
@@ -16,8 +17,8 @@ class Lane;
 
 extern const unsigned int minimumSpace;
 
-
-class Road {
+class Road
+{
 public:
 
     Road();
@@ -26,6 +27,7 @@ public:
  *
  *  Postcondition:
  *      Road object is properly initialised.
+ *
  --------------------------------------------------------------------- */
 
 
@@ -36,10 +38,11 @@ public:
  *      - name: Name to be given to the road
  *      - length: Length of the road
  *      - maximumSpeed: Speed limit allowed on the road
- *      - roadStripsCount:  amount of lanes the road has
+ *      - laneCount:  amount of lanes the road has
  *
  *  Postcondition:
  *      Road object is properly initialised.
+ *
  --------------------------------------------------------------------- */
 
 
@@ -114,12 +117,30 @@ public:
  --------------------------------------------------------------------- */
 
 
+    RoadSign* const getSignOnPosition(unsigned int position, bool inclusive) const;
+/** ---------------------------------------------------------------------
+ * getSignOnPosition:
+ *
+ *  OUT
+ *      if inclusive is true:
+ *          Returns RoadSign from signs on given position if there is one.
+ *          Else the next one on the Road will be returned.
+ *      if inclusive is false:
+ *          Returns first Sign past given position.
+ *      returns NULL if no signs are encountered past given position on the Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
+ --------------------------------------------------------------------- */
+
+
     unsigned int getLength() const;
 /** ---------------------------------------------------------------------
  * getLength:
  *
- *  Postcondition:
- *      State of Road must remain the same before and after function.
+ *  Precondition
+ *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
 
@@ -128,8 +149,8 @@ public:
 /* ---------------------------------------------------------------------
  * getName:
  *
- *  Postcondition:
- *      State of Road must remain the same before and after function.
+ *  Precondition
+ *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
 
@@ -141,6 +162,9 @@ public:
  *  OUT:
  *      returns connected road.
  *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
  --------------------------------------------------------------------- */
 
 
@@ -150,6 +174,9 @@ public:
  *
  *  OUT:
  *      returns the speed limit on current Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
 
@@ -161,19 +188,21 @@ public:
  *  OUT:
  *      returns vector of lanes .
  *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
  --------------------------------------------------------------------- */
 
 
 private:
-
     string name;
     unsigned int length;
     int speedLimit;
     Road* connection;
     unsigned int laneCount;
     vector<Lane*> lanes;
+    vector<RoadSign*> signs;
 };
-
 
 
 class Lane
@@ -186,6 +215,7 @@ public:
  *
  *  Postcondition:
  *      Lane object is properly initialised.
+ *
  --------------------------------------------------------------------- */
 
 
@@ -264,7 +294,12 @@ public:
  * getCarOnPosition
  *
  *  OUT:
- *      Returns a car on a certain position.
+ *     if inclusive is true:
+ *          Returns Vehicle pointer from vehicles on given position if there is one.
+ *          Else the next one on the Lane will be returned.
+ *      if inclusive is false:
+ *          Returns first vehicle past given position.
+ *      returns NULL if no vehicles are encountered past given position on the Lane.
  *
  *  Precondition:
  *      Must be properly initialised
@@ -327,9 +362,7 @@ Lane* const getConnectingLane() const;
  --------------------------------------------------------------------- */
 
 
-
 private:
-
     Road* parentRoad;
     list<Vehicle*> vehicles;
     int order;

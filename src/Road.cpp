@@ -1,6 +1,7 @@
 /*      created by Van Borm Joren & Bontenakel Lenny         */
 
 #include "Road.h"
+#include "RoadSigns.h"
 #include "RoadSystem.h"
 #include <iostream>
 
@@ -75,7 +76,7 @@ void Road::clearConnection()
 
 bool Road::isFree() const
 {
-    REQUIRE(properlyInitialised(), "Road: \'isFree\': not properly initialised.");
+    REQUIRE(properlyInitialised(), "Road: isFree: not properly initialised.");
 
     for(vector<Lane*>::const_iterator i = lanes.begin(); i != lanes.end(); i++)
     {
@@ -85,6 +86,35 @@ bool Road::isFree() const
         }
     }
     return true;
+}
+
+
+RoadSign* const Road::getSignOnPosition(unsigned int position, bool inclusive) const
+{
+    REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+
+    if(signs.empty())
+    {
+        return NULL;
+    }
+
+    RoadSign* nextSign = NULL;
+    for(vector<RoadSign*>::const_iterator i = signs.begin(); i != signs.end(); i++)
+    {
+        if(inclusive && (*i)->getPosition() == position)
+        {
+            return (*i);
+        }
+
+        if((*i)->getPosition() > position)
+        {
+            if (nextSign == NULL || ((*i)->getPosition() - position) < (nextSign->getPosition() - position))
+            {
+                nextSign = (*i);
+            }
+        }
+    }
+    return nextSign;
 }
 
 
@@ -156,7 +186,6 @@ void Lane::removeVehicle(Vehicle* vehicToRemove)
             break;
         }
     }
-
     ENSURE(!getVehicle(vehicToRemove->getLicensePlate()), "Vehicle removal unsuccessful");
 }
 
@@ -185,7 +214,6 @@ bool Lane::isFree() const
 
 Vehicle* const Lane::getCarOnPosition(unsigned int position, bool inclusive) const
 {
-
     if(vehicles.empty())
     {
         return NULL;
@@ -201,11 +229,7 @@ Vehicle* const Lane::getCarOnPosition(unsigned int position, bool inclusive) con
 
         if((*i)->getPosition() > position)
         {
-            if(nextVehic == NULL)
-            {
-                nextVehic = (*i);
-            }
-            else if (((*i)->getPosition() - position) < (nextVehic->getPosition() - position))
+            if (nextVehic == NULL || ((*i)->getPosition() - position) < (nextVehic->getPosition() - position))
             {
                 nextVehic = (*i);
             }
