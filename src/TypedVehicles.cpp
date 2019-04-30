@@ -91,7 +91,12 @@ Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
 
 void Bus::execUpdate()
 {
-    unsigned int dToStop = std::numeric_limits<unsigned int>::max(); // TODO: set dToStop to actual distance
+    unsigned int dToStop = std::numeric_limits<unsigned int>::max();
+    if (getCurrentRoad()
+        and getCurrentRoad()->getBusStopOnPosition(getPosition(), true))
+    {
+        dToStop = getCurrentRoad()->getBusStopOnPosition(getPosition(), true)->getPosition() - getPosition();
+    }
     
     unsigned int targetDistance = 0.75*3.6*getSpeed()+getLen();
     
