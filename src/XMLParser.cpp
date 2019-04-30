@@ -7,6 +7,7 @@
 #include "XMLParser.h"
 #include "RoadSystem.h"
 #include "TypedVehicles.h"
+#include "RoadSigns.h"
 #include "cmath"
 
 

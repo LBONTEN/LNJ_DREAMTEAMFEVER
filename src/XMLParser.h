@@ -1,18 +1,22 @@
 /* created by Van Borm Joren & Bontenakel Lenny
 */
 
+#ifndef LNJPSE_XMLPARSER_H
+#define LNJPSE_XMLPARSER_H
+
+
+#include "RoadSigns.h"
 #include "pugixml.hpp"
 #include <string>
 #include <map>
+
+
 using namespace std;
 
 class RoadSystem;
 class Road;
 class Vehicle;
 class Car;
-
-#ifndef LNJPSE_XMLPARSER_H
-#define LNJPSE_XMLPARSER_H
 
 class XmlParser
 {
