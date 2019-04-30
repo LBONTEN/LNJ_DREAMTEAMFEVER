@@ -34,7 +34,7 @@ public:
     virtual ~RoadSystem();
     
     /**
-     * updates are supressed when false
+     * updates are suppressed when false
      * limits editing of the simulation when true
      * @REQUIRE properly initialised
      */

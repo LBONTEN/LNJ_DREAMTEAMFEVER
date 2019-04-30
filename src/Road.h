@@ -104,7 +104,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    void addSign();
+    void addZone(Zone* newZone);
 /** ---------------------------------------------------------------------
  * setConnection:
  *
@@ -121,7 +121,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    void addZone();
+    void addTrafficLight(TrafficLight* newLight);
 /** ---------------------------------------------------------------------
  * setConnection:
  *
@@ -138,24 +138,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    void addTrafficLight();
-/** ---------------------------------------------------------------------
- * setConnection:
- *
- *  IN:
- *      newConnection: Road to add as a connection to subjected road
- *
- *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
- *
- *  Postcondition:
- *      Road contains a new sign.
- *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
- *
- --------------------------------------------------------------------- */
-
-
-    void addBusstop();
+    void addBusstop(BusStop* newStop);
 /** ---------------------------------------------------------------------
  * setConnection:
  *

@@ -5,7 +5,7 @@
 #include "RoadSystem.h"
 #include <iostream>
 
-extern const unsigned int minimumSpace= 2;
+extern const unsigned int minimumSpace= 200;
 
 
 /*  Road functions ---------------------------------------------------- */
@@ -75,9 +75,24 @@ void Road::clearConnection()
 }
 
 
-void Road::addSign()
+void Road::addZone(Zone* newZone)
 {
-    // TODO: fix using templates if possible
+    REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    zones.push_back(newZone);
+}
+
+
+void Road::addTrafficLight(TrafficLight* newLight)
+{
+    REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    trafficLights.push_back(newLight);
+}
+
+
+void Road::addBusstop(BusStop* newStop)
+{
+    REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    busStops.push_back(newStop);
 }
 
 
@@ -94,7 +109,6 @@ bool Road::isFree() const
     }
     return true;
 }
-
 
 
 vector<RoadSign*> Road::getAllSigns() const
