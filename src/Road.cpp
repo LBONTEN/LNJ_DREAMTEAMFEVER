@@ -97,7 +97,7 @@ bool Road::isFree() const
 
 
 
-const vector<RoadSign*>& Road::getAllSigns() const
+vector<RoadSign*> Road::getAllSigns() const
 {
     REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
     vector<RoadSign*> allSigns;
@@ -135,6 +135,7 @@ RoadSign* const Road::getSignOnPosition(unsigned int position, bool inclusive) c
 {
     REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
 
+    vector<RoadSign*> signs = getAllSigns();
     if(signs.empty())
     {
         return NULL;
@@ -281,12 +282,13 @@ const int Road::getSpeedLimit(unsigned int pos) const
 {
     REQUIRE(properlyInitialised(), "Road: getSpeedLimit: Not properly Initialised.");
 
-    int maxPos;
+    unsigned int maxPos = 0;
     int currentLimit = speedLimit;
     for(vector<Zone*>::const_iterator i = zones.begin(); i != zones.end(); i++)
     {
         if((*i)->getPosition() <= pos && (*i)->getPosition() > maxPos)
         {
+            maxPos = (*i)->getPosition();
             currentLimit = (*i)->getNewSpeedLimit();
         }
     }

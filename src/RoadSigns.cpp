@@ -2,6 +2,8 @@
  */
 
 #include "RoadSigns.h"
+#include "Road.h"
+#include "design_by_contract.h"
 
 /** RoadSign functions ------------------------------------------ */
 

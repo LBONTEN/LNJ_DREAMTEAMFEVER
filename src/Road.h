@@ -181,7 +181,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    const vector<RoadSign*>& getAllSigns() const;
+    vector<RoadSign*> getAllSigns() const;
 /** ---------------------------------------------------------------------
 * isFree
 *
