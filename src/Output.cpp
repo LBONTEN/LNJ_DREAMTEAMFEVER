@@ -5,7 +5,7 @@
 #include "Output.h"
 #include "Vehicle.h"
 #include "Road.h"
-
+#include "RoadSigns.h"
 #include <vector>
 
 
@@ -74,7 +74,7 @@ ostream& operator<<(ostream& target, const Output& print)
 
 ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
 {
-    vector<Road*> rdVec = simulation->getVectorOfRoads();
+    const vector<Road*>& rdVec = simulation->getVectorOfRoads();
     
     // find the longest road to determine scale
     unsigned int longestD = 0;
@@ -93,37 +93,86 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
     {
         Road* currRd = rdVec[rdNum];
         
-        target << currRd->getName() << string (longestName - currRd->getName().size() + 1, ' ') << "| ";
+        const vector<Lane*>& lanes = currRd->getLanes();
         
-        
-        // print each step of the road
-        unsigned int currPos = 0;
-        do {
-            Vehicle* foundVeh = currRd->getLanes()[0]->getCarOnPosition(currPos, true);
+        // construct the edge string (includes traffic signaling)
+        string rdEdge (currRd->getLength() / metresPerChar, '=');
+        RoadSign* sign = currRd->getSignOnPosition(0, true);
+        while (sign)
+        {
+            // TODO: get correct letter to represent type
+            rdEdge.at(sign->getPosition() / metresPerChar) = 'S';
             
-            if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
-            {
-                if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
-                else if (foundVeh->getTypeName() == "Car") target << 'A';
-                else if (foundVeh->getTypeName() == "Bus") target << 'B';
-                else if (foundVeh->getTypeName() == "Truck") target << 'V';
-                else target << '?';
-            }
-            else
-            {
-                target << '=';
-            }
-            
-            currPos += metresPerChar;
+            sign = currRd->getSignOnPosition(sign->getPosition(), false);
         }
-        while (currPos <= currRd->getLength());
         
+        // print road "header"
+        target << currRd->getName() << string (longestName-currRd->getName().size()+1, ' ') << "| " << rdEdge;
         if (currRd->getConnection())
         {
             target << " ->" << currRd->getConnection()->getName();
         }
-        
         target << endl;
+        
+        target << (unsigned int) (lanes.size()-1) << endl;
+        
+        // print each lane
+        for (unsigned int laneNr = lanes.size()-1; laneNr < lanes.size(); --laneNr) // slightly weird for-loop on account of signedness
+        {
+            Lane* currLn = lanes[laneNr];
+            
+            string rdLane (currRd->getLength() / metresPerChar, ' ');
+            
+            Vehicle* veh = currLn->getCarOnPosition(0, true);
+            while (veh)
+            {
+                if (veh->getTypeName() == "MotorCycle") rdLane.at(veh->getPosition() / metresPerChar) = 'M';
+                else if (veh->getTypeName() == "Car") rdLane.at(veh->getPosition() / metresPerChar) = 'A';
+                else if (veh->getTypeName() == "Bus") rdLane.at(veh->getPosition() / metresPerChar) = 'B';
+                else if (veh->getTypeName() == "Truck") rdLane.at(veh->getPosition() / metresPerChar) = 'V';
+                else rdLane[veh->getPosition()] = '?';
+                
+                veh = currLn->getCarOnPosition(veh->getPosition(), false);
+            }
+    
+            target << string(longestName+1, ' ') << "| " << rdLane << endl;
+            
+            if (laneNr - 1 >= 0)
+            {
+                target << string(longestName+1, ' ') << "| " << string(currRd->getLength() / metresPerChar, '-') << endl;
+            }
+    
+            /*
+            // print each step of the lane
+            unsigned int currPos = 0;
+            do {
+                Vehicle* foundVeh = lanes[laneNr]->getCarOnPosition(currPos, true);
+        
+                if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
+                {
+                    if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
+                    else if (foundVeh->getTypeName() == "Car") target << 'A';
+                    else if (foundVeh->getTypeName() == "Bus") target << 'B';
+                    else if (foundVeh->getTypeName() == "Truck") target << 'V';
+                    else target << '?';
+                }
+                else
+                {
+                    target << ' ';
+                }
+        
+                currPos += metresPerChar;
+            }
+            while (currPos <= currRd->getLength());
+             */
+        }
+        
+        target << string(longestName+1, ' ') << "| " << rdEdge << endl;
+    
+        if (rdNum <= rdVec.size()-1)
+        {
+            target << endl;
+        }
     }
     
     return target;

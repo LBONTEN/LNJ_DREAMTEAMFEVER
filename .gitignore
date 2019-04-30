@@ -39,3 +39,4 @@
 
 # Compiled build folder
 build/*
+bin/*

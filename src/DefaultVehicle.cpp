@@ -179,7 +179,7 @@ void DefaultVehicle::stepPosition() {
         
         if (getCurrentRoad()->getConnection())
         {
-            hardSetLane(getCurrentRoad()->getConnection()->getLanes()[0]);
+            hardSetLane(getCurrentLane()->getConnectingLane());
         }
         else
         {
