@@ -13,13 +13,13 @@
 	- [x] Automatische simulatie
 
 	- [x] 1.3. Voertuig met Type inlezen
-	- [ ] 1.4. Wegen met verkeertekens inlezen
+	- [x] 1.4. Wegen met verkeertekens inlezen
 	- [x] 1.5. Meerdere rijstroken
 	- [x] 2.2. Grafische impressie
 	- [x] 3.3. Rijden van voertuig met type
-	- [ ] 3.4. Simulatie van baan met zones
-	- [ ] 3.5. Simulatie van baan met bushaltes
-	- [ ] 3.6. Simulatie van baan met verkeerslichten
+	- [x] 3.4. Simulatie van baan met zones
+	- [x] 3.5. Simulatie van baan met bushaltes
+	- [x] 3.6. Simulatie van baan met verkeerslichten
 
 ## Implementation
 - [x] class: RoadSystem
