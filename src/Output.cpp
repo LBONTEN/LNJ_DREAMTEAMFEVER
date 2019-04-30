@@ -5,6 +5,7 @@
 #include "Output.h"
 #include "Vehicle.h"
 #include "Road.h"
+#include "RoadSigns.h"
 
 #include <vector>
 
@@ -95,19 +96,52 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         
         const vector<Lane*>& lanes = currRd->getLanes();
         
+        // construct the edge string (includes traffic signaling)
+        string rdEdge (currRd->getLength() / metresPerChar, '=');
+        RoadSign* sign = currRd->getSignOnPosition(0, true);
+        while (sign)
+        {
+            // TODO: get correct letter to represent type
+            rdEdge.at(sign->getPosition() / metresPerChar) = 'S';
+            
+            sign = currRd->getSignOnPosition(sign->getPosition(), false);
+        }
+        
+        // print road "header"
+        target << currRd->getName() << string (longestName-currRd->getName().size()+1, ' ') << "| " << rdEdge;
+        if (currRd->getConnection())
+        {
+            target << " ->" << currRd->getConnection()->getName();
+        }
+        target << endl;
+        
         // print each lane
         for (unsigned int laneNr = 0; laneNr < lanes.size(); ++laneNr)
         {
-            // print road name if it is the first lane
-            if (laneNr == 0)
-            {
-                target << currRd->getName() << string (longestName - currRd->getName().size() + 1, ' ') << "| ";
-            }
-            else
-            {
-                target << string (longestName+1, ' ') << "| ";
-            }
+            Lane* currLn = lanes[laneNr];
             
+            string rdLane (currRd->getLength() / metresPerChar, ' ');
+            
+            Vehicle* veh = currLn->getCarOnPosition(0, true);
+            while (veh)
+            {
+                if (veh->getTypeName() == "MotorCycle") rdLane.at(veh->getPosition() / metresPerChar) = 'M';
+                else if (veh->getTypeName() == "Car") rdLane.at(veh->getPosition() / metresPerChar) = 'A';
+                else if (veh->getTypeName() == "Bus") rdLane.at(veh->getPosition() / metresPerChar) = 'B';
+                else if (veh->getTypeName() == "Truck") rdLane.at(veh->getPosition() / metresPerChar) = 'V';
+                else rdLane[veh->getPosition()] = '?';
+                
+                veh = currLn->getCarOnPosition(veh->getPosition(), false);
+            }
+    
+            target << string(longestName+1, ' ') << "| " << rdLane << endl;
+            
+            if (laneNr + 1 < lanes.size())
+            {
+                target << string(longestName+1, ' ') << "| " << string(currRd->getLength() / metresPerChar, '-') << endl;
+            }
+    
+            /*
             // print each step of the lane
             unsigned int currPos = 0;
             do {
@@ -123,23 +157,16 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
                 }
                 else
                 {
-                    // road borders use =, middle uses -
-                    if (laneNr == 0 or laneNr == lanes.size()-1) target << '=';
-                    else target << '-';
+                    target << ' ';
                 }
         
                 currPos += metresPerChar;
             }
             while (currPos <= currRd->getLength());
-    
-            // print connection if it is the first lane
-            if (laneNr == 0 and currRd->getConnection())
-            {
-                target << " ->" << currRd->getConnection()->getName();
-            }
-    
-            target << endl;
+             */
         }
+        
+        target << string(longestName+1, ' ') << "| " << rdEdge << endl;
     
         if (rdNum <= rdVec.size()-1)
         {
