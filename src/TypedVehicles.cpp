@@ -93,6 +93,8 @@ void Bus::execUpdate()
 {
     unsigned int dToStop = std::numeric_limits<unsigned int>::max(); // TODO: set dToStop to actual distance
     
+    unsigned int targetDistance = 0.75*3.6*getSpeed()+getLen();
+    
     // waiting at bus stop
     if (dToStop == 0 and busStopCooldown > 0)
     {
@@ -105,12 +107,15 @@ void Bus::execUpdate()
     }
     
     // slowing down for bus stop
-    else if (dToStop <= 2 * (0.75*getSpeed()+getLen()) )
+    else if (dToStop <= 2*targetDistance)
     {
-        stepPosition();
-        stepSpeed();
-        
         fullStop(dToStop);
+        
+        int stopAcc = getAcceleration();
+        
+        DefaultVehicle::execUpdate();
+        
+        hardSetAcceleration(min(stopAcc, getAcceleration()));
         
         return;
     }
