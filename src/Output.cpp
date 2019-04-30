@@ -74,7 +74,7 @@ ostream& operator<<(ostream& target, const Output& print)
 
 ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
 {
-    vector<Road*> rdVec = simulation->getVectorOfRoads();
+    const vector<Road*>& rdVec = simulation->getVectorOfRoads();
     
     // find the longest road to determine scale
     unsigned int longestD = 0;
@@ -93,37 +93,58 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
     {
         Road* currRd = rdVec[rdNum];
         
-        target << currRd->getName() << string (longestName - currRd->getName().size() + 1, ' ') << "| ";
+        const vector<Lane*>& lanes = currRd->getLanes();
         
-        
-        // print each step of the road
-        unsigned int currPos = 0;
-        do {
-            Vehicle* foundVeh = currRd->getLanes()[0]->getCarOnPosition(currPos, true);
-            
-            if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
+        // print each lane
+        for (unsigned int laneNr = 0; laneNr < lanes.size(); ++laneNr)
+        {
+            // print road name if it is the first lane
+            if (laneNr == 0)
             {
-                if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
-                else if (foundVeh->getTypeName() == "Car") target << 'A';
-                else if (foundVeh->getTypeName() == "Bus") target << 'B';
-                else if (foundVeh->getTypeName() == "Truck") target << 'V';
-                else target << '?';
+                target << currRd->getName() << string (longestName - currRd->getName().size() + 1, ' ') << "| ";
             }
             else
             {
-                target << '=';
+                target << string (longestName+1, ' ') << "| ";
             }
             
-            currPos += metresPerChar;
-        }
-        while (currPos <= currRd->getLength());
+            // print each step of the lane
+            unsigned int currPos = 0;
+            do {
+                Vehicle* foundVeh = lanes[laneNr]->getCarOnPosition(currPos, true);
         
-        if (currRd->getConnection())
+                if (foundVeh and foundVeh->getPosition() < currPos+metresPerChar)
+                {
+                    if (foundVeh->getTypeName() == "MotorCycle") target << 'M';
+                    else if (foundVeh->getTypeName() == "Car") target << 'A';
+                    else if (foundVeh->getTypeName() == "Bus") target << 'B';
+                    else if (foundVeh->getTypeName() == "Truck") target << 'V';
+                    else target << '?';
+                }
+                else
+                {
+                    // road borders use =, middle uses -
+                    if (laneNr == 0 or laneNr == lanes.size()-1) target << '=';
+                    else target << '-';
+                }
+        
+                currPos += metresPerChar;
+            }
+            while (currPos <= currRd->getLength());
+    
+            // print connection if it is the first lane
+            if (laneNr == 0 and currRd->getConnection())
+            {
+                target << " ->" << currRd->getConnection()->getName();
+            }
+    
+            target << endl;
+        }
+    
+        if (rdNum <= rdVec.size()-1)
         {
-            target << " ->" << currRd->getConnection()->getName();
+            target << endl;
         }
-        
-        target << endl;
     }
     
     return target;
