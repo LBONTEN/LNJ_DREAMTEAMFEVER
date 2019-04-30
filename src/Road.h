@@ -3,13 +3,13 @@
 
 #include "Vehicle.h"
 #include "TypedVehicles.h"
+#include "RoadSigns.h"
 #include "design_by_contract.h"
 
 #include <vector>
 #include <list>
 
 class RoadSystem;
-class RoadSign;
 class Lane;
 
 #ifndef LNJPSE_PROJECT_ROAD_H
@@ -31,7 +31,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    Road(string name, unsigned int length,  int maxSpeed, unsigned int laneCount = 1);
+    Road(string name, unsigned int length, int maxSpeed, unsigned int laneCount = 1, Road* connection = NULL);
 /** ---------------------------------------------------------------------
  * Road
  *  IN:
@@ -76,14 +76,11 @@ public:
  *  IN:
  *      newConnection: Road to add as a connection to subjected road
  *
- *  OUT:
- *      The subjected road will have a new connection added to its list
- *
  *  Precondition:
  *      Both roads involved in the function must be properly initialised for proper execution.
  *
  *  Postcondition:
- *      Road has a an extra connection added to back of vector of connection.
+ *      Road's connection has been changed.
  *
  --------------------------------------------------------------------- */
 
@@ -107,6 +104,73 @@ public:
  --------------------------------------------------------------------- */
 
 
+    void addSign();
+/** ---------------------------------------------------------------------
+ * setConnection:
+ *
+ *  IN:
+ *      newConnection: Road to add as a connection to subjected road
+ *
+ *  Precondition:
+ *      Both roads involved in the function must be properly initialised for proper execution.
+ *
+ *  Postcondition:
+ *      Road contains a new sign.
+ *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *
+ --------------------------------------------------------------------- */
+
+
+    void addZone();
+/** ---------------------------------------------------------------------
+ * setConnection:
+ *
+ *  IN:
+ *      newConnection: Road to add as a connection to subjected road
+ *
+ *  Precondition:
+ *      Both roads involved in the function must be properly initialised for proper execution.
+ *
+ *  Postcondition:
+ *      Road contains a new sign.
+ *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *
+ --------------------------------------------------------------------- */
+
+
+    void addTrafficLight();
+/** ---------------------------------------------------------------------
+ * setConnection:
+ *
+ *  IN:
+ *      newConnection: Road to add as a connection to subjected road
+ *
+ *  Precondition:
+ *      Both roads involved in the function must be properly initialised for proper execution.
+ *
+ *  Postcondition:
+ *      Road contains a new sign.
+ *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *
+ --------------------------------------------------------------------- */
+
+
+    void addBusstop();
+/** ---------------------------------------------------------------------
+ * setConnection:
+ *
+ *  IN:
+ *      newConnection: Road to add as a connection to subjected road
+ *
+ *  Precondition:
+ *      Both roads involved in the function must be properly initialised for proper execution.
+ *
+ *  Postcondition:
+ *      Road contains a new sign.
+ *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *
+ --------------------------------------------------------------------- */
+
     bool isFree() const;
 /** ---------------------------------------------------------------------
  * isFree
@@ -117,7 +181,7 @@ public:
  --------------------------------------------------------------------- */
 
 
-    RoadSign* const getSignOnPosition(unsigned int position, bool inclusive) const;
+    RoadSign* const getSignOnPosition(Type type, unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------
  * getSignOnPosition:
  *
@@ -168,7 +232,20 @@ public:
  --------------------------------------------------------------------- */
 
 
-    int getSpeedLimit() const;
+    const int getSpeedLimit() const;
+/** ---------------------------------------------------------------------
+ * getMaximumSpeed
+ *
+ *  OUT:
+ *      returns the speed limit on current Road.
+ *
+ *  Precondition
+ *      Road must be properly initialised.
+ *
+ --------------------------------------------------------------------- */
+
+
+    const int getSpeedLimit(unsigned int pos) const;
 /** ---------------------------------------------------------------------
  * getMaximumSpeed
  *
@@ -197,11 +274,13 @@ public:
 private:
     string name;
     unsigned int length;
-    int speedLimit;
+    const int speedLimit;
     Road* connection;
     unsigned int laneCount;
     vector<Lane*> lanes;
-    vector<RoadSign*> signs;
+    vector<Zone*> zones;
+    vector<TrafficLight*> trafficLights;
+    vector<BusStop*> busStops;
 };
 
 

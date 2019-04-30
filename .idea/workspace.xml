@@ -39,6 +39,7 @@
       <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RoadSigns.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoadSigns.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RoadSigns.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoadSigns.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -77,15 +78,20 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Road.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="361">
-                    <caret line="129" column="66" selection-start-line="129" selection-start-column="66" selection-end-line="129" selection-end-column="66" />
+                  <state relative-caret-position="-73">
+                    <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+                    <folding>
+                      <element signature="e#53#73#0" expanded="true" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
             </file>
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/TypedVehicles.h">
-                <provider selected="true" editor-type-id="text-editor" />
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="-900" />
+                </provider>
               </entry>
             </file>
             <file pinned="false" current-in-tab="false">
@@ -114,8 +120,8 @@
             <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/RoadSigns.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="573">
-                    <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+                  <state relative-caret-position="46">
+                    <caret line="2" selection-start-line="2" selection-end-line="2" />
                   </state>
                 </provider>
               </entry>
@@ -134,10 +140,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="212" lean-forward="true" selection-start-line="212" selection-end-line="212" />
+            <state relative-caret-position="529">
+              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
               <folding>
-                <element signature="e#65#82#0" expanded="true" />
+                <element signature="e#196#488#0" />
+                <element signature="e#451#812#0" />
+                <element signature="e#814#850#0" />
+                <element signature="e#852#1104#0" />
+                <element signature="e#1107#1468#0" />
+                <element signature="e#1471#1621#0" />
+                <element signature="e#1624#1920#0" />
+                <element signature="e#1946#2663#0" />
+                <element signature="e#1923#2078#0" />
+                <element signature="e#2081#2232#0" />
+                <element signature="e#2235#2390#0" />
+                <element signature="e#2393#2546#0" />
+                <element signature="e#3290#3346#0" />
+                <element signature="e#2549#2687#0" />
+                <element signature="e#2858#3273#0" />
+                <element signature="e#3276#3618#0" />
+                <element signature="e#3621#4012#0" />
+                <element signature="e#4015#4073#0" />
+                <element signature="e#4076#4793#0" />
+                <element signature="e#4796#5135#0" />
+                <element signature="e#5138#5414#0" />
+                <element signature="e#5417#5489#0" />
+                <element signature="e#5492#5558#0" />
+                <element signature="e#5561#5667#0" />
               </folding>
             </state>
           </provider>
@@ -173,7 +202,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TypedVehicles.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
+            <state relative-caret-position="-517">
               <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
             </state>
           </provider>
@@ -194,8 +223,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RoadSigns.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="662">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="869">
+              <caret line="73" column="41" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -258,13 +287,12 @@
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSigns.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSigns.h" />
-        <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/Road.cpp" />
+        <option value="$PROJECT_DIR$/src/Road.h" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="5">
-    <option name="x" value="1920" />
+  <component name="ProjectFrameBounds" extendedState="4">
     <option name="y" value="33" />
     <option name="width" value="960" />
     <option name="height" value="1047" />
@@ -443,7 +471,7 @@
       <workItem from="1556479842812" duration="1517000" />
       <workItem from="1556526828462" duration="11675000" />
       <workItem from="1556545622007" duration="1132000" />
-      <workItem from="1556615314288" duration="9227000" />
+      <workItem from="1556615314288" duration="21665000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -579,7 +607,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142071000" />
+    <option name="totallyTimeSpent" value="154509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,8 +619,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="33" width="960" height="1047" extended-state="4" />
-    <editor active="true" />
+    <frame x="0" y="33" width="960" height="1047" extended-state="4" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
@@ -851,9 +878,6 @@
     <entry file="file://$PROJECT_DIR$/src/Output.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TypedVehicles.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Vehicle.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="652">
@@ -872,13 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1314">
           <caret line="72" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TypedVehicles.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -906,33 +923,71 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TypedVehicles.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-900" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TypedVehicles.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-517">
+          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/RoadSigns.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="869">
+          <caret line="73" column="41" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RoadSigns.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="50" column="38" selection-start-line="50" selection-start-column="38" selection-end-line="50" selection-end-column="38" />
+        <state relative-caret-position="46">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="129" column="66" selection-start-line="129" selection-start-column="66" selection-end-line="129" selection-end-column="66" />
+        <state relative-caret-position="-73">
+          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+          <folding>
+            <element signature="e#53#73#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="212" lean-forward="true" selection-start-line="212" selection-end-line="212" />
+        <state relative-caret-position="529">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding>
-            <element signature="e#65#82#0" expanded="true" />
+            <element signature="e#196#488#0" />
+            <element signature="e#451#812#0" />
+            <element signature="e#814#850#0" />
+            <element signature="e#852#1104#0" />
+            <element signature="e#1107#1468#0" />
+            <element signature="e#1471#1621#0" />
+            <element signature="e#1624#1920#0" />
+            <element signature="e#1946#2663#0" />
+            <element signature="e#1923#2078#0" />
+            <element signature="e#2081#2232#0" />
+            <element signature="e#2235#2390#0" />
+            <element signature="e#2393#2546#0" />
+            <element signature="e#3290#3346#0" />
+            <element signature="e#2549#2687#0" />
+            <element signature="e#2858#3273#0" />
+            <element signature="e#3276#3618#0" />
+            <element signature="e#3621#4012#0" />
+            <element signature="e#4015#4073#0" />
+            <element signature="e#4076#4793#0" />
+            <element signature="e#4796#5135#0" />
+            <element signature="e#5138#5414#0" />
+            <element signature="e#5417#5489#0" />
+            <element signature="e#5492#5558#0" />
+            <element signature="e#5561#5667#0" />
           </folding>
         </state>
       </provider>

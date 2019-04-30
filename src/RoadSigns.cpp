@@ -5,7 +5,7 @@
 
 /** RoadSign functions ------------------------------------------ */
 
-RoadSign::RoadSign(const string& type, unsigned int position, Road* road) :
+RoadSign::RoadSign(Type type, unsigned int position, Road* road) :
     type(type),
     position(position),
     road(road)
@@ -22,7 +22,7 @@ bool RoadSign::properlyInitialised() const
 }
 
 
-const string& RoadSign::getType() const
+Type RoadSign::getType() const
 {
     REQUIRE(properlyInitialised(), "RoadSign: getType: Not properly Initialised.");
     return type;
@@ -41,3 +41,36 @@ const string& RoadSign::getType() const
     REQUIRE(properlyInitialised(), "RoadSign: getRoad: Not properly Initialised.");
     return road;
  }
+
+
+/** Zone functions ---------------------------------------------- */
+
+Zone::Zone(unsigned int position, Road *road, int newSpeedLimit) :
+    RoadSign::RoadSign(zoneStart, position, road),
+    newSpeedLimit(newSpeedLimit)
+{}
+
+const int Zone::getNewSpeedLimit() const
+{
+    REQUIRE(properlyInitialised(), "Zone: getNewSpeedLimit: Not properly initialised.");
+    return newSpeedLimit;
+}
+
+
+/** TrafficLight functions ------------------------------------- */
+TrafficLight::TrafficLight(unsigned int position, Road *road) :
+    RoadSign::RoadSign(trafficLight, position, road),
+    state(red)
+{}
+
+/** BusStop functions  ----------------------------------------- */
+BusStop::BusStop(unsigned int position, Road *road, bool rainProtection) :
+    RoadSign::RoadSign(busStop, position, road),
+    rainProtection(rainProtection)
+{}
+
+bool BusStop::doesItProtecc()
+{
+    REQUIRE(properlyInitialised(), "hi");
+    return rainProtection;
+}

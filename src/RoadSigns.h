@@ -1,16 +1,18 @@
 /* created by Van Borm Joren & Bontenakel Lenny
  */
 
-#include "Road.h"
-
 #ifndef LNJPSE_PROJECT_ROADSIGNS_H
 #define LNJPSE_PROJECT_ROADSIGNS_H
+
+class Road;
+
+enum Type {busStop, zoneStart, trafficLight};
 
 class RoadSign
 {
 public:
 
-    RoadSign(const string& type, unsigned int position, Road* road);
+    RoadSign(Type type, unsigned int position, Road* road);
 /** ---------------------------------------------------------------------
  * RoadSign
  *
@@ -25,7 +27,7 @@ public:
  *
  --------------------------------------------------------------------- */
 
-    const string& getType() const;
+    Type getType() const;
 /** ---------------------------------------------------------------------
  * getType
  *
@@ -52,11 +54,55 @@ public:
  --------------------------------------------------------------------- */
 
 
-private:
+protected:
 
-    string type;
+    Type type;
     unsigned int position;
     Road* road;
+};
+
+
+
+// Zone ----------------------------------------------------------------------
+class Zone : public RoadSign
+{
+public:
+    Zone(unsigned int position, Road* road, int newSpeedLimit);
+
+    const int getNewSpeedLimit() const;
+
+
+private:
+    const int newSpeedLimit;
+};
+
+
+
+// TrafficLight --------------------------------------------------------------
+enum Color {green, orange, red};
+
+class TrafficLight : public RoadSign
+{
+public:
+    TrafficLight(unsigned int position, Road* road);
+
+    Color getState() const;
+
+    void changeState();
+private:
+    Color state;
+};
+
+// BusStop -------------------------------------------------------------------
+class BusStop : public RoadSign
+{
+public:
+    BusStop(unsigned int position, Road* road, bool rainProtection);
+
+    bool doesItProtecc();
+
+private:
+    bool rainProtection;
 };
 
 #endif //LNJPSE_PROJECT_ROADSIGNS_H
