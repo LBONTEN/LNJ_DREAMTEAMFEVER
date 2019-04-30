@@ -29,7 +29,7 @@ void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
 }
 
 
-///--- functions from Serialiser class ---///
+///--- functions from Output class ---///
 
 ostream& Output::classicPrint(ostream& target) const
 {

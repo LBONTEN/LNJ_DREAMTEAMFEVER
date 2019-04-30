@@ -35,6 +35,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Output.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Output.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -124,7 +126,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
@@ -210,8 +212,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1127">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="159">
+              <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Output.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -245,9 +265,7 @@
         <option value="$PROJECT_DIR$/src/XMLParserTests.h" />
         <option value="$PROJECT_DIR$/src/TypedVehicles.cpp" />
         <option value="$PROJECT_DIR$/src/Vehicle.h" />
-        <option value="$PROJECT_DIR$/src/Output.cpp" />
         <option value="$PROJECT_DIR$/src/DefaultVehicle.cpp" />
-        <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/CarTests.h" />
         <option value="$PROJECT_DIR$/src/Vehicle.cpp" />
         <option value="$PROJECT_DIR$/src/VehicleTests.h" />
@@ -258,12 +276,14 @@
         <option value="$PROJECT_DIR$/src/RoadSigns.cpp" />
         <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/Road.cpp" />
+        <option value="$PROJECT_DIR$/src/main.cpp" />
+        <option value="$PROJECT_DIR$/src/Output.cpp" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
+  <component name="ProjectFrameBounds" extendedState="5">
     <option name="y" value="33" />
-    <option name="width" value="960" />
+    <option name="width" value="1168" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -352,7 +372,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Google Test.ParseTest.NETWORK_Loop">
+  <component name="RunManager" selected="Application.LNJPSE">
     <configuration name="InSystemVehicle.SETGET_HappyDay" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="InSystemVehicle" TEST_METHOD="SETGET_HappyDay" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -383,7 +403,7 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LNJPSE" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./IO/single_connection_n_cars.xml&quot;" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE">
+    <configuration name="LNJPSE" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="&quot;./IO/tree_types_lanes_signs.xml&quot;" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -446,7 +466,7 @@
       <workItem from="1556479842812" duration="1517000" />
       <workItem from="1556526828462" duration="11675000" />
       <workItem from="1556545622007" duration="1132000" />
-      <workItem from="1556615314288" duration="35223000" />
+      <workItem from="1556615314288" duration="36614000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -589,7 +609,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168067000" />
+    <option name="totallyTimeSpent" value="169458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -601,7 +621,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="33" width="960" height="1047" extended-state="5" />
+    <frame x="0" y="33" width="1168" height="1047" extended-state="5" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -609,7 +629,7 @@
       <window_info content_ui="combo" id="Project" order="2" weight="0.2978022" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2961418" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.459854" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.42127216" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -831,13 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Output.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -845,13 +858,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="652">
           <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Output.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -881,13 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-517">
           <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -993,6 +992,27 @@
             <element signature="e#5492#5558#0" />
             <element signature="e#5561#5667#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="44" column="41" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Output.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="131" column="4" selection-start-line="131" selection-start-column="4" selection-end-line="131" selection-end-column="4" />
         </state>
       </provider>
     </entry>
