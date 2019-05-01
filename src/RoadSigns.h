@@ -103,7 +103,7 @@ private:
 class BusStop : public RoadSign
 {
 public:
-    BusStop(unsigned int position, Road* road, bool rainProtection);
+    BusStop(unsigned int position, Road* road, bool rainProtection = true);
 
     bool doesItProtecc();
 

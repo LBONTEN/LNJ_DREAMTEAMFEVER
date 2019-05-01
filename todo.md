@@ -21,6 +21,8 @@
 	- [x] 3.5. Simulatie van baan met bushaltes
 	- [x] 3.6. Simulatie van baan met verkeerslichten
 
+	- [ ] TESTSTESTSTESTS
+
 ## Implementation
 - [x] class: RoadSystem
 	- [x] load simulation

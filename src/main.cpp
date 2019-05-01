@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     print.style = text_graphic;
     
     std::cout << "Initial situation:" << std::endl;
-    std::cout << print << "~====~" << std::endl;
+    std::cout << print << "\n\t ~====~ \n" << std::endl;
     
     rs->activate();
     
@@ -42,12 +42,12 @@ int main(int argc, char** argv)
                 cout << (*it)->getTypeName() << " : " << "a=" << (*it)->getAcceleration() << " v=" << (*it)->getSpeed() << " x=" << (*it)->getPosition() << std::endl;
             }
             
-            std::cout << "~====~" << std::endl;
+            std::cout << "\n\t ~====~ \n" << std::endl;
         }
     }
     
     std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
-    std::cout << print << "~====~" << std::endl;
+    std::cout << print << "\t ~====~" << std::endl;
 
     return 0;
 }

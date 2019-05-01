@@ -106,51 +106,50 @@ public:
 
     void addZone(Zone* newZone);
 /** ---------------------------------------------------------------------
- * setConnection:
+ * addZone:
  *
  *  IN:
- *      newConnection: Road to add as a connection to subjected road
+ *      newStop: Zone to add to Road.
  *
  *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
+ *      Road must be properly initialised.
  *
  *  Postcondition:
- *      Road contains a new sign.
- *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *      Road contains a new Zone.
+ *      zones has increased by one.
  *
  --------------------------------------------------------------------- */
 
-
     void addTrafficLight(TrafficLight* newLight);
 /** ---------------------------------------------------------------------
- * setConnection:
+ * addBusStop:
  *
  *  IN:
- *      newConnection: Road to add as a connection to subjected road
+ *      newLight: trafficLight to add to Road.
  *
  *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
+ *      Road must be properly initialised.
  *
  *  Postcondition:
- *      Road contains a new sign.
- *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *      Road contains a new TrafficLight.
+ *      trafficLights has increased by one.
  *
  --------------------------------------------------------------------- */
 
 
     void addBusstop(BusStop* newStop);
 /** ---------------------------------------------------------------------
- * setConnection:
+ * addBusStop:
  *
  *  IN:
- *      newConnection: Road to add as a connection to subjected road
+ *      newStop: BusStop to add to Road.
  *
  *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
+ *      Road must be properly initialised.
  *
  *  Postcondition:
- *      Road contains a new sign.
- *      Size of corresponding vector (zones, trafficLights or busStops) has increased by one.
+ *      Road contains a new BusStop.
+ *      busStops has increased by one.
  *
  --------------------------------------------------------------------- */
 
@@ -166,40 +165,52 @@ public:
 
     vector<RoadSign*> getAllSigns() const;
 /** ---------------------------------------------------------------------
-* isFree
-*
+* getAllSigns
+**
 *  OUT:
-*      True when all lanes are free.
+*      Returns concatenation of zones, trafficLights and busStops
+*
+*  Precondition:
+*       Road must be properly Initialised
 *
 --------------------------------------------------------------------- */
 
 
     const vector<Zone*>& getZones() const;
 /** ---------------------------------------------------------------------
-* isFree
+* getZoness
 *
 *  OUT:
-*      True when all lanes are free.
+*      Returns zones
+*
+*  Precondition:
+*       Road must be properly Initialised
 *
 --------------------------------------------------------------------- */
 
 
     const vector<TrafficLight*>& getTrafficLights() const;
 /** ---------------------------------------------------------------------
-* isFree
+* getAllSigns
 *
 *  OUT:
-*      True when all lanes are free.
+*      concatenation of zones, trafficLights and busStops
+*
+*  Precondition:
+*       Road must be properly Initialised
 *
 --------------------------------------------------------------------- */
 
 
     const vector<BusStop*>& getBusStops() const;
 /** ---------------------------------------------------------------------
-* isFree
+* getAllSigns
 *
 *  OUT:
-*      True when all lanes are free.
+*      concatenation of zones, trafficLights and busStops
+*
+*  Precondition:
+*       Road must be properly Initialised
 *
 --------------------------------------------------------------------- */
 
@@ -208,15 +219,16 @@ public:
 /** ---------------------------------------------------------------------
  * getSignOnPosition:
  *
- *  OUT
+ *  OUT:
  *      if inclusive is true:
  *          Returns RoadSign from signs on given position if there is one.
  *          Else the next one on the Road will be returned.
  *      if inclusive is false:
  *          Returns first Sign past given position.
- *      returns NULL if no signs are encountered past given position on the Road.
+ *      returns NULL if no signs are encountered past given position on the Road
+ *      or if zones, trafficLights and busStops are empty.
  *
- *  Precondition
+ *  Precondition:
  *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
@@ -224,17 +236,18 @@ public:
 
     Zone* const getZoneStartOnPosition(unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------
- * getSignOnPosition:
+ * getZoneStartOnPosition:
  *
- *  OUT
+ *  OUT:
  *      if inclusive is true:
- *          Returns RoadSign from signs on given position if there is one.
+ *          Returns ZoneStart from signs on given position if there is one.
  *          Else the next one on the Road will be returned.
  *      if inclusive is false:
- *          Returns first Sign past given position.
- *      returns NULL if no signs are encountered past given position on the Road.
+ *          Returns first ZoneStart past given position.
+ *      returns NULL if no ZoneStarts are encountered past given position on the Road.
+ *      or if zones is empty.
  *
- *  Precondition
+ *  Precondition:
  *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
@@ -242,17 +255,18 @@ public:
 
     TrafficLight* const getTrafficLightOnPosition(unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------
- * getSignOnPosition:
+ * getTrafficLightOnPosition:
  *
- *  OUT
+ *  OUT:
  *      if inclusive is true:
- *          Returns RoadSign from signs on given position if there is one.
+ *          Returns TrafficLight from signs on given position if there is one.
  *          Else the next one on the Road will be returned.
  *      if inclusive is false:
- *          Returns first Sign past given position.
- *      returns NULL if no signs are encountered past given position on the Road.
+ *          Returns first TrafficLight past given position.
+ *      returns NULL if no trafficLights are encountered past given position on the Road
+ *      or if trafficLights is empty.
  *
- *  Precondition
+ *  Precondition:
  *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
@@ -260,17 +274,18 @@ public:
 
     BusStop* const getBusStopOnPosition(unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------
- * getSignOnPosition:
+ * getBusStopOnPosition:
  *
- *  OUT
+ *  OUT:
  *      if inclusive is true:
- *          Returns RoadSign from signs on given position if there is one.
+ *          Returns BusStop from signs on given position if there is one.
  *          Else the next one on the Road will be returned.
  *      if inclusive is false:
- *          Returns first Sign past given position.
- *      returns NULL if no signs are encountered past given position on the Road.
+ *          Returns first BusStop past given position.
+ *      Returns NULL if no BusStops are encountered past given position on the Road
+ *      or if busStops is empty.
  *
- *  Precondition
+ *  Precondition:
  *      Road must be properly initialised.
  *
  --------------------------------------------------------------------- */
