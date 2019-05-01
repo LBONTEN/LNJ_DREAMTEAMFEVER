@@ -83,9 +83,9 @@ void TrafficLight::updateState(unsigned long activeTime)
     unsigned long cycleDuration = redTime + orangeTime + greenTime;
     unsigned long currentCycleTime = (activeTime + offset) % cycleDuration;
 
-    if(currentCycleTime < greenTime) state = green;
-    else if(currentCycleTime < greenTime + orangeTime) state = orange;
-    else state = red;
+    if(currentCycleTime < orangeTime) state = orange;
+    else if(currentCycleTime < orangeTime + redTime) state = red;
+    else state = green;
 }
 
 
