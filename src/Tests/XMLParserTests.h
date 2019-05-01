@@ -37,7 +37,7 @@ protected:
 
 TEST_F(ParseTest, BASE_Road)
 {
-    system = parser->parseRoadSystem("../src/Tests/disconnected_roads_empty.xml");
+    system = parser->parseRoadSystem("../src/Tests/test_in/disconnected_roads_empty.xml");
     
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
@@ -75,7 +75,7 @@ TEST_F(ParseTest, BASE_Road)
 
 TEST_F(ParseTest, BASE_Car)
 {
-    system = parser->parseRoadSystem("../src/Tests/disconnected_roads.xml");
+    system = parser->parseRoadSystem("../src/Tests/test_in/disconnected_roads.xml");
     
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
@@ -144,7 +144,7 @@ TEST_F(ParseTest, BASE_Car)
 
 TEST_F(ParseTest, NETWORK_Tree)
 {
-    system = parser->parseRoadSystem("../src/Tests/tree_connection.xml");
+    system = parser->parseRoadSystem("../src/Tests/test_in/tree_connection.xml");
     
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
@@ -183,7 +183,7 @@ TEST_F(ParseTest, NETWORK_Tree)
 
 TEST_F(ParseTest, NETWORK_Loop)
 {
-    system = parser->parseRoadSystem("../src/Tests/loop_connection.xml");
+    system = parser->parseRoadSystem("../src/Tests/test_in/loop_connection.xml");
     
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
