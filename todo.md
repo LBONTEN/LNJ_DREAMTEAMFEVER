@@ -34,7 +34,7 @@
 	- [x] simulation empty?
 	- [x] simulation active?
 
-- [ ] class: Road
+- [x] class: Road
 	- [x] constructor using XML-file
 	- [x] get & set name
 	- [x] get & set length
@@ -42,7 +42,7 @@
 	- [x] add, remove, get/traverse car(s)
 	- [x] provide location-based iterator for vehicles
 
-- [ ] class: Vehicle
+- [x] class: Vehicle
 	- [x] get & set licence plate
 	- [x] get & set road
 	- [x] get& set acceleration
@@ -56,10 +56,10 @@
 	- [x] advance speed
 	- [x] advance position
 
-- [ ] Serialiser
- 	- [x] Output to ostream
- 	- [x] Default mode
- 	- [ ] ASCII mode
+- [x] Serialiser
+	- [x] Output to ostream
+	- [x] Default mode
+	- [x] ASCII mode
 
 ## tests
 - [ ] class: RoadSystem
@@ -86,11 +86,21 @@
 	- [x] get & set speed
 	- [x] get & set position
 
-- [ ] class: Vehicle::Car
-	- [ ] update
+- [ ] class: Vehicle::X
+	- [x] update
+	- [ ] update w/ signs
+	- [ ] update w/ lanes
+	- [ ] update w/ busstops (bus only)
 
-- [ ] Serialiser
-	- [ ] Output to ostream
-	- [ ] Default mode
-	- [ ] ASCII mode
+- [x] Serialiser
+	- [x] Output to ostream
+	- [x] Default mode
+	- [x] ASCII mode
+
+- [x] Parser
+	- [x] Roads
+	- [x] Vehicles
+	- [x] Road network
+	- [x] Typed vehicles
+	- [x] Road signs
 	

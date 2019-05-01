@@ -216,37 +216,137 @@ TEST_F(ParseTest, NETWORK_Loop)
 
 ///--- Typed vehicles parsing ---///
 
-TEST_F(ParseTest, TYPES_Bike)
+TEST_F(ParseTest, TYPES_All)
 {
-
-}
-
-TEST_F(ParseTest, TYPES_Bus)
-{
-
-}
-
-TEST_F(ParseTest, TYPES_Truck)
-{
-
+    system = parser->parseRoadSystem("../src/Tests/test_in/linear_types.xml");
+    
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
+    
+    vector<Vehicle*> parsedVehs = system->getVectorOfVehicles();
+    
+    ASSERT_EQ((unsigned long) 4, parsedVehs.size());
+    
+    for (unsigned long vehIndex = 0; vehIndex < parsedVehs.size(); ++vehIndex)
+    {
+        const Vehicle* veh = parsedVehs[vehIndex];
+        
+        ASSERT_TRUE(veh->properlyInitialised());
+        
+        if (veh->getLicensePlate() == "651BUF")
+        {
+            EXPECT_EQ("Car", veh->getTypeName());
+            
+            EXPECT_EQ(&stdCarLimits, veh->getLimits());
+            EXPECT_EQ(stdCarLength, veh->getLen());
+        }
+        else if (veh->getLicensePlate() == "1OUT00")
+        {
+            EXPECT_EQ("Truck", veh->getTypeName());
+    
+            EXPECT_EQ(&stdTruckLimits, veh->getLimits());
+            EXPECT_EQ(stdTruckLength, veh->getLen());
+        }
+        else if (veh->getLicensePlate() == "420PUF")
+        {
+            EXPECT_EQ("MotorCycle", veh->getTypeName());
+        
+            EXPECT_EQ(&stdMotorCycleLimits, veh->getLimits());
+            EXPECT_EQ(stdMotorCycleLength, veh->getLen());
+        }
+        else if (veh->getLicensePlate() == "1337")
+        {
+            EXPECT_EQ("Bus", veh->getTypeName());
+        
+            EXPECT_EQ(&stdBusLimits, veh->getLimits());
+            EXPECT_EQ(stdBusLength, veh->getLen());
+        }
+        else
+        {
+            ADD_FAILURE() << "Unexpected licence plate " << veh->getLicensePlate();
+        }
+    }
 }
 
 
 ///--- Traffic signal parsing ---///
 
-TEST_F(ParseTest, SIGNAL_Zone)
+TEST_F(ParseTest, SIGNAL_All)
 {
-
-}
-
-TEST_F(ParseTest, SIGNAL_Stop)
-{
-
-}
-
-TEST_F(ParseTest, SIGNAL_Light)
-{
-
+    system = parser->parseRoadSystem("../src/Tests/test_in/linear_signs.xml");
+    
+    ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
+    
+    vector<Road*> parsedRoads = system->getVectorOfRoads();
+    
+    ASSERT_EQ((unsigned long) 1, parsedRoads.size());
+    
+    const vector<RoadSign*> parsedSigns = parsedRoads[0]->getAllSigns();
+    
+    ASSERT_EQ(4, parsedSigns.size());
+    
+    for (unsigned long signNr = 0; signNr < parsedSigns.size(); ++signNr)
+    {
+        RoadSign* currSign = parsedSigns[signNr];
+        
+        switch (currSign->getType())
+        {
+            case trafficLight :
+            {
+                ASSERT_FALSE(currSign->getRoad() == (Road*) NULL);
+                EXPECT_EQ("E313", currSign->getRoad()->getName());
+                
+                EXPECT_EQ(1500, currSign->getPosition());
+                
+                EXPECT_EQ(currSign, (RoadSign*) parsedRoads[0]->getTrafficLightOnPosition(currSign->getPosition(), true));
+                
+                break;
+            }
+            case zoneStart :
+            {
+                ASSERT_FALSE(currSign->getRoad() == (Road*) NULL);
+                EXPECT_EQ("E313", currSign->getRoad()->getName());
+    
+                Zone* zone = parsedRoads[0]->getZoneStartOnPosition(currSign->getPosition(), true);
+                
+                EXPECT_EQ(currSign, (RoadSign*) zone);
+                
+                switch (currSign->getPosition())
+                {
+                    case 3000 :
+                    {
+                        EXPECT_EQ(int (120 / 3.6), zone->getNewSpeedLimit());
+                        break;
+                    }
+                    case 150 :
+                    {
+                        EXPECT_EQ(int (90 / 3.6), zone->getNewSpeedLimit());
+                        break;
+                    }
+                    default :
+                    {
+                        ADD_FAILURE() << "unsexpected zone at " << currSign->getPosition();
+                    }
+                }
+                
+                break;
+            }
+            case busStop :
+            {
+                ASSERT_FALSE(currSign->getRoad() == (Road*) NULL);
+                EXPECT_EQ("E313", currSign->getRoad()->getName());
+    
+                EXPECT_EQ(0, currSign->getPosition());
+    
+                EXPECT_EQ(currSign, (RoadSign*) parsedRoads[0]->getBusStopOnPosition(currSign->getPosition(), true));
+                
+                break;
+            }
+            default:
+            {
+                ADD_FAILURE() << "unexpected roadsign type " << currSign->getType();
+            }
+        }
+    }
 }
 
 

@@ -1,0 +1,29 @@
+<ROOT>
+    <BAAN>
+      <naam>E313</naam>
+      <snelheidslimiet>120</snelheidslimiet>
+      <lengte>5000</lengte>
+    </BAAN>
+    <VERKEERSTEKEN>
+	    <type>VERKEERSLICHT</type>
+	    <baan>E313</baan>
+	    <positie>1500</positie>
+	</VERKEERSTEKEN>
+    <VERKEERSTEKEN>
+	    <type>ZONE</type>
+	    <baan>E313</baan>
+	    <positie>3000</positie>
+        <snelheidslimiet>120</snelheidslimiet>
+	</VERKEERSTEKEN>
+    <VERKEERSTEKEN>
+	    <type>BUSHALTE</type>
+	    <baan>E313</baan>
+	    <positie>0</positie>
+	</VERKEERSTEKEN>
+    <VERKEERSTEKEN>
+	    <type>ZONE</type>
+	    <baan>E313</baan>
+	    <positie>150</positie>
+        <snelheidslimiet>90</snelheidslimiet>
+	</VERKEERSTEKEN>
+</ROOT>

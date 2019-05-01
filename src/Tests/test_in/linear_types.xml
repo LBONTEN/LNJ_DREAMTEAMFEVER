@@ -21,14 +21,21 @@
       <type>VRACHTWAGEN</type>
       <nummerplaat>1OUT00</nummerplaat>
       <baan>E313</baan>
-      <positie>0</positie>
+      <positie>200</positie>
       <snelheid>50</snelheid>
   </VOERTUIG>
   <VOERTUIG>
       <type>MOTORFIETS</type>
       <nummerplaat>420PUF</nummerplaat>
-      <baan>E42</baan>
-      <positie>0</positie>
+      <baan>E313</baan>
+      <positie>4</positie>
+      <snelheid>0</snelheid>
+  </VOERTUIG>
+  <VOERTUIG>
+      <type>BUS</type>
+      <nummerplaat>1337</nummerplaat>
+      <baan>E19</baan>
+      <positie>20</positie>
       <snelheid>0</snelheid>
   </VOERTUIG>
 </ROOT>

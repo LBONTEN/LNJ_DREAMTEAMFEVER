@@ -1,0 +1,26 @@
+Road: E1
+	-> Speed limit: 25
+	-> Length: 3007
+	-> Lanes: 1
+
+
+Vehicle: MotorCycle (R4X3R)
+	-> Road: E1
+	-> Position: 0
+	-> Speed: 0
+
+Vehicle: Truck (L3NB01)
+	-> Road: E1
+	-> Position: 300
+	-> Speed: 1
+
+Vehicle: Car (N3170Y)
+	-> Road: E1
+	-> Position: 1000
+	-> Speed: 1
+
+Vehicle: Bus (1234)
+	-> Road: E1
+	-> Position: 2500
+	-> Speed: 1
+

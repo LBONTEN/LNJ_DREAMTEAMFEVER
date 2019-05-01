@@ -14,7 +14,7 @@
 
 const char* emptyStr = "";
 
-void printVehicle(Vehicle* source, ostream& target, const char* prefix=emptyStr)
+void printVehicleC(Vehicle* source, ostream& target, const char* prefix = emptyStr)
 {
     target << prefix << "Vehicle: " << source->getTypeName() << " (" << source->getLicensePlate() << ")" << std::endl
            << prefix << "\t-> Road: " << source->getCurrentRoad()->getName() << std::endl
@@ -22,16 +22,19 @@ void printVehicle(Vehicle* source, ostream& target, const char* prefix=emptyStr)
            << prefix << "\t-> Speed: " << source->getSpeed() << std::endl;
 }
 
-void printRoad(Road* source, ostream& target, const char* prefix=emptyStr)
+void printRoadC(Road* source, ostream& target, const char* prefix = emptyStr)
 {
     target << prefix << "Road: " << source->getName() << std::endl
            << prefix << "\t-> Speed limit: " << source->getSpeedLimit() << std::endl
-           << prefix << "\t-> length: " << source->getLength() << std::endl;
+           << prefix << "\t-> Length: " << source->getLength() << std::endl
+           << prefix << "\t-> Lanes: " << source->getLanes().size() << std::endl;
+    if (source->getConnection()) target << prefix << "\t-> Connection: " << source->getConnection()->getName() << std::endl;
 }
 
 
 ///--- functions from Output class ---///
 
+// TODO: make this support RoadSigns
 ostream& Output::classicPrint(ostream& target) const
 {
     
@@ -39,7 +42,7 @@ ostream& Output::classicPrint(ostream& target) const
          currentRd < simulation->getVectorOfRoads().end();
          currentRd++)
     {
-        printRoad(*currentRd, target);
+        printRoadC(*currentRd, target);
         target << std::endl;
     }
     
@@ -49,7 +52,7 @@ ostream& Output::classicPrint(ostream& target) const
          currentVeh < simulation->getVectorOfVehicles().end();
          currentVeh++)
     {
-        printVehicle(*currentVeh, target);
+        printVehicleC(*currentVeh, target);
         target << std::endl;
     }
     
@@ -73,6 +76,9 @@ ostream& operator<<(ostream& target, const Output& print)
     return target;
 }
 
+// TODO: maxchar is currently not the max amount of chars per line
+//  it only affects the length of the roads themselves,
+//  and roads will generally turn out one char longer (the excess caught by the ceil() function)
 ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
 {
     const vector<Road*>& rdVec = simulation->getVectorOfRoads();

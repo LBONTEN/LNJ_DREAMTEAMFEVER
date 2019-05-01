@@ -1,0 +1,18 @@
+Road: E1
+	-> Speed limit: 25
+	-> Length: 3007
+	-> Lanes: 1
+	-> Connection: E00
+
+Road: E00
+	-> Speed limit: 33
+	-> Length: 1605
+	-> Lanes: 1
+
+Road: E2
+	-> Speed limit: 40
+	-> Length: 200
+	-> Lanes: 1
+	-> Connection: E00
+
+
