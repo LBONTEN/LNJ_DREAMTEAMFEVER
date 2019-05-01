@@ -29,12 +29,14 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
     // Get root
     pugi::xml_node root = doc.first_child();
 
+    // Parse all Roads
     for(pugi::xml_node xmlNode = root.child("BAAN"); xmlNode; xmlNode = xmlNode.next_sibling("BAAN"))
     {
         string name = xmlNode.child("naam").text().as_string();
         roads[name.c_str()] = parseRoad(xmlNode);
     }
 
+    // Set connections for all Roads and parse all Vehicles
     for(pugi::xml_node xmlNode = root.first_child(); xmlNode; xmlNode = xmlNode.next_sibling())
     {
         string type = xmlNode.name();
@@ -62,6 +64,13 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
             Vehicle* newVehicle = parseVehicle(xmlNode, newSystem, currentRoad);
             newSystem->addVehicle(newVehicle);
             currentRoad->getLanes()[0]->addVehicle(newVehicle);
+        }
+        if(type == "VERKEERSTEKEN")
+        {
+            string tekenBaan = xmlNode.child("baan").text().as_string();
+            Road* road = roads[tekenBaan];
+
+            parseRoadSign(xmlNode, road);
         }
     }
     return newSystem;
@@ -105,4 +114,28 @@ Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* env
     }
 
     return NULL;
+}
+
+void XmlParser::parseRoadSign(const pugi::xml_node& verkeersteken, Road* road)
+{
+    string tekenType = verkeersteken.child("type").text().as_string();
+    unsigned int tekenPositie = verkeersteken.child("positie").text().as_uint();
+
+    if(tekenType == "ZONE")
+    {
+        int snelheidsLimiet = verkeersteken.child("snelheidslimiet").text().as_int();
+        road->addZone(new Zone(tekenPositie, road, snelheidsLimiet));
+    }
+
+    else if(tekenType == "VERKEERSLICHT")
+    {
+        srand (time(NULL));
+        unsigned long offset = (unsigned long) rand() % 100;
+        road->addTrafficLight(new TrafficLight(tekenPositie, road, offset));
+    }
+
+    else if(tekenType == "BUSHALTE")
+    {
+        road->addBusstop(new BusStop(tekenPositie, road));
+    }
 }

@@ -29,6 +29,7 @@ private:
 
     Road* parseRoad(const pugi::xml_node& road);
     Vehicle* parseVehicle(const pugi::xml_node& vehicle, RoadSystem* environment, Road* currentRoad);
+    void parseRoadSign(const pugi::xml_node& verkeersteken, Road* road);
 };
 
 #endif //LNJPSE_XMLPARSER_H

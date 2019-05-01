@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     }
     
     std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
-    std::cout << print << "~====~" << std::endl;
+    std::cout << print << "\t ~====~" << std::endl;
 
     return 0;
 }

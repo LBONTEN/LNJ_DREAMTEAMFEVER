@@ -86,7 +86,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
     }
     unsigned int metresPerChar = max((unsigned int) (longestD / maxChar), (unsigned int) 1);
     
-    target << "-~=| Scaling at " << metresPerChar << " metres / char |=~-" << endl;
+    target << "\n -~=| Scaling at " << metresPerChar << " metres / char |=~- \n" << endl;
     
     // print each road
     for (unsigned long rdNum = 0; rdNum < rdVec.size(); ++rdNum)
