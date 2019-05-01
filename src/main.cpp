@@ -27,7 +27,7 @@ int main(int argc, char** argv)
     
     rs->activate();
     
-    while (!rs->empty())
+    while (!rs->empty() and rs->timeActive() < 1000)
     {
         rs->advanceSimulation();
         if (rs->timeActive() % 10 == 0)
@@ -47,6 +47,7 @@ int main(int argc, char** argv)
     }
     
     std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
+    if (!rs->empty()) cout << "note: failed to empty simulation, quitted for some other reason" << std::endl;
     std::cout << print << "\t ~====~" << std::endl;
 
     return 0;

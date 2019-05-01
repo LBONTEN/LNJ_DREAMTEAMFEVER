@@ -79,7 +79,7 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
 Road* XmlParser::parseRoad(const pugi::xml_node& baan)
 {
     string name = baan.child("naam").text().as_string();
-    int speedLimit = baan.child("snelheidslimiet").text().as_int();
+    int speedLimit = (int) (baan.child("snelheidslimiet").text().as_int() / 3.6);
     int length = baan.child("lengte").text().as_int();
     unsigned int laneCount = baan.child("rijstroken").text().as_uint();
     if(laneCount == (unsigned int) 0) laneCount = 1;
@@ -123,14 +123,15 @@ void XmlParser::parseRoadSign(const pugi::xml_node& verkeersteken, Road* road)
 
     if(tekenType == "ZONE")
     {
-        int snelheidsLimiet = verkeersteken.child("snelheidslimiet").text().as_int();
+        int snelheidsLimiet = (int) (verkeersteken.child("snelheidslimiet").text().as_int() / 3.6);
         road->addZone(new Zone(tekenPositie, road, snelheidsLimiet));
     }
 
     else if(tekenType == "VERKEERSLICHT")
     {
-        srand (time(NULL));
-        unsigned long offset = (unsigned long) rand() % 100;
+        unsigned long offset = 0;
+        // srand (time(NULL));
+        // unsigned long offset = (unsigned long) rand() % 100;
         road->addTrafficLight(new TrafficLight(tekenPositie, road, offset));
     }
 
