@@ -28,6 +28,7 @@ Joren Van Borm
 | typed vehicle simulation | 27/04 | +/-1h 30' |
 | bus behavior & ascii representation | 28/04 | 2h 30' |
 | ascii representation & advanced simulation | 30/04 | +/-4h 30' |
+| advanced simulation & tests | 01/05 | ??? (lang) |
 
 Lenny Bontenakel
 ---
