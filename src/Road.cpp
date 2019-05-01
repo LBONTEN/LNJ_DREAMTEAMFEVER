@@ -9,19 +9,7 @@ extern const unsigned int minimumSpace= 200;
 
 
 /* Helper function --------------------------------------------------- */
-template <typename T>
-string intToStr(T x)
-{
-    stringstream ss;
-    ss << x;
-    return ss.str();
-}
 
-template <typename S>
-void operator <<(S& lhs, const S& rhs)
-{
-    lhs = lhs + rhs;
-}
 
 
 /* Road functions ---------------------------------------------------- */
@@ -170,7 +158,7 @@ const vector<BusStop*>& Road::getBusStops() const
 RoadSign* const Road::getSignOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
-    REQUIRE(0 <= position < getLength(), "Road: getSignOnPosition:: Invalid position.");
+    REQUIRE(position < getLength(), "Road: getSignOnPosition:: Invalid position.");
 
     vector<RoadSign*> signs = getAllSigns();
     if(signs.empty())
@@ -201,7 +189,7 @@ RoadSign* const Road::getSignOnPosition(unsigned int position, bool inclusive) c
 Zone* const Road::getZoneStartOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road: getZoneStartOnPosition: Not properly Initialised.");
-    REQUIRE(0 <= position < getLength(), "Road: getZoneStartOnPosition:: Invalid position.");
+    REQUIRE(position < getLength(), "Road: getZoneStartOnPosition:: Invalid position.");
 
     if(zones.empty())
     {
@@ -230,7 +218,7 @@ Zone* const Road::getZoneStartOnPosition(unsigned int position, bool inclusive) 
 TrafficLight* const Road::getTrafficLightOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road: getTrafficLightOnPosition: Not properly Initialised.");
-    REQUIRE(0 <= position < getLength(), "Road: getTrafficLightOnPosition:: Invalid position.");
+    REQUIRE(position < getLength(), "Road: getTrafficLightOnPosition:: Invalid position.");
 
 
     if(trafficLights.empty())
@@ -260,7 +248,7 @@ TrafficLight* const Road::getTrafficLightOnPosition(unsigned int position, bool 
 BusStop* const Road::getBusStopOnPosition(unsigned int position, bool inclusive) const
 {
     REQUIRE(properlyInitialised(), "Road: getBusStopOnPosition: Not properly Initialised.");
-    REQUIRE(0 <= position < getLength(), "Road: getBusStopOnPosition:: Invalid position.");
+    REQUIRE(position < getLength(), "Road: getBusStopOnPosition:: Invalid position.");
 
     if(busStops.empty()) return NULL;
 

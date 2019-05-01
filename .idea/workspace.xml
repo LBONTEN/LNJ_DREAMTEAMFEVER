@@ -36,10 +36,6 @@
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/Road.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RoadSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/RoadSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/RoadTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/RoadTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/Tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -74,7 +70,7 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-791">
+                  <state relative-caret-position="-26">
                     <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
                   </state>
                 </provider>
@@ -99,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="281" column="5" lean-forward="true" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
+            <state relative-caret-position="455">
+              <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
               <folding>
                 <element signature="e#65#82#0" expanded="true" />
                 <element signature="e#281#293#0" expanded="true" />
@@ -133,16 +129,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="276">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -196,16 +192,16 @@
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
         <option value="$PROJECT_DIR$/src/Tests/Tests.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSystem.cpp" />
-        <option value="$PROJECT_DIR$/src/Road.cpp" />
         <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/Tests/RoadTests.h" />
+        <option value="$PROJECT_DIR$/src/Road.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="5">
     <option name="x" value="1920" />
     <option name="y" value="33" />
-    <option name="width" value="960" />
+    <option name="width" value="1366" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -389,7 +385,7 @@
       <workItem from="1556526828462" duration="11675000" />
       <workItem from="1556545622007" duration="1132000" />
       <workItem from="1556615314288" duration="41705000" />
-      <workItem from="1556695875418" duration="14019000" />
+      <workItem from="1556695875418" duration="14302000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -532,7 +528,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="188568000" />
+    <option name="totallyTimeSpent" value="188851000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -544,7 +540,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="33" width="960" height="1047" extended-state="5" />
+    <frame x="1920" y="33" width="1366" height="1047" extended-state="5" />
     <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
@@ -552,7 +548,7 @@
       <window_info content_ui="combo" id="Project" order="2" weight="0.2956044" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.033368092" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.033368092" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.42127216" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -563,7 +559,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50255364" side_tool="true" weight="0.6037539" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.3295099" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" weight="0.55265903" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" visible="true" weight="0.4358707" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -865,13 +861,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3706">
@@ -889,15 +878,10 @@
     <entry file="file://$PROJECT_DIR$/src/design_by_contract.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="281" column="5" lean-forward="true" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
-          <folding>
-            <element signature="e#65#82#0" expanded="true" />
-            <element signature="e#281#293#0" expanded="true" />
-            <element signature="e#384#396#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-26">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -911,10 +895,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
+    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-791">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        <state relative-caret-position="455">
+          <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
+          <folding>
+            <element signature="e#65#82#0" expanded="true" />
+            <element signature="e#281#293#0" expanded="true" />
+            <element signature="e#384#396#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
