@@ -116,6 +116,37 @@ bool Road::isFree() const
 }
 
 
+void Road::clearAllSigns()
+{
+    REQUIRE(properlyInitialised(), "Road: ClearAllSigns: Not properly initialised.");
+    if(zones.empty()) return;
+
+    zones.clear();
+    trafficLights.clear();
+    busStops.clear();
+}
+
+
+void Road::clearZones()
+{
+    REQUIRE(properlyInitialised(), "Road: ClearZones: Not properly initialised.");
+    zones.clear();
+}
+
+
+void Road::clearTrafficLights()
+{
+    REQUIRE(properlyInitialised(), "Road: ClearTrafficLights: Not properly initialised.");
+    trafficLights.clear();
+}
+
+
+void Road::clearBusStops()
+{
+    REQUIRE(properlyInitialised(), "Road: ClearBusStops: Not properly initialised.");
+    busStops.clear();
+}
+
 vector<RoadSign*> Road::getAllSigns() const
 {
     REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");

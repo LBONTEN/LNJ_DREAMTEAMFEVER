@@ -90,19 +90,19 @@ TEST_F(RoadTests, ROADSIGN_TESTS)
     unsigned int position;
     unsigned int extraVar;
 
-    position = (unsigned) rand() % testRoad->getLength();
+    position = (unsigned) rand() % 1000;
     extraVar = (unsigned) rand();
     testRoad->addZone(new Zone(position, testRoad, extraVar));
     Zone* testZone = new Zone(250, testRoad, extraVar);
     testRoad->addZone(testZone);
 
-    position = (unsigned) rand() % testRoad->getLength();
+    position = (unsigned) rand() % 1000;
     extraVar = (unsigned) rand();
     testRoad->addTrafficLight(new TrafficLight(position, testRoad, extraVar));
     TrafficLight* testLight = new TrafficLight(500, testRoad, extraVar);
     testRoad->addTrafficLight(testLight);
 
-    position = (unsigned) rand() % testRoad->getLength();
+    position = (unsigned) rand() % 1000;
     testRoad->addBusstop(new BusStop(position, testRoad));
     BusStop* testStop = new BusStop(750, testRoad);
     testRoad->addBusstop(testStop);
@@ -112,10 +112,27 @@ TEST_F(RoadTests, ROADSIGN_TESTS)
     EXPECT_EQ(testRoad->getTrafficLights().size(), (unsigned long) 2);
     EXPECT_EQ(testRoad->getBusStops().size(), (unsigned long) 2);
 
-    EXPECT_EQ(testRoad->getSignOnPosition(250, true), testZone);
+    EXPECT_EQ(testRoad->getZoneStartOnPosition(250, true), testZone);
     EXPECT_EQ(testRoad->getTrafficLightOnPosition(500, true), testLight);
     EXPECT_EQ(testRoad->getBusStopOnPosition(750, true), testStop);
 
+    testRoad->clearZones();
+    EXPECT_TRUE(testRoad->getZones().empty());
+
+    testRoad->clearTrafficLights();
+    EXPECT_TRUE(testRoad->getTrafficLights().empty());
+
+    testRoad->clearBusStops();
+    EXPECT_TRUE(testRoad->getBusStops().empty());
+
+    testRoad->addZone(testZone);
+    testRoad->addTrafficLight(testLight);
+    testRoad->addBusstop(testStop);
+
+    testRoad->clearAllSigns();
+    EXPECT_TRUE(testRoad->getZones().empty());
+    EXPECT_TRUE(testRoad->getTrafficLights().empty());
+    EXPECT_TRUE(testRoad->getBusStops().empty());
 }
 
 #endif //LNJPSE_PROJECT_ROADTESTS_H

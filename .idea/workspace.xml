@@ -35,7 +35,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Road.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/RoadTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/RoadTests.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -71,8 +73,8 @@
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="781">
-                    <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+                  <state relative-caret-position="711">
+                    <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
                     <folding>
                       <element signature="e#57#81#0" expanded="true" />
                     </folding>
@@ -96,11 +98,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Road.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="713">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="411">
+              <caret line="131" column="82" selection-start-line="131" selection-start-column="82" selection-end-line="131" selection-end-column="82" />
               <folding>
                 <element signature="e#65#82#0" expanded="true" />
               </folding>
@@ -156,11 +158,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-795">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="952">
+              <caret line="191" column="21" selection-start-line="191" selection-start-column="21" selection-end-line="191" selection-end-column="21" />
               <folding>
                 <element signature="e#53#73#0" expanded="true" />
               </folding>
@@ -210,8 +212,8 @@
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
         <option value="$PROJECT_DIR$/src/Tests/Tests.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSystem.cpp" />
-        <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/Tests/XMLParserTests.h" />
+        <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/Road.cpp" />
         <option value="$PROJECT_DIR$/src/Tests/RoadTests.h" />
       </list>
@@ -309,7 +311,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LNJPSE_DEBUG">
+  <component name="RunManager" selected="Google Test.RoadTests.ROADSIGN_TESTS">
     <configuration name="InSystemVehicle.SETGET_HappyDay" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="InSystemVehicle" TEST_METHOD="SETGET_HappyDay" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -328,13 +330,13 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SoloCar.UPDATE_Null" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloCar" TEST_METHOD="UPDATE_Null" TEST_MODE="SUITE_TEST">
+    <configuration name="RoadTests" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="RoadTests" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SoloVehicle.INIT_Full" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="SoloVehicle" TEST_METHOD="INIT_Full" TEST_MODE="SUITE_TEST">
+    <configuration name="RoadTests.ROADSIGN_TESTS" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="RoadTests" TEST_METHOD="ROADSIGN_TESTS" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -353,19 +355,19 @@
     <list>
       <item itemvalue="Application.LNJPSE" />
       <item itemvalue="Application.LNJPSE_DEBUG" />
-      <item itemvalue="Google Test.SoloVehicle.INIT_Full" />
-      <item itemvalue="Google Test.SoloCar.UPDATE_Null" />
       <item itemvalue="Google Test.InSystemVehicle.SETGET_HappyDay" />
       <item itemvalue="Google Test.ParseTest.NETWORK_Loop" />
       <item itemvalue="Google Test.ParseTest.BASE_Road" />
+      <item itemvalue="Google Test.RoadTests.ROADSIGN_TESTS" />
+      <item itemvalue="Google Test.RoadTests" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.RoadTests.ROADSIGN_TESTS" />
+        <item itemvalue="Google Test.RoadTests" />
         <item itemvalue="Google Test.ParseTest.BASE_Road" />
         <item itemvalue="Google Test.ParseTest.NETWORK_Loop" />
         <item itemvalue="Google Test.InSystemVehicle.SETGET_HappyDay" />
-        <item itemvalue="Google Test.SoloCar.UPDATE_Null" />
-        <item itemvalue="Google Test.SoloVehicle.INIT_Full" />
       </list>
     </recent_temporary>
   </component>
@@ -404,7 +406,7 @@
       <workItem from="1556526828462" duration="11675000" />
       <workItem from="1556545622007" duration="1132000" />
       <workItem from="1556615314288" duration="41705000" />
-      <workItem from="1556695875418" duration="17944000" />
+      <workItem from="1556695875418" duration="19297000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -515,15 +517,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SoloVehicle_INIT_Base - 2019.04.29 at 12h 31m 55s.xml">
-      <configuration name="SoloVehicle.INIT_Base" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="SoloVehicle_INIT_Full - 2019.04.29 at 12h 41m 07s.xml">
-      <configuration name="SoloVehicle.INIT_Full" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="SoloCar_UPDATE_Null - 2019.04.29 at 12h 53m 18s.xml">
-      <configuration name="SoloCar.UPDATE_Null" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="InSystemVehicle_SETGET_HappyDay - 2019.04.29 at 13h 00m 24s.xml">
       <configuration name="InSystemVehicle.SETGET_HappyDay" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -545,9 +538,18 @@
     <history-entry file="ParseTest_BASE_Road - 2019.05.01 at 16h 48m 54s.xml">
       <configuration name="ParseTest.BASE_Road" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="RoadTests - 2019.05.01 at 17h 43m 45s.xml">
+      <configuration name="RoadTests" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="RoadTests_ROADSIGN_TESTS - 2019.05.01 at 17h 49m 16s.xml">
+      <configuration name="RoadTests.ROADSIGN_TESTS" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="RoadTests_ROADSIGN_TESTS - 2019.05.01 at 18h 04m 12s.xml">
+      <configuration name="RoadTests.ROADSIGN_TESTS" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192493000" />
+    <option name="totallyTimeSpent" value="193846000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -567,7 +569,7 @@
       <window_info content_ui="combo" id="Project" order="2" weight="0.29547843" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.5985401" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21584985" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.42127216" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -919,30 +921,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#65#82#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-795">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        <state relative-caret-position="952">
+          <caret line="191" column="21" selection-start-line="191" selection-start-column="21" selection-end-line="191" selection-end-column="21" />
           <folding>
             <element signature="e#53#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Road.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="131" column="82" selection-start-line="131" selection-start-column="82" selection-end-line="131" selection-end-column="82" />
+          <folding>
+            <element signature="e#65#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+        <state relative-caret-position="711">
+          <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
           <folding>
             <element signature="e#57#81#0" expanded="true" />
           </folding>
