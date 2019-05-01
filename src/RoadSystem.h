@@ -117,7 +117,7 @@ public:
      * @REQUIRE properly initialised
      * @ENSURE has <road/vehicle>
      */
-    void addVehicle( Vehicle* newVehicle);
+    void addVehicle(Vehicle* newVehicle);
     void addRoad(Road* newRoad);
     
     /**

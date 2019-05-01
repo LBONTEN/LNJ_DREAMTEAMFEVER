@@ -1,6 +1,5 @@
-//
-// Created by Joren Van Borm on 2019-04-25.
-//
+/* Created by Joren Van Borm & Lenny Bontenakel
+ */
 
 #ifndef LNJPSE_PROJECT_XMLPARSERTESTS_H
 #define LNJPSE_PROJECT_XMLPARSERTESTS_H

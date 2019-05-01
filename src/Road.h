@@ -36,6 +36,7 @@ public:
     Road(string name, unsigned int length, int maxSpeed, unsigned int laneCount = 1, Road* connection = NULL);
 /** ---------------------------------------------------------------------
  * Road
+ *
  *  IN:
  *      - name: Name to be given to the road
  *      - length: Length of the road
@@ -504,6 +505,7 @@ public:
  *      Road should be properly initialised
  *
  --------------------------------------------------------------------- */
+
 
     Vehicle* const getCarOnPosition(unsigned int position, bool inclusive) const;
 /** ---------------------------------------------------------------------

@@ -130,6 +130,7 @@ public:
     void setSpeed(int speed);
     void setPosition(unsigned int position);
     void setLen(unsigned int len);
+    void setEnv(RoadSystem* env);
     
     /**
      * Special case of a setter function
@@ -172,6 +173,7 @@ protected:
     void hardSetSpeed(int speed) { Vehicle::speed = speed; }
     void hardSetPosition(unsigned int position) { Vehicle::position = position; }
     void hardSetLen(unsigned int len) { Vehicle::len = len; }
+    void hardSetEnv(RoadSystem* env) { Vehicle::environment = env; }
     
     const VehicleLimits* limits;
     

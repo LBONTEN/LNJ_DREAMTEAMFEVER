@@ -1,6 +1,5 @@
-//
-// Created by Joren Van Borm on 2019-03-28.
-//
+/* Created by Joren Van Borm & Lenny Bontenakel
+ */
 
 #ifndef LNJPSE_PROJECT_CARTESTS_H
 #define LNJPSE_PROJECT_CARTESTS_H

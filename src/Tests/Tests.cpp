@@ -8,6 +8,7 @@
 #include "RoadTests.h"
 #include "CarTests.h"
 #include "XMLParserTests.h"
+#include "RoadSystemTests.h"
 #include <iostream>
 #include <gtest/gtest.h>
 

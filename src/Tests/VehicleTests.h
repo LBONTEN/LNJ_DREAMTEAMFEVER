@@ -1,6 +1,5 @@
-//
-// Created by Joren Van Borm on 2019-03-27.
-//
+/* Created by Joren Van Borm & Lenny Bontenakel
+ */
 
 #ifndef LNJPSE_VEHICLETESTS_H
 #define LNJPSE_VEHICLETESTS_H

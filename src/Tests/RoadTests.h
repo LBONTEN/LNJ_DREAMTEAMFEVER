@@ -1,5 +1,4 @@
-/*
- *  Created by Joren Van Borm & Lenny Bontenakel
+/* Created by Joren Van Borm & Lenny Bontenakel
  */
 
 #include <gtest/gtest.h>

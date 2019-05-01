@@ -176,7 +176,15 @@ void Vehicle::setLen(unsigned int len) {
     
     ENSURE(getLen() == len, "Failed to set position");
 }
+void Vehicle::setEnv(RoadSystem *env)
+{
+    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
+    REQUIRE(getEnv() == NULL || !getEnv()->simulationActive(), "Can't use setters while simulation active");
 
+    hardSetEnv(env);
+
+    ENSURE(getEnv() == env, "Failed to set environment");
+}
 
 RoadSystem* Vehicle::getEnv() const {
     REQUIRE(properlyInitialised(), "Vehicle was not initialised");
@@ -243,7 +251,9 @@ Vehicle* Vehicle::nextVeh() {
     while (!next and ln)
     {
         next = ln->getCarOnPosition(0, true);
-        ln = getCurrentLane()->getConnectingLane();
+        ln = ln->getConnectingLane();
+
+        if (next == this) next=NULL;
     }
     
     return next;

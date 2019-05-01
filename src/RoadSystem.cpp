@@ -16,6 +16,10 @@ RoadSystem::RoadSystem() : vectorOfRoads(), vectorOfVehicles(), active(false), s
 RoadSystem::RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles) :
         vectorOfRoads(roads), vectorOfVehicles(vehicles), active(false), selfPtr(this)
 {
+    for(vector<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
+    {
+        (*i)->setEnv(this);
+    }
     ENSURE(properlyInitialised(), "Roadsystem failed to initialise");
     ENSURE(getVectorOfVehicles() == vehicles, "Failed to initialise vector of vehicles");
     ENSURE(getVectorOfRoads() == roads, "Failed to initialise vector of roads");

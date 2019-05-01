@@ -9,11 +9,7 @@ extern const unsigned int minimumSpace= 2;
 
 
 /* Helper function --------------------------------------------------- */
-
-
-
 /* Road functions ---------------------------------------------------- */
-
 Road::Road() :
 name(""),
 length(1),
@@ -44,10 +40,9 @@ laneCount(laneCount)
 
 Road::~Road()
 {
+    for(unsigned long i = 0; i < lanes.size(); i++) delete lanes[i];
     lanes.clear();
-    zones.clear();
-    trafficLights.clear();
-    busStops.clear();
+    clearAllSigns();
 }
 
 
@@ -120,15 +115,22 @@ void Road::clearAllSigns()
 {
     REQUIRE(properlyInitialised(), "Road: ClearAllSigns: Not properly initialised.");
 
-    zones.clear();
-    trafficLights.clear();
-    busStops.clear();
+    clearZones();
+    clearTrafficLights();
+    clearBusStops();
 }
 
 
 void Road::clearZones()
 {
     REQUIRE(properlyInitialised(), "Road: ClearZones: Not properly initialised.");
+    if(zones.empty()) return;
+
+    for(unsigned long i = 0; i < zones.size(); i++)
+    {
+        delete zones[i];
+    }
+
     zones.clear();
 }
 
@@ -136,6 +138,13 @@ void Road::clearZones()
 void Road::clearTrafficLights()
 {
     REQUIRE(properlyInitialised(), "Road: ClearTrafficLights: Not properly initialised.");
+    if(trafficLights.empty()) return;
+
+    for(unsigned long i = 0; i < trafficLights.size(); i++)
+    {
+        delete trafficLights[i];
+    }
+
     trafficLights.clear();
 }
 
@@ -143,6 +152,13 @@ void Road::clearTrafficLights()
 void Road::clearBusStops()
 {
     REQUIRE(properlyInitialised(), "Road: ClearBusStops: Not properly initialised.");
+    if(busStops.empty()) return;
+
+    for(unsigned long i = 0; i < busStops.size(); i++)
+    {
+        delete busStops[i];
+    }
+
     busStops.clear();
 }
 
@@ -484,5 +500,6 @@ Road* const Lane::getParentRoad() const
 
 Lane* const Lane::getConnectingLane() const
 {
+    if(parentRoad->getConnection() == NULL) return NULL;
     return parentRoad->getConnection()->getLanes()[order];
 }
