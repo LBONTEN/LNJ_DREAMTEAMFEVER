@@ -151,7 +151,7 @@ void DefaultVehicle::stepAcceleration()
     
     if (nextLight
         and nextLight->getState() != green
-        and (distanceToLight = getPosition() - nextLight->getPosition()) < 2*targetDistance)
+        and (distanceToLight = nextLight->getPosition() - getPosition()) < 2*targetDistance)
     {
         if (distanceToLight == 0)
         {
