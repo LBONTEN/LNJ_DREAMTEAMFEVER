@@ -63,12 +63,12 @@ TEST_F(ParseTest, BASE_Road)
     }
     
     EXPECT_EQ("E19", E19->getName());
-    EXPECT_EQ(100, E19->getSpeedLimit());
+    EXPECT_EQ((int) (100 / 3.6), E19->getSpeedLimit());
     EXPECT_EQ((unsigned int) 2000, E19->getLength());
     EXPECT_EQ((Road*) NULL, E19->getConnection());
     
     EXPECT_EQ("E42", E42->getName());
-    EXPECT_EQ(300, E42->getSpeedLimit());
+    EXPECT_EQ((int) (300 / 3.6), E42->getSpeedLimit());
     EXPECT_EQ((unsigned int) 1025, E42->getLength());
     EXPECT_EQ((Road*) NULL, E42->getConnection());
 }
