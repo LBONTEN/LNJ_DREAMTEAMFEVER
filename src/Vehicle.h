@@ -151,7 +151,7 @@ public:
     int getSpeed() const ;
     unsigned int getPosition() const ;
     unsigned int getLen() const ;
-    const VehicleLimits* getLimits();
+    const VehicleLimits* getLimits() const;
 
     /**
      * special case of getter function
