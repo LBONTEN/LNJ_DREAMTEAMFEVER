@@ -101,7 +101,7 @@ void DefaultVehicle::execUpdate() // TODO: change title to reflect functionality
 
 void DefaultVehicle::fullStop(unsigned int distance)
 {
-    int newAcceleration = - getSpeed()*getSpeed() / distance;
+    int newAcceleration = - (getSpeed()*getSpeed() / distance);
     
     if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit(getPosition()))
     {
@@ -153,9 +153,17 @@ void DefaultVehicle::stepAcceleration()
         and nextLight->getState() != green
         and (distanceToLight = getPosition() - nextLight->getPosition()) < 2*targetDistance)
     {
-        fullStop(distanceToLight);
-        
-        newAcceleration = min(getAcceleration(), newAcceleration);
+        if (distanceToLight == 0)
+        {
+            hardSetSpeed(0);
+            hardSetAcceleration(0);
+        }
+        else
+        {
+            fullStop(distanceToLight);
+    
+            newAcceleration = min(getAcceleration(), newAcceleration);
+        }
     }
     
     // try to respect speed limits

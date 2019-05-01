@@ -98,7 +98,7 @@ void Bus::execUpdate()
         dToStop = getCurrentRoad()->getBusStopOnPosition(getPosition(), true)->getPosition() - getPosition();
     }
     
-    unsigned int targetDistance = 0.75*3.6*getSpeed()+getLen();
+    unsigned int targetDistance = 0.75*3.6*getSpeed()+minimumSpace;
     
     // waiting at bus stop
     if (dToStop == 0 and busStopCooldown > 0)
@@ -112,7 +112,7 @@ void Bus::execUpdate()
     }
     
     // slowing down for bus stop
-    else if (dToStop <= 2*targetDistance)
+    else if (dToStop <= 2*targetDistance and busStopCooldown > 0)
     {
         fullStop(dToStop);
         
@@ -128,6 +128,12 @@ void Bus::execUpdate()
     // default driving behavior
     else
     {
+        // reset cooldown once past the stop
+        if (dToStop != 0)
+        {
+            busStopCooldown = 30;
+        }
+        
         DefaultVehicle::execUpdate();
     
         return;
