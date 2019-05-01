@@ -68,7 +68,6 @@ void DefaultVehicle::prepUpdate() // TODO: change title to reflect functionality
     stepPosition();
     stepSpeed();
     
-    snapShot.setNextVeh(nextVeh()); // TODO: snapshots have become useless due to update order
     snapShot.prepared = true;
     
     ENSURE(updateReady(), "DefaultVehicle failed to prepare update");
@@ -89,13 +88,14 @@ void DefaultVehicle::execUpdate() // TODO: change title to reflect functionality
     REQUIRE(updateReady(), "DefaultVehicle wasn't ready to update");
     REQUIRE(getEnv() == NULL || getEnv()->simulationActive(), "DefaultVehicle can't update in an inactive simulation");
     
+    snapShot.setNextVeh(nextVeh()); // TODO: snapshots have become useless due to update order
     stepAcceleration();
     snapShot.prepared = false;
     
     ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc, "DefaultVehicle acceleration out of range");
-    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
+    // ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
     ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
-    ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getSpeedLimit(), "DefaultVehicle speed out of range");
+    // ENSURE(getCurrentRoad() == NULL || getSpeed() < getCurrentRoad()->getSpeedLimit(), "DefaultVehicle speed out of range");
     ENSURE(!updateReady(), "ready status wasn't removed after updating");
 }
 
@@ -125,14 +125,22 @@ void DefaultVehicle::stepAcceleration()
     
     unsigned int targetDistance = 0.75 * 3.6 * getSpeed() + minimumSpace;
     
-    // keep a good following distance
+    // default to max acceleration
     if (snapShot.nextVehCopy == NULL)
     {
         newAcceleration = limits->maxAcc;
     }
+    // keep a good following distance
     else
     {
-        unsigned int actualDistance = snapShot.nextVehCopy->position - getPosition() - snapShot.nextVehCopy->length;
+        unsigned int actualDistance = snapShot.nextVehCopy->position;
+        Lane* checkingLane = getCurrentLane();
+        while (!checkingLane->getVehicle(snapShot.nextVehCopy->licensePlate))
+        {
+            actualDistance += checkingLane->getParentRoad()->getLength();
+            checkingLane = checkingLane->getConnectingLane();
+        }
+        actualDistance -= getPosition() + snapShot.nextVehCopy->length;
     
         newAcceleration = 0.5 * ((long) actualDistance - (long) targetDistance);
     }
@@ -191,7 +199,7 @@ void DefaultVehicle::stepSpeed() {
 void DefaultVehicle::stepPosition() {
     unsigned int newPos = getPosition() + getSpeed();
     
-    while (getCurrentRoad() and newPos > getCurrentRoad()->getLength()) {
+    while (getCurrentRoad() and newPos >= getCurrentRoad()->getLength()) {
         newPos -= getCurrentRoad()->getLength();
         getCurrentLane()->removeVehicle(this);
         

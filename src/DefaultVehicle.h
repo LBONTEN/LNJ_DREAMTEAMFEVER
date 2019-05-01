@@ -57,8 +57,9 @@ public:
     
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
+     * Note: tries to respect speed limits, but does not guaranty it
      * @REQUIRE properly initialised, update prepared, simulation active
-     * @ENSURE get<acc/spd/pos> is within limits, minimum distance is respected, update NOT ready
+     * @ENSURE get<acc/pos> is within limits minimum distance is respected, update NOT ready
      */
     virtual void execUpdate();
 
