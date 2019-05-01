@@ -6,6 +6,8 @@
 #include "RoadSigns.h"
 #include "design_by_contract.h"
 
+#include <sstream>
+#include <cstring>
 #include <vector>
 #include <list>
 
@@ -168,10 +170,13 @@ public:
 * getAllSigns
 **
 *  OUT:
-*      Returns concatenation of zones, trafficLights and busStops
+*      Returns concatenation of zones, trafficLights and busStops.
 *
 *  Precondition:
-*       Road must be properly Initialised
+*       Road must be properly Initialised.
+*
+*   Postcondition:
+*       No members of Road have been changed.
 *
 --------------------------------------------------------------------- */
 

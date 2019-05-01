@@ -3,6 +3,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <cstdlib>
 #include "../Road.h"
 
 #ifndef LNJPSE_PROJECT_ROADTESTS_H
@@ -17,10 +18,7 @@ protected:
     testRoad(new Road("D222", 1000, 70, 2))
     {}
 
-    ~RoadTests()
-    {
-        delete testRoad;
-    }
+    ~RoadTests() { delete testRoad; }
 
     Road* testRoad;
 };

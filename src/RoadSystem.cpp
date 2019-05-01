@@ -195,7 +195,16 @@ void RoadSystem::advanceSimulation()
             delete current;
         }
     }
-    
+
+    for(unsigned long rIndex = 0; rIndex < vectorOfRoads.size(); rIndex++)
+    {
+        vector<TrafficLight*> lightsOnRoad = vectorOfRoads[rIndex]->getTrafficLights();
+        for(unsigned long lIndex = 0; lIndex < lightsOnRoad.size(); lIndex++)
+        {
+            lightsOnRoad[lIndex]->updateState(timeActive());
+        }
+    }
+
     time++;
 }
 
