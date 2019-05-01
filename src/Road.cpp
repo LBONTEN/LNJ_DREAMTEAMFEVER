@@ -5,7 +5,7 @@
 #include "RoadSystem.h"
 #include <iostream>
 
-extern const unsigned int minimumSpace= 200;
+extern const unsigned int minimumSpace= 2;
 
 
 /*  Road functions ---------------------------------------------------- */
