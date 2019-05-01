@@ -37,6 +37,7 @@ set(RELEASE_SOURCE_FILES
 
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
+        Tests/fileHelpers.cpp
         Tests/Tests.cpp)
 
 # Create RELEASE target
