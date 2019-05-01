@@ -34,7 +34,7 @@ int main(int argc, char** argv)
         {
             std::cout << "After " << rs->timeActive() << " iterations" << std::endl;
             
-            print.textGraphicPrint(std::cout, 100) << endl;
+            cout << print << endl;
             
             const vector<Vehicle*> tmp = rs->getVectorOfVehicles();
             for (vector<Vehicle*>::const_iterator it = tmp.begin(); it != tmp.end(); it++)
