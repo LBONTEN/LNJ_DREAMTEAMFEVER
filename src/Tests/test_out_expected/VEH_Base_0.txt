@@ -1,0 +1,16 @@
+Road: E1
+	-> Speed limit: 25
+	-> Length: 3007
+	-> Lanes: 1
+
+
+Vehicle: Car (R4X3R)
+	-> Road: E1
+	-> Position: 0
+	-> Speed: 0
+
+Vehicle: Car (L3NB01)
+	-> Road: E1
+	-> Position: 300
+	-> Speed: 1
+
