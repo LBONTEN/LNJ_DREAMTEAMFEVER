@@ -45,6 +45,9 @@ laneCount(laneCount)
 Road::~Road()
 {
     lanes.clear();
+    zones.clear();
+    trafficLights.clear();
+    busStops.clear();
 }
 
 
