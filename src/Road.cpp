@@ -119,7 +119,6 @@ bool Road::isFree() const
 void Road::clearAllSigns()
 {
     REQUIRE(properlyInitialised(), "Road: ClearAllSigns: Not properly initialised.");
-    if(zones.empty()) return;
 
     zones.clear();
     trafficLights.clear();
