@@ -37,6 +37,9 @@
 # Ide_args file
 *.idea
 
+# test results
+*/test_out_real
+
 # Compiled build folder
 build/*
 bin/*
