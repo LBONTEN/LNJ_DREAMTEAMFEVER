@@ -7,6 +7,7 @@
 #include "Road.h"
 #include "RoadSigns.h"
 #include <vector>
+#include <cmath>
 
 
 ///--- helper functions ---///
@@ -96,7 +97,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         const vector<Lane*>& lanes = currRd->getLanes();
         
         // construct the edge string (includes traffic signaling)
-        string rdEdge (currRd->getLength() / metresPerChar, '=');
+        string rdEdge (ceil((double)currRd->getLength() / metresPerChar), '=');
         RoadSign* sign = currRd->getSignOnPosition(0, true);
         while (sign)
         {
@@ -136,7 +137,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
         {
             Lane* currLn = lanes[laneNr];
             
-            string rdLane (currRd->getLength() / metresPerChar, ' ');
+            string rdLane (ceil((double)currRd->getLength() / metresPerChar), ' ');
             
             Vehicle* veh = currLn->getCarOnPosition(0, true);
             while (veh)
@@ -155,7 +156,7 @@ ostream& Output::textGraphicPrint(ostream& target, unsigned int maxChar) const
             
             if (laneNr > 0)
             {
-                target << string(longestName+1, ' ') << "| " << string(currRd->getLength() / metresPerChar, '-') << endl;
+                target << string(longestName+1, ' ') << "| " << string(ceil((double)currRd->getLength() / metresPerChar), '-') << endl;
             }
         }
         
