@@ -124,10 +124,6 @@ TEST_F(RoadTests, ROADSIGN_TESTS)
     testRoad->clearBusStops();
     EXPECT_TRUE(testRoad->getBusStops().empty());
 
-    testRoad->addZone(testZone);
-    testRoad->addTrafficLight(testLight);
-    testRoad->addBusstop(testStop);
-
     testRoad->clearAllSigns();
     EXPECT_TRUE(testRoad->getZones().empty());
     EXPECT_TRUE(testRoad->getTrafficLights().empty());
