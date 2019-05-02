@@ -30,7 +30,7 @@ DefaultVehicle::DefaultVehicle() : Vehicle::Vehicle()
 
 DefaultVehicle::DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
                  std::string typeName, unsigned int len, const VehicleLimits* limits) :
-        Vehicle::Vehicle(environment, licensePlate, stdCarLength, limits, currentRoad),
+        Vehicle::Vehicle(environment, licensePlate, len, limits, currentRoad),
         snapShot()
 {
     REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Bus" || typeName == "Truck", "Invalid typeName for DefaultVehicle");

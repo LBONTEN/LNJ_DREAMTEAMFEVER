@@ -150,14 +150,14 @@ public:
     int getAcceleration() const ;
     int getSpeed() const ;
     unsigned int getPosition() const ;
-    unsigned int getLen() const ;
-    const VehicleLimits* getLimits() const;
 
     /**
-     * special case of getter function
-     * does not require anything
+     * special cases of getter function
+     * do not require anything
      */
     const string& getTypeName() const;
+    unsigned int getLen() const ;
+    const VehicleLimits* getLimits() const;
 
     /**
      * get the next vehicle on the current road (NULL if none exist)
