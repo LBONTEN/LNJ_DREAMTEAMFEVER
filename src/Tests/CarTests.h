@@ -175,7 +175,7 @@ TEST_F(InSystemCar, UPDATE_Follow)
     delete otherCar;
 }
 
-TEST_F(InSystemCar, UPDATE_ZONE)
+TEST_F(InSystemCar, UPDATE_Zone)
 {
     ASSERT_LT(stdCarLimits.minAcc, 0) << "test won't work with these stdCarLimits";
     ASSERT_GE(stdCarLimits.maxSpd+stdCarLimits.minAcc-2, stdCarLimits.minSpd) << "test won't work with these stdCarLimits";
@@ -202,6 +202,63 @@ TEST_F(InSystemCar, UPDATE_ZONE)
     }
     
     EXPECT_EQ(stdCarLimits.maxSpd+stdCarLimits.minAcc-2, testCar->getSpeed());
+}
+
+TEST_F(InSystemCar, UPDATE_Light)
+{
+    TrafficLight* light1 = new TrafficLight(100, road, 0);
+    TrafficLight* light2 = new TrafficLight(180, road, 35);
+    
+    road->addTrafficLight(light1);
+    road->addTrafficLight(light2);
+    
+    ASSERT_EQ(orange, light1->getState());
+    ASSERT_EQ(green, light2->getState());
+    
+    system->activate();
+    
+    while (testCar->getPosition() < light1->getPosition())
+    {
+        testCar->prepUpdate();
+    
+        int expectedAcc = stdCarLimits.maxAcc;
+        
+        int idealD = 0.75 * 3.6 * testCar->getSpeed() + minimumSpace;
+        unsigned int dToLight = light1->getPosition() - testCar->getPosition();
+        
+        if (dToLight <= 0) {
+            testCar->execUpdate();
+            break;
+        }
+        
+        if (dToLight < 2*idealD) expectedAcc = - (testCar->getSpeed()*testCar->getSpeed() / dToLight);
+        
+        if (testCar->getSpeed()+expectedAcc > stdCarLimits.maxSpd) expectedAcc = stdCarLimits.maxSpd - testCar->getSpeed();
+        
+        testCar->execUpdate();
+        
+        EXPECT_EQ(expectedAcc, testCar->getAcceleration());
+    }
+    
+    EXPECT_EQ(light1->getPosition(), testCar->getPosition());
+    EXPECT_EQ(0, testCar->getSpeed());
+    EXPECT_EQ(0, testCar->getAcceleration());
+    
+    light1->updateState(35);
+    
+    ASSERT_EQ(green, light1->getState());
+    
+    while (testCar->getCurrentRoad() != NULL)
+    {
+        testCar->prepUpdate();
+    
+        int expectedAcc = stdCarLimits.maxAcc;
+        if (testCar->getSpeed()+expectedAcc > stdCarLimits.maxSpd) expectedAcc = stdCarLimits.maxSpd - testCar->getSpeed();
+    
+        testCar->execUpdate();
+        
+        EXPECT_EQ(expectedAcc, testCar->getAcceleration());
+    }
 }
 
 #endif //LNJPSE_PROJECT_CARTESTS_H
