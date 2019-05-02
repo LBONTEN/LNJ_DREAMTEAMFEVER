@@ -6,15 +6,16 @@
 #include <string>
 
 
-RoadSystem::RoadSystem() : vectorOfRoads(), vectorOfVehicles(), active(false), selfPtr(this)
+RoadSystem::RoadSystem() : vectorOfRoads(), vectorOfVehicles(), active(false), time(0), selfPtr(this)
 {
     ENSURE(properlyInitialised(), "Roadsystem failed to initialise");
     ENSURE(getVectorOfVehicles().empty(), "Failed to initialise vector of vehicles");
     ENSURE(getVectorOfRoads().empty(), "Failed to initialise vector of roads");
+    ENSURE(!simulationActive() && timeActive() == 0, "Just initialised system can't be active / have active time");
 }
 
 RoadSystem::RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles) :
-        vectorOfRoads(roads), vectorOfVehicles(vehicles), active(false), selfPtr(this)
+        vectorOfRoads(roads), vectorOfVehicles(vehicles), active(false), time(0), selfPtr(this)
 {
     for(vector<Vehicle*>::const_iterator i = vehicles.begin(); i != vehicles.end(); i++)
     {
@@ -23,6 +24,7 @@ RoadSystem::RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehic
     ENSURE(properlyInitialised(), "Roadsystem failed to initialise");
     ENSURE(getVectorOfVehicles() == vehicles, "Failed to initialise vector of vehicles");
     ENSURE(getVectorOfRoads() == roads, "Failed to initialise vector of roads");
+    ENSURE(!simulationActive() && timeActive() == 0, "Just initialised system can't be active / have active time");
 }
 
         
