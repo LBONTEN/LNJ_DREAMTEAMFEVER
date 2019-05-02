@@ -43,17 +43,14 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
 
         if(type == "BAAN")
         {
-            string connectionName = xmlNode.child("verbinding").text().as_string();
             string currRoadName = xmlNode.child("naam").text().as_string();
-
-            Road *connection = roads[connectionName.c_str()];
             Road *currentRoad = roads[currRoadName.c_str()];
-            
-            if (connection != NULL)
+            if(!xmlNode.child("verbinding").empty())
             {
+                string connectionName = xmlNode.child("verbinding").text().as_string();
+                Road *connection = roads[connectionName.c_str()];
                 currentRoad->setConnection(connection);
             }
-
             newSystem->addRoad(currentRoad);
         }
         if(type == "VOERTUIG")

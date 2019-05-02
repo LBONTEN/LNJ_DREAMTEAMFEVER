@@ -282,7 +282,7 @@ TEST_F(ParseTest, SIGNAL_All)
     
     const vector<RoadSign*> parsedSigns = parsedRoads[0]->getAllSigns();
     
-    ASSERT_EQ(4, parsedSigns.size());
+    ASSERT_EQ( (unsigned long) 4, parsedSigns.size());
     
     for (unsigned long signNr = 0; signNr < parsedSigns.size(); ++signNr)
     {
@@ -295,7 +295,7 @@ TEST_F(ParseTest, SIGNAL_All)
                 ASSERT_FALSE(currSign->getRoad() == (Road*) NULL);
                 EXPECT_EQ("E313", currSign->getRoad()->getName());
                 
-                EXPECT_EQ(1500, currSign->getPosition());
+                EXPECT_EQ((unsigned long) 1500, currSign->getPosition());
                 
                 EXPECT_EQ(currSign, (RoadSign*) parsedRoads[0]->getTrafficLightOnPosition(currSign->getPosition(), true));
                 
@@ -335,7 +335,7 @@ TEST_F(ParseTest, SIGNAL_All)
                 ASSERT_FALSE(currSign->getRoad() == (Road*) NULL);
                 EXPECT_EQ("E313", currSign->getRoad()->getName());
     
-                EXPECT_EQ(0, currSign->getPosition());
+                EXPECT_EQ((unsigned int) 0, currSign->getPosition());
     
                 EXPECT_EQ(currSign, (RoadSign*) parsedRoads[0]->getBusStopOnPosition(currSign->getPosition(), true));
                 

@@ -55,9 +55,9 @@ protected:
 // Tests the compare files
 TEST_F(OutputTest, FileCompare) {
     ofstream myfile;
-    myfile.open(basePath+outPath+"file1.txt");
+    myfile.open((basePath+outPath+"file1.txt").c_str());
     myfile.close();
-    myfile.open(basePath+outPath+"file2.txt");
+    myfile.open((basePath+outPath+"file2.txt").c_str());
     myfile.close();
     
     EXPECT_TRUE(FileExists(basePath+outPath+"file1.txt"));
@@ -71,7 +71,7 @@ TEST_F(OutputTest, FileCompare) {
     EXPECT_TRUE(FileCompare(basePath+outPath+"file2.txt", basePath+outPath+"file1.txt"));
     
     //compare an empty and a non-empty files
-    myfile.open(basePath+outPath+"file1.txt");
+    myfile.open((basePath+outPath+"file1.txt").c_str());
     myfile << "xxx" << endl << "yyy";
     myfile.close();
     EXPECT_TRUE(FileExists(basePath+outPath+"file1.txt"));
@@ -80,7 +80,7 @@ TEST_F(OutputTest, FileCompare) {
     EXPECT_FALSE(FileCompare(basePath+outPath+"file2.txt", basePath+outPath+"file1.txt"));
     
     //compare two equal files
-    myfile.open(basePath+outPath+"file2.txt");
+    myfile.open((basePath+outPath+"file2.txt").c_str());
     myfile << "xxx" << endl << "yyy";
     myfile.close();
     EXPECT_TRUE(FileExists(basePath+outPath+"file2.txt"));
@@ -89,14 +89,14 @@ TEST_F(OutputTest, FileCompare) {
     EXPECT_TRUE(FileCompare(basePath+outPath+"file2.txt", basePath+outPath+"file1.txt"));
     
     //compare 2 non-empty files which are off by a character in the middle
-    myfile.open(basePath+outPath+"file2.txt");
+    myfile.open((basePath+outPath+"file2.txt").c_str());
     myfile << "xxx" << endl << "xyy";
     myfile.close();
     EXPECT_FALSE(FileCompare(basePath+outPath+"file1.txt", basePath+outPath+"file2.txt"));
     EXPECT_FALSE(FileCompare(basePath+outPath+"file2.txt", basePath+outPath+"file1.txt"));
     
     //compare 2 non-empty files where one is one character shorter than the other
-    myfile.open(basePath+outPath+"file2.txt");
+    myfile.open((basePath+outPath+"file2.txt").c_str());
     myfile << "xxx" << endl << "yy";
     myfile.close();
     EXPECT_FALSE(FileCompare(basePath+outPath+"file1.txt", basePath+outPath+"file2.txt"));
@@ -113,29 +113,29 @@ TEST_F(OutputTest, ROAD_Base)
 {
     system->addRoad(new Road("E0", 1605, 33));
     
-    result.open(basePath+outPath+"ROAD_Base_0.txt");
+    result.open((basePath+outPath+"ROAD_BASE_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Base_0.txt", basePath+outPath+"ROAD_Base_0.txt"));
     
-    result.open(basePath+outPath+"ROAD_Base_0.txt");
+    result.open((basePath+outPath+"ROAD_BASE_0.txt").c_str());
     printer->classicPrint(result);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Base_0.txt", basePath+outPath+"ROAD_Base_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"ROAD_Base_1.txt");
+    result.open((basePath+outPath+"ROAD_BASE_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Base_1.txt", basePath+outPath+"ROAD_Base_1.txt"));
     
-    result.open(basePath+outPath+"ROAD_Base_1.txt");
+    result.open((basePath+outPath+"ROAD_BASE_1.txt").c_str());
     printer->textGraphicPrint(result);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Base_1.txt", basePath+outPath+"ROAD_Base_1.txt"));
     
-    result.open(basePath+outPath+"ROAD_Base_2.txt");
+    result.open((basePath+outPath+"ROAD_BASE_2.txt").c_str());
     printer->textGraphicPrint(result, 40);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Base_2.txt", basePath+outPath+"ROAD_Base_2.txt"));
@@ -149,14 +149,14 @@ TEST_F(OutputTest, Road_Network)
     system->addRoad(baseRd);
     system->addRoad(new Road("E2", 200, 40, 1, baseRd));
     
-    result.open(basePath+outPath+"ROAD_Network_0.txt");
+    result.open((basePath+outPath+"ROAD_NETWORK_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Network_0.txt", basePath+outPath+"ROAD_Network_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"ROAD_Network_1.txt");
+    result.open((basePath+outPath+"ROAD_NETWORK_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Network_1.txt", basePath+outPath+"ROAD_Network_1.txt"));
@@ -168,14 +168,14 @@ TEST_F(OutputTest, ROAD_Lanes)
     system->addRoad(new Road("E3", 2024, 30, 5));
     system->addRoad(new Road("E2", 200, 40, 2));
     
-    result.open(basePath+outPath+"ROAD_Lanes_0.txt");
+    result.open((basePath+outPath+"ROAD_LANES_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Lanes_0.txt", basePath+outPath+"ROAD_Lanes_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"ROAD_Lanes_1.txt");
+    result.open((basePath+outPath+"ROAD_LANES_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"ROAD_Lanes_1.txt", basePath+outPath+"ROAD_Lanes_1.txt"));
@@ -196,14 +196,14 @@ TEST_F(OutputTest, VEH_Base)
     system->addVehicle(veh1);
     system->addVehicle(veh2);
     
-    result.open(basePath+outPath+"VEH_Base_0.txt");
+    result.open((basePath+outPath+"VEH_Base_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"VEH_Base_0.txt", basePath+outPath+"VEH_Base_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"VEH_Base_1.txt");
+    result.open((basePath+outPath+"VEH_Base_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"VEH_Base_1.txt", basePath+outPath+"VEH_Base_1.txt"));
@@ -230,14 +230,14 @@ TEST_F(OutputTest, VEH_Types)
     system->addVehicle(veh3);
     system->addVehicle(veh4);
     
-    result.open(basePath+outPath+"VEH_Types_0.txt");
+    result.open((basePath+outPath+"VEH_Types_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"VEH_Types_0.txt", basePath+outPath+"VEH_Types_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"VEH_Types_1.txt");
+    result.open((basePath+outPath+"VEH_Types_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"VEH_Types_1.txt", basePath+outPath+"VEH_Types_1.txt"));
@@ -256,14 +256,14 @@ TEST_F(OutputTest, SIGN_All)
     baseRd->addBusstop(new BusStop(30, baseRd));
     
     // subject to change
-    result.open(basePath+outPath+"SIGN_All_0.txt");
+    result.open((basePath+outPath+"SIGN_ALL_0.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"SIGN_All_0.txt", basePath+outPath+"SIGN_All_0.txt"));
     
     printer->style = text_graphic;
     
-    result.open(basePath+outPath+"SIGN_All_1.txt");
+    result.open((basePath+outPath+"SIGN_All_1.txt").c_str());
     result << (*printer);
     result.close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+"SIGN_All_1.txt", basePath+outPath+"SIGN_All_1.txt"));
