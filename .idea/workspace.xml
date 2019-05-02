@@ -35,11 +35,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="Merge branch 'master' of https://github.com/LBONTEN/LNJ_DREAMTEAMFEVER&#10;&#10;# Conflicts:&#10;#&#9;src/Tests/Tests.cpp">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/OutputTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/OutputTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XMLParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/CarTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/CarTests.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -69,7 +65,7 @@
                 </provider>
               </entry>
             </file>
-            <file pinned="false" current-in-tab="true">
+            <file pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/Tests/test_in/disconnected_roads_empty.xml">
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="276">
@@ -83,6 +79,15 @@
                 <provider selected="true" editor-type-id="text-editor">
                   <state relative-caret-position="874">
                     <caret line="38" selection-start-line="38" selection-end-line="38" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/Tests/CarTests.h">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="656">
+                    <caret line="234" column="60" selection-start-line="234" selection-start-column="60" selection-end-line="234" selection-end-column="60" />
                   </state>
                 </provider>
               </entry>
@@ -131,7 +136,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/XMLParser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
+            <state relative-caret-position="41">
               <caret line="45" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="e#53#73#0" expanded="true" />
@@ -140,7 +145,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="437">
@@ -152,11 +157,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="118">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -174,7 +179,7 @@
         <entry file="file://$PROJECT_DIR$/src/Road.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="11684">
-              <caret line="508" selection-start-line="508" selection-end-line="508" />
+              <caret line="509" selection-start-line="509" selection-end-line="509" />
               <folding>
                 <element signature="e#53#73#0" expanded="true" />
               </folding>
@@ -230,7 +235,6 @@
         <option value="$PROJECT_DIR$/src/XMLParser.h" />
         <option value="$PROJECT_DIR$/src/Tests/RoadTests.h" />
         <option value="$PROJECT_DIR$/src/Tests/VehicleTests.h" />
-        <option value="$PROJECT_DIR$/src/Tests/CarTests.h" />
         <option value="$PROJECT_DIR$/src/Vehicle.h" />
         <option value="$PROJECT_DIR$/src/Road.h" />
         <option value="$PROJECT_DIR$/src/RoadSystem.h" />
@@ -243,6 +247,7 @@
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
         <option value="$PROJECT_DIR$/src/RoadSystem.cpp" />
         <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/Tests/CarTests.h" />
       </list>
     </option>
   </component>
@@ -337,7 +342,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.LNJPSE_DEBUG">
+  <component name="RunManager" selected="Google Test.RoadSystemTest">
     <configuration name="ParseTest" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -389,9 +394,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Google Test.RoadSystemTest" />
         <item itemvalue="Google Test.ParseTest.BASE_Road" />
         <item itemvalue="Google Test.ParseTest" />
-        <item itemvalue="Google Test.RoadSystemTest" />
         <item itemvalue="Google Test.RoadSystemTest.UPDATE_TESTS" />
         <item itemvalue="Google Test.RoadSystemTest.GET_SET_TESTS" />
       </list>
@@ -435,7 +440,7 @@
       <workItem from="1556695875418" duration="25881000" />
       <workItem from="1556740480058" duration="14785000" />
       <workItem from="1556794373992" duration="499000" />
-      <workItem from="1556794888146" duration="261000" />
+      <workItem from="1556794888146" duration="596000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -578,7 +583,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215975000" />
+    <option name="totallyTimeSpent" value="216310000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,14 +595,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="33" width="960" height="1047" extended-state="4" />
+    <frame x="0" y="33" width="960" height="1047" extended-state="5" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38894683" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26903024" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.16579771" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -828,13 +833,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/disconnected_roads_empty.xml" />
-    <entry file="file://$PROJECT_DIR$/src/Tests/CarTests.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/RoadTests.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -942,20 +940,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/XMLParser.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="e#53#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="11684">
-          <caret line="508" selection-start-line="508" selection-end-line="508" />
+          <caret line="509" selection-start-line="509" selection-end-line="509" />
           <folding>
             <element signature="e#53#73#0" expanded="true" />
           </folding>
@@ -966,16 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/RoadSystemTests.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4163">
-          <caret line="181" column="61" selection-start-line="181" selection-start-column="61" selection-end-line="181" selection-end-column="61" />
-          <folding>
-            <element signature="e#53#79#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,6 +971,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/XMLParser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="e#53#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/RoadSystemTests.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4163">
+          <caret line="181" column="61" selection-start-line="181" selection-start-column="61" selection-end-line="181" selection-end-column="61" />
+          <folding>
+            <element signature="e#53#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/CarTests.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="656">
+          <caret line="234" column="60" selection-start-line="234" selection-start-column="60" selection-end-line="234" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -1000,13 +1012,6 @@
           <folding>
             <element signature="e#95#120#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>

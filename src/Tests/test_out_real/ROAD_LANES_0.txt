@@ -1,0 +1,16 @@
+Road: E1
+	-> Speed limit: 25
+	-> Length: 3007
+	-> Lanes: 1
+
+Road: E3
+	-> Speed limit: 30
+	-> Length: 2024
+	-> Lanes: 5
+
+Road: E2
+	-> Speed limit: 40
+	-> Length: 200
+	-> Lanes: 2
+
+

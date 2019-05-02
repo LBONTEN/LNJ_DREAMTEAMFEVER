@@ -232,7 +232,7 @@ TEST_F(InSystemCar, UPDATE_Light)
             break;
         }
         
-        if (dToLight < 2*idealD) expectedAcc = - (testCar->getSpeed()*testCar->getSpeed() / dToLight);
+        if (dToLight < 2*idealD) expectedAcc = (unsigned int) (- (testCar->getSpeed()*testCar->getSpeed() / dToLight));
         
         if (testCar->getSpeed()+expectedAcc > stdCarLimits.maxSpd) expectedAcc = stdCarLimits.maxSpd - testCar->getSpeed();
         
