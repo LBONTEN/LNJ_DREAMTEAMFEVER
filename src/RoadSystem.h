@@ -123,6 +123,7 @@ public:
     /**
      * remove functions
      * (note: quite slow, look into using maps / sets for speed-up)
+     * warning: does NOT de-allocate associated memory
      * @REQUIRE properly initialised
      * @ENSURE NOT has <road/vehicle>
      */

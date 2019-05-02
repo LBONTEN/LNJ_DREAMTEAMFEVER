@@ -79,7 +79,7 @@ private:
 
 
 // TrafficLight --------------------------------------------------------------
-enum Color {green, orange, red};
+enum Color {orange, red, green};
 
 class TrafficLight : public RoadSign
 {

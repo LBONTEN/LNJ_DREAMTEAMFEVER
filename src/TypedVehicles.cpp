@@ -30,19 +30,29 @@ MotorCycle::MotorCycle() :
         DefaultVehicle::DefaultVehicle()
 {
     typeName = "MotorCycle";
+    limits = &stdMotorCycleLimits;
+    hardSetLen(stdMotorCycleLength);
     
     ENSURE(getTypeName() == "MotorCycle", "MotorCycle constructor failed to set typeName");
+    ENSURE(getLimits() == &stdMotorCycleLimits, "MotorCycle constructor failed to set limits");
+    ENSURE(getLen() == stdMotorCycleLength, "MotorCycle constructor failed to set length");
 }
 
 MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "MotorCycle", stdMotorCycleLength, &stdMotorCycleLimits)
 {
+    ENSURE(getTypeName() == "MotorCycle", "MotorCycle constructor failed to set typeName");
+    ENSURE(getLimits() == &stdMotorCycleLimits, "MotorCycle constructor failed to set limits");
+    ENSURE(getLen() == stdMotorCycleLength, "MotorCycle constructor failed to set length");
 }
 
 MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
                        int speed, unsigned int position) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "MotorCycle", stdMotorCycleLength, &stdMotorCycleLimits)
 {
+    ENSURE(getTypeName() == "MotorCycle", "MotorCycle constructor failed to set typeName");
+    ENSURE(getLimits() == &stdMotorCycleLimits, "MotorCycle constructor failed to set limits");
+    ENSURE(getLen() == stdMotorCycleLength, "MotorCycle constructor failed to set length");
 }
 
 
@@ -51,17 +61,26 @@ MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road
 Car::Car() :
         DefaultVehicle::DefaultVehicle()
 {
+    ENSURE(getTypeName() == "Car", "Car constructor failed to set typeName");
+    ENSURE(getLimits() == &stdCarLimits, "Car constructor failed to set limits");
+    ENSURE(getLen() == stdCarLength, "Car constructor failed to set length");
 }
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Car", stdCarLength, &stdCarLimits)
 {
+    ENSURE(getTypeName() == "Car", "Car constructor failed to set typeName");
+    ENSURE(getLimits() == &stdCarLimits, "Car constructor failed to set limits");
+    ENSURE(getLen() == stdCarLength, "Car constructor failed to set length");
 }
 
 Car::Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed,
          unsigned int position) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Car", stdCarLength, &stdCarLimits)
 {
+    ENSURE(getTypeName() == "Car", "Car constructor failed to set typeName");
+    ENSURE(getLimits() == &stdCarLimits, "Car constructor failed to set limits");
+    ENSURE(getLen() == stdCarLength, "Car constructor failed to set length");
 }
 
 
@@ -72,14 +91,21 @@ Bus::Bus() :
         busStopCooldown(30)
 {
     typeName = "Bus";
+    limits = &stdBusLimits;
+    hardSetLen(stdBusLength);
     
     ENSURE(getTypeName() == "Bus", "Bus constructor failed to set typeName");
+    ENSURE(getLimits() == &stdBusLimits, "Bus constructor failed to set limits");
+    ENSURE(getLen() == stdBusLength, "Bus constructor failed to set length");
 }
 
 Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Bus", stdBusLength, &stdBusLimits),
         busStopCooldown(30)
 {
+    ENSURE(getTypeName() == "Bus", "Bus constructor failed to set typeName");
+    ENSURE(getLimits() == &stdBusLimits, "Bus constructor failed to set limits");
+    ENSURE(getLen() == stdBusLength, "Bus constructor failed to set length");
 }
 
 Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
@@ -87,6 +113,9 @@ Bus::Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Bus", stdBusLength, &stdBusLimits),
         busStopCooldown(30)
 {
+    ENSURE(getTypeName() == "Bus", "Bus constructor failed to set typeName");
+    ENSURE(getLimits() == &stdBusLimits, "Bus constructor failed to set limits");
+    ENSURE(getLen() == stdBusLength, "Bus constructor failed to set length");
 }
 
 void Bus::execUpdate()
@@ -147,17 +176,27 @@ Truck::Truck() :
         DefaultVehicle::DefaultVehicle()
 {
     typeName = "Truck";
+    limits = &stdTruckLimits;
+    hardSetLen(stdTruckLength);
     
     ENSURE(getTypeName() == "Truck", "Truck constructor failed to set typeName");
+    ENSURE(getLimits() == &stdTruckLimits, "Truck constructor failed to set limits");
+    ENSURE(getLen() == stdTruckLength, "Truck constructor failed to set length");
 }
 
 Truck::Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, "Truck", stdTruckLength, &stdTruckLimits)
 {
+    ENSURE(getTypeName() == "Truck", "Truck constructor failed to set typeName");
+    ENSURE(getLimits() == &stdTruckLimits, "Truck constructor failed to set limits");
+    ENSURE(getLen() == stdTruckLength, "Truck constructor failed to set length");
 }
 
 Truck::Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration,
-                       int speed, unsigned int position) :
+             int speed, unsigned int position) :
         DefaultVehicle::DefaultVehicle(environment, licensePlate, currentRoad, acceleration, speed, position, "Truck", stdTruckLength, &stdTruckLimits)
 {
+    ENSURE(getTypeName() == "Truck", "Truck constructor failed to set typeName");
+    ENSURE(getLimits() == &stdTruckLimits, "Truck constructor failed to set limits");
+    ENSURE(getLen() == stdTruckLength, "Truck constructor failed to set length");
 }

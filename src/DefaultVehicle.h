@@ -21,7 +21,7 @@ public:
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
      * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get <acc/spd/pos> = 0, NOT update ready
+     * @ENSURE properly initialised, get<arg> = <arg>, get <acc/spd/pos> = 0, NOT update ready
      */
     DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
@@ -29,7 +29,7 @@ public:
     /**
      * Maximal constructor
      * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, NOT update ready
+     * @ENSURE properly initialised, get<arg> = <arg>, NOT update ready
      */
     DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
@@ -58,8 +58,9 @@ public:
     /**
      * Upate acceleration, speed and position (and possibly currentRoad)
      * Note: tries to respect speed limits, but does not guaranty it
+     * see specification for more info
      * @REQUIRE properly initialised, update prepared, simulation active
-     * @ENSURE get<acc/pos> is within limits minimum distance is respected, update NOT ready
+     * @ENSURE get<acc/pos> is within limits, update NOT ready
      */
     virtual void execUpdate();
 

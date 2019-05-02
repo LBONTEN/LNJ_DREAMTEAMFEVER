@@ -217,11 +217,9 @@ unsigned int Vehicle::getPosition() const {
 }
 
 unsigned int Vehicle::getLen() const {
-    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return len;
 }
 const VehicleLimits* Vehicle::getLimits() const {
-    REQUIRE(properlyInitialised(), "Vehicle was not initialised");
     return limits;
 }
 const string& Vehicle::getTypeName() const {
