@@ -92,7 +92,9 @@ protected:
             system(new RoadSystem()),
             road(new Road("4n_I-m Rd", 200, stdCarLimits.maxSpd+50)),
             testCar(new Car(system, "I-M_4 C4R", road))
-    {}
+    {
+        road->getLanes()[0]->addVehicle(testCar);
+    }
     
     virtual ~InSystemCar()
     {
@@ -258,6 +260,86 @@ TEST_F(InSystemCar, UPDATE_Light)
         testCar->execUpdate();
         
         EXPECT_EQ(expectedAcc, testCar->getAcceleration());
+    }
+}
+
+TEST_F(InSystemCar, UPDATE_BusStop)
+{
+    Road* road2 = new Road("4l5_rD", 200, stdCarLimits.maxSpd+50);
+    
+    BusStop* stop1 = new BusStop(100, road);
+    BusStop* stop2 = new BusStop(100, road2);
+    
+    Vehicle* bus = new Bus(system, "BUS_VEH", road2);
+    
+    system->addRoad(road2);
+    
+    road->addBusstop(stop1);
+    road2->addBusstop(stop2);
+    
+    road2->getLanes()[0]->addVehicle(bus);
+    
+    system->activate();
+    
+    while (testCar->getCurrentRoad() != NULL)
+    {
+        testCar->prepUpdate();
+        
+        int expectedAcc = stdCarLimits.maxAcc;
+        if (testCar->getSpeed()+expectedAcc > stdCarLimits.maxSpd) expectedAcc = stdCarLimits.maxSpd - testCar->getSpeed();
+        
+        testCar->execUpdate();
+        
+        EXPECT_EQ(expectedAcc, testCar->getAcceleration());
+    }
+    
+    while (bus->getPosition() < stop2->getPosition())
+    {
+        bus->prepUpdate();
+    
+        int expectedAcc = stdBusLimits.maxAcc;
+    
+        int idealD = 0.75 * 3.6 * bus->getSpeed() + minimumSpace;
+        unsigned int dToLight = stop2->getPosition() - bus->getPosition();
+    
+        if (dToLight <= 0) {
+            bus->execUpdate();
+            break;
+        }
+    
+        if (dToLight < 2*idealD) expectedAcc = - (bus->getSpeed()*bus->getSpeed() / dToLight);
+    
+        if (bus->getSpeed()+expectedAcc > stdBusLimits.maxSpd) expectedAcc = stdBusLimits.maxSpd - bus->getSpeed();
+    
+        bus->execUpdate();
+    
+        EXPECT_EQ(expectedAcc, bus->getAcceleration());
+    }
+    
+    EXPECT_EQ(stop2->getPosition(), bus->getPosition());
+    EXPECT_EQ(0, bus->getSpeed());
+    EXPECT_EQ(0, bus->getAcceleration());
+    
+    for (int timeAtStop=1; timeAtStop < 30; ++timeAtStop)
+    {
+        bus->prepUpdate();
+        bus->execUpdate();
+    
+        EXPECT_EQ(stop2->getPosition(), bus->getPosition());
+        EXPECT_EQ(0, bus->getSpeed());
+        EXPECT_EQ(0, bus->getAcceleration());
+    }
+    
+    while (bus->getCurrentRoad() != NULL)
+    {
+        bus->prepUpdate();
+        
+        int expectedAcc = stdBusLimits.maxAcc;
+        if (bus->getSpeed()+expectedAcc > stdBusLimits.maxSpd) expectedAcc = stdBusLimits.maxSpd - bus->getSpeed();
+        
+        bus->execUpdate();
+        
+        EXPECT_EQ(expectedAcc, bus->getAcceleration());
     }
 }
 
