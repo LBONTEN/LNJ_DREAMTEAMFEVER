@@ -169,7 +169,7 @@ void DefaultVehicle::stepAcceleration()
     // try to respect speed limits
     if (getCurrentRoad() and getSpeed()+newAcceleration > getCurrentRoad()->getSpeedLimit(getPosition()))
     {
-        newAcceleration = getCurrentRoad()->getSpeedLimit() - getSpeed();
+        newAcceleration = getCurrentRoad()->getSpeedLimit(getPosition()) - getSpeed();
     }
     
     if (getSpeed()+newAcceleration > limits->maxSpd)
