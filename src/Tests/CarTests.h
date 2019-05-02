@@ -134,7 +134,7 @@ TEST_F(InSystemCar, UPDATE_Base)
     EXPECT_TRUE(testCar->getPosition() == (unsigned int) stdCarLimits.maxAcc);
 }
 
-TEST_F(InSystemCar, UPDATE_Complex)
+TEST_F(InSystemCar, UPDATE_Follow)
 {
     Car* otherCar = new Car(system, "0h-lok4 cR", road, 0, 0, 200);
     
@@ -173,6 +173,35 @@ TEST_F(InSystemCar, UPDATE_Complex)
     }
     
     delete otherCar;
+}
+
+TEST_F(InSystemCar, UPDATE_ZONE)
+{
+    ASSERT_LT(stdCarLimits.minAcc, 0) << "test won't work with these stdCarLimits";
+    ASSERT_GE(stdCarLimits.maxSpd+stdCarLimits.minAcc-2, stdCarLimits.minSpd) << "test won't work with these stdCarLimits";
+    
+    road->addZone(new Zone(100, road, stdCarLimits.maxSpd+stdCarLimits.minAcc-2));
+    
+    testCar->setSpeed(stdCarLimits.maxSpd);
+    
+    system->activate();
+    
+    while (testCar->getPosition() < 100)
+    {
+        testCar->prepUpdate();
+        testCar->execUpdate();
+    }
+    
+    EXPECT_EQ(stdCarLimits.maxSpd, testCar->getSpeed());
+    EXPECT_EQ(stdCarLimits.minAcc, testCar->getAcceleration());
+    
+    while (testCar->getCurrentRoad() != NULL)
+    {
+        testCar->prepUpdate();
+        testCar->execUpdate();
+    }
+    
+    EXPECT_EQ(stdCarLimits.maxSpd+stdCarLimits.minAcc-2, testCar->getSpeed());
 }
 
 #endif //LNJPSE_PROJECT_CARTESTS_H
