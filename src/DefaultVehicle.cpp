@@ -157,6 +157,7 @@ void DefaultVehicle::stepAcceleration()
         {
             hardSetSpeed(0);
             hardSetAcceleration(0);
+            return;
         }
         else
         {
