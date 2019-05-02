@@ -61,6 +61,10 @@ MotorCycle::MotorCycle(RoadSystem* environment, const string& licensePlate, Road
 Car::Car() :
         DefaultVehicle::DefaultVehicle()
 {
+    typeName = "Car";
+    limits = &stdCarLimits;
+    hardSetLen(stdCarLength);
+
     ENSURE(getTypeName() == "Car", "Car constructor failed to set typeName");
     ENSURE(getLimits() == &stdCarLimits, "Car constructor failed to set limits");
     ENSURE(getLen() == stdCarLength, "Car constructor failed to set length");
