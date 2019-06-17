@@ -29,7 +29,8 @@ set(SHARED_SOURCE_FILES
         TypedVehicles.cpp
         Output.cpp
         DefaultVehicle.cpp
-        RoadSigns.cpp)
+        RoadSigns.cpp
+        Logger.cpp)
 
 # Set source files for RELEASE target
 set(RELEASE_SOURCE_FILES

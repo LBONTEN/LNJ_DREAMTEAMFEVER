@@ -9,16 +9,20 @@
 #include "RoadSystem.h"
 #include "XMLParser.h"
 #include "Output.h"
+#include "Logger.h"
 
 int main(int argc, char** argv)
 {
+    LogLocator::provide(new GenericLogger(&cerr));
+    
     if (argc < 2) {
-        cerr << "No source file given" << std::endl;
+        *LogLocator::getLogger() << "No source file given\n";
         return 1;
     }
     
     XmlParser xmlp;
     RoadSystem* rs = xmlp.parseRoadSystem(argv[1]);
+    
     Output print (rs);
     print.style = text_graphic;
     
@@ -49,6 +53,6 @@ int main(int argc, char** argv)
     std::cout << "Situation after simulation: (took " << print.simulation->timeActive() << " seconds)" << std::endl;
     if (!rs->empty()) cout << "note: failed to empty simulation, quitted for some other reason" << std::endl;
     std::cout << print << "\t ~====~" << std::endl;
-
+    
     return 0;
 }
