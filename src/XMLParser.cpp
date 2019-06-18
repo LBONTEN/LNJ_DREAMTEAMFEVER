@@ -29,7 +29,6 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
     pugi::xml_node root = doc.child("ROOT");
 
     ENSURE(root == doc.first_child(), "Xml file must have leading ROOT tag.");
-    *logg
     ENSURE(!root.empty(), "Given file is not valid.");
 
     // Parse all Roads
@@ -39,6 +38,9 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
         Road* newRoad = parseRoad(xmlNode);
         if(newRoad)
             roads[name.c_str()] = newRoad;
+        else
+            *logging::globalLog << "Road not included due to incorrect formatting.\n"
+                                   "Please check input .xml file.\n";
     }
 
     if(roads.empty())
@@ -66,8 +68,11 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
                 }
                 newSystem->addRoad(currentRoad);
             }
+            else *logging::globalLog << "Road not included due to incorrect formatting.\n"
+                                        "Please check input .xml file.\n";
+
         }
-        if(type == "VOERTUIG")
+        else if(type == "VOERTUIG")
         {
             string currRoadName = xmlNode.child("baan").text().as_string();
 
@@ -78,14 +83,16 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
                 newSystem->addVehicle(newVehicle);
                 currentRoad->getLanes()[0]->addVehicle(newVehicle);
             }
+            else *logging::globalLog << "Road for Vehicle has not been found.";
         }
-        if(type == "VERKEERSTEKEN")
+        else if(type == "VERKEERSTEKEN")
         {
             string tekenBaan = xmlNode.child("baan").text().as_string();
             Road* road = roads[tekenBaan];
 
             parseRoadSign(xmlNode, road);
         }
+        else *logging::globalLog << "Possible objects are BAAN, VOERTUIG or VERKEERSTEKEN.";
     }
     return newSystem;
 }
@@ -99,8 +106,10 @@ Road* XmlParser::parseRoad(const pugi::xml_node& baan)
     if(laneCount == (unsigned int) 0) laneCount = 1;
 
     if(name == "" || speedLimit == (unsigned int) 0 || length == (unsigned int) 0)
+    {
+        *logging::globalLog << "Road is not included because it is not properly defined.";
         return NULL;
-
+    }
     return new Road(name, length, speedLimit, laneCount);
 }
 
@@ -114,22 +123,18 @@ Vehicle* XmlParser::parseVehicle(const pugi::xml_node& voertuig, RoadSystem* env
     unsigned int position = voertuig.child("positie").text().as_uint();
 
     if (type == "MOTORFIETS")
-    {
         return new MotorCycle(environment, licensePlate, currentRoad, acceleration, speed, position);
-    }
-    else if(type == "AUTO")
-    {
-        return new Car(environment, licensePlate, currentRoad, acceleration, speed, position);
-    }
-    else if (type == "BUS")
-    {
-        return new Bus(environment, licensePlate, currentRoad, acceleration, speed, position);
-    }
-    else if (type == "VRACHTWAGEN")
-    {
-        return new Truck(environment, licensePlate, currentRoad, acceleration, speed, position);
-    }
 
+    else if(type == "AUTO")
+        return new Car(environment, licensePlate, currentRoad, acceleration, speed, position);
+
+    else if (type == "BUS")
+        return new Bus(environment, licensePlate, currentRoad, acceleration, speed, position);
+
+    else if (type == "VRACHTWAGEN")
+        return new Truck(environment, licensePlate, currentRoad, acceleration, speed, position);
+
+    *logging::globalLog << "Given vehicle type is not defined.";
     return NULL;
 }
 
@@ -147,13 +152,9 @@ void XmlParser::parseRoadSign(const pugi::xml_node& verkeersteken, Road* road)
     else if(tekenType == "VERKEERSLICHT")
     {
         unsigned long offset = 0;
-        // srand (time(NULL));
-        // unsigned long offset = (unsigned long) rand() % 100;
         road->addTrafficLight(new TrafficLight(tekenPositie, road, offset));
     }
 
     else if(tekenType == "BUSHALTE")
-    {
         road->addBusstop(new BusStop(tekenPositie, road));
-    }
 }
