@@ -10,6 +10,7 @@
 #include "XMLParserTests.h"
 #include "RoadSystemTests.h"
 #include "OutputTests.h"
+#include "LoggerTests.h"
 #include <iostream>
 #include <gtest/gtest.h>
 

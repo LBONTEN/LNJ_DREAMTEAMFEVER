@@ -49,6 +49,13 @@ void GenericLogger::operator<<(std::string str)
 {
     (*target) << str;
     
+    std::string::size_type lastLineEnd = str.rfind('\n', (str[str.size()-1] == '\n') ? str.size()-2 : std::string::npos);
+    
+    if (lastLineEnd != std::string::npos)
+    {
+        str = str.substr(lastLineEnd+1, std::string::npos);
+    }
+    
     if (lastLine.empty() or lastLine.at(lastLine.size()-1) == '\n')
     {
         lastLine = str;

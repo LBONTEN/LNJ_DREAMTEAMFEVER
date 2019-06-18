@@ -39,7 +39,7 @@ set(RELEASE_SOURCE_FILES
 # Set source files for DEBUG target
 set(DEBUG_SOURCE_FILES
         Tests/fileHelpers.cpp
-        Tests/Tests.cpp)
+        Tests/Tests.cpp Tests/LoggerTests.h)
 
 # Create RELEASE target
 add_executable(LNJPSE ${RELEASE_SOURCE_FILES} ${SHARED_SOURCE_FILES})

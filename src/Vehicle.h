@@ -107,7 +107,7 @@ public:
     
     /**
      * destructor
-     * @ENSURE  currentroad & environment do not contain <this>
+     * no additional effects
      */
     virtual ~Vehicle();
     

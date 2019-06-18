@@ -218,6 +218,9 @@ void DefaultVehicle::stepSpeed() {
 
 void DefaultVehicle::stepPosition() {
     
+    if (!getCurrentRoad())
+        return;
+    
     unsigned int oldPos = getPosition();
     
     unsigned int newPos = oldPos + getSpeed();

@@ -177,10 +177,6 @@ public:
 *      Returns concatenation of zones, trafficLights and busStops.
 *
 *  REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
-*
-*  ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
-*  ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
-*  ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -192,8 +188,6 @@ public:
 *      Returns zones
 *
 *  REQUIRE(properlyInitialised(), "Road: getZones: Not properly initialised.");
-*
-*  ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -205,8 +199,6 @@ public:
 *      concatenation of zones, trafficLights and busStops
 *
 *  REQUIRE(properlyInitialised(), "Road: getTrafficLights: Not properly initialised.");
-*
-*  ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -218,8 +210,6 @@ public:
 *      concatenation of zones, trafficLights and busStops
 *
 *  REQUIRE(properlyInitialised(), "Road: getBusStops: Not properly initialised.");
-*
-*  ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
 --------------------------------------------------------------------- */
 
 

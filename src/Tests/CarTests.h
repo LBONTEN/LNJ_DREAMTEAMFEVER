@@ -97,8 +97,6 @@ protected:
     
     virtual ~InSystemCar()
     {
-        delete(testCar);
-        delete(road);
         delete(system);
     }
 
@@ -173,7 +171,6 @@ TEST_F(InSystemCar, UPDATE_Follow)
         EXPECT_EQ(expectedAcc, testCar->getAcceleration());
     }
     
-    delete otherCar;
 }
 
 TEST_F(InSystemCar, UPDATE_Zone)

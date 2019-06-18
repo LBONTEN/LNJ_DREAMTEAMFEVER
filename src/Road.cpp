@@ -180,19 +180,11 @@ vector<RoadSign*> Road::getAllSigns() const
 {
     REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
 
-    unsigned long zonesSize = zones.size();
-    unsigned long trafficLightsSize = trafficLights.size();
-    unsigned long busStopsSize = busStops.size();
-
     vector<RoadSign*> allSigns;
 
     allSigns.insert(allSigns.end(), zones.begin(), zones.end());
     allSigns.insert(allSigns.end(), trafficLights.begin(), trafficLights.end());
     allSigns.insert(allSigns.end(), busStops.begin(), busStops.end());
-
-    ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
-    ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
-    ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
 
     return allSigns;
 }
@@ -201,9 +193,6 @@ vector<RoadSign*> Road::getAllSigns() const
 const vector<Zone*>& Road::getZones() const
 {
     REQUIRE(properlyInitialised(), "Road: getZones: Not properly initialised.");
-    unsigned long zonesSize = zones.size();
-    ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
-
     return zones;
 }
 
@@ -211,9 +200,6 @@ const vector<Zone*>& Road::getZones() const
 const vector<TrafficLight*>& Road::getTrafficLights() const
 {
     REQUIRE(properlyInitialised(), "Road: getTrafficLights: Not properly initialised.");
-    unsigned long trafficLightsSize = trafficLights.size();
-    ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
-
     return trafficLights;
 }
 
@@ -221,11 +207,7 @@ const vector<TrafficLight*>& Road::getTrafficLights() const
 const vector<BusStop*>& Road::getBusStops() const
 {
     REQUIRE(properlyInitialised(), "Road: getBusStops: Not properly initialised.");
-    unsigned long busStopsSize = busStops.size();
-    ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
-
     return busStops;
-
 }
 
 
