@@ -17,13 +17,19 @@ public:
 
     /**
      * initialise an empty simulation
-     * @ENSURE properly initialised, get<roads/vehicles> = {}
+     * @ENSURE(properlyInitialised())
+     * @ENSURE(getVectorOfVehicles().empty())
+     * @ENSURE(getVectorOfRoads().empty())
+     * @ENSURE(!simulationActive() && timeActive() == 0)
      */
     RoadSystem();
     
     /**
      * initialise a simulation w/ roads & vehicles loaded
-     * @ENSURE properly initialised, get<roads/vehicles> = <roads/vehicles>
+     * @ENSURE(properlyInitialised())
+     * @ENSURE(getVectorOfVehicles() == vehicles)
+     * @ENSURE(getVectorOfRoads() == roads)
+     * @ENSURE(!simulationActive() && timeActive() == 0)
      */
     RoadSystem(const vector<Road*>& roads, const vector<Vehicle*>& vehicles);
     
@@ -36,20 +42,20 @@ public:
     /**
      * updates are suppressed when false
      * limits editing of the simulation when true
-     * @REQUIRE properly initialised
+     * @REQUIRE(properlyInitialised())
      */
     bool simulationActive() const;
     
     /**
      * check whether there are any cars in the simulation
-     * @REQUIRE properly initialised
+     * @REQUIRE(properlyInitialised())
      */
     bool empty() const;
     
     /**
      * the amount of simulated time the simulation hes been active.
      * returns 0 if simulation not active
-     * @REQUIRE properly initialised
+     * @REQUIRE(properlyInitialised())
      */
     unsigned long timeActive() const;
     
@@ -61,31 +67,34 @@ public:
     /**
      * start the simulation
      * this prevents direct editing of the elements within, but enables advancing the simulation
-     * @REQUIRE properly initialised
-     * @ENSURE simulation active
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(simulationActive())
      */
     void activate();
     
     /**
      * automatically execute all actions necessary to advance the simulation by one second
      * (note: vehicles leaving the simulation will be destroyed)
-     * @REQUIRE properly initialised, simulation active
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(simulationActive())
      */
     void advanceSimulation();
     
     /**
      * automatically run the simulation until it is empty
      * (warning: cannot be interrupted from within the program & may be an infinite loop)
-     * @REQUIRE properly initialised
-     * @ENSURE simulation empty, simulation active
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(empty())
+     * @ENSURE(simulationActive())
      */
     void untilEmpty();
      
      /**
       * automatically run the simulation for a set amount of simulated time
       * (or until it is empty)
-      * @REQUIRE properly initialised
-      * @ENSURE time active = <seconds> OR simulation empty, simulation active
+      * @REQUIRE(properlyInitialised())
+      * @ENSURE(empty() || iteration >= seconds)
+      * @ENSURE(simulationActive())
       */
      void untilTime(unsigned long seconds);
      
@@ -98,36 +107,56 @@ public:
     
     /**
      * setter functions
-     * @REQUIRE properly initialised
-     * @ENSURE get<attr> = <attr>
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(getVectorOfRoads() == vectorOfRoads
      */
     void setVectorOfRoads(const vector<Road*>& vectorOfRoads);
+    
+    /**
+     * setter functions
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(getVectorOfVehicles() == vectorOfVehicles
+     */
     void setVectorOfVehicles(const vector<Vehicle*>& vectorOfVehicles);
     
     /**
      * querry to check whether a given vehicle/road exists in the system
      * (note: quite slow, look into using maps / sets for speed-up)
-     * @REQUIRE properly initialised
+     * @REQUIRE(properlyInitialised())
      */
     bool contains(const Vehicle* querry) const;
     bool contains(const Road* querry) const;
     
     /**
-     * add functions
-     * @REQUIRE properly initialised
-     * @ENSURE has <road/vehicle>
+     * add function
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(contains(newVehicle))
      */
     void addVehicle(Vehicle* newVehicle);
+    
+    /**
+     * add function
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(contains(newRoad))
+     */
     void addRoad(Road* newRoad);
     
     /**
-     * remove functions
+     * remove function
      * (note: quite slow, look into using maps / sets for speed-up)
      * warning: does NOT de-allocate associated memory
-     * @REQUIRE properly initialised
-     * @ENSURE NOT has <road/vehicle>
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(!contains(oldRoad))
      */
     void removeRoad(Road* oldRoad);
+    
+    /**
+     * remove function
+     * (note: quite slow, look into using maps / sets for speed-up)
+     * warning: does NOT de-allocate associated memory
+     * @REQUIRE(properlyInitialised())
+     * @ENSURE(!contains(oldVehicle))
+     */
     void removeVehicle(Vehicle* oldVeh);
 
 private:

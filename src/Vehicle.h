@@ -68,22 +68,40 @@ class Vehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised
+     * @ENSURE(!properlyInitialised())
      */
     Vehicle();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @REQURE <limits> != NULL
-     * @ENSURE properly initialised, get <param> = param, get <acc/spd/pos> = 0
+     * @REQUIRE(limits != NULL)
+     * @ENSURE(properlyInitialised())
+     * @ENSURE(getEnv()==environment &&
+           getLicensePlate()==licensePlate &&
+           getLen()==length &&
+           getLimits()==limits &&
+           getCurrentRoad() == currentRoad,
+           "Car constructor failed to assign variable(s)")
+     * @ENSURE(getAcceleration()==0 &&
+           getSpeed()==0 &&
+           getPosition()==0,
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits,  Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @REQURE <limits> != NULL
-     * @ENSURE properly initialised, get <param> = param
+     * @REQUIRE(limits != NULL)
+     * @ENSURE(properlyInitialised())
+     * @ENSURE(getEnv()==environment &&
+           getLicensePlate()==licensePlate &&
+           getLen()==length &&
+           getLimits()==limits &&
+           getCurrentRoad() == currentRoad,
+           "Car constructor failed to assign variable(s)")
+     * @ENSURE(getAcceleration()==acceleration &&
+           getSpeed()==speed &&
+           getPosition()==position,
      */
     Vehicle(RoadSystem* environment, const string& licensePlate, unsigned int length, const VehicleLimits* limits, Road* currentRoad, int acceleration,  int speed, unsigned int position);
     
@@ -121,43 +139,121 @@ public:
     virtual void execUpdate()=0;
     
     /**
-     * Setter functions
-     * @REQUIRE simulation not started, properly initialised
-     * @ENSURE get<attr> = <arg>, (where applicable) get <attr> is within the defined limits (this has higher priority)
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getLicensePlate() == licensePlate)
      */
     void setLicensePlate(const string& licensePlate);
+    
+    /**
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getAcceleration() == acceleration) (after clamping acceleration between acceleration limits)
+     */
     void setAcceleration(int acceleration);
+    
+    /**
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getSpeed() == speed) (after clamping speed between speed limits)
+     */
     void setSpeed(int speed);
+    
+    /**
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getPosition() == position) (after clamping speed between speed limits & the road's max speed (if any))
+     */
     void setPosition(unsigned int position);
+    
+    /**
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getLen() == len)
+     */
     void setLen(unsigned int len);
+    
+    /**
+     * Setter function
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE(getEnv() == env)
+     */
     void setEnv(RoadSystem* env);
+    
+    void setRoad(Road* newRoad);
     
     /**
      * Special case of a setter function
-     * @REQUIRE simulation not started, properly initialised
-     * @ENSURE get<attr> = <arg>, previous road does not contain vehicle
+     * @REQUIRE(properlyInitialised())
+     * @REQUIRE(getEnv() == NULL || !getEnv()->simulationActive()
+     * @ENSURE ENSURE(getCurrentLane() == newLane, "Failed to set lane")
      */
-    void setRoad(Road* newRoad);
     void setLane (Lane* newLane);
 
     /**
-     * Getter functions
-     * @REQUIRE properly initialised
+     * Getter function
+     * @REQUIRE(properlyInitialised())
      */
     RoadSystem* getEnv() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     string getLicensePlate() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     Road* getCurrentRoad() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     Lane* getCurrentLane() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     int getAcceleration() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     int getSpeed() const ;
+    
+    /**
+     * Getter function
+     * @REQUIRE(properlyInitialised())
+     */
     unsigned int getPosition() const ;
 
     /**
-     * special cases of getter function
-     * do not require anything
+     * special case of getter function
+     * does not require anything
      */
     const string& getTypeName() const;
+    
+    /**
+     * special case of getter function
+     * does not require anything
+     */
     unsigned int getLen() const ;
+    
+    /**
+     * special case of getter function
+     * does not require anything
+     */
     const VehicleLimits* getLimits() const;
 
     /**

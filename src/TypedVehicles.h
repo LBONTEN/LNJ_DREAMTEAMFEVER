@@ -31,20 +31,30 @@ class MotorCycle : public DefaultVehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised, get typename = MotorCycle, get limits / len = stdMotorCylceLimits / -len
+     * Does NOT create a properly initialised vehicle
+     * @ENSURE(getTypeName() == "MotorCycle");
+     * @ENSURE(getLimits() == &stdMotorCycleLimits);
+     * @ENSURE(getLen() == stdMotorCycleLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     MotorCycle();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = MotorCycle, get limits / len = stdMotorCylceLimits / -len, get <acc/spd/pos> = 0, NOT update ready
+     * @ENSURE(getTypeName() == "MotorCycle");
+     * @ENSURE(getLimits() == &stdMotorCycleLimits);
+     * @ENSURE(getLen() == stdMotorCycleLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = MotorCycle, get limits / len = stdMotorCylceLimits / -len, NOT update ready
+     * @ENSURE(getTypeName() == "MotorCycle");
+     * @ENSURE(getLimits() == &stdMotorCycleLimits);
+     * @ENSURE(getLen() == stdMotorCycleLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     MotorCycle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
 };
@@ -53,20 +63,30 @@ class Car: public DefaultVehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised, get typename = Car, get limits / len = stdCarLimits / -len
+     * Does NOT create a properly initialised vehicle
+     * @ENSURE(getTypeName() == "Car");
+     * @ENSURE(getLimits() == &stdCarLimits);
+     * @ENSURE(getLen() == stdCarLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Car();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get <acc/spd/pos> = 0, get limits / len = stdCarLimits / -len, NOT update ready
-     */
+     * @ENSURE(getTypeName() == "Car");
+     * @ENSURE(getLimits() == &stdCarLimits);
+     * @ENSURE(getLen() == stdCarLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
+     * */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Car, get limits / len = stdCarLimits / -len, NOT update ready
+     * @ENSURE(getTypeName() == "Car");
+     * @ENSURE(getLimits() == &stdCarLimits);
+     * @ENSURE(getLen() == stdCarLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Car(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
 };
@@ -75,20 +95,30 @@ class Bus: public DefaultVehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised, get typename = Bus, get limits / len = stdBusLimits / -len
+     * Does NOT create a properly initialised vehicle
+     * @ENSURE(getTypeName() == "Bus");
+     * @ENSURE(getLimits() == &stdBusLimits);
+     * @ENSURE(getLen() == stdBusLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Bus();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Bus, get limits / len = stdBusLimits / -len, get <acc/spd/pos> = 0, NOT update ready
+     * @ENSURE(getTypeName() == "Bus");
+     * @ENSURE(getLimits() == &stdBusLimits);
+     * @ENSURE(getLen() == stdBusLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Bus, get limits / len = stdBusLimits / -len, NOT update ready
+     * @ENSURE(getTypeName() == "Bus");
+     * @ENSURE(getLimits() == &stdBusLimits);
+     * @ENSURE(getLen() == stdBusLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Bus(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
     
@@ -96,8 +126,8 @@ public:
      * Update acceleration, speed and position (and possibly currentRoad)
      * stops for bus stops
      * otherwise, respects same rules as DefaultVehicle's execUpdate()
-     * @REQUIRE properly initialised, update prepared, simulation active
-     * @ENSURE get<acc/pos> is within limits, update NOT ready
+     * 
+     * pre- & postconditions respect those of the corresponding method in DefaultVehicle
      */
     virtual void execUpdate();
 
@@ -110,20 +140,30 @@ class Truck: public DefaultVehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised, get typename = Truck, get limits / len = stdTruckLimits / -len
+     * Does NOT create a properly initialised vehicle
+     * @ENSURE(getTypeName() == "Truck");
+     * @ENSURE(getLimits() == &stdTruckLimits);
+     * @ENSURE(getLen() == stdTruckLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Truck();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Truck, get limits / len = stdTruckLimits / -len, get <acc/spd/pos> = 0, NOT update ready
+     * @ENSURE(getTypeName() == "Truck");
+     * @ENSURE(getLimits() == &stdTruckLimits);
+     * @ENSURE(getLen() == stdTruckLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad);
     
     /**
      * Maximal constructor
-     * @ENSURE properly initialised, get<arg> = <arg>, get typename = Truck, get limits / len = stdTruckLimits / -len, NOT update ready
+     * @ENSURE(getTypeName() == "Truck");
+     * @ENSURE(getLimits() == &stdTruckLimits);
+     * @ENSURE(getLen() == stdTruckLength);
+     * + pre- & postconditions from the corresponding method in DefaultVehicle
      */
     Truck(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position);
 };
