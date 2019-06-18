@@ -376,10 +376,7 @@ TEST_F(ParseTest, false3Test)
 
 TEST_F(ParseTest, false4Test)
 {
-    system = parser->parseRoadSystem("../src/Tests/test_in/false4.xml");
-
-    EXPECT_EQ(system->getVectorOfRoads().size(), (unsigned int) 1);
-    EXPECT_EQ(system->getVectorOfVehicles().size(), (unsigned int) 1);
+    ASSERT_DEATH(system = parser->parseRoadSystem("../src/Tests/test_in/false4.xml"), ".*(Xml file must have leading ROOT tag.).*");
 }
 
 #endif //LNJPSE_PROJECT_XMLPARSERTESTS_H

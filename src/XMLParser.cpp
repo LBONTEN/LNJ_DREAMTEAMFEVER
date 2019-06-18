@@ -25,8 +25,9 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
         return NULL;
 
     // Get root
-    pugi::xml_node root = doc.first_child();
+    pugi::xml_node root = doc.child("ROOT");
 
+    ENSURE(root == doc.first_child(), "Xml file must have leading ROOT tag.");
     ENSURE(!root.empty(), "Given file is not valid.");
 
     // Parse all Roads
