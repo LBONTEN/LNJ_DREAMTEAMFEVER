@@ -8,6 +8,7 @@
 #include "RoadSystem.h"
 #include "TypedVehicles.h"
 #include "RoadSigns.h"
+#include "Logger.h"
 #include "cmath"
 
 
@@ -28,6 +29,7 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
     pugi::xml_node root = doc.child("ROOT");
 
     ENSURE(root == doc.first_child(), "Xml file must have leading ROOT tag.");
+    *logg
     ENSURE(!root.empty(), "Given file is not valid.");
 
     // Parse all Roads

@@ -34,10 +34,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tests/test_in/false3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/test_in/false3.xml" afterDir="false" />
-    </list>
+    <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
     <ignored path="$PROJECT_DIR$/src/bin/" />
@@ -92,8 +89,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="381" lean-forward="true" selection-start-line="381" selection-end-line="381" />
+            <state relative-caret-position="6276">
+              <caret line="381" selection-start-line="381" selection-end-line="381" />
             </state>
           </provider>
         </entry>
@@ -436,7 +433,7 @@
       <workItem from="1560770895515" duration="377000" />
       <workItem from="1560771284455" duration="20000" />
       <workItem from="1560853050821" duration="8990000" />
-      <workItem from="1560870486365" duration="3949000" />
+      <workItem from="1560870486365" duration="4298000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -554,9 +551,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParseTest_false2Test - 2019.06.18 at 16h 35m 09s.xml">
-      <configuration name="ParseTest.false2Test" configurationId="CMakeGoogleTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="ParseTest_false2Test - 2019.06.18 at 16h 37m 50s.xml">
       <configuration name="ParseTest.false2Test" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
@@ -584,9 +578,12 @@
     <history-entry file="ParseTest_false4Test - 2019.06.18 at 17h 55m 02s.xml">
       <configuration name="ParseTest.false4Test" configurationId="CMakeGoogleTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="ParseTest - 2019.06.18 at 18h 14m 34s.xml">
+      <configuration name="ParseTest" configurationId="CMakeGoogleTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232102000" />
+    <option name="totallyTimeSpent" value="232451000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -603,10 +600,10 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.15123789" />
+      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.15123789" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3642785" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3642785" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.11806256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1070,8 +1067,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="381" lean-forward="true" selection-start-line="381" selection-end-line="381" />
+        <state relative-caret-position="6276">
+          <caret line="381" selection-start-line="381" selection-end-line="381" />
         </state>
       </provider>
     </entry>
