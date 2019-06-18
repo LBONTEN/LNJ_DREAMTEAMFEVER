@@ -350,4 +350,33 @@ TEST_F(ParseTest, SIGNAL_All)
 }
 
 
+TEST_F(ParseTest, false1Test)
+{
+    system = parser->parseRoadSystem("../src/Tests/test_in/false1.xml");
+    EXPECT_TRUE(system->getVectorOfRoads().empty());
+}
+
+
+TEST_F(ParseTest, false2Test)
+{
+
+    system = parser->parseRoadSystem("../src/Tests/test_in/false2.xml");
+
+    EXPECT_EQ(system->getVectorOfRoads().size(), (unsigned  int) 1);
+    EXPECT_EQ(system->getVectorOfVehicles().size(), (unsigned  int) 1);
+}
+
+
+TEST_F(ParseTest, false3Test)
+{
+    system = parser->parseRoadSystem("../src/Tests/test_in/false3.xml");
+
+}
+
+
+TEST_F(ParseTest, false4Test)
+{
+    ASSERT_DEATH(system = parser->parseRoadSystem("../src/Tests/test_in/false4.xml"), ".*(Xml file must have leading ROOT tag.).*");
+}
+
 #endif //LNJPSE_PROJECT_XMLPARSERTESTS_H
