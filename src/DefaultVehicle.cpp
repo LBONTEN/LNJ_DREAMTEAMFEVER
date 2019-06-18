@@ -6,6 +6,7 @@
 #include "Road.h"
 #include "RoadSystem.h"
 #include "design_by_contract.h"
+#include "Logger.h"
 
 /*
 ///--- global variables (definitions) ---///
@@ -155,8 +156,14 @@ void DefaultVehicle::stepAcceleration()
     {
         if (distanceToLight == 0)
         {
-            hardSetSpeed(0);
-            hardSetAcceleration(0);
+            if (getSpeed() != 0 or getAcceleration() != 0)
+            {
+                *logging::globalLog  << "(default) Vehicle failed to fully stop for traffic light\n";
+        
+                hardSetSpeed(0);
+                hardSetAcceleration(0);
+            }
+            
             return;
         }
         else
