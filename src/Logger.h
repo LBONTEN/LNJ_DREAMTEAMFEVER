@@ -18,9 +18,11 @@ namespace logging
     public:
         virtual ~Logger(){};
         
+        /// output an std::string or a string literal to the log
         virtual void operator<<(std::string str)=0;
         virtual void operator<<(const char* str)=0;
         
+        /// recall the last line outputted to the log, even if it was spread across multiple uses of operator<<
         virtual std::string getLastLine()=0;
     };
 

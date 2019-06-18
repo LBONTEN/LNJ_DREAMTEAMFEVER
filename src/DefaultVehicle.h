@@ -13,23 +13,30 @@ class DefaultVehicle : public Vehicle {
 public:
     /**
      * Default constructor
-     * @ENSURE NOT properly initialised, get typename = Car
+     * Does NOT create a properly initialised vehicle
+     * @ENSURE(typeName == "Car");
+     * + the pre- & postconditions from the corresponding method in Vehicle
      */
     DefaultVehicle();
     
     /**
      * Minimal constructor
      * Acceleration, speed and position are assumed to be 0
-     * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
-     * @ENSURE properly initialised, get<arg> = <arg>, get <acc/spd/pos> = 0, NOT update ready
+     * @REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Bus" || typeName == "Truck",
+     * @ENSURE(this->typeName == typeName);
+     * @ENSURE(!updateReady());
+     * + the pre- & postconditions from the corresponding method in Vehicle
      */
     DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
     
     /**
      * Maximal constructor
-     * @REQUIRE typeName is a valid vehicle type (MotorCycle, Car, Truck)
-     * @ENSURE properly initialised, get<arg> = <arg>, NOT update ready
+     * Acceleration, speed and position are assumed to be 0
+     * @REQUIRE(typeName == "MotorCycle" || typeName == "Car" || typeName == "Bus" || typeName == "Truck",
+     * @ENSURE(this->typeName == typeName);
+     * @ENSURE(!updateReady());
+     * + the pre- & postconditions from the corresponding method in Vehicle
      */
     DefaultVehicle(RoadSystem* environment, const string& licensePlate, Road* currentRoad, int acceleration, int speed, unsigned int position,
             std::string typeName, unsigned int len, const VehicleLimits* limits);
@@ -37,21 +44,21 @@ public:
     
     /**
      * Funtion purely to check pre- and postconditions
-     * @REQUIRE properly initialised
+     * @REQUIRE REQUIRE(properlyInitialised())
      */
     virtual bool updateReady();
     
     /**
      * In case changes need to happen between preparing and updating, use this for safety
-     * @REQUIRE properly initialised
-     * @ENSURE update not ready
+     * @REQUIRE REQUIRE(properlyInitialised())
+     * @ENSURE ENSURE(!updateReady())
      */
     virtual void cancelPrep();
     
     /**
-     * Gather the @REQUIREd information for updating
-     * @REQUIRE properly initialised
-     * @ENSURE update ready
+     * Gather the required information for updating
+     * @REQUIRE REQUIRE(properlyInitialised())
+     * @ENSURE ENSURE(updateReady())
      */
     virtual void prepUpdate();
     
@@ -59,13 +66,18 @@ public:
      * Upate acceleration, speed and position (and possibly currentRoad)
      * Note: tries to respect speed limits, but does not guaranty it
      * see specification for more info
-     * @REQUIRE properly initialised, update prepared, simulation active
-     * @ENSURE get<acc/pos> is within limits, update NOT ready
+     * @REQUIRE(properlyInitialised());
+     * @REQUIRE(updateReady());
+     * @REQUIRE(getEnv() == NULL || getEnv()->simulationActive());
+     * @ENSURE(limits->minAcc <= getAcceleration() && getAcceleration() <= limits->maxAcc);
+     * @ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()));
+     * @ENSURE(!updateReady());
      */
     virtual void execUpdate();
 
 protected:
     void fullStop(unsigned int distance);
+    bool willStop();
     
     void stepAcceleration();
     void stepSpeed();

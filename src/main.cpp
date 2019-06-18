@@ -11,25 +11,14 @@
 #include "Output.h"
 #include "Logger.h"
 
+
 int main(int argc, char** argv)
 {
-    int* i = new int;
-
-    LogLocator::provide(new GenericLogger(&cerr));
-    Logger* currentLog = LogLocator::getLogger();
-    *currentLog << "A\n";
-
-    delete i;
-
-    *LogLocator::getLogger() << "B\n";
-
-    std::cout << currentLog << std::endl;
-
-
-    LogLocator::provide(new GenericLogger(&cerr));
-
+    delete logging::globalLog;
+    logging::globalLog = new logging::GenericLogger(&cout);
+    
     if (argc < 2) {
-        *LogLocator::getLogger() << "No source file given\n";
+        cerr << "No source file given" << std::endl;
         return 1;
     }
 

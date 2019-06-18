@@ -139,10 +139,9 @@ void Bus::execUpdate()
     // waiting at bus stop
     if (dToStop == 0 and busStopCooldown > 0)
     {
-        if (getSpeed() != 0 or getAcceleration() != 0)
-        {
-            *logging::globalLog << "Bus failed to fully stop for bus stop\n";
-            
+        if (!willStop()) {
+            *logging::globalLog  << "Bus failed to fully stop for bus stop\n";
+        
             hardSetSpeed(0);
             hardSetAcceleration(0);
         }
@@ -169,6 +168,9 @@ void Bus::execUpdate()
     // default driving behavior
     else
     {
+        unsigned int oldPos = getPosition();
+        Road* oldRoad = getCurrentRoad();
+        
         // reset cooldown once past the stop
         if (dToStop != 0)
         {
@@ -176,6 +178,19 @@ void Bus::execUpdate()
         }
         
         DefaultVehicle::execUpdate();
+        
+        unsigned int newPos = getPosition();
+        Road* newRoad = getCurrentRoad();
+    
+        if (!newRoad)
+            return;
+        
+        BusStop* nextStop = getCurrentRoad()->getBusStopOnPosition(oldPos, false);
+    
+        if (nextStop && (oldRoad != newRoad || newPos > nextStop->getPosition()))
+        {
+            *logging::globalLog << "vehicle crossed traffic light illegally\n";
+        }
     
         return;
     }
