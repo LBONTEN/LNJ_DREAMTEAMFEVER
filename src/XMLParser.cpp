@@ -22,19 +22,24 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
 
     // Load File
     if(!doc.load_file(fileName.c_str()))
-    {
         return NULL;
-    }
 
     // Get root
     pugi::xml_node root = doc.first_child();
+
+    ENSURE(!root.empty(), "Given file is not valid.");
 
     // Parse all Roads
     for(pugi::xml_node xmlNode = root.child("BAAN"); xmlNode; xmlNode = xmlNode.next_sibling("BAAN"))
     {
         string name = xmlNode.child("naam").text().as_string();
-        roads[name.c_str()] = parseRoad(xmlNode);
+        Road* newRoad = parseRoad(xmlNode);
+        if(newRoad)
+            roads[name.c_str()] = newRoad;
     }
+
+    if(roads.empty())
+        return  newSystem;
 
     // Set connections for all Roads and parse all Vehicles
     for(pugi::xml_node xmlNode = root.first_child(); xmlNode; xmlNode = xmlNode.next_sibling())
@@ -44,23 +49,32 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
         if(type == "BAAN")
         {
             string currRoadName = xmlNode.child("naam").text().as_string();
-            Road *currentRoad = roads[currRoadName.c_str()];
-            if(!xmlNode.child("verbinding").empty())
+            if(roads.find(currRoadName) != roads.end())
             {
-                string connectionName = xmlNode.child("verbinding").text().as_string();
-                Road *connection = roads[connectionName.c_str()];
-                currentRoad->setConnection(connection);
+                Road *currentRoad = roads[currRoadName.c_str()];
+                if (!xmlNode.child("verbinding").empty())
+                {
+                    string connectionName = xmlNode.child("verbinding").text().as_string();
+                    if (roads.find(connectionName) != roads.end())
+                    {
+                        Road *connection = roads[connectionName.c_str()];
+                        currentRoad->setConnection(connection);
+                    }
+                }
+                newSystem->addRoad(currentRoad);
             }
-            newSystem->addRoad(currentRoad);
         }
         if(type == "VOERTUIG")
         {
             string currRoadName = xmlNode.child("baan").text().as_string();
 
-            Road* currentRoad = roads[currRoadName];
-            Vehicle* newVehicle = parseVehicle(xmlNode, newSystem, currentRoad);
-            newSystem->addVehicle(newVehicle);
-            currentRoad->getLanes()[0]->addVehicle(newVehicle);
+            if(roads.find(currRoadName) != roads.end())
+            {
+                Road *currentRoad = roads[currRoadName];
+                Vehicle *newVehicle = parseVehicle(xmlNode, newSystem, currentRoad);
+                newSystem->addVehicle(newVehicle);
+                currentRoad->getLanes()[0]->addVehicle(newVehicle);
+            }
         }
         if(type == "VERKEERSTEKEN")
         {
@@ -80,6 +94,9 @@ Road* XmlParser::parseRoad(const pugi::xml_node& baan)
     int length = baan.child("lengte").text().as_int();
     unsigned int laneCount = baan.child("rijstroken").text().as_uint();
     if(laneCount == (unsigned int) 0) laneCount = 1;
+
+    if(name == "" || speedLimit == (unsigned int) 0 || length == (unsigned int) 0)
+        return NULL;
 
     return new Road(name, length, speedLimit, laneCount);
 }
