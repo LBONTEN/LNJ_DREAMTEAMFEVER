@@ -359,11 +359,16 @@ TEST_F(ParseTest, false1Test)
 
 TEST_F(ParseTest, false2Test)
 {
-
     system = parser->parseRoadSystem("../src/Tests/test_in/false2.xml");
 
     EXPECT_EQ(system->getVectorOfRoads().size(), (unsigned  int) 1);
     EXPECT_EQ(system->getVectorOfVehicles().size(), (unsigned  int) 1);
+
+    for(std::vector<Vehicle*>::const_iterator i = system->getVectorOfVehicles().begin(), end = system->getVectorOfVehicles().end(); i < end; i++)
+    {
+        EXPECT_NE((*i)->getLicensePlate(), "1THK180");
+        EXPECT_NE((*i)->getLicensePlate(), "651BUF");
+    }
 }
 
 
@@ -371,6 +376,8 @@ TEST_F(ParseTest, false3Test)
 {
     system = parser->parseRoadSystem("../src/Tests/test_in/false3.xml");
 
+    EXPECT_TRUE(system->getVectorOfRoads().empty());
+    EXPECT_TRUE(system->getVectorOfVehicles().empty());
 }
 
 

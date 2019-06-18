@@ -1,9 +1,9 @@
 
 <ROOT>
   <BAAN>
-      <naam>E313</naam>
-      <snelheidslimiet>120</snelheidslimiet>
-      <lengte>5000</lengte>
+      <naam></naam>
+      <snelheidslimiet></snelheidslimiet>
+      <lengte></lengte>
   </BAAN>
   <VOERTUIG>
       <type>AUTO</type>
