@@ -22,7 +22,7 @@ laneCount(1)
 }
 
 
-Road::Road(string name, unsigned int length, int maxSpeed, unsigned int laneCount, Road* connection) :
+Road::Road(std::string name, unsigned int length, int maxSpeed, unsigned int laneCount, Road* connection) :
 name(name),
 length(length),
 speedLimit(maxSpeed),
@@ -78,21 +78,27 @@ void Road::clearConnection()
 void Road::addZone(Zone* newZone)
 {
     REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    unsigned long oldSize = zones.size();
     zones.push_back(newZone);
+    ENSURE(getZones().size() == oldSize + 1, "Road: addZone: adding zone failed.");
 }
 
 
 void Road::addTrafficLight(TrafficLight* newLight)
 {
-    REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    REQUIRE(properlyInitialised(), "Road: addTrafficLight: Not properly initialised.");
+    unsigned long oldSize= trafficLights.size();
     trafficLights.push_back(newLight);
+    ENSURE(getTrafficLights().size() == oldSize + 1, "Road: addTrafficLight: adding trafficlight failed.");
 }
 
 
 void Road::addBusstop(BusStop* newStop)
 {
-    REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
+    REQUIRE(properlyInitialised(), "Road: addBusStop: Not properly initialised.");
+    unsigned long oldSize = busStops.size();
     busStops.push_back(newStop);
+    ENSURE(getBusStops().size() == oldSize + 1, "Road: addBusStop: adding busstp failed.");
 }
 
 
@@ -118,6 +124,11 @@ void Road::clearAllSigns()
     clearZones();
     clearTrafficLights();
     clearBusStops();
+
+    ENSURE(getZones().empty(), "Road: clearAllSigns: zones has not been emptied.");
+    ENSURE(getTrafficLights().empty(), "Road: clearAllSigns: trafficLights has not been empties.");
+    ENSURE(getBusStops().empty(), "Road: clearAllSigns: busStops has not been emptied.");
+
 }
 
 
@@ -132,6 +143,7 @@ void Road::clearZones()
     }
 
     zones.clear();
+    ENSURE(getZones().empty(), "Road: clearZones: zones has not been emptied.");
 }
 
 
@@ -146,6 +158,7 @@ void Road::clearTrafficLights()
     }
 
     trafficLights.clear();
+    ENSURE(getTrafficLights().empty(), "Road: clearTrafficLights: trafficLights has not been empties.");
 }
 
 
@@ -160,11 +173,13 @@ void Road::clearBusStops()
     }
 
     busStops.clear();
+    ENSURE(getBusStops().empty(), "Road: clearBusStops: busStops has not been emptied.");
 }
 
 vector<RoadSign*> Road::getAllSigns() const
 {
     REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
+
     unsigned long zonesSize = zones.size();
     unsigned long trafficLightsSize = trafficLights.size();
     unsigned long busStopsSize = busStops.size();
@@ -186,6 +201,9 @@ vector<RoadSign*> Road::getAllSigns() const
 const vector<Zone*>& Road::getZones() const
 {
     REQUIRE(properlyInitialised(), "Road: getZones: Not properly initialised.");
+    unsigned long zonesSize = zones.size();
+    ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
+
     return zones;
 }
 
@@ -193,6 +211,9 @@ const vector<Zone*>& Road::getZones() const
 const vector<TrafficLight*>& Road::getTrafficLights() const
 {
     REQUIRE(properlyInitialised(), "Road: getTrafficLights: Not properly initialised.");
+    unsigned long trafficLightsSize = trafficLights.size();
+    ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
+
     return trafficLights;
 }
 
@@ -200,7 +221,11 @@ const vector<TrafficLight*>& Road::getTrafficLights() const
 const vector<BusStop*>& Road::getBusStops() const
 {
     REQUIRE(properlyInitialised(), "Road: getBusStops: Not properly initialised.");
+    unsigned long busStopsSize = busStops.size();
+    ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
+
     return busStops;
+
 }
 
 
@@ -393,7 +418,7 @@ void Lane::addVehicle(Vehicle* newVehicle)
 
     vehicles.push_front(newVehicle);
 
-    ENSURE(*vehicles.begin() == newVehicle, "Function failed");
+    ENSURE(*vehicles.begin() == newVehicle, "Lanes: addVehicle: adding vehicle failed");
 }
 
 

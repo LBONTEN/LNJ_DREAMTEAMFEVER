@@ -27,9 +27,7 @@ public:
 /** ---------------------------------------------------------------------
  * Road
  *
- *  Postcondition:
- *      Road object is properly initialised.
- *
+ *  ENSURE(properlyInitialised(), "Road default construction failed");
  --------------------------------------------------------------------- */
 
 
@@ -43,21 +41,11 @@ public:
  *      - maximumSpeed: Speed limit allowed on the road
  *      - laneCount:  amount of lanes the road has
  *
- *  Postcondition:
- *      Road object is properly initialised.
- *
+ *  ENSURE(properlyInitialised(), "Road construction failed");
  --------------------------------------------------------------------- */
 
-// TODO: actually delete all roadsigns
-//  (currently a memory leak)
+
     ~Road();
-/** ---------------------------------------------------------------------
- * ~Road
- *
- *  Postcondition:
- *      Road and its lanes erased.
- *
- --------------------------------------------------------------------- */
 
 
     bool properlyInitialised() const;
@@ -69,7 +57,6 @@ public:
  *          - Length of Road may not be 0 or less
  *          - Name may not be an empty string.
  *          - speedLimit must be higher than 0
- *
  --------------------------------------------------------------------- */
 
 
@@ -80,12 +67,10 @@ public:
  *  IN:
  *      newConnection: Road to add as a connection to subjected road
  *
- *  Precondition:
- *      Both roads involved in the function must be properly initialised for proper execution.
+ *  REQUIRE(properlyInitialised(), "Road: setConnection: Not properly initialised.");
+ *  REQUIRE(newConnection->properlyInitialised(), "Road: setConnection: newConnection not properly initialised.");
  *
- *  Postcondition:
- *      Road's connection has been changed.
- *
+ *  ENSURE(connection == newConnection, "Road: setConnection: Failed setting connection.");
  --------------------------------------------------------------------- */
 
 
@@ -99,12 +84,9 @@ public:
  *  OUT:
  *      The subjected road will have a new connection added to its list
  *
- *  Precondition:
- *      Road must be properly initialised
+ *  REQUIRE(properlyInitialised(), "Road: clearConnection: Not properly initialised.");
  *
- *  Postcondition:
- *      Road has a an extra connection added to back of vector of connection.
- *
+ *  ENSURE(connection == NULL, "Road: setConnection: Failed clearing connection.");
  --------------------------------------------------------------------- */
 
 
@@ -115,13 +97,9 @@ public:
  *  IN:
  *      newStop: Zone to add to Road.
  *
- *  Precondition:
- *      Road must be properly initialised.
+ *  REQUIRE(properlyInitialised(), "Road: addZone: Not properly initialised.");
  *
- *  Postcondition:
- *      Road contains a new Zone.
- *      zones has increased by one.
- *
+ *  ENSURE(zones.size() == oldSize + 1, "Road: addZone: adding zone failed.");
  --------------------------------------------------------------------- */
 
     void addTrafficLight(TrafficLight* newLight);
@@ -131,13 +109,9 @@ public:
  *  IN:
  *      newLight: trafficLight to add to Road.
  *
- *  Precondition:
- *      Road must be properly initialised.
+ *  REQUIRE(properlyInitialised(), "Road: addTrafficLight: Not properly initialised.");
  *
- *  Postcondition:
- *      Road contains a new TrafficLight.
- *      trafficLights has increased by one.
- *
+ *  ENSURE(getTrafficLights().size() == oldSize + 1, "Road: addTrafficLight: adding trafficlight failed.");
  --------------------------------------------------------------------- */
 
 
@@ -148,13 +122,9 @@ public:
  *  IN:
  *      newStop: BusStop to add to Road.
  *
- *  Precondition:
- *      Road must be properly initialised.
+ *  REQUIRE(properlyInitialised(), "Road: addBusStop: Not properly initialised.");
  *
- *  Postcondition:
- *      Road contains a new BusStop.
- *      busStops has increased by one.
- *
+ *  ENSURE(getBusStops().size() == oldSize + 1, "Road: addBusStop: adding busstp failed.");
  --------------------------------------------------------------------- */
 
     bool isFree() const;
@@ -163,16 +133,15 @@ public:
  *
  *  OUT:
  *      True when all lanes are free.
- *
  --------------------------------------------------------------------- */
 
     void clearAllSigns();
 /** ---------------------------------------------------------------------
  * clearAllSigns:
  *
- *  PostCondition:
- *      zones, trafficLights and busStops will be empty.
- *
+ *  ENSURE(getZones().empty(), "Road: clearZones: zones has not been emptied.");
+ *  ENSURE(getTrafficLights().empty(), "Road: clearTrafficLights: trafficLights has not been empties.");
+ *  ENSURE(getBusStops().empty(), "busStops has not been emptied.");
  --------------------------------------------------------------------- */
 
 
@@ -180,9 +149,7 @@ public:
 /** ---------------------------------------------------------------------
  * clearZones:
  *
- *  PostCondition:
- *      zones will be empty.
- *
+ *  ENSURE(getZones().empty(), "Road: clearZones: zones has not been emptied.");
  --------------------------------------------------------------------- */
 
 
@@ -190,9 +157,7 @@ public:
 /** ---------------------------------------------------------------------
  * clearTrafficLights:
  *
- *  PostCondition:
- *      trafficLights will be empty.
- *
+ *  ENSURE(getTrafficLights().empty(), "Road: clearTrafficLights: trafficLights has not been empties.");
  --------------------------------------------------------------------- */
 
 
@@ -200,9 +165,7 @@ public:
 /** ---------------------------------------------------------------------
  * clearBusStops:
  *
- *  PostCondition:
- *      busStops will be empty.
- *
+ *  ENSURE(getBusStops().empty(), "busStops has not been emptied.");
  --------------------------------------------------------------------- */
 
 
@@ -213,12 +176,11 @@ public:
 *  OUT:
 *      Returns concatenation of zones, trafficLights and busStops.
 *
-*  Precondition:
-*       Road must be properly Initialised.
+*  REQUIRE(properlyInitialised(), "Road: getAllSigns: Not properly initialised.");
 *
-*   Postcondition:
-*       No members of Road have been changed.
-*
+*  ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
+*  ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
+*  ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -229,9 +191,9 @@ public:
 *  OUT:
 *      Returns zones
 *
-*  Precondition:
-*       Road must be properly Initialised
+*  REQUIRE(properlyInitialised(), "Road: getZones: Not properly initialised.");
 *
+*  ENSURE(zonesSize == getZones().size(), "Road: getAllSigns: Zones have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -242,9 +204,9 @@ public:
 *  OUT:
 *      concatenation of zones, trafficLights and busStops
 *
-*  Precondition:
-*       Road must be properly Initialised
+*  REQUIRE(properlyInitialised(), "Road: getTrafficLights: Not properly initialised.");
 *
+*  ENSURE(trafficLightsSize == getTrafficLights().size(), "Road: getAllSigns: Traffic lights have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -255,9 +217,9 @@ public:
 *  OUT:
 *      concatenation of zones, trafficLights and busStops
 *
-*  Precondition:
-*       Road must be properly Initialised
+*  REQUIRE(properlyInitialised(), "Road: getBusStops: Not properly initialised.");
 *
+*  ENSURE(busStopsSize == getBusStops().size(), "Road: getAllSigns: Bus stops have been changed");
 --------------------------------------------------------------------- */
 
 
@@ -274,9 +236,8 @@ public:
  *      returns NULL if no signs are encountered past given position on the Road
  *      or if zones, trafficLights and busStops are empty.
  *
- *  Precondition:
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getSignOnPosition: Not properly Initialised.");
+ *  REQUIRE(position < getLength(), "Road: getSignOnPosition:: Invalid position.");
  --------------------------------------------------------------------- */
 
 
@@ -293,9 +254,8 @@ public:
  *      returns NULL if no ZoneStarts are encountered past given position on the Road.
  *      or if zones is empty.
  *
- *  Precondition:
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getZoneStartOnPosition: Not properly Initialised.");
+ *  REQUIRE(position < getLength(), "Road: getZoneStartOnPosition:: Invalid position.");
  --------------------------------------------------------------------- */
 
 
@@ -312,9 +272,8 @@ public:
  *      returns NULL if no trafficLights are encountered past given position on the Road
  *      or if trafficLights is empty.
  *
- *  Precondition:
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getTrafficLightOnPosition: Not properly Initialised.");
+ *  REQUIRE(position < getLength(), "Road: getTrafficLightOnPosition:: Invalid position.");
  --------------------------------------------------------------------- */
 
 
@@ -331,9 +290,8 @@ public:
  *      Returns NULL if no BusStops are encountered past given position on the Road
  *      or if busStops is empty.
  *
- *  Precondition:
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getBusStopOnPosition: Not properly Initialised.");
+ *  REQUIRE(position < getLength(), "Road: getBusStopOnPosition:: Invalid position.");
  --------------------------------------------------------------------- */
 
 
@@ -342,9 +300,7 @@ public:
 /** ---------------------------------------------------------------------
  * getLength:
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getLength: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -352,9 +308,7 @@ public:
 /** ---------------------------------------------------------------------
  * getName:
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getName: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -365,9 +319,7 @@ public:
  *  OUT:
  *      returns connected road.
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getConnection: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -378,9 +330,7 @@ public:
  *  OUT:
  *      returns the speed limit on current Road.
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getSpeedLimit: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -391,9 +341,7 @@ public:
  *  OUT:
  *      returns the speed limit on current Road.
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getSpeedLimit: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -404,9 +352,7 @@ public:
  *  OUT:
  *      returns vector of lanes .
  *
- *  Precondition
- *      Road must be properly initialised.
- *
+ *  REQUIRE(properlyInitialised(), "Road: getLanes: Not properly Initialised.");
  --------------------------------------------------------------------- */
 
 
@@ -428,15 +374,8 @@ class Lane
 public:
 
     Lane(Road* parentRoad, int order);
-/** ---------------------------------------------------------------------
- * Lane
- *
- *  Postcondition:
- *      Lane object is properly initialised.
- *
- --------------------------------------------------------------------- */
 
-
+    
     void addVehicle(Vehicle* newVehicle);
 /** ---------------------------------------------------------------------
  * addVehicle:
@@ -444,14 +383,10 @@ public:
  *  IN:
  *      newVehicle: Road to add as a connection to subjected road
  *
- *  Precondition:
- *      Vehicle must be properly initialised.
- *      Also, there must be sufficient remaining space on the Road to add a new vehicle.
+ *  REQUIRE(newVehicle->properlyInitialised(), "Vehicle is not properly initialised, thus we're unable to alter state.");
+ *  REQUIRE(calculateRemainingSpace() > newVehicle->getLen(), "Too many vehicles are already present on the Road for there to be added more.");
  *
- *  Postcondition:
- *      A new Vehicle will be added to the back of vector containing vehicles.
- *      amount of cars on the Road has increased by one.
- *
+ *  ENSURE(*vehicles.begin() == newVehicle, "Lanes: addVehicle: adding vehicle failed");
  --------------------------------------------------------------------- */
 
 
@@ -462,9 +397,7 @@ public:
  *  IN:
  *      pointer to vehicle to remove from list.
  *
- *  Postcondition:
- *      Vehicle object is removed from the list of vehicles.
- *
+ *  ENSURE(!getVehicle(vehicToRemove->getLicensePlate()), "Vehicle removal unsuccessful");
  --------------------------------------------------------------------- */
 
 
@@ -474,10 +407,6 @@ public:
  *
  *  OUT:
  *      int remainingSpace: an integer that indicates the amount of free space left on the Road, in centimeter.
- *
- *  Precondition:
- *      Road must be properly initialised.
- *
  --------------------------------------------------------------------- */
 
 
@@ -487,7 +416,6 @@ public:
  *
  *  OUT:
  *      Boolean that is true when there are no vehicles on the lane.
- *
  --------------------------------------------------------------------- */
 
 
@@ -501,10 +429,6 @@ public:
  *
  *  OUT:
  *      true when the car given in input is the closest to the given position on the road.
- *
- *  Precondition:
- *      Road should be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -519,10 +443,6 @@ public:
  *      if inclusive is false:
  *          Returns first vehicle past given position.
  *      returns NULL if no vehicles are encountered past given position on the Lane.
- *
- *  Precondition:
- *      Must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -535,10 +455,6 @@ public:
  *
  *  OUT:
  *      returns vehicle with corresponding license plate.
- *
- *  Précondition:
- *      Must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -548,10 +464,6 @@ public:
  *
  *  OUT:
  *      A reference to the vehicles vector in Road object
- *
- *  Précondition:
- *      Road must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -561,10 +473,6 @@ public:
  *
  *  OUT:
  *      Pointer to parentRoad of Lane
- *
- *  Précondition:
- *      Road must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 
@@ -574,10 +482,6 @@ Lane* const getConnectingLane() const;
  *
  *  OUT:
  *      Pointer to connecting Lane of next connecting Road
- *
- *  Précondition:
- *      Road must be properly initialised
- *
  --------------------------------------------------------------------- */
 
 

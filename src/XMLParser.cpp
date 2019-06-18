@@ -70,8 +70,8 @@ RoadSystem* XmlParser::parseRoadSystem(const std::string& fileName)
             }
             else *logging::globalLog << "Road not included due to incorrect formatting.\n"
                                         "Please check input .xml file.\n";
-
         }
+
         else if(type == "VOERTUIG")
         {
             string currRoadName = xmlNode.child("baan").text().as_string();

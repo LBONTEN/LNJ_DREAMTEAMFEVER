@@ -18,11 +18,10 @@ protected:
     ParseTest() :
         system(NULL),
         parser(new XmlParser())
+    {}
+    
+    ~ParseTest()
     {
-    
-    }
-    
-    ~ParseTest() {
         delete system;
         delete parser;
     }
