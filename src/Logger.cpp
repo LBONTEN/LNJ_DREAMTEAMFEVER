@@ -8,6 +8,11 @@
 #include <fstream>
 
 
+using namespace logging;
+
+Logger* logging::globalLog = new NullLogger();
+
+/*
 /// LogLocator
 
 Logger* LogLocator::providedLog = new NullLogger();
@@ -25,6 +30,7 @@ void LogLocator::provide(Logger* log)
     LogLocator::providedLog = log;
     ENSURE (getLogger() == log, "failed to set logger");
 }
+ */
 
 
 /// Generic logger

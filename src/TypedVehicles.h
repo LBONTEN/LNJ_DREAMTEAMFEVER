@@ -7,6 +7,7 @@
 
 
 #include "DefaultVehicle.h"
+#include "Logger.h"
 
 
 ///--- global variables (declarations) ---///
@@ -103,6 +104,7 @@ public:
 private:
     int busStopCooldown;
 };
+
 
 class Truck: public DefaultVehicle {
 public:

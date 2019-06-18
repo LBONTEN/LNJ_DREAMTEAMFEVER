@@ -7,7 +7,10 @@
 #include "Road.h"
 #include "RoadSystem.h"
 #include "design_by_contract.h"
+#include "Logger.h"
 #include <limits>
+
+
 
 ///--- global variables (definitions) ---///
 
@@ -136,8 +139,13 @@ void Bus::execUpdate()
     // waiting at bus stop
     if (dToStop == 0 and busStopCooldown > 0)
     {
-        hardSetSpeed(0);
-        hardSetAcceleration(0);
+        if (getSpeed() != 0 or getAcceleration() != 0)
+        {
+            *logging::globalLog << "Bus failed to fully stop for bus stop\n";
+            
+            hardSetSpeed(0);
+            hardSetAcceleration(0);
+        }
         
         --busStopCooldown;
     
