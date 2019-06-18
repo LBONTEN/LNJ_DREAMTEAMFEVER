@@ -43,7 +43,7 @@ void GenericLogger::operator<<(std::string str)
 {
     (*target) << str;
     
-    if (lastLine.back() == '\n')
+    if (lastLine.empty() or lastLine.at(lastLine.size()-1) == '\n')
     {
         lastLine = str;
     }
