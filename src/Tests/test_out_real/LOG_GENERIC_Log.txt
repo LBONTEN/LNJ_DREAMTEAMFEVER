@@ -1,0 +1,6 @@
+Logging string literal
+Logging std::string
+Logging multiline
+	log entry
+Logging one line in multiple operations
+Logging an unfinished line

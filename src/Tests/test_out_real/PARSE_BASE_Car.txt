@@ -1,0 +1,26 @@
+Road: E19
+	-> Speed limit: 27
+	-> Length: 2000
+	-> Lanes: 1
+
+Road: E42
+	-> Speed limit: 83
+	-> Length: 1025
+	-> Lanes: 1
+
+
+Vehicle: Car (1THK180)
+	-> Road: E19
+	-> Position: 10
+	-> Speed: 0
+
+Vehicle: Car (W0LHH)
+	-> Road: E42
+	-> Position: 100
+	-> Speed: 2
+
+Vehicle: Car (651BUF)
+	-> Road: E19
+	-> Position: 0
+	-> Speed: 0
+

@@ -1,0 +1,28 @@
+Road: E19
+	-> Speed limit: 27
+	-> Length: 2000
+	-> Lanes: 1
+	-> Connection: E313
+
+Road: E313
+	-> Speed limit: 33
+	-> Length: 5000
+	-> Lanes: 1
+
+Road: E42
+	-> Speed limit: 83
+	-> Length: 1025
+	-> Lanes: 1
+	-> Connection: E313
+
+
+Vehicle: Car (651BUF)
+	-> Road: E19
+	-> Position: 0
+	-> Speed: 0
+
+Vehicle: Car (1OUT00)
+	-> Road: E313
+	-> Position: 0
+	-> Speed: 13
+

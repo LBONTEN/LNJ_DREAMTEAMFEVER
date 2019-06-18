@@ -1,0 +1,11 @@
+Road: E19
+	-> Speed limit: 27
+	-> Length: 2000
+	-> Lanes: 1
+
+Road: E42
+	-> Speed limit: 83
+	-> Length: 1025
+	-> Lanes: 1
+
+
