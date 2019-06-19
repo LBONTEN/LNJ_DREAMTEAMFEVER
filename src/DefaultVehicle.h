@@ -78,6 +78,7 @@ public:
 protected:
     void fullStop(unsigned int distance);
     bool willStop();
+    bool willStop(int acceleration);
     
     void stepAcceleration();
     void stepSpeed();
