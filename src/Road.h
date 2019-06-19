@@ -365,7 +365,7 @@ public:
 
     Lane(Road* parentRoad, int order);
 
-    
+
     void addVehicle(Vehicle* newVehicle);
 /** ---------------------------------------------------------------------
  * addVehicle:

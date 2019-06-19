@@ -36,10 +36,10 @@
   <component name="ChangeListManager">
     <list default="true" id="001d3f44-b849-4957-a41c-34563a228a78" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Road.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Road.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Road.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/LoggerTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/LoggerTests.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/Tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/Tests.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/XMLParserTests.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/XMLParser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/XMLParser.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -60,12 +60,12 @@
     <window id="1">
       <content type="file-editors">
         <state>
-          <leaf>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
             <file pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/Road.cpp">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="624">
-                    <caret line="434" column="4" selection-start-line="434" selection-start-column="4" selection-end-line="434" selection-end-column="90" />
+                  <state relative-caret-position="666">
+                    <caret line="418" selection-start-line="418" selection-end-line="418" />
                     <folding>
                       <element signature="e#65#82#0" expanded="true" />
                     </folding>
@@ -96,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Logger.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="588">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
@@ -105,17 +105,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            <state relative-caret-position="484">
+              <caret line="177" selection-start-line="177" selection-end-line="177" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
+        <entry file="file://$PROJECT_DIR$/src/Tests/LoggerTests.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            <state relative-caret-position="162">
+              <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -123,8 +132,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/RoadSystem.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1134">
-              <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+            <state relative-caret-position="1260">
+              <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -150,11 +159,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Road.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7917">
-              <caret line="377" column="4" selection-start-line="377" selection-start-column="4" selection-end-line="377" selection-end-column="4" />
+            <state relative-caret-position="7707">
+              <caret line="367" selection-start-line="367" selection-end-line="367" />
               <folding>
                 <element signature="e#53#73#0" expanded="true" />
               </folding>
@@ -221,7 +230,6 @@
         <option value="$PROJECT_DIR$/src/RoadSystem.h" />
         <option value="$PROJECT_DIR$/src/Vehicle.cpp" />
         <option value="$PROJECT_DIR$/src/Tests/RoadSystemTests.h" />
-        <option value="$PROJECT_DIR$/src/Tests/Tests.cpp" />
         <option value="$PROJECT_DIR$/src/Tests/OutputTests.h" />
         <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/Tests/CarTests.h" />
@@ -230,9 +238,11 @@
         <option value="$PROJECT_DIR$/src/Tests/test_in/false4.xml" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/XMLParser.cpp" />
-        <option value="$PROJECT_DIR$/src/Tests/XMLParserTests.h" />
         <option value="$PROJECT_DIR$/src/Road.cpp" />
         <option value="$PROJECT_DIR$/src/Road.h" />
+        <option value="$PROJECT_DIR$/src/Tests/XMLParserTests.h" />
+        <option value="$PROJECT_DIR$/src/Tests/LoggerTests.h" />
+        <option value="$PROJECT_DIR$/src/Tests/Tests.cpp" />
       </list>
     </option>
   </component>
@@ -358,13 +368,13 @@
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParseTest.false2Test" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_METHOD="false2Test" TEST_MODE="SUITE_TEST">
+    <configuration name="ParseTest.false2Test" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_METHOD="false2Test" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ParseTest.false3Test" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_METHOD="false3Test" TEST_MODE="SUITE_TEST">
+    <configuration name="ParseTest.false3Test" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="LNJPSE_Project" TARGET_NAME="LNJPSE_DEBUG" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="LNJPSE_Project" RUN_TARGET_NAME="LNJPSE_DEBUG" TEST_CLASS="ParseTest" TEST_METHOD="false3Test" TEST_MODE="SUITE_TEST">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
         <option name="BeforeTestRunTask" enabled="true" />
@@ -387,13 +397,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="CMake Application.LNJPSE" />
+      <item itemvalue="CMake Application.LNJPSE_DEBUG" />
       <item itemvalue="Google Test.ParseTest" />
       <item itemvalue="Google Test.ParseTest.false1Test" />
       <item itemvalue="Google Test.ParseTest.false2Test" />
       <item itemvalue="Google Test.ParseTest.false3Test" />
       <item itemvalue="Google Test.ParseTest.false4Test" />
-      <item itemvalue="CMake Application.LNJPSE" />
-      <item itemvalue="CMake Application.LNJPSE_DEBUG" />
     </list>
     <recent_temporary>
       <list>
@@ -451,7 +461,8 @@
       <workItem from="1560853050821" duration="8990000" />
       <workItem from="1560870486365" duration="7043000" />
       <workItem from="1560886014333" duration="1792000" />
-      <workItem from="1560890465537" duration="1436000" />
+      <workItem from="1560890465537" duration="1760000" />
+      <workItem from="1560928129263" duration="1012000" />
     </task>
     <task id="LOCAL-00001" summary="Roadwork done">
       <created>1553693168890</created>
@@ -601,7 +612,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238424000" />
+    <option name="totallyTimeSpent" value="239760000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -618,21 +629,21 @@
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" weight="0.15446717" />
+      <window_info content_ui="combo" id="Project" order="2" weight="0.15393133" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295099" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.106962666" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47729567" />
       <window_info anchor="bottom" x="950" y="608" width="970" height="472" id="Debug" order="3" weight="0.11806256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295099" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989011" weight="0.40980187" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4989011" weight="0.4096872" />
       <window_info anchor="bottom" id="TeamCity" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50255364" side_tool="true" weight="0.6037539" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.3295099" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" weight="0.43491423" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4974464" weight="0.63673055" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -736,26 +747,23 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Tests/XMLParserTests.h</url>
-          <line>363</line>
+          <line>154</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Tests/XMLParserTests.h</url>
-          <line>384</line>
+          <line>175</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/main.cpp</url>
-          <line>15</line>
+          <line>16</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DefaultVehicle.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file:///usr/include/c++/8/bits/stl_iterator_base_funcs.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
@@ -1006,29 +1014,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logger.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        <state relative-caret-position="588">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RoadSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+        <state relative-caret-position="1260">
+          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1049,6 +1043,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Road.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7707">
+          <caret line="367" selection-start-line="367" selection-end-line="367" />
+          <folding>
+            <element signature="e#53#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/RoadSystem.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="609">
@@ -1058,21 +1062,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Road.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="434" column="4" selection-start-line="434" selection-start-column="4" selection-end-line="434" selection-end-column="90" />
+        <state relative-caret-position="666">
+          <caret line="418" selection-start-line="418" selection-end-line="418" />
           <folding>
             <element signature="e#65#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Road.h">
+    <entry file="file://$PROJECT_DIR$/src/Tests/XMLParserTests.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7917">
-          <caret line="377" column="4" selection-start-line="377" selection-start-column="4" selection-end-line="377" selection-end-column="4" />
-          <folding>
-            <element signature="e#53#73#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="484">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/LoggerTests.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Tests/Tests.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>

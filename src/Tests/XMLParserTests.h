@@ -64,7 +64,7 @@ TEST_F(ParseTest, BASE_Road)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "BASE_Road.txt");
+    testOut->open((basePath + outPath + prefix + "BASE_Road.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"BASE_Road.txt", basePath + outPath + prefix + "BASE_Road.txt"));
@@ -76,7 +76,7 @@ TEST_F(ParseTest, BASE_Car)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "BASE_Car.txt");
+    testOut->open((basePath + outPath + prefix + "BASE_Car.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"BASE_Car.txt", basePath + outPath + prefix + "BASE_Car.txt"));
@@ -91,7 +91,7 @@ TEST_F(ParseTest, NETWORK_Tree)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "NETWORK_Tree.txt");
+    testOut->open((basePath + outPath + prefix + "NETWORK_Tree.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"NETWORK_Tree.txt", basePath + outPath + prefix + "NETWORK_Tree.txt"));
@@ -103,7 +103,7 @@ TEST_F(ParseTest, NETWORK_Loop)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "NETWORK_Loop.txt");
+    testOut->open((basePath + outPath + prefix + "NETWORK_Loop.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"NETWORK_Loop.txt", basePath + outPath + prefix + "NETWORK_Loop.txt"));
@@ -118,7 +118,7 @@ TEST_F(ParseTest, TYPES_All)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "TYPES_All.txt");
+    testOut->open((basePath + outPath + prefix + "TYPES_All.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"TYPES_All.txt", basePath + outPath + prefix + "TYPES_All.txt"));
@@ -133,7 +133,7 @@ TEST_F(ParseTest, SIGNAL_All)
     ASSERT_FALSE(system == (RoadSystem*) NULL) << "Failed to open file, please check path";
     
     printer = new Output(system);
-    testOut->open(basePath + outPath + prefix + "SIGNAL_All.txt");
+    testOut->open((basePath + outPath + prefix + "SIGNAL_All.txt").c_str());
     *testOut << *printer;
     testOut->close();
     EXPECT_TRUE(FileCompare(basePath+checkPath+prefix+"SIGNAL_All.txt", basePath + outPath + prefix + "SIGNAL_All.txt"));

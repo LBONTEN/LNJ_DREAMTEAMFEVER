@@ -45,7 +45,7 @@ protected:
 TEST_F(LogTest, GENERIC_Log)
 {
     testLog = new logging::GenericLogger(&testOut);
-    testOut.open(basePath + outPath + prefix + "GENERIC_Log.txt");
+    testOut.open((basePath + outPath + prefix + "GENERIC_Log.txt").c_str());
     
     *testLog << "Logging string literal\n";
     
