@@ -156,14 +156,13 @@ void DefaultVehicle::stepAcceleration()
     {
         if (distanceToLight == 0)
         {
-            if (!willStop()) {
-                *logging::globalLog  << "(default) Vehicle failed to fully stop for traffic light\n";
-                
-                hardSetSpeed(0);
-                hardSetAcceleration(0);
-            }
+            newAcceleration = getLimits()->minAcc;
             
-            return;
+            if (!willStop(newAcceleration)) {
+                *logging::globalLog << "vehicle ";
+                *logging::globalLog << getLicensePlate();
+                *logging::globalLog  << " failed to fully stop for traffic light\n";
+            }
         }
         else
         {
@@ -202,9 +201,6 @@ void DefaultVehicle::stepAcceleration()
     
     // applly acceleration
     hardSetAcceleration(newAcceleration);
-    
-    ENSURE(limits->minSpd <= getSpeed() && getAcceleration() <= limits->maxAcc, "DefaultVehicle speed out of range");
-    ENSURE(0 <= getPosition() && (getCurrentRoad()==NULL || getPosition() <= getCurrentRoad()->getLength()), "DefaultVehicle position out of range");
 }
 
 void DefaultVehicle::stepSpeed() {
@@ -212,7 +208,9 @@ void DefaultVehicle::stepSpeed() {
     
     if (getCurrentRoad() && getSpeed() > getCurrentRoad()->getSpeedLimit(getPosition()))
     {
-        *logging::globalLog << "Vehicle crossed its road's speed limit\n";
+        *logging::globalLog << "vehicle ";
+        *logging::globalLog << getLicensePlate();
+        *logging::globalLog << " crossed its road's speed limit\n";
     }
 }
 
@@ -225,21 +223,22 @@ void DefaultVehicle::stepPosition() {
     
     unsigned int newPos = oldPos + getSpeed();
     
-    if (willStop())
-    {
-        newPos = 0;
-    }
-    
-    Vehicle* nextVeh = this->nextVeh();
+    Vehicle* nextVeh = getCurrentLane()->getCarOnPosition(oldPos, false);
     TrafficLight* nextLight = getCurrentRoad()->getTrafficLightOnPosition(oldPos, true);
     
     if (nextVeh && newPos > nextVeh->getPosition())
     {
-        *logging::globalLog << "potential collision of two vehicles\n";
+        *logging::globalLog << "potential collision of two vehicles: ";
+        *logging::globalLog << getLicensePlate();
+        *logging::globalLog << " and ";
+        *logging::globalLog << nextVeh->getLicensePlate();
+        *logging::globalLog << "\n";
     }
     if (nextLight && nextLight->getState() != green && newPos > nextLight->getPosition())
     {
-        *logging::globalLog << "vehicle crossed traffic light illegally\n";
+        *logging::globalLog << "vehicle ";
+        *logging::globalLog << getLicensePlate();
+        *logging::globalLog << " crossed traffic light illegally\n";
     }
     
     while (getCurrentRoad() and newPos >= getCurrentRoad()->getLength()) {
@@ -263,5 +262,10 @@ void DefaultVehicle::stepPosition() {
 
 bool DefaultVehicle::willStop()
 {
-    return  (getSpeed() < 0 && getPosition() <= (unsigned int) -getSpeed()); // different signedness handled safely
+    return (getSpeed() + getAcceleration() <= 0);
+}
+
+bool DefaultVehicle::willStop(int acceleration)
+{
+    return (getSpeed() + acceleration <= 0);
 }

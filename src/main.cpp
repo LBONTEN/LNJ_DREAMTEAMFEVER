@@ -14,8 +14,20 @@
 
 int main(int argc, char** argv)
 {
-    delete logging::globalLog;
-    logging::globalLog = new logging::GenericLogger(&cout);
+    ofstream* logFile = new ofstream();
+    logFile->open("../IO/logs/releaseGlobalLog.txt");
+    
+    if (!logFile->is_open())
+    {
+        cerr << "Failed to create global log file, continuing without logging\n";
+        logFile->close();
+        delete logFile;
+    }
+    else
+    {
+        delete logging::globalLog;
+        logging::globalLog = new logging::GenericLogger(logFile);
+    }
     
     if (argc < 2) {
         cerr << "No source file given" << std::endl;
@@ -56,5 +68,8 @@ int main(int argc, char** argv)
     if (!rs->empty()) cout << "note: failed to empty simulation, quitted for some other reason" << std::endl;
     std::cout << print << "\t ~====~" << std::endl;
 
+    logFile->close();
+    delete logFile;
+    
     return 0;
 }

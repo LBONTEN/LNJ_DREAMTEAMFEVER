@@ -140,11 +140,17 @@ void Bus::execUpdate()
     if (dToStop == 0 and busStopCooldown > 0)
     {
         if (!willStop()) {
-            *logging::globalLog  << "Bus failed to fully stop for bus stop\n";
-        
-            hardSetSpeed(0);
-            hardSetAcceleration(0);
+            *logging::globalLog << "bus ";
+            *logging::globalLog << getLicensePlate();
+            *logging::globalLog  << " failed to fully stop for bus stop\n";
         }
+        
+        int newAcceleration = limits->minAcc;
+        if (getSpeed()+newAcceleration < limits->minSpd)
+        {
+            newAcceleration = limits->minSpd - getSpeed();
+        }
+        hardSetAcceleration(newAcceleration);
         
         --busStopCooldown;
     
